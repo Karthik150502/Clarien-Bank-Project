@@ -1,0 +1,55 @@
+<template>
+    <div class="wrapper">
+        <!-- <c-c-b-header icon-details={header_icons}></c-c-b-header> -->
+
+        <div class="container">
+            <div class="header">
+                <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
+            </div>
+            <div class="content">
+                <div class="download-statements">
+                    <p>Showing Chequebook Statements for <br/>
+                        {fromDate} to {toDate}</p>
+                    <!-- <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use href={CBDownloadIcon}></use>
+                    </svg> -->
+                </div>
+
+
+                <div class="acc-info">
+                    <p class="acc-no">63000159987 - Saving Account</p>
+                    <p class="acc-benef">Ashley Collins</p>
+                    <p class="acc-type">Clarien Bank - Saving Account</p>
+                </div>
+                <div class="statements">
+                    <div class="statement">
+                        <div class="left">
+                            <p class="app-on">Applied on</p>
+                            <p class="date">12/12/23</p>
+                        </div>
+                        <p>Delivered</p>
+                    </div>
+
+                    <div class="statement">
+                        <div class="left">
+                            <p class="app-on">Applied on</p>
+                            <p class="date">2/1/24</p>
+                        </div>
+                        <p>Delivered</p>
+                    </div>
+
+                    <div class="statement">
+                        <div class="left">
+                            <p class="app-on">Applied on</p>
+                            <p class="date">3/5/24</p>
+                        </div>
+                        <p>In Transit</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <c-c-b-footer></c-c-b-footer>
+        <!-- for ending session -->
+        <c-c-b-session-end></c-c-b-session-end>
+    </div>
+</template>

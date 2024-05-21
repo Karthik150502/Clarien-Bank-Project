@@ -1,0 +1,15 @@
+<design:component label="Three row, three coloumn lightning page layout">
+	<flexipage:template>
+        
+        <flexipage:region name="top_left_col" defaultWidth="Large"></flexipage:region>
+        <flexipage:region name="top_mid_col" defaultWidth="Large"></flexipage:region>
+        <flexipage:region name="top_right_col" defaultWidth="Large"></flexipage:region>
+        <flexipage:region name="mid_left_col" defaultWidth="Large"></flexipage:region>
+        <flexipage:region name="mid_mid_col" defaultWidth="Large"></flexipage:region>
+        <flexipage:region name="mid_right_col" defaultWidth="Large"></flexipage:region>
+        <flexipage:region name="bottom_left_col" defaultWidth="Large"></flexipage:region>
+        <flexipage:region name="bottom_mid_col" defaultWidth="Large"></flexipage:region>
+        <flexipage:region name="bottom_right_col" defaultWidth="Large"></flexipage:region>
+        	
+    </flexipage:template>
+</design:component>

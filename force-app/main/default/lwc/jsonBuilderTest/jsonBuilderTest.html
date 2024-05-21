@@ -1,0 +1,19 @@
+<template>
+    <lightning-button label="Update JSON" onclick={handleClick}></lightning-button>
+
+    <!-- Original JSON String -->
+    <template if:true={originalJsonString}>
+        <div class="json-container">
+            <h3>Template JSON String:</h3>
+            <pre>{originalJsonString}</pre>
+        </div>
+    </template>
+
+    <!-- Updated JSON String -->
+    <template if:true={updatedJsonString}>
+        <div class="json-container">
+            <h3>Updated JSON String:</h3>
+            <pre>{updatedJsonString}</pre>
+        </div>
+    </template>
+</template>

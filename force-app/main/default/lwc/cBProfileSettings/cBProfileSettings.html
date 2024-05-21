@@ -1,0 +1,28 @@
+<!--
+	Author - Aditya
+	Created Date - 08/03/2024
+	Modified Date - 12/03/2024, 21/03/2024
+	Description - The component displays a header with configurable icons for quick access to different sections.
+                It utilizes a metadata object to define the structure and visibility of profile settings items.
+                The security settings section is exposed and configurable based on organizational requirements.
+-->
+
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-header icon-details={header_icons}>
+
+            </c-c-b-header>
+        </div>
+        <div class="container">
+            <c-c-b-profile-layout-template meta-info={profileItems}></c-c-b-profile-layout-template>
+        </div>
+        <div class="footer">
+            <c-c-b-footer></c-c-b-footer>
+        </div>
+        <template if:true={isLoading}>
+            <c-c-b-loading-spinner>
+            </c-c-b-loading-spinner>
+        </template>
+    </div>
+</template>

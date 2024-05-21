@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Enter FirstName and LasstName">
+        <div class="slds-var-m-around_medium">
+            <lightning-input value={fName} label="First Name"  onchange={handleFnameChange} required>
+            </lightning-input>
+            <lightning-input value={lName} label="Last Name"  onchange={handleLnameChange} required>
+            </lightning-input>
+            <lightning-button onclick={submitHandler} label="Submit" variant="success"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

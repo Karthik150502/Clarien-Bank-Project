@@ -1,0 +1,47 @@
+<!--
+	Author - Mahalakshmi
+	Created Date - 06/03/2024
+	Modified Date - 21/03/2024
+	Description - "Contact Us popover HTML structure"
+-->
+
+<template>
+    <section aria-label="Contact Clarien" aria-describedby="popover-body-id"
+        class="slds-popover slds-nubbin_bottom-left wrapper" role="dialog">
+        <button onclick={closeContact}
+            class="close-button slds-button slds-button_icon slds-button_icon slds-button_icon-small slds-float_right slds-popover__close"
+            title="Close dialog">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href={CBCloseContactUs}></use>
+            </svg>
+            <span class="slds-assistive-text">{label.CLOSE_DIALOG}</span>
+        </button>
+        <div id="popover-body-id" class="slds-popover__body">
+            <div class="container">
+                <div class="upper">
+                    <div class="head">
+                        <svg width="13" height="21" viewBox="0 0 13 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBAddress}></use>
+                        </svg>
+                        <a href='' onclick={openMapsApp}>
+                            {companyName}
+                        </a>
+                    </div>
+                    <div class="addr">
+                        {addressLine1}<br>{addressLine2}<br><a href="" onclick={openPhoneApp}>{phoneNumber}</a>
+                    </div>
+                </div>
+                <div class="lower">
+                    <div class="clock">
+                        <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBClock}></use>
+                        </svg>
+                    </div>
+                    <div class="hours">
+                        <p>{workingDays} <br> {timings}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>

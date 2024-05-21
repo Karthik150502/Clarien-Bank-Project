@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    width: 100vw;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.container .drop-down-list {
+    margin: 5% 0;
+}
+
+.container .drop-down-list select {
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-blue);
+    padding-left: 5px;
+}
+
+.container .account-type {
+    margin: 5% 0;
+}
+
+.container .account-type input {
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-blue);
+    padding-left: 5px;
+    font-size: 16px;
+    max-height: 100px;
+}
+
+.container .chequebook-count {
+    margin: 5% 0;
+}
+
+.container .chequebook-count input {
+    width: 99%;
+    height: 40px;
+    border: none;
+    background: transparent;
+    outline: none;
+    text-align: center;
+    font-size: 16px;
+    max-height: 100px;
+}
+
+.container .chequebook-count .count-div {
+    display: flex;
+    width: 20%;
+    border: 1px solid var(--border-blue);
+    border-radius: 12px;
+}
+
+.container .note {
+    text-align: center;
+    width: 100%;
+    margin: 5% auto;
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.container .note .link-heading {
+    text-align: left;
+    width: 100%;
+    color: black;
+    font-size: 16px;
+    margin: 0 0 5px 0;
+}
+
+.container .note .link-heading p {
+    color: var(--primary-black);
+}
+
+.container .note .link-heading .note-txt {
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.container .note .link-heading .hyperlink {
+    color: var(--primary-blue);
+}
+
+.container .submit-cancel {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container .submit-cancel button {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-white);
+}
+
+/* .container .submit-cancel .cancel {
+    background-color: var(--primary-grey);
+} */
+.container .submit-cancel .submit {
+    background-color: var(--primary-blue);
+
+}
+
+.input-heading {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}

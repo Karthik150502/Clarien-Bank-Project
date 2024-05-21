@@ -1,0 +1,27 @@
+<template>
+    <div class="wrapper">
+        <div class="info-container">
+            <p class="heading">Deposit Duration</p>
+            <div class="full-form">
+                <p>Y = Year</p>
+                <p>M = month</p>
+            </div>
+        </div>
+        <div class="slider-container">
+
+            <input type="range" min="0" max="7" value={value} id="duration" class="slider" onchange={sliderHandler}>
+
+            <div class="slider-values">
+                <div>1M</div>
+                <div class="slider-valueM">3M</div>
+                <div class="slider-valueM">6M</div>
+                <div class="slider-valueM">8M</div>
+                <div>1Y</div>
+                <div>2Y</div>
+                <div>3Y</div>
+                <div>5Y</div>
+            </div>
+
+        </div>
+    </div>
+</template>

@@ -1,0 +1,10 @@
+<template>
+    <lightning-card title="Get the Cache">
+        <lightning-input label="Enter the Cache parameter" onchange={handleChange}>
+
+        </lightning-input>
+        <lightning-button label="Get Cache" onclick={getCache} variant="success"></lightning-button>
+
+        <p>Cache Result: {cacheResult}</p>
+    </lightning-card>
+</template>

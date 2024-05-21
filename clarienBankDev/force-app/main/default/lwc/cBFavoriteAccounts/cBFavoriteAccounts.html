@@ -1,0 +1,32 @@
+<!--
+	Author - 
+	Created Date - 28/03/2024
+	Modified Date - 
+	Description - 
+-->
+
+<template>
+    <div class="wrapper">
+        <c-c-b-header icon-details={header_icons}></c-c-b-header>
+        <div class="header">
+            <p>Accounts</p>
+        </div>
+        <div class="container">
+            <template for:each={accountsData} for:item="account">
+                <div key={account.accountNo}>
+                    <c-c-b-account-detail-card account={account} onremoveaccfav={removefavacc} onaddaccfav={addfavacc}
+                        is-favorite={account.favorite}>
+                    </c-c-b-account-detail-card>
+                </div>
+            </template>
+        </div>
+        <c-c-b-footer></c-c-b-footer>
+    </div>
+    <template if:true={favAccModalOpened}>
+        <c-c-b-favorite-account-add onclosemodal={closeFavAccountModal}></c-c-b-favorite-account-add>
+    </template>
+
+
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
+</template>

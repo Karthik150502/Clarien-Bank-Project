@@ -1,0 +1,70 @@
+/*
+	Author - Prateek Deshmukh
+	Created Date - 2024-03-06
+	Modified Date - 2024-03-06,2024-03-11
+	Description - This child component is employed on the dashboard page to display a list of icons.
+*/
+
+*{
+
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.Main-Container {
+	border-radius: 10px;
+	border: 1px solid #259CEE;
+	padding: 5px;
+	margin: 15px auto;
+	width: 95%;
+
+}
+
+
+
+.header {
+	width: 338px;
+	margin: 5px 8px 0px 0px;
+	padding: 0 0 0 18px;
+}
+
+
+.icon-container-inner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.icons {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 15px;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	background-color: #E3EFF8;
+}
+
+svg {
+	width: auto;
+}
+
+.icon-container-outer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin: 0;
+}
+
+.viewAll {
+	color: rgba(245, 128, 39, 1);
+	text-align: center;
+	margin-top: 10px;
+}
+
+/* .iconLabel  {
+	font-size: 10px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family) !important;
+	width: 22vw;
+} */

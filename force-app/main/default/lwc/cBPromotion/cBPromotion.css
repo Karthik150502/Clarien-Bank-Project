@@ -1,0 +1,59 @@
+/*
+	Author - Prateek Deshmukh
+	Created Date - 06/03/2024
+	Modified Date - 21/03/2024
+	Description - Used to display the Promation
+*/
+
+*{
+
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.Container {
+    border: 1px solid var(--border-blue);
+    height: 129.54px;
+    position: relative;
+    border-radius: 10px;
+    margin: 0 auto 0 auto;
+    width: 95%;
+}
+.header{
+    margin: 18px 8px 5px 0px;
+    font-size: 16px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    margin-left: 4%;
+}
+.wrapper{
+    margin: 0 auto;
+    width: 100%;
+    
+}
+.content {
+    width: 60%;
+    margin: 12px;
+    text-align: center;
+    font-size: 10px;
+}
+
+img{
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.hyberlinkName{
+    color: var(--primary-orange);
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+
+}
+
+
+.caption{
+    height: 84px;
+    margin: 11px 5px 12px 0;
+    text-align: left;
+    
+}

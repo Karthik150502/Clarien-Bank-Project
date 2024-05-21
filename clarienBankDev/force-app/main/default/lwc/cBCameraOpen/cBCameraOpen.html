@@ -1,0 +1,43 @@
+<!--
+	Author - __
+	Created Date - __/__/202_
+	Modified Date - __/__/202_, __/__/202_
+	Description - {***Purpose of creation or modification, Additional Comment***}
+-->
+
+<template>
+    <lightning-card title="Open Camera">
+        <div  class="takePhoto">
+            <form id="take" action="" method="POST"> 
+                <label for="personal-photo-click">
+                    <p>Click from Camera</p>
+                    <input 
+                    type="file" 
+                    id= "cap1" 
+                    name="personal-photo-click" 
+                    class="click-image"
+                    alt="Click image"
+                    accept="image/*" 
+                    capture ="camera"
+                    aria-label="Take a photo of yourself."
+                    onchange={openfileUpload}/>
+                    
+                </label>
+                <label for="personal-photo-upload">
+                    <p>Upload from gallery</p>
+                    <input 
+                    type="file" 
+                    id= "cap2" 
+                    class="upload-image"
+                    alt="Upload from Gallery"
+                    name="personal-photo-upload" 
+                    accept="image/*" 
+                    aria-label="Upload a photo from gallery."
+                    onchange={openfileUpload}
+                    >
+                </label>
+                <input type="submit" onclick={handleClick}>
+            </form>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+
+.wrapper {
+    background-color: transparent;
+    width: 364px;
+    margin: 4px auto 10px auto;
+    /* height:auto; */
+    height: 195px;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.container .details-ff {
+    color: var(--primary-white);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 90%;
+    width: 90%;
+    align-items: flex-start;
+    margin: auto auto;
+}
+
+.container .details-ff .avl-bal {
+    margin: 2% 0 2% 0;
+}
+
+.container .details-ff .p1 {
+    font-size: 20px;
+    font-family: var(--dxp-g-root-gotham-book-font-family)
+}
+
+.container .details-ff .p2 {
+    font-size: 24px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family)
+}
+
+
+.container .details-ff .p3 {
+    font-size: 16px;
+    font-family: var(--dxp-g-root-gotham-book-font-family)
+}
+
+.container .details-ff .p4,
+.container .details-ff .p4 {
+    font-size: 11px;
+    font-family: var(--dxp-g-root-gotham-book-font-family)
+}
+
+.container .details-bf {
+    color: var(--primary-white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 82%;
+    width: 75%;
+    margin: auto auto 2% auto;
+}
+
+
+.container .details-bf .b1,
+.container .details-bf .b2,
+.container .details-bf .b3,
+.container .details-bf .b4 {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 0 1% 0;
+}
+
+
+
+.container .details-bf .b1 .p1 {
+    font-size: 10px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.container .details-bf .b2 .p1 {
+    font-size: 10px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.container .details-bf .b3 .p1 {
+    font-size: 10px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.container .details-bf .b4 .p1 {
+    font-size: 10px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+
+.container .details-bf .b1 .p2 {
+    font-size: 20px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.container .details-bf .b2 .p2 {
+    font-size: 16px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.container .details-bf .b3 .p2 {
+    font-size: 20px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.container .details-bf .b4 .p2 {
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.front-face,
+.back-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+
+    background-image: url('/resource/CreditCardBg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    border-radius: 15px;
+}
+
+.front-face {
+    color: white;
+}
+
+.back-face {
+    color: white;
+    transform: rotateY(180deg);
+}
+
+.front {
+    transform: rotateY(0deg);
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+
+.card-flip-icon-front {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+.card-flip-icon-back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+
+}
+
+.share-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}

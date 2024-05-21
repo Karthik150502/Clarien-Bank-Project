@@ -1,0 +1,50 @@
+<!--
+		Author - __
+	Created Date - 2024-03-13
+	Modified Date - 2024-03-13,2024-03-16,2024-03-20
+	Description - This component displays a map with available ATM locations and provides details of the selected location.
+     Users can also navigate to a selected location by clicking on the direction icon.
+-->
+
+<template>
+    <div class="wrapper">
+        <div class="header" onclick={navigateBack}>
+            <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href={CBBackIcon}></use>
+            </svg>
+            <div class="prof">
+                <p>ATM Locator</p>
+            </div>
+        </div>
+
+        <div class="container">
+            <template if:true={mapMarkers.length}>
+                <lightning-map map-markers={mapMarkers} markers-title={markersTitle} onmarkerselect={callMarkerHandler}
+                    selected-marker-value={selectedMarkerValue} list-view="hidden" zoom-level="11" options={mapOptions}
+                    center={center}>
+                </lightning-map>
+            </template>
+        </div>
+        
+        <div class="footer">
+            <template lwc:if={cardOpened}>
+                <div class="footer-div">
+                    <p class={statusClass}>{selectedLocation.status}</p>
+                    <div class="footer-content">
+                        <p class="field-data atm-name">{selectedLocation.atmName}</p>
+                        <p class="field-data addr">{selectedLocation.address}</p>
+                    </div>
+                    <div class="footer-svg" onclick={openBrowserMap}>
+                        <img onclick={openBrowserMap} src={openMapIcon} alt="Open Map Icon">
+                    </div>
+                </div>
+            </template>
+
+            <template lwc:else>
+                <div class="footer-div2">
+                    <p><strong>Click on any marker to get more information</strong></p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

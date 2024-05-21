@@ -1,0 +1,79 @@
+<!--
+    Author - Prateek Deshmukh
+    Created Date - 05/04/2024
+    Modified Date - 05/04/2024
+    Description - This is a reusable child component designed toshowcase Account details, with a special feature to highlight favorite accounts.
+    Its adaptability allows it to be seamlessly integrated across various contexts, effortlessly presenting tailored information based on the provided data.
+-->
+
+<template>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <div class="fav-logo" onclick={updateFavorites}>
+                    <template if:true={isFavorite}>
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.5 0C19.401 0 25 5.59895 25 12.5C25 19.401 19.401 25 12.5 25C5.59896 25 0 19.401 0 12.5C0 5.59129 5.5913 0 12.5 0Z"
+                                fill="#E3EFF8" />
+                            <path
+                                d="M16.6157 7.1439C15.2868 6.78439 13.5251 7.21582 12.4924 8.70182C11.3838 7.12794 9.61448 6.76842 8.33878 7.12794C6.89603 7.53539 6 8.81366 6 10.4515C6 14.2064 12.052 18.7443 12.3102 18.9361C12.3633 18.976 12.4317 19 12.5 19C12.5683 19 12.6291 18.976 12.6898 18.9361C12.948 18.7443 19 14.2064 19 10.4515C18.9924 8.81366 18.0812 7.55136 16.6157 7.1439ZM15.3627 15.6525C14.163 16.8908 12.9556 17.8655 12.5 18.225C12.0444 17.8735 10.837 16.8988 9.64486 15.6605C7.69334 13.6392 6.66063 11.8336 6.66063 10.4515C6.66063 9.11726 7.35164 8.12659 8.51344 7.79903C8.75643 7.72713 9.0222 7.69517 9.29556 7.69517C10.3283 7.69517 11.5128 8.21447 12.2114 9.51672C12.2722 9.62857 12.3785 9.69249 12.5 9.69249C12.6215 9.69249 12.7278 9.62059 12.781 9.50874C13.5859 7.95882 15.2336 7.48745 16.4486 7.823C17.6256 8.14257 18.3318 9.12525 18.3318 10.4515C18.3394 11.8336 17.3067 13.6312 15.3627 15.6525Z"
+                                fill="#F58027" />
+                            <path
+                                d="M13 20.0125L11.9125 19.0225C8.05 15.52 5.5 13.2025 5.5 10.375C5.5 8.0575 7.315 6.25 9.625 6.25C10.93 6.25 12.1825 6.8575 13 7.81C13.8175 6.8575 15.07 6.25 16.375 6.25C18.685 6.25 20.5 8.0575 20.5 10.375C20.5 13.2025 17.95 15.52 14.0875 19.0225L13 20.0125Z"
+                                fill="#F58027" />
+                        </svg>
+                    </template>
+                    <template if:false={isFavorite}>
+                        <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M12.5 0C19.401 0 25 5.59895 25 12.5C25 19.401 19.401 25 12.5 25C5.59896 25 0 19.401 0 12.5C0 5.59129 5.5913 0 12.5 0Z"
+                                fill="#E3EFF8" />
+                            <path
+                                d="M16.6157 7.1439C15.2868 6.78439 13.5251 7.21582 12.4924 8.70182C11.3838 7.12794 9.61448 6.76842 8.33878 7.12794C6.89603 7.53539 6 8.81366 6 10.4515C6 14.2064 12.052 18.7443 12.3102 18.9361C12.3633 18.976 12.4317 19 12.5 19C12.5683 19 12.6291 18.976 12.6898 18.9361C12.948 18.7443 19 14.2064 19 10.4515C18.9924 8.81366 18.0812 7.55136 16.6157 7.1439ZM15.3627 15.6525C14.163 16.8908 12.9556 17.8655 12.5 18.225C12.0444 17.8735 10.837 16.8988 9.64486 15.6605C7.69334 13.6392 6.66063 11.8336 6.66063 10.4515C6.66063 9.11726 7.35164 8.12659 8.51344 7.79903C8.75643 7.72713 9.0222 7.69517 9.29556 7.69517C10.3283 7.69517 11.5128 8.21447 12.2114 9.51672C12.2722 9.62857 12.3785 9.69249 12.5 9.69249C12.6215 9.69249 12.7278 9.62059 12.781 9.50874C13.5859 7.95882 15.2336 7.48745 16.4486 7.823C17.6256 8.14257 18.3318 9.12525 18.3318 10.4515C18.3394 11.8336 17.3067 13.6312 15.3627 15.6525Z"
+                                fill="#075896" />
+                        </svg>
+                    </template>
+                </div>
+
+
+            </div>
+
+            <div class="content">
+                <div class="cont-details">
+                    <p class="acc-type">{account.accountType}</p>
+                    <p class="acc-no">{account.accountNo}</p>
+                    <p class="acc-bal">{account.accountBal}</p>
+                </div>
+                <div class="nav-logo" onclick={navigateToAccount}>
+                    <svg width="42" height="50" viewBox="0 0 34 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M17.8797 35.26C17.6797 35.26 17.4697 35.19 17.3097 35.04C16.9597 34.73 16.9297 34.19 17.2497 33.84L31.4497 18.09L17.2397 1.40999C16.9397 1.04999 16.9797 0.51999 17.3397 0.20999C17.6997 -0.0900104 18.2297 -0.0500196 18.5397 0.30998L33.2297 17.55C33.5097 17.87 33.4997 18.35 33.2097 18.67L18.5197 34.97C18.3497 35.17 18.1197 35.26 17.8797 35.26Z"
+                            fill="white" />
+                        <path
+                            d="M1.29962 35.26C1.09962 35.26 0.889647 35.19 0.729647 35.04C0.379647 34.73 0.349649 34.19 0.669649 33.84L14.8696 18.09L0.659639 1.40999C0.359639 1.04999 0.399645 0.51999 0.759645 0.20999C1.11965 -0.0900104 1.64963 -0.0500196 1.95963 0.30998L16.6496 17.55C16.9296 17.87 16.9196 18.35 16.6296 18.67L1.93964 34.97C1.75964 35.17 1.52962 35.26 1.29962 35.26Z"
+                            fill="white" />
+                    </svg>
+                </div>
+            </div>
+
+            <div class="footer">
+                <template if:false={isALoanAccount}>
+                    <div class="footer-cont">
+                        <p>Current Balance: <br>{account.accountBal}</p>
+                        <p>Total Holds: <br>{account.totalHolds}</p>
+                    </div>
+                </template>
+
+
+
+                <template if:true={isALoanAccount}>
+                    <div class="footer-cont">
+                        <p>Next interest Payment Amount: <br>{account.nextInterestAmt}</p>
+                        <p>Next interest Payment Date: <br>{account.nextInterestDate}</p>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

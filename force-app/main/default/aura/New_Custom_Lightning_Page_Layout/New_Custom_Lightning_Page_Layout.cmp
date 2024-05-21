@@ -1,0 +1,65 @@
+<aura:component implements="lightning:homeTemplate" 
+                description="A custom three row, and three column each lightning page layout">
+    <!--Top row-->
+    <aura:attribute name="top_left_col" type="Aura.Component[]"/>
+    <aura:attribute name="top_mid_col" type="Aura.Component[]"/>
+    <aura:attribute name="top_right_col" type="Aura.Component[]"/>
+    
+    <!--Middle row-->
+    <aura:attribute name="mid_left_col" type="Aura.Component[]"/>
+    <aura:attribute name="mid_mid_col" type="Aura.Component[]"/>
+    <aura:attribute name="mid_right_col" type="Aura.Component[]"/>
+    
+    
+    <!--Bottom row-->
+    <aura:attribute name="bottom_left_col" type="Aura.Component[]"/>
+    <aura:attribute name="bottom_mid_col" type="Aura.Component[]"/>
+    <aura:attribute name="bottom_right_col" type="Aura.Component[]"/>
+    
+    <div>
+        <!--Top row-->
+        <lightning:layout>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.top_left_col}
+            </lightning:layoutItem>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.top_mid_col}
+            </lightning:layoutItem>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.top_right_col}
+            </lightning:layoutItem>         
+        </lightning:layout>
+        
+        
+        
+        <!--Middle row-->
+        <lightning:layout>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.mid_left_col}
+            </lightning:layoutItem>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.mid_mid_col}
+            </lightning:layoutItem>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.mid_right_col}
+            </lightning:layoutItem>   
+        </lightning:layout>
+        
+        
+        <!--Bottom row-->
+        <lightning:layout>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.bottom_left_col}
+            </lightning:layoutItem>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.bottom_mid_col}
+            </lightning:layoutItem>
+            <lightning:layoutItem size="{! $Browser.isDesktop ? '4' : '12' }" class="">
+                {!v.bottom_right_col}
+            </lightning:layoutItem>   
+        </lightning:layout>
+        
+    </div>
+    
+
+</aura:component>

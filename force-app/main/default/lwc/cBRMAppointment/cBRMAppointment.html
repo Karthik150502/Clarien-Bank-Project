@@ -1,0 +1,30 @@
+<template>
+    <div class="wrapper">
+        <div class="container">
+            <div class="heading">
+                <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+            </div>
+            <div class="casing">
+                <label for="appointment-date">
+                    <p>Date</p>
+                    <input id="appointment-date" type="date" class="date" min={today} onchange={dataHandler}>
+                </label>
+
+                <label for="Comments">
+                    <p class="title">Comments<span>(Optional)</span></p>
+                    <textarea id="comments" onkeyup={commentHandler} placeholder="Any comment write here">
+
+                </textarea>
+                </label>
+            </div>
+            <div class="btns">
+                <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>{label.SUBMIT}</button>
+            </div>
+        </div>
+    </div>
+    <template if:true={successModalOpen}>
+        <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
+    </template>
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
+</template>

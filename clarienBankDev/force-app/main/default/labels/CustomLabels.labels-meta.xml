@@ -1,0 +1,1725 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>CBAccountCard_availableBalance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBAccountCard availableBalance</shortDescription>
+        <value>Available Balance</value>
+    </labels>
+    <labels>
+        <fullName>CBAccountCard_currentBalance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBAccountCard currentBalance</shortDescription>
+        <value>Current Balance</value>
+    </labels>
+    <labels>
+        <fullName>CBAccountCard_totalHolds</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBAccountCard totalHolds</shortDescription>
+        <value>Total Holds</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_atleastOneUpper</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword Atleast One Upper</shortDescription>
+        <value>At least one uppercase letter</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_atleastSpecChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword At least Spec Char</shortDescription>
+        <value>At least one Special character</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_changePassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword ChangePassword</shortDescription>
+        <value>Change Password</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_confirmPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword Confirm Password</shortDescription>
+        <value>Confirm Password</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_min10chars</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword Min10chars</shortDescription>
+        <value>Minimum 10 Characters</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_newPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword New Password</shortDescription>
+        <value>New Password</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_oldPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword Old Password</shortDescription>
+        <value>Old Password</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_passwordMustContain</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword Password Must Contain</shortDescription>
+        <value>Password must contain</value>
+    </labels>
+    <labels>
+        <fullName>CBChangePassword_submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ChangePassword Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_andPrivacyPolicy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds And Privacy Policy</shortDescription>
+        <value>and Privacy Policy</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_atleastOneSpecChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds Atleast One Special Char</shortDescription>
+        <value>At least one special character</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_atleastOneUppChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds atleast One Upper Char</shortDescription>
+        <value>At least one uppercase letter</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_companyCodeConduct</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds Company Code Conduct</shortDescription>
+        <value>I agree the Company&apos;s Code of Conduct</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_confirmPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds confirm Password</shortDescription>
+        <value>Confirm Password</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_createUserCreds</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds create User Creds</shortDescription>
+        <value>Create User Credential</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_iAgreeToCompany</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds i Agree To Company</shortDescription>
+        <value>I agree to the company&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_marketingConsent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds MarketingConsent</shortDescription>
+        <value>I accept marketing consent</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_newPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds newPassword</shortDescription>
+        <value>New Password</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_on10Chars</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds on10Chars</shortDescription>
+        <value>Minimum 10 Characters</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_passwordMustContain</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds Password Must Contain</shortDescription>
+        <value>Password must contain</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_termsConditions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds terms Conditions</shortDescription>
+        <value>Terms, Conditions</value>
+    </labels>
+    <labels>
+        <fullName>CBCreateUserCreds_username</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB CreateUserCreds username</shortDescription>
+        <value>Username</value>
+    </labels>
+    <labels>
+        <fullName>CBCurrency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBCurrency</shortDescription>
+        <value>Currency</value>
+    </labels>
+    <labels>
+        <fullName>CBDasboardIcon_Icon1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBDasboardIcon Icon1</shortDescription>
+        <value>Predefined</value>
+    </labels>
+    <labels>
+        <fullName>CBDasboardIcon_Icon2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBDasboardIcon Icon2</shortDescription>
+        <value>Own Account Transfers</value>
+    </labels>
+    <labels>
+        <fullName>CBDasboardIcon_Icon3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBDasboardIcon Icon3</shortDescription>
+        <value>Intrabank Transfers</value>
+    </labels>
+    <labels>
+        <fullName>CBDasboardIcon_Icon4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBDasboardIcon Icon4</shortDescription>
+        <value>Domestic Payments</value>
+    </labels>
+    <labels>
+        <fullName>CBDasboardIcon_Icon5</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBDasboardIcon Icon5</shortDescription>
+        <value>International Payments</value>
+    </labels>
+    <labels>
+        <fullName>CBDasboardIcon_Icon6</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBDasboardIcon Icon6</shortDescription>
+        <value>Manage Beneficiaries</value>
+    </labels>
+    <labels>
+        <fullName>CBDasboardIcon_Icon7</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBDasboardIcon Icon7</shortDescription>
+        <value>Ad-hoc Payment</value>
+    </labels>
+    <labels>
+        <fullName>CBDasboardIcon_Icon8</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBDasboardIcon Icon8</shortDescription>
+        <value>Bill Payments</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_Minimum_10_Characters</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBForgotPassword2 Minimum 10 Characters</shortDescription>
+        <value>Minimum 10 Characters</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_NEXT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBForgotPassword2 NEXT</shortDescription>
+        <value>NEXT</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_Password_must_contain</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBForgotPassword2 Password must contain</shortDescription>
+        <value>Password must contain</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_atleast_one_char</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBForgotPassword2 atleast one char</shortDescription>
+        <value>At least one uppercase letter</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_atleast_one_spclChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBForgotPassword2 atleast one spclChar</shortDescription>
+        <value>At least one Special character</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_confirmPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword2 confirmPassword</shortDescription>
+        <value>Confirm Password</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_enter_your_password</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword2 enter your password</shortDescription>
+        <value>Please enter your password</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_errorCriteriaNotMatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword2 Error Criteria Not Match</shortDescription>
+        <value>Password has to match the below criteria</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_errorenterThePass</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword2 Error Enter the Pass</shortDescription>
+        <value>Please enter the Password</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_errorpassMismatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword2 Error pass Mismatch</shortDescription>
+        <value>Mismatched Password</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword2_newPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword2 newPassword</shortDescription>
+        <value>New Password</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword3_LOGIN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBForgotPassword3_LOGIN</shortDescription>
+        <value>LOGIN</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword3_password_changed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBForgotPassword3 password changed</shortDescription>
+        <value>Password Changed</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword3_password_successfully_changed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBForgotPassword3 password successfully changed</shortDescription>
+        <value>Your password has been successfully changed</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword_Forgot_Password</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Forgot Password Forgot Password</shortDescription>
+        <value>Forgot Passsword</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword_Note</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword Note</shortDescription>
+        <value>Note</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword_Please_Provide_internet_banking</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword Please Provide internet banking</shortDescription>
+        <value>Please provide internet banking</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword_Registered_Email_Address</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword Registered Email Address</shortDescription>
+        <value>Registered Email Address</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword_Registered_Email_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword Registered Email ID</shortDescription>
+        <value>registered email Id</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword_Retail_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword Retail User</shortDescription>
+        <value>Retail User</value>
+    </labels>
+    <labels>
+        <fullName>CBForgotPassword_Username</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword Username</shortDescription>
+        <value>Username</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_clickHereToken</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB LoginForm Click Here Token</shortDescription>
+        <value>Click here to register token in online banking</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_forgotPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB LoginForm Forgot Password</shortDescription>
+        <value>Forgot your Password</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_log_in</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBLoginForm_log_in</shortDescription>
+        <value>Log In</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_newtoClarien</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB LoginForm New to Clarien</shortDescription>
+        <value>New to Clarien</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_password</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Loginform Password</shortDescription>
+        <value>Password</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_regToken</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB LoginForm Reg Token</shortDescription>
+        <value>Have you registered the token</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_rem_me</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB LoginForm Remember me</shortDescription>
+        <value>Remember Me</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_signUp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB LoginForm Sign Up</shortDescription>
+        <value>Sign Up</value>
+    </labels>
+    <labels>
+        <fullName>CBLoginForm_username</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB LoginForm Username</shortDescription>
+        <value>Username</value>
+    </labels>
+    <labels>
+        <fullName>CBTokenValidationCard_Token_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBTokenValidationCard Token label</shortDescription>
+        <value>Please enter security token</value>
+    </labels>
+    <labels>
+        <fullName>CB_ATMLocator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ATMLocator</shortDescription>
+        <value>ATM Locator</value>
+    </labels>
+    <labels>
+        <fullName>CB_AccountName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AccountName</shortDescription>
+        <value>Account Name</value>
+    </labels>
+    <labels>
+        <fullName>CB_AccountNo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AccountNo</shortDescription>
+        <value>Account No</value>
+    </labels>
+    <labels>
+        <fullName>CB_AccountOpeningDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AccountOpeningDate</shortDescription>
+        <value>Account Opening Date(DD/MM/YYYY)</value>
+    </labels>
+    <labels>
+        <fullName>CB_AccountStatements</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AccountStatements</shortDescription>
+        <value>Account Statements</value>
+    </labels>
+    <labels>
+        <fullName>CB_AccountsAndDeposits</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AccountsAndDeposits</shortDescription>
+        <value>Accounts &amp; Deposits</value>
+    </labels>
+    <labels>
+        <fullName>CB_ActivateAccForService</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ActivateAccForService</shortDescription>
+        <value>Activate Account for Online service</value>
+    </labels>
+    <labels>
+        <fullName>CB_AdHocPayments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AdHocPayments</shortDescription>
+        <value>Ad-hoc Payment</value>
+    </labels>
+    <labels>
+        <fullName>CB_All</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_All</shortDescription>
+        <value>All</value>
+    </labels>
+    <labels>
+        <fullName>CB_AndPrivacyPolicy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AndPrivacyPolicy</shortDescription>
+        <value>and Privacy Policy</value>
+    </labels>
+    <labels>
+        <fullName>CB_ApplyForLoans</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ApplyForLoans</shortDescription>
+        <value>Apply for Loans</value>
+    </labels>
+    <labels>
+        <fullName>CB_ApplyNow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ApplyNow</shortDescription>
+        <value>Apply Now</value>
+    </labels>
+    <labels>
+        <fullName>CB_Approvals</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Approvals</shortDescription>
+        <value>Approvals</value>
+    </labels>
+    <labels>
+        <fullName>CB_AtLeastOneSpecChar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AtLeastOneSpecChar</shortDescription>
+        <value>At least one Special character</value>
+    </labels>
+    <labels>
+        <fullName>CB_AtLeastOneUpperCase</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AtLeastOneUpperCase</shortDescription>
+        <value>At least one uppercase letter</value>
+    </labels>
+    <labels>
+        <fullName>CB_AuthenticationSuccessful</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AuthenticationSuccessful</shortDescription>
+        <value>Authentication Successful</value>
+    </labels>
+    <labels>
+        <fullName>CB_Authentication_Failed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Authentication Failed</shortDescription>
+        <value>Authentication Failed. Please Try Again</value>
+    </labels>
+    <labels>
+        <fullName>CB_Authentication_InProgress</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Authentication in progress</shortDescription>
+        <value>Authentication in progress</value>
+    </labels>
+    <labels>
+        <fullName>CB_Authentication_Successful</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Authentication Successful</shortDescription>
+        <value>Authentication Successful</value>
+    </labels>
+    <labels>
+        <fullName>CB_AvailableBalance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBAvailableBalance</shortDescription>
+        <value>Available Balance</value>
+    </labels>
+    <labels>
+        <fullName>CB_BankAccounts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_BankAccounts</shortDescription>
+        <value>Bank Accounts</value>
+    </labels>
+    <labels>
+        <fullName>CB_BillPayments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_BillPayments</shortDescription>
+        <value>Bill Payments</value>
+    </labels>
+    <labels>
+        <fullName>CB_BioMetric</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_BioMetric</shortDescription>
+        <value>Bio-Metric</value>
+    </labels>
+    <labels>
+        <fullName>CB_Bmd</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Bmd</shortDescription>
+        <value>BMD</value>
+    </labels>
+    <labels>
+        <fullName>CB_Buy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Buy</shortDescription>
+        <value>Buy</value>
+    </labels>
+    <labels>
+        <fullName>CB_Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Cancel</shortDescription>
+        <value>cancel</value>
+    </labels>
+    <labels>
+        <fullName>CB_CarLoan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CarLoan</shortDescription>
+        <value>Car</value>
+    </labels>
+    <labels>
+        <fullName>CB_CardNo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CardNo</shortDescription>
+        <value>Card No</value>
+    </labels>
+    <labels>
+        <fullName>CB_CardServices</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CardServices</shortDescription>
+        <value>Card Services</value>
+    </labels>
+    <labels>
+        <fullName>CB_CardStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CardStatus</shortDescription>
+        <value>Card Status</value>
+    </labels>
+    <labels>
+        <fullName>CB_Cards</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Cards</shortDescription>
+        <value>Cards</value>
+    </labels>
+    <labels>
+        <fullName>CB_ChangePassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ChangePassword</shortDescription>
+        <value>Change Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_ChequeNumberFrom</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ChequeNumberFrom</shortDescription>
+        <value>Cheque Number From</value>
+    </labels>
+    <labels>
+        <fullName>CB_ChequeNumberTo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ChequeNumberTo</shortDescription>
+        <value>Cheque Number To</value>
+    </labels>
+    <labels>
+        <fullName>CB_ChequeStatus</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ChequeStatus</shortDescription>
+        <value>Cheque Status</value>
+    </labels>
+    <labels>
+        <fullName>CB_Chequebook</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Chequebook</shortDescription>
+        <value>Chequebook</value>
+    </labels>
+    <labels>
+        <fullName>CB_ChequebookServices</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ChequebookServices</shortDescription>
+        <value>Chequebook Services</value>
+    </labels>
+    <labels>
+        <fullName>CB_ChequingAccountOpening</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ChequingAccountOpening</shortDescription>
+        <value>Chequing Account Opening</value>
+    </labels>
+    <labels>
+        <fullName>CB_CifId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CifId</shortDescription>
+        <value>CIF ID</value>
+    </labels>
+    <labels>
+        <fullName>CB_Clarien_IInvest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Clarien_IInvest</shortDescription>
+        <value>Clarien IInvest</value>
+    </labels>
+    <labels>
+        <fullName>CB_Clarien_IPortfolio</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Clarien_IPortfolio</shortDescription>
+        <value>Clarien IPortfolio</value>
+    </labels>
+    <labels>
+        <fullName>CB_Clarien_ITrade</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Clarien_ITrade</shortDescription>
+        <value>Clarien ITrade</value>
+    </labels>
+    <labels>
+        <fullName>CB_ClickHereToken</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ClickHereToken</shortDescription>
+        <value>Click here to register token in online banking</value>
+    </labels>
+    <labels>
+        <fullName>CB_CloseDialog</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CloseDialog</shortDescription>
+        <value>Close dialog</value>
+    </labels>
+    <labels>
+        <fullName>CB_CodeOfConduct</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CodeOfConduct</shortDescription>
+        <value>code of conduct</value>
+    </labels>
+    <labels>
+        <fullName>CB_ConfirmPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ConfirmPassword</shortDescription>
+        <value>Confirm Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_ContactUs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ContactUs</shortDescription>
+        <value>Contact Us</value>
+    </labels>
+    <labels>
+        <fullName>CB_CreateUserCred</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CreateUserCred</shortDescription>
+        <value>Create User Credential</value>
+    </labels>
+    <labels>
+        <fullName>CB_CreditCard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CreditCard</shortDescription>
+        <value>Credit Card</value>
+    </labels>
+    <labels>
+        <fullName>CB_CreditCards</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CreditCards</shortDescription>
+        <value>Credit Cards</value>
+    </labels>
+    <labels>
+        <fullName>CB_CreditExpiryDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CreditExpiryDate</shortDescription>
+        <value>Credit Expiry date</value>
+    </labels>
+    <labels>
+        <fullName>CB_CurrentBalance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CurrentBalance</shortDescription>
+        <value>Current Balance</value>
+    </labels>
+    <labels>
+        <fullName>CB_DarkTheme</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_DarkTheme</shortDescription>
+        <value>Dark Theme</value>
+    </labels>
+    <labels>
+        <fullName>CB_DebitAmount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_DebitAmount</shortDescription>
+        <value>Debit Amount</value>
+    </labels>
+    <labels>
+        <fullName>CB_DebitCard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_DebitCard</shortDescription>
+        <value>Debit Card</value>
+    </labels>
+    <labels>
+        <fullName>CB_DepositAmount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_DepositAmount</shortDescription>
+        <value>Deposit Amount</value>
+    </labels>
+    <labels>
+        <fullName>CB_Deposited</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Deposited</shortDescription>
+        <value>Deposited</value>
+    </labels>
+    <labels>
+        <fullName>CB_Dob</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Dob</shortDescription>
+        <value>DOB</value>
+    </labels>
+    <labels>
+        <fullName>CB_DomesticPayments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_DomesticPayments</shortDescription>
+        <value>Domestic Payments</value>
+    </labels>
+    <labels>
+        <fullName>CB_Done</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Done</shortDescription>
+        <value>done</value>
+    </labels>
+    <labels>
+        <fullName>CB_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Email</shortDescription>
+        <value>Email</value>
+    </labels>
+    <labels>
+        <fullName>CB_Email_Update_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Your Email has been updated</shortDescription>
+        <value>Your Email has been updated</value>
+    </labels>
+    <labels>
+        <fullName>CB_EnableDisableBiometric</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_EnableDisableBiometric</shortDescription>
+        <value>Enable/ Disable Biometric</value>
+    </labels>
+    <labels>
+        <fullName>CB_EnterValidCifId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_EnterValidCifId</shortDescription>
+        <value>Enter Valid CIF Id</value>
+    </labels>
+    <labels>
+        <fullName>CB_EnterValidOldPass</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_EnterValidOldPass</shortDescription>
+        <value>Enter a Valid old Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_EnterYourPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_EnterYourPassword</shortDescription>
+        <value>Please enter your password</value>
+    </labels>
+    <labels>
+        <fullName>CB_ErrorCriteriaNotMatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ErrorCriteriaNotMatch</shortDescription>
+        <value>Password has to match the below criteria</value>
+    </labels>
+    <labels>
+        <fullName>CB_ErrorEnterThePass</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ErrorEnterThePass</shortDescription>
+        <value>Please enter the Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_ErrorInvalidEmail</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ErrorInvalidEmail</shortDescription>
+        <value>Enter a Valid Email address</value>
+    </labels>
+    <labels>
+        <fullName>CB_ErrorPassMismatch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ErrorPassMismatch</shortDescription>
+        <value>Password mismatch</value>
+    </labels>
+    <labels>
+        <fullName>CB_ExchangeRates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ExchangeRates</shortDescription>
+        <value>Exchange Rates</value>
+    </labels>
+    <labels>
+        <fullName>CB_FavoriteAccounts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_FavoriteAccounts</shortDescription>
+        <value>Favorite Accounts</value>
+    </labels>
+    <labels>
+        <fullName>CB_FeedbackRateUs</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_FeedbackRateUs</shortDescription>
+        <value>Feedback/Rate Us</value>
+    </labels>
+    <labels>
+        <fullName>CB_FirstName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_FirstName</shortDescription>
+        <value>First Name</value>
+    </labels>
+    <labels>
+        <fullName>CB_ForgotPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ForgotPassword</shortDescription>
+        <value>Forgot Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_ForgotPassword_API_100472</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB ForgotPassword API 100472</shortDescription>
+        <value>Passwords should not contain &quot;xyz&quot; or &quot;abc&quot; characters</value>
+    </labels>
+    <labels>
+        <fullName>CB_ForgotPassword_API_100473</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ForgotPassword_API_100473</shortDescription>
+        <value>The passwords must not contain the numeric values: [1234]</value>
+    </labels>
+    <labels>
+        <fullName>CB_ForgotPassword_API_Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ForgotPassword_API_Default</shortDescription>
+        <value>Technical issues, Please try again later</value>
+    </labels>
+    <labels>
+        <fullName>CB_ForgotYourPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ForgotYourPassword</shortDescription>
+        <value>Forgot your Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_FromDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_FromDate</shortDescription>
+        <value>FROM DATE</value>
+    </labels>
+    <labels>
+        <fullName>CB_HaveYouRegToken</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_HaveYouRegToken</shortDescription>
+        <value>Have you registered the token</value>
+    </labels>
+    <labels>
+        <fullName>CB_Help</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Help</shortDescription>
+        <value>Help</value>
+    </labels>
+    <labels>
+        <fullName>CB_HomeLoan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_HomeLoan</shortDescription>
+        <value>Home</value>
+    </labels>
+    <labels>
+        <fullName>CB_IAgreeToCompanyConduct</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_IAgreeToCompanyConduct</shortDescription>
+        <value>I agree the Company&apos;s</value>
+    </labels>
+    <labels>
+        <fullName>CB_InTransit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_InTransit</shortDescription>
+        <value>In Transit</value>
+    </labels>
+    <labels>
+        <fullName>CB_InterestInstructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_InterestInstructions</shortDescription>
+        <value>INTEREST INSTRUCTIONS</value>
+    </labels>
+    <labels>
+        <fullName>CB_InterestPayment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_InterestPayment</shortDescription>
+        <value>Interest Payment</value>
+    </labels>
+    <labels>
+        <fullName>CB_InternationalPayments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_InternationalPayments</shortDescription>
+        <value>International Payments</value>
+    </labels>
+    <labels>
+        <fullName>CB_IntrabankTransfers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_IntrabankTransfers</shortDescription>
+        <value>Intrabank Transfers</value>
+    </labels>
+    <labels>
+        <fullName>CB_InvestmentPlans</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_InvestmentPlans</shortDescription>
+        <value>Investment Profiles</value>
+    </labels>
+    <labels>
+        <fullName>CB_InvestmentProfiles</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_InvestmentProfiles</shortDescription>
+        <value>Investment Profiles</value>
+    </labels>
+    <labels>
+        <fullName>CB_IssueChequeBook</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_IssueChequeBook</shortDescription>
+        <value>Issue Cheque Book</value>
+    </labels>
+    <labels>
+        <fullName>CB_LastName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_LastName</shortDescription>
+        <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>CB_Loans</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Loans</shortDescription>
+        <value>Loans</value>
+    </labels>
+    <labels>
+        <fullName>CB_LogIn</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_LogIn</shortDescription>
+        <value>Log In</value>
+    </labels>
+    <labels>
+        <fullName>CB_Login_API_106803</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Login API 106803</shortDescription>
+        <value>Unable to login. Try again</value>
+    </labels>
+    <labels>
+        <fullName>CB_Login_API_24032</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Login API 24032</shortDescription>
+        <value>Invalid Username or Passowrd</value>
+    </labels>
+    <labels>
+        <fullName>CB_Login_API_24033</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Login API 24033</shortDescription>
+        <value>The maximum retry login attempts is exceeded</value>
+    </labels>
+    <labels>
+        <fullName>CB_Login_API_8504</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Login_API_8504</shortDescription>
+        <value>Technical API Issue</value>
+    </labels>
+    <labels>
+        <fullName>CB_Login_API_Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Login API Default</shortDescription>
+        <value>Technical issues, Please try again</value>
+    </labels>
+    <labels>
+        <fullName>CB_Logout</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Logout</shortDescription>
+        <value>Logout</value>
+    </labels>
+    <labels>
+        <fullName>CB_Logout_API_Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Logout API Default</shortDescription>
+        <value>Technical issues, Please try again</value>
+    </labels>
+    <labels>
+        <fullName>CB_Logout_Confirm_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Are you sure you want to logout</shortDescription>
+        <value>Are you sure you want to logout</value>
+    </labels>
+    <labels>
+        <fullName>CB_Logout_Confirm_Message2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Do you want to logout from Clarien Bank?</shortDescription>
+        <value>Do you want to logout from Clarien Bank?</value>
+    </labels>
+    <labels>
+        <fullName>CB_ManageBeneficiaries</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ManageBeneficiaries</shortDescription>
+        <value>Manage Beneficiaries</value>
+    </labels>
+    <labels>
+        <fullName>CB_MarketingConsent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_MarketingConsent</shortDescription>
+        <value>I accept Marketing consent</value>
+    </labels>
+    <labels>
+        <fullName>CB_Min10Chars</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Min10Chars</shortDescription>
+        <value>Minimum 10 Characters</value>
+    </labels>
+    <labels>
+        <fullName>CB_Month</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Month</shortDescription>
+        <value>Month</value>
+    </labels>
+    <labels>
+        <fullName>CB_Months</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Months</shortDescription>
+        <value>Months</value>
+    </labels>
+    <labels>
+        <fullName>CB_NewPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_NewPassword</shortDescription>
+        <value>New Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_NewtoClarien</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_NewtoClarien</shortDescription>
+        <value>New to Clarien</value>
+    </labels>
+    <labels>
+        <fullName>CB_Next</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Next</shortDescription>
+        <value>Next</value>
+    </labels>
+    <labels>
+        <fullName>CB_NoOfChequeBooks</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_NoOfChequeBooks</shortDescription>
+        <value>No of cheque books</value>
+    </labels>
+    <labels>
+        <fullName>CB_Note</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Note</shortDescription>
+        <value>Note</value>
+    </labels>
+    <labels>
+        <fullName>CB_Offers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Offers</shortDescription>
+        <value>Offers</value>
+    </labels>
+    <labels>
+        <fullName>CB_OldPassword</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_OldPassword</shortDescription>
+        <value>Old Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_OnlineActivites</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_OnlineActivites</shortDescription>
+        <value>Online Activites</value>
+    </labels>
+    <labels>
+        <fullName>CB_OwnAccountTransfers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_OwnAccountTransfers</shortDescription>
+        <value>Own Account Transfers</value>
+    </labels>
+    <labels>
+        <fullName>CB_Password</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Password</shortDescription>
+        <value>Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_PasswordChanged</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PasswordChanged</shortDescription>
+        <value>Password Changed</value>
+    </labels>
+    <labels>
+        <fullName>CB_PasswordMustContain10</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PasswordMustContain10</shortDescription>
+        <value>Password must contain</value>
+    </labels>
+    <labels>
+        <fullName>CB_PasswordSuccessfullyChanged</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PasswordSuccessfullyChanged</shortDescription>
+        <value>Your password has been successfully changed</value>
+    </labels>
+    <labels>
+        <fullName>CB_Password_Changed_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Password changed successfully</shortDescription>
+        <value>Password changed successfully</value>
+    </labels>
+    <labels>
+        <fullName>CB_Password_Expired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Your Password has been expired</shortDescription>
+        <value>Your Password has been expired. Please reset</value>
+    </labels>
+    <labels>
+        <fullName>CB_Password_Reset</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Your password has been reset</shortDescription>
+        <value>Your password has been reset. Please log in again to proceed</value>
+    </labels>
+    <labels>
+        <fullName>CB_PayBills</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PayBills</shortDescription>
+        <value>Pay Bills</value>
+    </labels>
+    <labels>
+        <fullName>CB_PendingAmount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PendingAmount</shortDescription>
+        <value>Pending Amount</value>
+    </labels>
+    <labels>
+        <fullName>CB_PersonalLoan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PersonalLoan</shortDescription>
+        <value>Personal</value>
+    </labels>
+    <labels>
+        <fullName>CB_Phone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Phone</shortDescription>
+        <value>Phone</value>
+    </labels>
+    <labels>
+        <fullName>CB_Phone_Updated_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Your Phone has been updated</shortDescription>
+        <value>Your Phone has been updated</value>
+    </labels>
+    <labels>
+        <fullName>CB_PlatinumCreditCard</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PlatinumCreditCard</shortDescription>
+        <value>PLATINUM CREDIT CARD</value>
+    </labels>
+    <labels>
+        <fullName>CB_PleaseProvideInternetBanking</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PleaseProvideInternetBanking</shortDescription>
+        <value>Please provide internet banking</value>
+    </labels>
+    <labels>
+        <fullName>CB_PlsEnterSecurityToken</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PlsEnterSecurityToken</shortDescription>
+        <value>Please enter your security token</value>
+    </labels>
+    <labels>
+        <fullName>CB_Predefined</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Predefined</shortDescription>
+        <value>Predefined</value>
+    </labels>
+    <labels>
+        <fullName>CB_PrincipalMaturity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_PrincipalMaturity</shortDescription>
+        <value>Principal Maturity</value>
+    </labels>
+    <labels>
+        <fullName>CB_Product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>CB_ProfileSettings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ProfileSettings</shortDescription>
+        <value>Profile Settings</value>
+    </labels>
+    <labels>
+        <fullName>CB_Promotions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Promotions</shortDescription>
+        <value>Promotions</value>
+    </labels>
+    <labels>
+        <fullName>CB_QrCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_QrCode</shortDescription>
+        <value>QR Code</value>
+    </labels>
+    <labels>
+        <fullName>CB_QueryOnChequeBook</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_QueryOnChequeBook</shortDescription>
+        <value>Query By Date</value>
+    </labels>
+    <labels>
+        <fullName>CB_QueryOnIssuedCheques</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_QueryOnIssuedCheques</shortDescription>
+        <value>Query By Cheque Number</value>
+    </labels>
+    <labels>
+        <fullName>CB_RegisteredEmailAddr</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_RegisteredEmailAddr</shortDescription>
+        <value>Registered Email Address</value>
+    </labels>
+    <labels>
+        <fullName>CB_RegisteredEmailId</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_RegisteredEmailId</shortDescription>
+        <value>registered email Id</value>
+    </labels>
+    <labels>
+        <fullName>CB_Remarks</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Remarks</shortDescription>
+        <value>Remarks</value>
+    </labels>
+    <labels>
+        <fullName>CB_RememberMe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_RememberMe</shortDescription>
+        <value>Remember Me</value>
+    </labels>
+    <labels>
+        <fullName>CB_RenewalInstructions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_RenewalInstructions</shortDescription>
+        <value>RENEWAL INSTRUCTIONS</value>
+    </labels>
+    <labels>
+        <fullName>CB_RequestADraft</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_RequestADraft</shortDescription>
+        <value>Request a Draft</value>
+    </labels>
+    <labels>
+        <fullName>CB_RetailUser</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_RetailUser</shortDescription>
+        <value>Retail User</value>
+    </labels>
+    <labels>
+        <fullName>CB_Retail_User</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Retail_User</shortDescription>
+        <value>Retail User</value>
+    </labels>
+    <labels>
+        <fullName>CB_SavingsAccountOpening</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SavingsAccountOpening</shortDescription>
+        <value>Savings Account Opening</value>
+    </labels>
+    <labels>
+        <fullName>CB_ScanAndPay</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ScanAndPay</shortDescription>
+        <value>Scan &amp; Pay</value>
+    </labels>
+    <labels>
+        <fullName>CB_ScheduleAnRmAppointment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ScheduleAnRmAppointment</shortDescription>
+        <value>Schedule an RM appointment</value>
+    </labels>
+    <labels>
+        <fullName>CB_SecuritySettings</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SecuritySettings</shortDescription>
+        <value>Security Settings</value>
+    </labels>
+    <labels>
+        <fullName>CB_Sell</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Sell</shortDescription>
+        <value>Sell</value>
+    </labels>
+    <labels>
+        <fullName>CB_SendMoney</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SendMoney</shortDescription>
+        <value>Send Money</value>
+    </labels>
+    <labels>
+        <fullName>CB_ServiceRequest</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ServiceRequest</shortDescription>
+        <value>Service Request</value>
+    </labels>
+    <labels>
+        <fullName>CB_Session_Expiry_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Your session has ended</shortDescription>
+        <value>Your session has ended</value>
+    </labels>
+    <labels>
+        <fullName>CB_SignUp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SignUp</shortDescription>
+        <value>Sign Up</value>
+    </labels>
+    <labels>
+        <fullName>CB_Site_Start_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Site Start URL</shortDescription>
+        <value>https://clarienbank--developer.sandbox.my.site.com/s/</value>
+    </labels>
+    <labels>
+        <fullName>CB_SoftTokenHardToken</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SoftTokenHardToken</shortDescription>
+        <value>Soft token/Hard token</value>
+    </labels>
+    <labels>
+        <fullName>CB_StartAGoal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_StartAGoal</shortDescription>
+        <value>Start a Goal</value>
+    </labels>
+    <labels>
+        <fullName>CB_StopPaperBasedStatements</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_StopPaperBasedStatements</shortDescription>
+        <value>Stop Paper based Statements</value>
+    </labels>
+    <labels>
+        <fullName>CB_Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>CB_TermsConditions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_TermsConditions</shortDescription>
+        <value>Terms, Conditions</value>
+    </labels>
+    <labels>
+        <fullName>CB_TimeDepositAccountOpening</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_TimeDepositAccountOpening</shortDescription>
+        <value>Time Deposit Account Opening</value>
+    </labels>
+    <labels>
+        <fullName>CB_ToDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ToDate</shortDescription>
+        <value>TO DATE</value>
+    </labels>
+    <labels>
+        <fullName>CB_TodaysExchangeRates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_TodaysExchangeRates</shortDescription>
+        <value>Today&apos;s Exchange Rates</value>
+    </labels>
+    <labels>
+        <fullName>CB_Top_UpAccountOpening</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Top-UpAccountOpening</shortDescription>
+        <value>Top-up Account Opening</value>
+    </labels>
+    <labels>
+        <fullName>CB_TotalHolds</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_TotalHolds</shortDescription>
+        <value>Total Holds</value>
+    </labels>
+    <labels>
+        <fullName>CB_Usd</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Usd</shortDescription>
+        <value>USD</value>
+    </labels>
+    <labels>
+        <fullName>CB_User_Created_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_User Created Successfully</shortDescription>
+        <value>User Created Successfully</value>
+    </labels>
+    <labels>
+        <fullName>CB_User_doesnot_Exist_error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB User doesnot Exist error</shortDescription>
+        <value>Invalid Username or Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_Username</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Username</shortDescription>
+        <value>Username</value>
+    </labels>
+    <labels>
+        <fullName>CB_Username_Template</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Username_Template</shortDescription>
+        <value>@clarienbank.com.devsite</value>
+    </labels>
+    <labels>
+        <fullName>CB_ViewAll</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ViewAll</shortDescription>
+        <value>View All</value>
+    </labels>
+    <labels>
+        <fullName>CB_ViewIssuedCheques</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ViewIssuedCheques</shortDescription>
+        <value>View Issued Cheques</value>
+    </labels>
+    <labels>
+        <fullName>CB_YourPasswordExpired</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_YourPasswordExpired</shortDescription>
+        <value>Your password has been expired</value>
+    </labels>
+    <labels>
+        <fullName>CB_default_API_error_message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB default API error message</shortDescription>
+        <value>API technical issue</value>
+    </labels>
+    <labels>
+        <fullName>Test</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Test</shortDescription>
+        <value>Test</value>
+    </labels>
+</CustomLabels>

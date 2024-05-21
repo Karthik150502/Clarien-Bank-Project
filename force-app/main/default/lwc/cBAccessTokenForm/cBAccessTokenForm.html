@@ -1,0 +1,29 @@
+<template>
+	<div class="container">
+		<div class="cb-logo">
+
+			<c-c-b-company-logo>
+				<p slot="title">{label.YOUR_PASSWORD_EXPIRED}</p>
+				<p slot="caption">{label.PLS_ENTER_SECURITY_TOKEN}</p>
+			</c-c-b-company-logo>
+    	</div>
+
+			<template if:false={validTokenType}>
+					<span class={tokenValidClass}>{tokenErrorMessage}</span>
+			</template>
+			<form>
+				<div class="input-field">
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="0" tabindex="0" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="1" disabled tabindex="-1" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="2" disabled tabindex="-1" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="3" disabled tabindex="-1" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="4" disabled tabindex="-1" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="5" disabled tabindex="-1" />
+            </div>
+			</form>
+			<button 
+			class={buttonClass} 
+			disabled={buttonDisable} 
+			onclick={verifyOTP}>{label.SUBMIT}</button>
+	</div>
+</template>

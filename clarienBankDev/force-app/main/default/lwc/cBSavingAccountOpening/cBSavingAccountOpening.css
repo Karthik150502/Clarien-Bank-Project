@@ -1,0 +1,78 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+.wrapper {
+    width: 100vw;
+}
+.container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.wrapper .container .form{
+    width: 100%;
+    height: auto;
+    overflow-y: scroll;
+}
+.wrapper .container .input{
+    width: 100%;
+    height: auto;
+    margin: 0 0 3% 0;
+	overflow-y: scroll;
+}
+
+.wrapper .heading{
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+    margin: 3% 0% 1% 0%;
+}
+
+.wrapper .options {
+    width: 100%;
+    height: auto;
+    padding: 2% 2% 2% 3%;
+    border: 1px solid var(--border-blue);
+    border-radius: 7px;
+}
+.btns{
+    display: flex;
+    justify-content: center;
+	margin: 5% 0 0 0;
+}
+
+.btns .submit-btn{
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+.notes-container{
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.notes-container .notes-inner-container{
+   
+    display: flex;
+    flex-direction: row;
+    
+}
+.note{
+        width: 90%;
+}
+
+.btns .submit-btn:disabled,
+.btns .submit-btn[disabled] {
+    background-color: var(--light-grey);
+}

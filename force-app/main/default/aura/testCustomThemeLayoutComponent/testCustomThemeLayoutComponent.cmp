@@ -1,0 +1,28 @@
+<aura:component implements="forceCommunity:themeLayout">
+    <aura:attribute name="search" type="Aura.Component[]"/>
+    <aura:attribute name="sidebarFooter" type="Aura.Component[]"/>
+    <aura:attribute name="newHeader" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="newFooter" type="Aura.Component[]" required="false"/>
+    <aura:attribute name="blueBackground" type="Boolean" default="false"/> 
+        <aura:html tag="style">
+    	.theme-layout {
+          max-width: 100%;
+         overflow-x: hidden;
+         overflow-y:hidden;
+         overflow:hidden;
+         max-height:100%;
+         	
+    }
+</aura:html> 
+    <div class="slds-grid slds-grid_vertical theme-layout">
+        <div class="slds-col">
+        	{!v.newHeader}
+        </div>
+        <div class="slds-col">
+        	{!v.body}
+        </div>
+        <div class="slds-col">
+        	{!v.newFooter}
+        </div>
+    </div>
+</aura:component>

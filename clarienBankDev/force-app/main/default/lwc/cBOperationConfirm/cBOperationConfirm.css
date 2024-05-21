@@ -1,0 +1,97 @@
+/*
+	Author - Prateek Deshmukh
+	Created Date - 18/03/2024
+	Modified Date - 21/03/2024
+	Description - Refactored Confirmation Modal Popup for Reusability
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+.wrapper {
+    width: 80vw;
+    min-height: fit-content;
+    max-height: max-content;
+    background-color: var(--primary-white);
+    border-radius: 12px;
+    margin: auto auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+
+
+.container .content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 6% 0 0 0;
+    padding: 0 6% 0 6%;
+    text-align: center;
+}
+
+
+.container .content .title {
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-size: 18px;
+}
+
+.container .content .message {
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+    font-size: 16px;
+}
+
+
+.container .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-direction: row;
+    margin: 4% 0 0 0;
+}
+
+
+.container .footer button {
+    all: unset;
+    font-size: 16px;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    width: 100%;
+    padding: 4% 14% 4% 14%;
+    border: 0.15px solid var(--light-grey);;
+}
+
+
+.container .footer .yes-btn {
+    color: var(--primary-blue);
+}
+
+
+.container .footer .no-btn {
+    color: var(--primary-black);
+}

@@ -1,0 +1,63 @@
+/*
+	Author - Prateek Deshmukh
+	Created Date - 06/03/2024
+	Modified Date - 08/03/2024, 17/03/2024, 19/03/2024
+	Description - This is a reusable Lightning Web Component (LWC) designed to be utilized as a child component wherever a footer is required. 
+                  It allows flexibility by enabling users to specify icons and data to expose as needed
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    width: 100vw;
+    height: 70px;
+    display: grid;
+    background-color: var(--primary-white);
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.logo {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.sendReceive {
+    padding: 3px 0 0 0;
+}
+
+.logo svg {
+    height: 34px;
+}
+
+svg path {
+    fill: var(--primary-grey);
+}
+
+.container .in_active svg path {
+    fill: var(--primary-grey);
+}
+
+.container .is_active {
+    background-color: var(--light-blue);
+}
+
+.container .is_active svg path {
+    fill: var(--primary-blue);
+}

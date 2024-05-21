@@ -1,0 +1,193 @@
+/*
+    Author - Prateek Deshmukh
+    Created Date - 2024-03-09
+    Modified Date - 2024-03-10,2024-03-19,2024-03-21
+    Description - The CBProfileLayoutTemplate component serves as a reusable template 
+    for rendering various sections based on provided data.It facilitates dynamic navigation 
+    and content display, showcasing specific sections like security settings, profile settings etc based on configured parameters.
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 0 0 0;
+}
+
+
+.wrapper .header {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 0 0 3% 4%;
+}
+
+.wrapper .header p {
+    margin: 1% 0 1% 4%;
+    font-size: 18.25px;
+}
+
+.wrapper .container {
+    width: 100%;
+    height: calc(100% - 25px);
+
+    /* border: 0.3px solid #1281B8; */
+    border: 0.3px solid var(--border-blue);
+
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.wrapper .container .profile {
+    width: 90%;
+    display: flex;
+    height: 70px;
+    margin: 5% 0 0 4%;
+}
+
+.wrapper .container .profile .prof {
+    width: 66px;
+    height: 66px;
+    border-radius: 100%;
+    margin-right: 10px;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    /* background-image: url('/resource/profileImg'); */
+}
+
+.container .profile .prof .camera-svg {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+.container .profile .prof-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: normal;
+}
+
+.container .profile .prof-info .hello {
+    font-size: 13px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.container .profile .prof-info .prof-name {
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-size: 19px;
+}
+
+.container .profile .prof-info .last-login {
+    font-size: 10px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.menu-item-group {
+    display: flex;
+    align-items: center;
+    width: 90%;
+}
+
+.menu-item-text {
+    padding-left: 5px;
+}
+
+.menu-item-text .userValue {
+    font-weight: 800;
+}
+
+.menu-items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 90%;
+    flex-direction: column;
+    margin: 0 0 0 0;
+    height: calc(100% - 5% - 70px);
+    overflow-y: scroll;
+}
+
+.menu-items::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 5% 0 0 0;
+}
+
+
+.menu-items .menu-item p {
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-size: 14.14px;
+    margin: 1% 0 0 2%;
+    cursor: pointer;
+}
+
+/* .menu-items .menu-item:hover p {
+    color: var(--primary-orange);
+} */
+
+.menu-items .menu-item {
+    padding: 2%;
+}
+
+.menu-items .menu-item:hover {
+    background-color:var(--light-grey);
+    border-radius: 12px;
+}
+
+
+/* For toggle button including menu items, Karthik J, 19-3-2024, 4:42PM */
+.menu-items .non-bg-tile:hover {
+    background-color: var(--primary-white);
+}
+
+
+/* .menu-items .password-update:hover .arrow svg path,
+.menu-items .phone-update:hover .arrow svg path,
+.menu-items .email-update:hover .arrow svg path {
+    fill: var(--primary-orange);
+} */
+
+
+.box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.box .btn-custom {
+    margin: 5% 10px 0 0;
+    --slds-c-checkbox-toggle-mark-color-foreground: var(--primary-blue);
+    --slds-c-checkbox-toggle-color-background-checked-focus: var(--primary-blue);
+    --slds-c-checkbox-toggle-color-background-hover: var(--primary-blue);
+}
+
+.slds-checkbox_faux:after {
+    border: none;
+}

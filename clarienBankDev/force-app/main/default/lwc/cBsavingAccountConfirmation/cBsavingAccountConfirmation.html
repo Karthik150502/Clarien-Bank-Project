@@ -1,0 +1,27 @@
+<template>
+	<div class="wrapper">
+		<div class="container">
+			<div class="heading">
+				<c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+			</div>
+			<div class="account-type">
+				<label for="account-type">
+                    <p class="input-heading">{label.ACCOUNT_NAME}</p>
+                    <input type="text" name="acoount-type" value={selectedAccountType} readonly>
+                </label>
+			</div>
+			<div class="account-type">
+				<label for="account-type">
+                    <p class="input-heading">{label.ACCOUNT_NAME}</p>
+                    <input type="text" name="product" value={selectedProduct} readonly>
+                </label>
+			</div>
+			<div class="account-type">
+				<label for="account-type">
+                    <p class="input-heading">{label.ACCOUNT_NAME}</p>
+                    <input type="text" name="currency" value={selectedCurrency} readonly>
+                </label>
+			</div>
+		</div>
+	</div>
+</template>

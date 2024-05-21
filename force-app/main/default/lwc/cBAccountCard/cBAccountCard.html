@@ -1,0 +1,34 @@
+<!--
+	Author - Prateek Deshmukh
+	Created Date - 06/03/2024
+	Modified Date - 12/03/2024
+	Description - This is a reusable child component designed to display Account details,
+                  capable of being utilized multiple times to show specific details based on the provided data.
+-->
+
+<template>
+	<div class="wrapper">
+		<div class="container">
+			<div class="header">
+				<div class="view-all" onclick={navigateToFavoriteAccs}>
+					<p class="acc-type">{account.accountType}</p>
+					<p>{label.VIEW_ALL} >></p>
+				</div>
+			</div>
+
+			<div class="content">
+				<div class="cont-details">
+					<p class="acc-no">{account.accountNo}</p>
+					<p class="acc-bal">{label.BMD} {account.accountBal}</p>
+				</div>
+			</div>
+
+			<div class="footer">
+				<div class="footer-cont">
+					<p>{label.CURRENT_BALANCE}:<br>  {label.BMD} {account.accountBal}</p>
+					<p>{label.TOTAL_HOLDS}: <br> {label.BMD} {account.totalHolds}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

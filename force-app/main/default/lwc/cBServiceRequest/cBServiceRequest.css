@@ -1,0 +1,99 @@
+/*
+	Author - Prateek
+	Created Date - __/__/2024
+	Modified Date - 
+	Description - The component displays a header with configurable icons for quick access to different sections.
+                It utilizes a metadata object to define the structure and visibility of Service Request items.
+                The Service Request section is exposed and configurable based on organizational requirements.
+*/
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: var(--primary-white);
+}
+
+
+.container{
+    width: 90%;
+    height: calc(100vh - 140px);
+    margin: 20px auto 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.container .container-header{
+    width: 90%;
+    height: 25px;
+    margin: 0 0 4% 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container .container-header p{
+    margin: 1% 0 0 4%;
+    font-size: 18.25px;
+}
+
+.container .con-body{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 90%;
+    height: calc(100% - 25px - 4%);
+    border: 0.3px solid var(--border-blue);
+    border-radius: 12px;
+    padding: 5% 5% 5% 5%;
+}
+
+.container .con-body .menu-item{
+    width: 90%;
+    height: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.container .con-body .menu-item p{
+    font-family: var(--dxp-g-root-gotham-medium-font-family); 
+    font-size: 14.14px;
+    margin: 0 0 0 5%;
+}
+
+.container .con-body .menu-item p:hover{
+    color: var(--primary-orange);
+}
+.wrapper .header c-c-b-header{
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+
+.wrapper .footer c-c-b-footer{
+    position: fixed;
+    bottom: 0;
+}    
+
+c-c-b-profile-layout-template{
+    width: 100%;
+    height: 90%;
+}

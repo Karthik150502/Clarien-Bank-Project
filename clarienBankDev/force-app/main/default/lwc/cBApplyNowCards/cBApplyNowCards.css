@@ -1,0 +1,79 @@
+/*
+	Author - 
+	Created Date - 
+	Modified Date - 
+	Description - 
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+
+
+.wrapper {
+    width: 100vw;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+
+.wrapper .container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 70px auto 0 auto;
+}
+
+.wrapper .container .header {
+    width: 90%;
+    margin: 0 auto;
+    height: 2.5rem;
+}
+
+
+
+.wrapper .container .content {
+    width: 90%;
+    margin: 0 auto;
+
+    border: 0.3px solid var(--border-blue);
+    border-radius: 12px;
+}
+
+.wrapper .container .footer .submit-btn {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+/* .wrapper .container .footer .cancel-btn {
+    background-color: #9C9C9C;
+    justify-content: center;
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+} */

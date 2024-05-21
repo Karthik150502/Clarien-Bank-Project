@@ -1,0 +1,48 @@
+<template>
+    <div class="wrapper">
+        <div class="heading">
+            <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
+        </div>
+        <div class="content">
+            <div class="exp-rating">
+                <p class="sub-head-1">Rate your Experience</p>
+                <p class="sub-head-2">Are you satisfied with the service?</p>
+                <div class="stars">
+                    <template for:each={stars} for:item="star">
+                        <div class="star" key={star.value} data-value={star.value} onclick={handleStarClick}>
+                            <template if:true={star.selected}>
+                                <svg width="50" height="46" viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <use href={CBSelectedStar}></use>
+                                </svg>
+                            </template>
+                            <template if:false={star.selected}>
+                                <svg width="50" height="46" viewBox="0 0 50 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <use href={CBUnselectedStar}></use>
+                                </svg>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="add-info">
+                <p>Tell us what can be improved?</p>
+                <div class="items">
+                    <template for:each={whatCanBeImproved} for:item="item">
+                        <span key={item.value} class={item.class} onclick={selectParameter}
+                            data-value={item.value}>{item.value}</span>
+                    </template>
+                </div>
+                <textarea name="" id="" class="comments" placeholder="Tell us what can be improved...">
+                </textarea>
+            </div>
+            <div class="footer">
+                <button onclick={handleSubmit}>SUBMIT</button>
+            </div>
+        </div>
+        <template if:true={openSuccessModal}>
+            <c-c-b-resuable-success-modal configuration={successModalConf}>
+
+            </c-c-b-resuable-success-modal>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,48 @@
+<template>
+	<p>Start Date</p>
+	<input type="date" onchange={startDateHandler} min="2016-01-01" max="2018-12-31">
+
+	<p>End Date</p>
+	<input type="date" onchange={endDateHandler} min="2017-01-01" max="2018-12-31">
+
+	<p class="heading">Account No</p>
+	<select class="options" id="accountNum" onclick={accountNumHandler} value={accountNum}>
+        <template for:each={accountList} for:item="account">
+            <option key={account.accountNo} value={account.accountNo}>{account.accountNo}</option>
+        </template>
+    </select>
+
+	<p>Account type:{selectedAcc.type}</p>
+	<p>sDate:{selectedAcc.sDate}</p>
+	<p>eDate:{selectedAcc.eDate}</p>
+	<lightning-button label="Download Statements" variant="Success" onclick={downloadhandler}>
+	</lightning-button>
+	<template if:true={isdownloadClicked}>
+		<template if:true={isDocumentsAvailable}>
+			<lightning-card>
+				<template for:each={documentIdList} for:item="file">
+					<div key={file.id} class="slds-box">
+						<div class="slds-grid slds-wrap">
+							<div class="slds-col slds-large-size_8-of-12 slds-medium-size_8-of-12 slds-size_8-of-12">
+								<p><strong>FileName - </strong>{file.id}</p>
+							</div>
+							<div class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_4-of-12">
+								<lightning-button label="Download" variant="Success" data-id={file.id}
+									onclick={docDownload}>
+								</lightning-button>
+							</div>
+						</div>
+					</div>
+				</template>
+			</lightning-card>
+			</template>
+
+			<template if:false={isDocumentsAvailable}>
+				<lightning-card>
+						<p>statements doesnot exist</p>
+				</lightning-card>
+			</template>
+		</template>
+
+
+	</template>

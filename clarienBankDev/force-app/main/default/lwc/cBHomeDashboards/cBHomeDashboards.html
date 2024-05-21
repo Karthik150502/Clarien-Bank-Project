@@ -1,0 +1,106 @@
+<template>
+    <template if:true={isPageLoading}>
+        <c-c-b-page-loading-spinner></c-c-b-page-loading-spinner>
+    </template>
+    <div class="wrapper">
+        <c-c-b-header icon-details={header_icons}></c-c-b-header>
+
+        <div class="container">
+            <div class="account-card">
+                <p>Accounts</p>
+                <c-c-b-account-card account-no={accountNo} balance={balance} hold-balance={holdBalance}
+                    view-all={showViewALl}></c-c-b-account-card>
+            </div>
+            <div class="quick-links">
+                <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="53" height="31" viewBox="0 0 53 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBSendMoney}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.SEND_MONEY}</p>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBQRCode}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.QR_CODE}</p>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="39" height="41" viewBox="0 0 39 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBBillPayments}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.PAY_BILLS}</p>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBApprovals}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.APPROVALS}</p>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBCreditCards}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.CREDIT_CARDS}</p>
+                </div>
+                <div class="icon-box" onclick={navigateToInvestmentProfile}>
+                    <div class="icon-svg">
+                        <svg width="43" height="34" viewBox="0 0 43 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBInvestmentProfiles}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.INVESTMENT_PROFILES}</p>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="31" height="41" viewBox="0 0 31 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBAccountStatements}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.ACCOUNT_STATEMENTS}</p>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="43" height="28" viewBox="0 0 43 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBApplyForLoans}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.APPLY_FOR_LOANS}</p>
+                </div>
+                <div class="quick-links-footer">
+                    <p onclick={navigateToAllQuickLinks}>{label.VIEW_ALL}</p>
+                </div>
+            </div>
+
+            <div class="promotions">
+                <p>PROMOTIONS</p>
+                <div class="promotion-content">
+                    <div class="text-content">
+                        <div class="para">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s,
+                        </div>
+                        <p>Start a goal</p>
+                    </div>
+                    <div class="image">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <c-c-b-footer></c-c-b-footer>
+    </div>
+
+
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
+</template>

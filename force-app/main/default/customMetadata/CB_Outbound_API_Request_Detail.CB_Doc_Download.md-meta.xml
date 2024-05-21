@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>CB Doc Download</label>
+    <protected>false</protected>
+    <values>
+        <field>Endpoint_Path__c</field>
+        <value xsi:type="xsd:string">/api/doc/download</value>
+    </values>
+    <values>
+        <field>Headers__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>IsXml__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>JSON_Body__c</field>
+        <value xsi:type="xsd:string">&lt;fiAPI xsi:schemaLocation=&quot;http://integration.fiapi.com fiDocumentInquiry.xsd&quot;
+	xmlns=&quot;http://integration.fiapi.com&quot;
+	xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+    &lt;fiHeader Version=&quot;1.2&quot;&gt;
+        &lt;Service Version=&quot;1.0&quot; Name=&quot;DocumentServer&quot;&gt;
+            &lt;DateTime&gt;2024-03-14T12:07:26.376&lt;/DateTime&gt;
+            &lt;UUID&gt;123123123&lt;/UUID&gt;
+        &lt;/Service&gt;
+        &lt;Security&gt;
+            &lt;AuthenticationMaterial&gt;
+                &lt;PrincipalPWD&gt;v54cx32z!A&lt;/PrincipalPWD&gt;
+            &lt;/AuthenticationMaterial&gt;
+            &lt;PrincipalID&gt;SVC_CCM-QA&lt;/PrincipalID&gt;
+        &lt;/Security&gt;
+        &lt;Client Version=&quot;1.3&quot;&gt;
+            &lt;VendorID&gt;ImageSoft&lt;/VendorID&gt;
+            &lt;AppID&gt;Nautilus&lt;/AppID&gt;
+            &lt;OrgID&gt;&lt;/OrgID&gt;
+            &lt;SessionID&gt;&lt;/SessionID&gt;
+        &lt;/Client&gt;
+        &lt;DataSource&gt;NautilusQA&lt;/DataSource&gt;
+    &lt;/fiHeader&gt;
+    &lt;Request TypeOfRequest=&quot;DocumentInquiryRq&quot; RequestID=&quot;1&quot; Echo=&quot;1&quot; MaxRows=&quot;100&quot;&gt;
+        &lt;ID&gt;13334728&lt;/ID&gt;
+        &lt;RequestData ID=&quot;1&quot; Name=&quot;1&quot; Date=&quot;1&quot; Class=&quot;1&quot; Type=&quot;1&quot;&gt;
+            &lt;Page Format=&quot;PDF&quot; &gt;*&lt;/Page&gt;
+        &lt;/RequestData&gt;
+        &lt;RequestMetaData SearchFields=&quot;true&quot; Fields=&quot;true&quot; Formats=&quot;true&quot; PageTotal=&quot;true&quot;/&gt;
+    &lt;/Request&gt;
+&lt;/fiAPI&gt;</value>
+    </values>
+    <values>
+        <field>Method_Type__c</field>
+        <value xsi:type="xsd:string">POST</value>
+    </values>
+</CustomMetadata>

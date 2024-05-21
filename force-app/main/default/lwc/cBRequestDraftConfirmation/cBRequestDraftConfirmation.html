@@ -1,0 +1,38 @@
+<template>
+    <div class="wrapper">
+        <div class="container">
+            <div class="heading">
+                <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+            </div>
+            <div class="casing">
+
+                <p class="heading">Saving Account</p>
+                <p class="value">{accountNum}</p>
+
+                <p class="heading">Amount</p>
+                <p class="value">{amount}</p>
+
+                <p class="heading">Currency*</p>
+                <p class="value">{currency}</p>
+
+                <p class="heading">Account Type</p>
+                <p class="value">{accountType}</p>
+
+                <p class="heading">Payee Name</p>
+                <p class="value">{payeeName}</p>
+
+                <p class="heading">Remarks</p>
+                <p class="value">{remark}</p>
+
+            </div>
+            <div class="btns">
+                <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>OK</button>
+            </div>
+        </div>
+    </div>
+    <template if:true={successModalOpen}>
+        <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
+    </template>
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
+</template>

@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Create a Community user">
+        <div class="slds-var-m-around_large slds-var-p-around_large">
+            <lightning-input label="First Name" value={fName} onchange={handleFirstname}></lightning-input>
+            <lightning-input label="Last Name" value={lName} onchange={handleLastname}></lightning-input>
+            <lightning-input label="Email" value={email} onchange={handleEmail}></lightning-input>
+            <lightning-input label="Username" value={username} onchange={handleUsername}></lightning-input>
+            <lightning-input label="Password" value={password} type="password" onchange={handlePassword}></lightning-input>
+            <lightning-button label="Submit" onclick={handleSubmit} variant="success"></lightning-button>
+        </div>
+    </lightning-card>
+</template>

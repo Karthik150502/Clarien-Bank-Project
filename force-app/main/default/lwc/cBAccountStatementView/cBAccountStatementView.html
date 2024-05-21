@@ -1,0 +1,33 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-15-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+            <template for:each={statements} for:item="statement">
+                <div class="account-item" key={statement.id} onclick={navigateToAccountStatementsResult}>
+                    <div class="pdf-icon">
+                        <img src={icon} alt="pdf icon">
+                    </div>
+                    <div class="account-info">
+                        <p>{statement.file}</p>
+                    </div>
+                    <div class="svg-icon" data-docid={statement.id} onclick={downloadPdf}>
+                        <svg width="18" height="25" viewBox="0 0 18 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M0 25H18V22.0588H0V25ZM18 8.82353H12.8571V0H5.14286V8.82353H0L9 19.1176L18 8.82353Z"
+                                fill="#006394" />
+                        </svg>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

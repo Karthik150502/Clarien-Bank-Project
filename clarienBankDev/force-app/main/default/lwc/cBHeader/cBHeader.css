@@ -1,0 +1,167 @@
+/*
+	Author - Prateek Deshmukh
+	Created Date - 2024-03-06
+	Modified Date - 2024-03-06,2024-03-11
+	Description - This is a reusable Lightning Web Component (LWC) designed to be utilized as a child component wherever a header is required. 
+    It allows flexibility by enabling users to specify icons and data to expose as needed.
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    width: 100vw;
+    height: 70px;
+    z-index:20;
+    display: grid;
+    background-color: var(--primary-white);
+}
+
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.logo {
+    transition: all ease-in-out 0.09s;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    margin: 0 0 0 0;
+    width: 18%;
+}
+
+.logo p {
+    font-size: 10px;
+    color: var(--primary-grey);
+}
+
+.logo:hover {
+    transform: scale(1.1);
+}
+
+.icon-container {
+    height: 22px;
+    width: 22px;
+    display: grid;
+    place-items: center;
+}
+
+/* 
+.logo svg{
+    height: 22px;
+    width: 22px;
+} */
+
+.profile {
+    overflow: hidden;
+    margin: 0 20px 0 20px;
+    background-color: var(--primary-blue);
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    color: var(--primary-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    font-size: 32px;
+    font-weight: 100;
+}
+
+.header-icons {
+    width: 60%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.profile-pic {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    transform: scale(1.3);
+}
+
+.slider-menu-container {
+    height: 100vh;
+    width: 75%;
+    background-color: var(--primary-white);
+    animation: slide-right 0.2s ease-in-out;
+    transform: translateX(-100%);
+}
+
+
+.slider-container {
+    width: 90%;
+    height: 80%;
+    margin: 0 auto;
+}
+
+.slider-container .slider-menu-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20%;
+    flex-direction: column;
+}
+
+
+
+
+.slider-container .slider-menu-footer button {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color:var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.slider-container .slider-menu-footer .slider-menu-footer-logo {
+    margin: 0 6% 0 0;
+}
+
+.slider-menu-show {
+    transform: translateX(0%);
+}
+
+
+.slider-menu-hide {
+    animation: slide-left 0.2s ease-in-out;
+}
+
+
+@keyframes slide-right {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-left {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}

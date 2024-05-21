@@ -1,0 +1,36 @@
+<!--
+	Author - __
+	Created Date - __/__/202_
+	Modified Date - __/__/202_, __/__/202_
+	Description - {***Purpose of creation or modification, Additional Comment***}
+-->
+
+<template>
+    <lightning-card title="Enter the API Page Name">
+        <div class="slds-var-m-around_medium">
+            <lightning-input onchange={handleInput} value={apiName} label="Enter the Page API Name">
+            </lightning-input>
+            <div class="slds-var-m-around_medium slds-align_absolute-center">
+                <lightning-button class=" slds-align_absolute-center" onclick={navigate} variant="success"
+                    label="Navigate"></lightning-button>
+            </div>
+        </div>
+        <input type="range" min="1" max="8">
+
+        <template if:true={modalOpen}>
+            <p>Hello world</p>
+            <c-c-b-operation-confirm modal-info={modal}>
+
+            </c-c-b-operation-confirm>
+        </template>
+        <button onclick={modalOpenHandler}>Open Modal</button>
+        <button onclick={openFavAccountModal}>Open Fav Account Modal</button>
+    </lightning-card>
+    <lightning-button label={darkModeLabel} onclick={toggleDarkMode}>
+
+    </lightning-button>
+    <template if:true={favAccModalOpened}>
+        <c-c-b-favorite-account-add onclosemodal={closeFavAccountModal}></c-c-b-favorite-account-add>
+        <!-- <c-c-b-fav-account-modal></c-c-b-fav-account-modal> -->
+    </template>
+</template>

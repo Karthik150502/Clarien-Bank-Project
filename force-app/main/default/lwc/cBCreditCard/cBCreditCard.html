@@ -1,0 +1,78 @@
+<template>
+    <div class="wrapper">
+        <div class={style}>
+            <div class="front-face">
+                <div class="details-ff">
+                    <p class="p1">{cardNumber}</p>
+                    <div class="avl-bal">
+                        <p class="p2">{accDetails.accBal}</p>
+                        <p class="p3">AVAILABLE BALANCE</p>
+                    </div>
+
+                    <div class="others">
+                        <p class="p4">Current Balance: {accDetails.currentBal}</p>
+                        <p class="p4">Pending Balance: {accDetails.pendingBal}</p>
+                    </div>
+
+                </div>
+                <div class="card-flip-icon-front" onclick={rotateToBack}>
+                    <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        onclick={cardView}>
+                        <use href={CBCardRotate}></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="back-face">
+                <div class="details-bf">
+                    <div class="b1">
+                        <p class="p1">Card Expiry Date</p>
+                        <p>{accDetails.cardExpiryDate}</p>
+                    </div>
+
+                    <div class="b2">
+                        <p class="p1">Product Name</p>
+                        <p>{accDetails.productName}</p>
+                    </div>
+
+                    <div class="b3">
+                        <p class="p1">Card Status</p>
+                        <p>{accDetails.cardStatus}</p>
+
+                            
+                    </div>
+
+                    <div class="b4">
+                        <p class="p1">Card No</p>
+                        <div class="card-num">{cardNumber}
+                            <div onclick={showCardNumber} class="eye-icon">
+                                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <use href={CBHideCardNumber}></use>
+                                    <template if:true={hideCardNo}>
+                                        <path
+                                            d="M13 13.01C12.9344 13.0108 12.8694 12.9979 12.8091 12.972C12.7489 12.9462 12.6946 12.908 12.65 12.86L0.65 0.86C0.45 0.66 0.45 0.35 0.65 0.15C0.85 -0.05 1.16 -0.05 1.36 0.15L13.35 12.16C13.55 12.36 13.55 12.67 13.35 12.87C13.25 12.97 13.12 13.02 13 13.02V13.01Z"
+                                            fill="white" />
+                                    </template>
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-flip-icon-back" onclick={rotateToFront}>
+                    <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        onclick={cardView}>
+                        <use href={CBCardRotate}></use>
+                    </svg>
+                </div>
+
+
+                <div class="share-icon">
+                    <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use href={CBShare}></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

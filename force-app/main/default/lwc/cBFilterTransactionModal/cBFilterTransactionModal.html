@@ -1,0 +1,33 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open slds-modal_medium wrapper">
+        <div class="heading">
+            <div class="back-svg" onclick={closeFilter}>
+                <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href={CBBackIcon}></use>
+                </svg>
+            </div>
+            <p>Filter Transaction</p>
+        </div>
+        <div class="container">
+            <label for="from-month">
+                <p class="fieldName">FROM MONTH</p>
+                <p class="sub-fieldName">(MM/YYYY)</p>
+                <input type="month" id="from-month" name="from-month" min={MinMonth} max={MaxMonth} onchange={fromDate}>
+            </label>
+            <label for="to-month">
+                <p class="fieldName">TO MONTH</p>
+                <p class="sub-fieldName">(MM/YYYY)</p>
+                <input type="month" id="to-month" name="from-month" min={MinMonth} max={MaxMonth} onchange={toDate}>
+            </label>
+            <c-c-b-field-error>
+                <span slot="error-msg">{transactionMaxDownload}</span>
+            </c-c-b-field-error>
+        </div>
+        <div class="btns">
+            <button class="submit-btn" disabled={validateDate} onclick={submitHandler}>{label.DONE}</button>
+            <!-- <button class="cancel-btn">CANCEL</button> -->
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

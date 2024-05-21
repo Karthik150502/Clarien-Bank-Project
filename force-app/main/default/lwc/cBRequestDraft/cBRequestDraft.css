@@ -1,0 +1,103 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    width: 100vw;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.wrapper .container .casing {
+    width: 100%;
+    height: auto;
+    margin: 5% 0;
+
+    /* padding:4%; */
+    padding:0% 4% 2% 4%;
+    border-radius: 12px;
+    border: 0.3px solid var(--border-blue);
+}
+
+.container .heading{
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+    margin: 3% 0% 1% 0%;
+}
+
+.fields{
+    width: 100%;
+    height: auto;
+    padding: 2% 2% 2% 3%;
+    border: 1px solid var(--border-blue);
+    border-radius: 7px;
+}
+
+.sub-currency{
+    display: flex;
+    margin: 2% 0 0 0;
+}
+.sub-currency label{
+    display: flex;
+    margin: 2%;
+}
+.sub-currency label span{
+    margin: 0 0 0 4px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+.container .options {
+    width: 100%;
+    height: auto;
+    padding: 2% 2% 2% 3%;
+    border: 1px solid var(--border-blue);
+    border-radius: 7px;
+}
+
+.fee, .fee a{
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-blue);
+}
+
+.btns{
+    display: flex;
+    justify-content: center;
+}
+
+.btns .submit-btn{
+    width: 105px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.container textarea {
+    height: auto;
+    min-height: 7rem;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.container textarea, .container .date{
+    width: 100%;
+    height: auto;
+    padding: 2% 2% 2% 3%;
+    border: 1px solid var(--border-blue);
+    border-radius: 7px;
+}
+
+.btns .submit-btn:disabled,
+.btns .submit-btn[disabled] {
+    background-color: var(--light-grey);
+}

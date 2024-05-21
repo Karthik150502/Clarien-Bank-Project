@@ -1,0 +1,333 @@
+/*
+    Author - Prateek Deshmukh
+    Created Date - 05/04/2024
+    Modified Date - 05/04/2024
+    Description - This is a reusable child component designed toshowcase Account details, with a special feature to highlight favorite accounts.
+    Its adaptability allows it to be seamlessly integrated across various contexts, effortlessly presenting tailored information based on the provided data.
+*/
+
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+
+.wrapper {
+    height: 165px;
+    width: 100%;
+    border-radius: 12px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    background-image: url('/resource/AccountCardBg');
+    background-size: cover;
+    color: var(--primary-white);
+    overflow: auto;
+}
+
+
+.wrapper .container {
+    width: 100%;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 1% 1% 1% 1%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+}
+
+
+.wrapper .container .header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding: 1% 0% 0% 2%;
+}
+
+
+.wrapper .container .content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    width: 85%;
+    height: auto;
+    padding: 0 0 0 0;
+}
+
+
+.wrapper .container .content .cont-details {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    text-align: left;
+    width: 80%;
+    height: 100%;
+}
+
+.wrapper .container .content .nav-logo {
+    display: -ms-grid;
+    display: grid;
+    place-content: center;
+    place-items: center;
+}
+
+.wrapper .container .content .cont-details .acc-type {
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    text-align: left;
+}
+
+
+.wrapper .container .content .cont-details .acc-no {
+    font-size: 12px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+    text-align: left;
+}
+
+
+.wrapper .container .content .cont-details .acc-bal {
+    font-size: 24px;
+    text-align: left;
+}
+
+
+.wrapper .container .footer {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 0% 1% 0% 1%;
+}
+
+
+.wrapper .container .footer .footer-cont {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: auto;
+    padding: 2% 4% 0% 4%;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper .container .footer .footer-cont p {
+    width: -webkit-fill-available;
+    text-align: left;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+
+.wrapper {
+    height: 165px;
+    width: 100%;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/resource/AccountCardBg');
+    background-size: cover;
+    color: var(--primary-white);
+}
+
+
+.wrapper .container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 1% 1% 1% 1%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+
+.wrapper .container .header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding: 1% 0% 0% 2%;
+}
+
+
+.wrapper .container .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 85%;
+    height: auto;
+    padding: 0 0 0 0;
+}
+
+
+.wrapper .container .content .cont-details {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    width: 80%;
+    height: 100%;
+}
+
+.wrapper .container .content .nav-logo {
+    display: grid;
+    place-content: center;
+    place-items: center;
+}
+
+.wrapper .container .content .cont-details .acc-type {
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    text-align: left;
+}
+
+
+.wrapper .container .content .cont-details .acc-no {
+    font-size: 12px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+    text-align: left;
+}
+
+
+.wrapper .container .content .cont-details .acc-bal {
+    font-size: 24px;
+    text-align: left;
+}
+
+
+.wrapper .container .footer {
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding: 0% 1% 0% 1%;
+}
+
+
+.wrapper .container .footer .footer-cont {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 2% 4% 0% 4%;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper .container .footer .footer-cont p {
+    width: -webkit-fill-available;
+    text-align: left;
+} */

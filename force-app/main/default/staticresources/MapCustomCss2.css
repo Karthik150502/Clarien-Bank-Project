@@ -1,0 +1,8 @@
+.slds-map_container{
+    height: calc(100vh - 145px);
+}
+
+
+.slds-map{
+    width: 100vw;
+}

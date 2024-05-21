@@ -1,0 +1,258 @@
+/*
+	Author - __
+	Created Date - 2024-03-13
+	Modified Date - 2024-03-13,2024-03-16,2024-03-20
+	Description - This component displays a map with available ATM locations and provides details of the selected location.
+     Users can also navigate to a selected location by clicking on the direction icon.
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    width: 100vw;
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: var(--primary-white);
+}
+
+
+.container {
+    width: 100%;
+    height: calc(100vh - 100px);
+    margin: 4% auto 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+}
+
+
+.wrapper .header {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 0 auto;
+    position: relative;
+    top: 2%;
+}
+
+
+.wrapper .footer c-c-b-footer {
+    position: fixed;
+    bottom: 0;
+}
+
+
+.map-btn {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+
+}
+
+.close-btn {
+
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--light-grey);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    margin: auto;
+}
+
+.location-detail {
+    background-color: var(--primary-white);
+    border-radius: 12px;
+    position: absolute;
+    bottom: 8%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: auto;
+    padding: 01% 2% 2% 2%;
+}
+
+.location-detail .flex-con {
+    height: 80%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.location-detail .card-header {
+    width: 106%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.location-detail .flex-con .field-data {
+    margin: 0 0 2% 0;
+    text-align: center;
+}
+
+.head {
+    width: 100%;
+}
+
+.atm-name {
+    font-weight: 800;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-size: 12px;
+}
+
+
+.footer .footer-div .Active {
+    background-color: rgb(94, 139, 3);
+    font-weight: 800;
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 2%;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.footer .footer-div .in-Active {
+    background-color: rgb(174, 8, 8);
+    font-weight: 800;
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 2%;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+@media only screen and (max-width: 351px) {
+    .footer .footer-div .in-Active,
+    .footer .footer-div .Active {
+        font-size: 11px;
+    }
+    .atm-name {
+        font-size: 12px;
+    }
+}
+@media only screen and (max-width: 343px) {
+    .footer .footer-div .in-Active,
+    .footer .footer-div .Active {
+        font-size: 11px;
+    }
+    .atm-name {
+        font-size: 11px;
+    }
+}
+@media only screen and (max-width: 343px) {
+    .footer .footer-div .in-Active,
+    .footer .footer-div .Active {
+        font-size: 10px;
+    }
+    .atm-name {
+        font-size: 11px;
+    }
+}
+
+.atm-name {
+    text-align: center;
+}
+
+.addr {
+    padding: 0 2% 6% 2%;
+    text-align: center;
+}
+
+.status {
+    padding: 2%;
+    color: var(--primary-white);
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    height: 10%;
+    width: 100%;
+    padding: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    padding: 0 4% 0 4%;
+}
+
+.footer-div2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 0 4% 0 4%;
+}
+
+.footer-div2 p {
+    font-size: 20px;
+}
+
+.footer .footer-div .footer-svg img {
+    height: 34px;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.footer .footer-div .footer-svg img:hover {
+    transform: scale(1.3);
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.wrapper .header .prof p {
+    font-size: 18.25px;
+}
+
+.header {
+    width: 100%;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    margin: 0 0 3% 2%;
+}
+
+.header .prof {
+    margin: 0 3%;
+}

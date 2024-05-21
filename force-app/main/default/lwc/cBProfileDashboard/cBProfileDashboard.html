@@ -1,0 +1,26 @@
+<!--
+	Author - __
+	Created Date - __/__/202_
+	Modified Date - __/__/202_, __/__/202_
+	Description - {***Purpose of creation or modification, Additional Comment***}
+-->
+
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-header image-src={profilePicImage} image-name={profilePicName} view-all={headerViewAll}></c-c-b-header>
+        </div>
+        <div class="container">
+            
+            <c-c-b-account-card account-no={accountNo} balance={balance} hold-balance={holdBalance} view-all={viewAll}>
+            </c-c-b-account-card>
+            <c-c-b-dashboard-icons></c-c-b-dashboard-icons>
+            <c-c-b-promotion></c-c-b-promotion>
+        </div>
+        <div class="footer">
+            <c-c-b-footer></c-c-b-footer>
+        </div>
+    </div>
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
+</template>

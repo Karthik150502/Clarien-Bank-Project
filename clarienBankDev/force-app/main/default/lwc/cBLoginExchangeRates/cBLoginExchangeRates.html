@@ -1,0 +1,62 @@
+<!--
+	Author - __
+	Created Date - __/__/202_
+	Modified Date - __/__/202_, __/__/202_
+	Description - {***Purpose of creation or modification, Additional Comment***}
+-->
+
+<template>
+    <section aria-label="Dialog title" aria-describedby="popover-body-id"
+        class="slds-popover slds-nubbin_bottom-right wrapper" role="dialog">
+        <div id="popover-body-id" class="slds-popover__body">
+
+            <div class="wrapper-inner">
+                <div class="con-header">
+                    <div class="expand" onclick={expandPage}>
+                        <p>{label.TODAYS_EXCHANGE_RATES}</p>
+                        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBExpand}></use>
+                        </svg>
+                    </div>
+                    <!-- <select name="" id="">
+                        <option value="">1 {label.MONTH}</option>
+                        <option value="">3 {label.MONTHS}</option>
+                        <option value="">6 {label.MONTHS}</option>
+                        <option value="">9 {label.MONTHS}</option>
+                        <option value="">12 {label.MONTHS}</option>
+                    </select> -->
+                </div>
+                <div class="container">
+
+                    <div class="slds-grid grid-rows">
+                        <div class="slds-col">
+                            <!-- <p class="custom-box">{currentDate}</p> -->
+                        </div>
+                        <div class="slds-col row row-head">
+                            <p>{label.BUY}</p>
+                        </div>
+                        <div class="slds-col row row-head">
+                            <p>{label.SELL}</p>
+                        </div>
+                    </div>
+                    <div class="rows">
+                        <template if:true={exchangeRates} for:each={exchangeRates} for:item="rate">
+                            <div key={rate.counterCurrency} class="slds-grid grid-rows data-rows">
+                                <div class="slds-col row row-curr">
+                                    <p>{rate.counterCurrency}</p>
+                                </div>
+                                <div class="slds-col row row-data">
+                                    <p>{rate.units}</p>
+                                </div>
+                                <div class="slds-col row">
+                                    <p>{rate.rate}</p>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</template>

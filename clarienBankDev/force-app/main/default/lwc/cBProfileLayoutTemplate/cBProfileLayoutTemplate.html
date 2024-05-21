@@ -1,0 +1,341 @@
+<!--
+		 Author - Prateek Deshmukh
+    Created Date - 2024-03-09
+    Modified Date - 2024-03-10,2024-03-19,2024-03-21
+    Description - The CBProfileLayoutTemplate component serves as a reusable template 
+    for rendering various sections based on provided data.It facilitates dynamic navigation 
+    and content display, showcasing specific sections like security settings, profile settings etc based on configured parameters.
+-->
+
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <template if:true={metaInfo.headingShow}>
+                <div class="back-icon" onclick={navigateToPreviousPage}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="17" height="18">
+                        <use href={CBBackIcon}></use>
+                    </svg>
+                </div>
+                <p>{metaInfo.heading}</p>
+            </template>
+        </div>
+        <div class="container">
+            <template if:true={metaInfo.profileInfo}>
+                <div class="profile">
+                    <input id="fileInput" type="file" style="display: none;" accept=".png, .jpg"
+                        aria-label="Upload from Gallary" onchange={openfileUpload} />
+                    <label for="fileInput">
+                        <div class="prof" lwc:ref="profile"  onclick={uploadProfileImage}>
+                            <svg class="camera-svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBCameraIcon}></use>
+                            </svg>
+                        </div>
+                    </label>
+                    <div class="prof-info">
+                        <p class="hello">Hello</p>
+                        <p class="prof-name">{UserData.name}</p>
+                        <p class="last-login">Last Logged on ..........</p>
+                    </div>
+                </div>
+            </template>
+            <div class="menu-items">
+                <template if:true={metaInfo.profile.exposed}>
+                    <div class="menu-item" onclick={navigateToProfileSettings}>
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="34">
+                                <use href={CBProfileSettings}></use>
+                            </svg>
+                        </div>
+                        <p>{label.PROFILE_SETTINGS}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToSecuritySettings}>
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="34">
+                                <use href={CBSecuritySettings}></use>
+                            </svg>
+                        </div>
+                        <p>{label.SECURITY_SETTINGS}</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg width="33" height="34" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBServiceRequest}></use>
+                            </svg>
+                        </div>
+                        <p>{label.SERVICE_REQUEST}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToApplyNow}>
+                        <div class="menu-item-svg">
+                            <svg width="33" height="34" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBApplyNow}></use>
+                            </svg>
+                        </div>
+                        <p>{label.APPLY_NOW}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToFeedbackRateUs}>
+                        <div class="menu-item-svg">
+                            <svg width="33" height="34" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBFeedbackRateUs}></use>
+                            </svg>
+                        </div>
+                        <p>{label.FEEDBACK_RATE_US}</p>
+                    </div>
+                    <!-- <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg width="33" height="34" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBLogout}></use>
+                            </svg>                      
+                        </div>
+                        <p onclick={logoutUser}>{label.LOGOUT}</p>
+                    </div> -->
+                </template>
+                <template if:true={metaInfo.profileSettings.exposed}>
+                    <div class="menu-item email-update" onclick={navigateToUpdateEmail}>
+                        <div class="menu-item-group">
+                            <div class="menu-item-svg">
+                                <svg width="34" height="33" xmlns="http://www.w3.org/2000/svg">
+                                    <use href={CBEmailIcon}></use>
+                                </svg>
+                            </div>
+                            <div class="menu-item-text">
+                                <p>{label.EMAIL}</p>
+                                <p class="userValue">{UserEmail}</p>
+                            </div>
+                        </div>
+                        <div class="menu-item-svg arrow">
+                            <svg width="17" height="18" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBRightArrow}></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="menu-item phone-update" onclick={navigateToUpdatePhone}>
+                        <div class="menu-item-group">
+                            <div class="menu-item-svg">
+                                <svg width="34" height="33" xmlns="http://www.w3.org/2000/svg">
+                                    <use href={CBPhoneIcon}></use>
+                                </svg>
+                            </div>
+                            <div class="menu-item-text">
+                                <p>{label.PHONE}</p>
+                                <p class="userValue">{UserPhone}</p>
+                            </div>
+                        </div>
+                        <div class="menu-item-svg arrow">
+                            <svg width="17" height="18" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBRightArrow}></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="menu-item password-update" onclick={navigateToProfileChangePassword}>
+                        <div class="menu-item-group">
+                            <div class="menu-item-svg">
+                                <svg width="34" height="33" xmlns="http://www.w3.org/2000/svg">
+                                    <use href={CBPassword}></use>
+                                </svg>
+                            </div>
+                            <div class="menu-item-text">
+                                <p>{label.PASSWORD}</p>
+                                <p class="userValue">{UserPassword}</p>
+                            </div>
+                        </div>
+                        <div class="menu-item-svg arrow">
+                            <svg width="17" height="18" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBRightArrow}></use>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBOnlineActivites}></use>
+                            </svg>
+                        </div>
+                        <p>{label.ONLINE_ACTIVITES}</p>
+                    </div>
+                </template>
+                <template if:true={metaInfo.securitySettings.exposed}>
+                    <!-- <div class="box">
+                        <div class="menu-item non-bg-tile">
+                            <div class="menu-item-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                    <use href={CBDarkTheme}></use>
+                                </svg>                                     
+                            </div>
+                            <p>{label.DARK_THEME}</p>
+                        </div>
+                        <div class="slds-form-element btn-custom">
+                            <label class="slds-checkbox_toggle slds-grid">
+                                <template if:true={darkMode}>
+                                    <input type="checkbox" name="checkbox-toggle-16" value={darkMode} onclick={darkModeHandler} checked aria-describedby="checkbox-toggle-16" />
+                                    <span id="checkbox-toggle-16" class="slds-checkbox_faux_container">
+                                        <span class="slds-checkbox_faux"></span>
+                                    </span>
+                                </template>
+                                <template if:false={darkMode}>
+                                    <input type="checkbox" name="checkbox-toggle-16" value={darkMode} onclick={darkModeHandler} aria-describedby="checkbox-toggle-16" />
+                                    <span id="checkbox-toggle-19" class="slds-checkbox_faux_container">
+                                        <span class="slds-checkbox_faux"></span>
+                                    </span>
+                                </template>
+                            </label>
+                        </div>
+                    </div> -->
+                    <div class="box">
+                        <div class="menu-item non-bg-tile">
+                            <div class="menu-item-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                    <use href={CBBioMetric}></use>
+                                </svg>
+                            </div>
+                            <p>{label.BIO_METRIC}</p>
+                        </div>
+                        <div class="slds-form-element btn-custom">
+                            <label class="slds-checkbox_toggle slds-grid">
+                                <!-- <span class="slds-form-element__label slds-m-bottom_none">Toggle Label</span> -->
+                                <input type="checkbox" name="checkbox-toggle-16" value="checkbox-toggle-16"
+                                    aria-describedby="checkbox-toggle-16" />
+                                <span id="checkbox-toggle-17" class="slds-checkbox_faux_container">
+                                    <span class="slds-checkbox_faux"></span>
+                                    <!-- <span class="slds-checkbox_on">Enabled</span>
+                                <span class="slds-checkbox_off">Disabled</span> -->
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- <div class="box">
+                        <div class="menu-item non-bg-tile">
+                            <div class="menu-item-svg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                    <use href={CBSoftTokenHardToken}></use>
+                                </svg>                                                          
+                            </div>
+                            <p>{label.SOFT_TOKEN_HARD_TOKEN}</p>
+                        </div>
+                        <div class="slds-form-element btn-custom">
+                            <label class="slds-checkbox_toggle slds-grid">
+                              <input type="checkbox" name="checkbox-toggle-16" value="checkbox-toggle-16" aria-describedby="checkbox-toggle-16" />
+                              <span id="checkbox-toggle-18" class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                              </span>
+                            </label>
+                        </div>
+                    </div> -->
+                </template>
+                <template if:true={metaInfo.serviceRequest.exposed}>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBTimeDepositAccountOpening}></use>
+                            </svg>
+                        </div>
+                        <p>{label.TIME_DEPOSIT_ACCOUNT_OPENING}</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBTopUpAccountOpening}></use>
+                            </svg>
+                        </div>
+                        <p>{label.TOP_UP_ACCOUNT_OPENING}</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBSavingsAccountOpening}></use>
+                            </svg>
+                        </div>
+                        <p>{label.SAVINGS_ACCOUNT_OPENING}</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBChequingAccountOpening}></use>
+                            </svg>
+                        </div>
+                        <p>{label.CHEQUING_ACCOUNT_OPENING}</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBStopPaperBasedStatements}></use>
+                            </svg>
+                        </div>
+                        <p>{label.STOP_PAPER_BASED_STATEMENTS}</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBScheduleAnRmAppointment}></use>
+                            </svg>
+                        </div>
+                        <p>{label.SCHEDULE_AN_RM_APPOINTMENT}</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBRequestADraft}></use>
+                            </svg>
+                        </div>
+                        <p>{label.REQUEST_A_DRAFT}</p>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBCardServices}></use>
+                            </svg>
+                        </div>
+                        <p>{label.CARD_SERVICES}</p>
+                    </div>
+                </template>
+                <template if:true={metaInfo.applyNow.exposed}>
+                    <div class="menu-item" onclick={navigateToApplyLoans}>
+                        <div class="menu-item-svg">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBLoans}></use>
+                            </svg>
+                        </div>
+                        <p>{label.LOANS}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToApplyCards}>
+                        <div class="menu-item-svg">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBCards}></use>
+                            </svg>
+                        </div>
+                        <p>{label.CARDS}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToApplyCheque}>
+                        <div class="menu-item-svg">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBChequebook}></use>
+                            </svg>
+                        </div>
+                        <p>{label.CHEQUEBOOK}</p>
+                    </div>
+                </template>
+                <template if:true={metaInfo.chequeBook.exposed}>
+                    <div class="menu-item" onclick={navigateToIssueChequebook}>
+                        <div class="menu-item-svg">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBIssueChequeBook}></use>
+                            </svg>
+                        </div>
+                        <p>{label.ISSUE_CHEQUE_BOOK}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToViewStopChecquebooks}>
+                        <div class="menu-item-svg">
+                            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <use href={CBViewStopIssuedCheques}></use>
+                            </svg>
+                        </div>
+                        <p>{label.VIEW_ISSUED_CHEQUES}</p>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+    <template if:true={modalOpen}>
+        <c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+    </template>
+</template>

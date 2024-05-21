@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+.wrapper {
+    width: 100vw;
+}
+.container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.container .casing {
+    margin: 5% 0;
+}
+
+.container .btn {
+    display: flex;
+    justify-content: center;
+}
+
+.container .btn button {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-white);
+}
+
+.title{
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+    margin:0% 0% 2% 0%;
+}
+
+.wrapper .container .casing label select{
+    margin:0% 0% 2% 0%;
+}
+
+.container .options {
+    width: 100%;
+    height: auto;
+    padding: 2% 2% 2% 3%;
+    border: 1px solid var(--border-blue);
+    border-radius: 7px;
+
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-black);
+}
+
+
+
+.btn .submit:disabled,
+.btn .submit[disabled] {
+    background-color: var(--light-grey);
+}
+
+.btn .submit {
+    background-color: var(--primary-blue); 
+}
+
+.wrapper .container .casing .travel-date {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 2% 2% 2% 2%;
+    margin: 0% auto 0 auto;
+    border: 1px solid var(--border-blue);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper .container .casing .travel-date .from-date,
+.wrapper .container .casing .travel-date .to-date {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    margin: 2% 0 2% 0;
+}
+
+.wrapper .container .casing .travel-date .from-date>p,
+.wrapper .container .casing .travel-date .to-date>p {
+    color: var(--primary-blue);
+    font-size: 15px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.wrapper .container .casing .travel-date .from-date .date-entry>p,
+.wrapper .container .casing .travel-date .to-date .date-entry>p {
+    color: var(--primary-black);
+    font-size: 15px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    margin: 0 4% 0 0;
+}
+
+
+.wrapper .container .casing .travel-date .from-date .date-entry,
+.wrapper .container .casing .travel-date .to-date .date-entry {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 55%;
+}
+
+.dates{
+display: none;
+}

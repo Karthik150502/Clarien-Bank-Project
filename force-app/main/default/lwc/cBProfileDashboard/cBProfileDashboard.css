@@ -1,0 +1,49 @@
+/*
+	Author - __
+	Created Date - __/__/202_
+	Modified Date - __/__/202_, __/__/202_
+	Description - {***Purpose of creation or modification, Additional Comment***}
+*/
+
+*{
+	font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper{
+	width: 100vw;
+	height: 100vh;
+	position: relative;
+}
+
+.container{
+	position: absolute;
+	width: 100%;
+	height: calc(100vh - 140px);
+	top: 68px;
+	overflow-y: scroll;
+}
+
+.container::-webkit-scrollbar{
+	display: none;
+}
+
+c-c-b-header{
+	position: fixed;
+	top: 0;
+	z-index: 1;
+}
+
+c-c-b-footer{
+	position: fixed;
+	bottom: 0;
+}
+
+
+c-c-b-dashboard-icons{
+	margin: 10px 0 0 0;
+}
+c-c-b-promotion{
+	margin: 10px 0 0 0;
+}

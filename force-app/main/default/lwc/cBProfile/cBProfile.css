@@ -1,0 +1,55 @@
+/*
+	Author - Aditya
+	Created Date - 08/03/2024
+	Modified Date - 12/03/2024, 21/03/2024
+	Description - This component imports a default profile image resource and sets up metadata for profile items such as profile information,
+                profile settings, service requests, and security settings. It includes logic in the connectedCallback() lifecycle hook
+                for any initialization tasks and provides a getter method to dynamically set the background image for the profile based
+                on the imported default image resource.
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+
+c-c-b-footer {
+    position: fixed;
+    bottom: 0;
+}
+
+
+.container{
+    /* width: 90%;
+    height: calc(100vh - 140px);
+    margin: 15px auto 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start; */
+
+
+
+    width: 90%;
+    height: calc(100vh - 100px);
+    margin: 0px auto 0 auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+
+c-c-b-profile-layout-template{
+    height: 100%;
+    width: 100%;
+}

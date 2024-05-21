@@ -1,0 +1,49 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open slds-modal_medium wrapper">
+        <div class="heading">
+            <div class="back-svg" onclick={closeNavigate}>
+                <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href={CBBackIcon}></use>
+                </svg>
+            </div>
+            <p>{label.CARD_SERVICES}</p>
+        </div>
+        <template if:false={modifyDebitCardLimit}>
+            <div class="container">
+                <div class="menu-item" onclick={openModifyDebitCardLimit}>
+                    <div class="menu-item-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                            <use href={CBModifyDebitCardLimit}></use>
+                        </svg>
+                    </div>
+                    <p>Modify Debit card limit</p>
+                </div>
+                <div class="menu-item travel" onclick={navigateToTravelNotification}>
+                    <div class="menu-item-svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                            <use href={CBTravelNotification}></use>
+                        </svg>
+                    </div>
+                    <p>Travel Notification</p>
+                </div>
+            </div>
+        </template>
+        <template if:true={modifyDebitCardLimit}>
+            <div class="containerTwo">
+                <label for="cardLimit">
+                    <p class="heading">Enter limit for Debit Card Limit</p>
+                    <select class="options" id="cardLimit" onclick={cardLimitHandler} value={cardLimit}>
+                        <template for:each={debitCardLimit} for:item="cardLimits">
+                            <option key={cardLimits.limit} value={cardLimits.limit}>{cardLimits.limit}</option>
+                        </template>
+                    </select>
+                </label>
+            </div>
+            <div class="btns">
+                <button class="submit-btn" onclick={submitForm}>{label.SUBMIT}</button>
+            </div>
+        </template>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

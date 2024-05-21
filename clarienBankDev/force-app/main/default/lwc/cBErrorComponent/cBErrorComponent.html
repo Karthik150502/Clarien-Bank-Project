@@ -1,0 +1,28 @@
+<template>
+    <div class="wrapper">
+        <template if:true={userAuthenticated}>
+            <c-c-b-header icon-details={header_icons}></c-c-b-header>
+        </template>
+
+        <div class="container">
+            <div class="con-header">
+                <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    onclick={navigateBack}>
+                    <use href={CBBackIcon}></use>
+                </svg>
+            </div>
+            <div class="content">
+                <p>{error}</p>
+            </div>
+        </div>
+        <template if:true={userAuthenticated}>
+            <c-c-b-footer></c-c-b-footer>
+        </template>
+    </div>
+
+
+    <!-- for ending session -->
+    <template if:true={userAuthenticated}>
+        <c-c-b-session-end></c-c-b-session-end>
+    </template>
+</template>

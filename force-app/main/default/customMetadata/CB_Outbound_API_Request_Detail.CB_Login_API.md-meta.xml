@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>CB_Login API</label>
+    <protected>false</protected>
+    <values>
+        <field>Endpoint_Path__c</field>
+        <value xsi:type="xsd:string">/api/signIn</value>
+    </values>
+    <values>
+        <field>Headers__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>IsXml__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>JSON_Body__c</field>
+        <value xsi:type="xsd:string">{
+  &quot;requestUUID&quot;: &quot;1709981883916&quot;,
+  &quot;header&quot;: {
+    &quot;channelId&quot;: &quot;I&quot;,
+    &quot;loginFlag&quot;: &quot;1&quot;,
+    &quot;serviceId&quot;: &quot;SIGN&quot;,
+    &quot;stateMode&quot;: &quot;Y&quot;,
+    &quot;userPrincipal&quot;: &quot;&quot;,
+    &quot;corpPrincipal&quot;: &quot;&quot;,
+    &quot;accessCode&quot;: &quot;&quot;
+  }
+}</value>
+    </values>
+    <values>
+        <field>Method_Type__c</field>
+        <value xsi:type="xsd:string">POST</value>
+    </values>
+</CustomMetadata>

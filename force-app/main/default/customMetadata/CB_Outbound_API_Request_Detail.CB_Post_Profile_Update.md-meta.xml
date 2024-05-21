@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>CB Post Profile Update</label>
+    <protected>false</protected>
+    <values>
+        <field>Endpoint_Path__c</field>
+        <value xsi:type="xsd:string">/api/profile/update</value>
+    </values>
+    <values>
+        <field>Headers__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>IsXml__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>JSON_Body__c</field>
+        <value xsi:type="xsd:string">{
+    &quot;requestUUID&quot;: &quot;1715711400000&quot;,
+    &quot;header&quot;: {
+        &quot;channelId&quot;: &quot;I&quot;,
+        &quot;loginFlag&quot;: &quot;2&quot;,
+        &quot;serviceId&quot;: &quot;MRUIDI&quot;,
+        &quot;stateMode&quot;: &quot;N&quot;,
+        &quot;userPrincipal&quot;: &quot;CAGPBM.MBVUSER&quot;,
+        &quot;corpPrincipal&quot;: &quot;CAGPBM&quot;,
+        &quot;accessCode&quot;: &quot;d#demo&quot;,
+        &quot;formId&quot;: &quot;7878&quot;
+    },
+    &quot;userMaintenanceMUser&quot;: {
+        &quot;bayUserId&quot;: &quot;&quot;,
+        &quot;corpUserType&quot;: &quot;NORMAL&quot;,
+        &quot;userType&quot;: 1,
+        &quot;corpUser&quot;: &quot;&quot;,
+        &quot;cEmailId&quot;: &quot;&quot;,
+        &quot;cMPhoneNo&quot;: &quot;&quot;
+    }
+}</value>
+    </values>
+    <values>
+        <field>Method_Type__c</field>
+        <value xsi:type="xsd:string">POST</value>
+    </values>
+</CustomMetadata>
