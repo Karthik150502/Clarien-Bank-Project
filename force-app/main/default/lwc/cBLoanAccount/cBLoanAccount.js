@@ -5,6 +5,59 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
 export default class CBLoanAccount extends LightningElement {
 
+    cardType = {
+        LoanAccount: {
+            accountNo: 6000154360,
+            accBal: 'BMD 201,210.21',
+            interestAmount: 'BMD 602.00',
+            interestDate: '11/12/24',
+            productName: 'Cash Secured BMD-Regular',
+            beneficiary: 'John LTD Demo',
+            date: '11/12/2024',
+        }
+    }
+    
+    configuration = {
+        previousPageUrl: 'CBFavoriteAccounts__c',
+        heading: 'Loan Account',
+        iconsExposed: false,
+        logout: {
+            exposed: false
+        },
+        search: {
+            exposed: false
+        },favorite:{
+        selected:false
+        }
+    }
+
+    @wire(CurrentPageReference)
+    wiredPageRef;
+
+
+
+    initializeCardType(pageRef) {
+        const state = pageRef?.state;
+        if (state && state.account) {
+            try {
+                let obj = JSON.parse(state.account);
+                if (obj) {
+                    this.cardType.LoanAccount.accountNo = obj.accountNo || '';
+                    this.cardType.LoanAccount.accBal = obj.accountBal || '0';
+
+                } else {
+                    console.error('Parsed object is null or undefined');
+                }
+            } catch (e) {
+                console.error('Error parsing state.account:', e);
+            }
+        } else {
+            console.error('state.account is undefined or null');
+        }
+    }
+
+
+
     CBPdf = `${CBSVG}/CBSVGs/CBPdf.svg#CBPdf`;
     CBSortOrder = `${CBSVG}/CBSVGs/CBSortOrder.svg#CBSortOrder`;
     CBFilter = `${CBSVG}/CBSVGs/CBFilter.svg#CBFilter`;
@@ -14,7 +67,6 @@ export default class CBLoanAccount extends LightningElement {
 
     // accountNumber='222265449987';
 
-    @wire(CurrentPageReference) pageRef;
 
     get accountNumber() {
         return this.pageRef && this.pageRef.state.accountNumber;
@@ -86,6 +138,7 @@ export default class CBLoanAccount extends LightningElement {
     }
 
     connectedCallback() {
+        this.initializeCardType(this.wiredPageRef);
         let currentDate = new Date();
         let month = currentDate.getMonth() + 1;
         let year = currentDate.getFullYear();  

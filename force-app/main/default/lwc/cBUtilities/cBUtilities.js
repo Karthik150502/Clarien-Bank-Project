@@ -27,6 +27,24 @@ const getMobileSessionStorage = (param) => {
     return sessionStorage.getItem(param);
 }
 
+const setAllMobileSessionStorage = (data) => {
+    let keys = Object.keys(data)
+    keys.forEach((key) => {
+        sessionStorage.setItem(key, data[key])
+    })
+}
+
+const getAllMobileSessionStorage = (...param) => {
+    let result = {}
+    param.forEach((prm) => {
+        result[prm] = sessionStorage.getItem(prm)
+    })
+    return result
+}
+
+const clearAllMobileSessionStorage = () => {
+    sessionStorage.clear()
+}
 
 const removeMobileSessionStorage = (...param) => {
     param.forEach((prm) => {
@@ -180,6 +198,9 @@ export {
     setMobileSessionStorage,
     getMobileSessionStorage,
     removeMobileSessionStorage,
+    setAllMobileSessionStorage,
+    getAllMobileSessionStorage,
+    clearAllMobileSessionStorage,
     getUserCreds,
     logout
 };

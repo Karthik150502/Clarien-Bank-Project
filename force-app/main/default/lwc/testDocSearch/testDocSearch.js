@@ -1,4 +1,5 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, wire, api, track } from 'lwc';
+import { CurrentPageReference } from 'lightning/navigation';
 
 // import docSearch from '@salesforce/apex/CBApiController.docSearch';
 // import docDownload from '@salesforce/apex/CBApiController.docDownload';

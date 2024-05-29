@@ -4,7 +4,7 @@ import { NavigationMixin } from 'lightning/navigation';
 import FROM_DATE from '@salesforce/label/c.CB_FromDate';
 import TO_DATE from '@salesforce/label/c.CB_ToDate';
 import SUBMIT from '@salesforce/label/c.CB_Submit';
-import SERVICEREQUEST_PAGE from '@salesforce/label/c.CB_Page_Servicerequest';
+// import SERVICEREQUEST_PAGE from '@salesforce/label/c.CB_Page_Servicerequest';
 
 export default class CBTravelNotification extends NavigationMixin(LightningElement) {
 
@@ -15,7 +15,7 @@ export default class CBTravelNotification extends NavigationMixin(LightningEleme
     }
 
     configuration = {
-        previousPageUrl: SERVICEREQUEST_PAGE,
+        previousPageUrl: '',
         heading: 'Travel Notification',
         iconsExposed: false,
         logout: {
@@ -24,36 +24,6 @@ export default class CBTravelNotification extends NavigationMixin(LightningEleme
         search: {
             exposed: false
         }
-    }
-
-    successModalOpen = false;
-    successModalConfiguration = {
-        title: 'Your Travel Notification has successfully',
-        message: 'Travel Notification',
-        okButton: {
-            exposed: true,
-            label: 'OK',
-            function: () => {
-                this.navigateBack();
-            }
-        },
-        noButton: {
-            exposed: false,
-            label: 'Cancel',
-            function: () => {
-            }
-        },
-        alertMsg: ''
-    }
-
-    navigateBack() {
-        console.log('navigate called');
-        this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: {
-                name: SERVICEREQUEST_PAGE
-            }
-        });
     }
 
     cardType = '';
@@ -98,6 +68,23 @@ export default class CBTravelNotification extends NavigationMixin(LightningEleme
     }
 
     handleSubmit(){
-        this.successModalOpen = true;
+        this.navigateToTravelNotificationConfirmation('CBTravelNotificationConfirmation__c');
+    }
+
+    navigateToTravelNotificationConfirmation(PageApi) {
+        console.log('navigate called');
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: PageApi
+            },
+            state:{
+                cardType : this.cardType ,
+                country : this.country,
+                state : this.state,
+                fromDate : this.fromDate,
+                toDate : this.toDate
+            }
+        });
     }
 }

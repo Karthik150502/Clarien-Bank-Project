@@ -79,7 +79,8 @@ import STOPPAPERBASEDSTATEMENTS_PAGE from '@salesforce/label/c.CB_Page_Stoppaper
 import TIMEDEPOSITACCOUNTOPENING_PAGE from '@salesforce/label/c.CB_Page_Timedepositaccountopening';
 import TOPUPACCOUNTOPENING_PAGE from '@salesforce/label/c.CB_Page_Topupaccountopening';
 import VIEWSTOPISSUEDCHEQUES_PAGE from '@salesforce/label/c.CB_Page_Viewstopissuedcheques';
-
+import MAKE_A_REQUEST from '@salesforce/label/c.MAKE_A_REQUEST';
+import OPEN_AN_Account from '@salesforce/label/c.OPEN_AN_Account';
 
 
 
@@ -98,6 +99,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
 
     status;
     biometricsService;
+    isAvailable =false;
 
     // Default user information placeholders
     UserPassword = '*********';
@@ -143,7 +145,9 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
         CARDS,
         CHEQUEBOOK,
         ISSUE_CHEQUE_BOOK,
-        VIEW_ISSUED_CHEQUES
+        VIEW_ISSUED_CHEQUES,
+        MAKE_A_REQUEST,
+        OPEN_AN_Account
     };
 
     //SVG's from static resource
@@ -189,8 +193,8 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
     connectedCallback() {
         this.getCustomerData();
         this.loadProfileImage();
-        this.biometricsService = getBiometricsService();
-        console.log('biometricsService ---' + this.biometricsService.isAvailable());
+       // this.biometricsService = getBiometricsService();
+        //console.log('biometricsService ---' + this.biometricsService.isAvailable());
         console.log('MetaInfo----' + this.metaInfo.securitySettings.exposed);
 
     }
@@ -479,36 +483,17 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
     }
 
     handleVerifyClick() {
-        console.log('in biometric ');
-        this.status = "Entered in biometric Service" + this.biometricsService.isAvailable();
-        // console.log(' checkUserIsDeviceOwner..' + this.biometricsService.checkUserIsDeviceOwner());
-        console.log(' isAvailable..' + this.biometricsService.isAvailable());
-        // console.log(' isBiometricsReady..' + this.biometricsService.isBiometricsReady());
-        if (this.biometricsService.isAvailable()) {
-            // const options = {
-            //   permissionRequestBody: "Required to confirm device ownership.",
-            //   additionalSupportedPolicies: ['PIN_CODE']
-            // };
-            // this.biometricsService.checkUserIsDeviceOwner(options)
-            //   .then((result) => {
-            //     // Do something with the result
-            //     if (result === true) {
-            //       this.status = "✔ Current user is device owner."
-            //     } else {
-            //       this.status = "𐄂 Current user is NOT device owner."
-            //     }
-            //   })
-            //   .catch((error) => {
-            //     // Handle errors
-            //     this.status = 'Error code: ' + error.code + '\nError message: ' + error.message;
-            //   });
-            console.log('in if biometric ');
-            this.status = "in if biometric ";
-        } else {
-            // service not available
-            this.status = 'Problem initiating Biometrics service. Are you using a mobile device?' + myBiometricsService.isAvailable();
-            console.log('in else biometric ');
-        }
+        
+         const biometricsService = getBiometricsService();
+         console.log('biometricsService',biometricsService);
+         if(biometricsService.isAvailable()) {
+             console.log('inbiometric',biometricsService);
+             this.status = 'withinbiometric'+biometricsService;
+            }
+            else {
+                console.log('elsebiometric',biometricsService);
+                this.status = 'elsebiometric'+biometricsService;
+            }
     }
 
 

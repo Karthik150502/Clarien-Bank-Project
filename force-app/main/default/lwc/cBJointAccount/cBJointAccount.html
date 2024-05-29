@@ -2,13 +2,17 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-14-2024
+  @last modified on  : 05-23-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
 	<c-c-b-header icon-details={header_icons}></c-c-b-header>
+	<div class="secondary-header">
+		<c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+	</div>
 	<div class="card">
-		<c-c-b-joint-account-card></c-c-b-joint-account-card>
+		<!-- <c-c-b-joint-account-card></c-c-b-joint-account-card> -->
+		<c-c-b-card card-type={cardType}></c-c-b-card>
 	</div>
 	<div class="transaction-heading">
 		<div class="slds-grid slds-wrap">

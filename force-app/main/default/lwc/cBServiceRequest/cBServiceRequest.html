@@ -9,16 +9,44 @@
 
 <template>
     <div class="wrapper">
-        <!-- <div class="header">
-            <c-c-b-header icon-details={header_icons}>
-                
-            </c-c-b-header>
-        </div> -->
         <div class="container">
-            <c-c-b-profile-layout-template  meta-info={profileItems}></c-c-b-profile-layout-template>
-        </div>
-        <div class="footer">
-            <c-c-b-footer></c-c-b-footer>
+            <div class="heading">
+                <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+            </div>
+            <div class="casing">
+                <div class="menu-item" onclick={navigateToTimeDepositAccountOpening}>
+                <div class="menu-item-svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                        <use href={CBTimeDepositAccountOpening}></use>
+                    </svg>
+                </div>
+                <p>{label.TIME_DEPOSIT_ACCOUNT_OPENING}</p>
+            </div>
+            <div class="menu-item" onclick={navigateToTopUpAccountOpening}>
+                <div class="menu-item-svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                        <use href={CBTopUpAccountOpening}></use>
+                    </svg>
+                </div>
+                <p>{label.TOP_UP_ACCOUNT_OPENING}</p>
+            </div>
+            <div class="menu-item" onclick={navigateToSavingAccountOpening}>
+                <div class="menu-item-svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33" >
+                        <use href={CBSavingsAccountOpening}></use>
+                    </svg>
+                </div>
+                <p>{label.SAVINGS_ACCOUNT_OPENING}</p>
+            </div>
+            <div class="menu-item" onclick={navigateToChequingAccountOpening}>
+                <div class="menu-item-svg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                        <use href={CBChequingAccountOpening}></use>
+                    </svg>
+                </div>
+                <p>{label.CHEQUING_ACCOUNT_OPENING}</p>
+            </div>
+            </div>
         </div>
     </div>
     <!-- for ending session -->

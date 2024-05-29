@@ -67,11 +67,13 @@
 
             </div>
             <div class="btn">
-                <button class="submit" disabled={submitDisable} onclick={handleSubmit}>{label.SUBMIT}</button>
+                <button class="submit" disabled={submitDisable} onclick={handleSubmit}>NEXT</button>
             </div>
+            <c-c-b-field-error>
+                <span slot="error-msg">
+                    <p></p>If USA choose United states</p>
+                    <p>Any other countries chose international</p></span>
+            </c-c-b-field-error>
         </div>
     </div>
-    <template if:true={successModalOpen}>
-        <c-c-b-resuable-success-modal configuration={successModalConfiguration}></c-c-b-resuable-success-modal>
-    </template>
 </template>

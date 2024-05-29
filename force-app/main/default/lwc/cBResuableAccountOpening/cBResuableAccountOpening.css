@@ -17,47 +17,84 @@
 .account-open-form::-webkit-scrollbar {
     width: 0px;
 }
+.sub-fields{
+    display: flex;
+    justify-content: space-between;
+}
+.sub-fields  .fields{
+    width: 100%;
+    /* height: auto;
+    border-radius: 8px; */
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--border-blue);
+    padding-left: 5px;
+    padding: 2% 2% 2% 3%;
+}
+
 .fields{
     width: 100%;
-    height: auto;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--border-blue);
+    /* padding-left: 5px; */
     padding: 2% 2% 2% 3%;
-    border: 1px solid var(--border-blue);
-    border-radius: 7px;
-}
-
-.container .options {
-    width: 100%;
-    height: auto;
-    padding: 2% 2% 2% 3%;
-    border: 1px solid var(--border-blue);
-    border-radius: 7px;
-}
-
-.container textarea {
-    width: 100%;
-    margin: 0 auto;
-    padding: 2% 2% 2% 2%;
-    border: 1px solid var(--border-blue);
-    border-radius: 7px;
-    height: auto;
-    min-height: 7rem;
 }
 
 .container .heading{
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     color: var(--primary-grey);
-    margin: 3% 0% 1% 0%;
+    margin: 5% 0% 1% 0%;
 }
+
 .container .min-heading{
     color: var(--primary-black);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
-.duration-range-slider{
+
+.terms-Conditions{
+    display: flex;
     margin: 3% 0% 0% 0%;
 }
 
+.terms-Conditions a{
+    color: var(--primary-blue);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.check-box{
+    width:7%;
+    display: flex;
+    align-items: center;
+}
+
+.checkBox {
+    appearance: none; 
+    width: 15px;
+    height: 15px; 
+    background-color: FFFFFF;
+    border: 1px solid var(--border-blue);
+    border-radius: 0;
+    outline: none;
+    position: relative;
+}
+
+.checkBox:checked::before {
+  content: '\2713';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #28a745; 
+  font-size: 14px; 
+}
+
+
 .btns{
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    margin-top: 5%;
 }
 
 .btns .submit-btn{
@@ -75,4 +112,15 @@
 .btns .submit-btn:disabled,
 .btns .submit-btn[disabled] {
     background-color: var(--light-grey);
+}
+.btns .cancel {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-grey);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
 }

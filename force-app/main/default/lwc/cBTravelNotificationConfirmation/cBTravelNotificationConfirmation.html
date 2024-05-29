@@ -1,0 +1,33 @@
+<template>
+    <div class="wrapper">
+        <div class="container">
+            <div class="heading">
+                <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+            </div>
+                <div class="casing">
+
+                    <p class="title">Card</p>
+                    <p class="value">{cardType}</p>
+
+                    <p class="title">Country</p>
+                    <p class="value">{country}</p>
+
+                    <p class="title">State</p>
+                    <p class="value">{state}</p>
+
+                    <p class="title">From Date</p>
+                    <p class="value">{fromDate}</p>
+
+                    <p class="title">To Date</p>
+                    <p class="value">{toDate}</p>
+    
+                </div>
+            <button class="btn" onclick={submitForm}>OK</button>
+        </div>
+    </div>
+    <template if:true={successModalOpen}>
+        <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
+    </template>
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
+</template>

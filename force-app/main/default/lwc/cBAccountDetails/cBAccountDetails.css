@@ -12,16 +12,13 @@ c-c-b-header {
 	top: 0;
 	z-index: 10;
 }
-.card{
-	margin-top: 70px;
-}
+
 .wrapper {
 	width: 100vw;
 	height: auto;
 	overflow: hidden;
 	overflow-x: hidden;
 	overflow-y: hidden;
-	background-color: var(--primary-white);
 }
 
 .icons-container {
@@ -124,4 +121,9 @@ c-c-b-footer {
 
 .transactionDate {
 	font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.secondary-header {
+	width: 90%;
+	margin: 70px auto 10px auto;
 }

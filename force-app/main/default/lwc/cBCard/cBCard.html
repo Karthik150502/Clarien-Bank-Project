@@ -1,0 +1,328 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-23-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <template if:true={cardType.CreditAccount}>
+        <div class="wrapper">
+            <div class={style}>
+                <div class="front-face">
+                    <div class="details-ff">
+                        <p class="p1">{cardNumber}</p>
+                        <div class="avl-bal">
+                            <p class="p2">{cardType.CreditAccount.accBal}</p>
+                            <p class="p3">AVAILABLE BALANCE</p>
+                        </div>
+    
+                        <div class="others">
+                            <p class="p4">Current Balance: {cardType.CreditAccount.currentBal}</p>
+                            <p class="p4">Pending Balance: {cardType.CreditAccount.pendingBal}</p>
+                        </div>
+    
+                    </div>
+                    <div class="card-flip-icon-front" onclick={rotateToBack}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="back-face">
+                    <div class="details-bf">
+                        <div class="b1">
+                            <p class="p1">Card Expiry Date</p>
+                            <p>{cardType.CreditAccount.cardExpiryDate}</p>
+                        </div>
+    
+                        <div class="b2">
+                            <p class="p1">Product Name</p>
+                            <p class="p2">{cardType.CreditAccount.productName}</p>
+                        </div>
+    
+                        <div class="b3">
+                            <p class="p1">Card Status</p>
+                            <p>{cardType.CreditAccount.cardStatus}</p>
+                        </div>
+    
+                        <div class="b4">
+                            <p class="p1">Card No</p>
+                            <div class="card-num">{cardNumber}
+                                <div onclick={showCardNumber} class="eye-icon">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <use href={CBHideCardNumber}></use>
+                                        <template if:true={hideCardNo}>
+                                            <path
+                                                d="M13 13.01C12.9344 13.0108 12.8694 12.9979 12.8091 12.972C12.7489 12.9462 12.6946 12.908 12.65 12.86L0.65 0.86C0.45 0.66 0.45 0.35 0.65 0.15C0.85 -0.05 1.16 -0.05 1.36 0.15L13.35 12.16C13.55 12.36 13.55 12.67 13.35 12.87C13.25 12.97 13.12 13.02 13 13.02V13.01Z"
+                                                fill="white" />
+                                        </template>
+                                    </svg>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+                    <div class="card-flip-icon-back" onclick={rotateToFront}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+    
+    
+                    <div class="share-icon">
+                        <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBShare}></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={cardType.LoanAccount}>
+        <div class="wrapper">
+            <div class={style}>
+                <div class="front-face">
+                    <div class="details-ff">
+                        <p class="p1">{cardType.LoanAccount.accountNo}</p>
+                        <div class="avl-bal">
+                            <p class="p2">{cardType.LoanAccount.accBal}</p>
+                            <p class="p3">Outstanding Amount</p>
+                        </div>
+    
+                        <div class="others">
+                            <p class="p4">Next Interest Payment Amount: {cardType.LoanAccount.interestAmount}</p>
+                            <p class="p5">Next Interest Payment Date: {cardType.LoanAccount.interestDate}</p>
+                        </div>
+    
+                    </div>
+                    <div class="card-flip-icon-front" onclick={rotateToBack}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="back-face">
+                    <div class="details-bf">
+                        <div class="b1">
+                            <p class="p1">Account Number</p>
+                            <p class="p2">{cardType.LoanAccount.accountNo}</p>
+                        </div>
+    
+                        <div class="b2">
+                            <p class="p1">Product Name</p>
+                            <p class="p2">{cardType.LoanAccount.productName}</p>
+                        </div>
+    
+                        <div class="b3">
+                            <p class="p1">Beneficiary</p>
+                            <p class="p2">{cardType.LoanAccount.beneficiary}</p>
+                        </div>
+    
+                        <div class="b4">
+                            <p class="p1">Date</p>
+                            <p class="p2">{cardType.LoanAccount.date}</p>
+                        </div>
+                    </div>
+                    <div class="card-flip-icon-back" onclick={rotateToFront}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+    
+    
+                    <div class="share-icon">
+                        <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBShare}></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={cardType.JointAccount}>
+        <div class="wrapper">
+            <div class={style}>
+                <div class="front-face">
+                    <div class="details-ff">
+                        <p class="p1">{cardType.JointAccount.accountNo}</p>
+                        <div class="avl-bal">
+                            <p class="p2">{cardType.JointAccount.accBal}</p>
+                            <p class="p3">AVAILABLE BALANCE</p>
+                        </div>
+    
+                        <div class="others">
+                            <p class="p4">Curent balancce: {cardType.JointAccount.currentBal}</p>
+                            <p class="p5">Total Holds: {cardType.JointAccount.totalHolds}</p>
+                        </div>
+    
+                    </div>
+                    <div class="card-flip-icon-front" onclick={rotateToBack}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="back-face">
+                    <div class="details-bf">
+                        <div class="b1">
+                            <p class="p1">Account Number</p>
+                            <p class="p2">{cardType.JointAccount.accountNo}</p>
+                        </div>
+    
+                        <div class="b2">
+                            <p class="p1">Account Holder Name(joint)</p>
+                            <p class="p2">{cardType.JointAccount.holderName} & {cardType.JointAccount.secHolderName}</p>
+                        </div>
+    
+                        <div class="b3">
+                            <p class="p1">Available Balance</p>
+                            <p class="p2">{cardType.JointAccount.accBal}</p>
+                        </div>
+    
+                    </div>
+                    <div class="card-flip-icon-back" onclick={rotateToFront}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+    
+    
+                    <div class="share-icon">
+                        <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBShare}></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={cardType.SavingsAccount}>
+        <div class="wrapper">
+            <div class={style}>
+                <div class="front-face">
+                    <div class="details-ff">
+                        <p class="p1">{cardType.SavingsAccount.accountNo}</p>
+                        <div class="avl-bal">
+                            <p class="p2">{cardType.SavingsAccount.accBal}</p>
+                            <p class="p3">AVAILABLE BALANCE</p>
+                        </div>
+    
+                        <div class="others">
+                            <p class="p4">Curent balancce: {cardType.SavingsAccount.currentBal}</p>
+                            <p class="p5">Total Holds: {cardType.SavingsAccount.totalHolds}</p>
+                        </div>
+    
+                    </div>
+                    <div class="card-flip-icon-front" onclick={rotateToBack}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="back-face">
+                    <div class="details-bf">
+                        <div class="b1">
+                            <p class="p1">Account Number</p>
+                            <p class="p2">{cardType.SavingsAccount.accountNo}</p>
+                        </div>
+    
+                        <div class="b2">
+                            <p class="p1">Product Name</p>
+                            <p class="p2">{cardType.SavingsAccount.productName}</p>
+                        </div>
+    
+                        <div class="b3">
+                            <p class="p1">Beneficiary</p>
+                            <p class="p2">{cardType.SavingsAccount.beneficiary}</p>
+                        </div>
+    
+                        <div class="b4">
+                            <p class="p1">Date</p>
+                            <p class="p2">{cardType.SavingsAccount.date}</p>
+                        </div>
+                    </div>
+                    <div class="card-flip-icon-back" onclick={rotateToFront}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+    
+    
+                    <div class="share-icon">
+                        <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBShare}></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={cardType.TimeDepositAccount}>
+        <div class="wrapper">
+            <div class={style}>
+                <div class="front-face">
+                    <div class="details-ff">
+                        <p class="p1">{cardType.TimeDepositAccount.accountNo}</p>
+                        <div class="avl-bal">
+                            <p class="p2">{cardType.TimeDepositAccount.accBal}</p>
+                            <p class="p3">AVAILABLE BALANCE</p>
+                        </div>
+    
+                        <div class="others">
+                            <p class="p4">Curent balancce: {cardType.TimeDepositAccount.currentBal}</p>
+                            <p class="p5">Total Holds: {cardType.TimeDepositAccount.totalHolds}</p>
+                        </div>
+    
+                    </div>
+                    <div class="card-flip-icon-front" onclick={rotateToBack}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="back-face">
+                    <div class="details-bf">
+                        <div class="b1">
+                            <!-- <p class="p1">Account Number</p> -->
+                            <p class="p2">{cardType.TimeDepositAccount.accountNo}</p>
+                        </div>
+    
+                        <div class="b2">
+                            <p class="p2">{cardType.TimeDepositAccount.principalAmount}</p>
+                            <p class="p2">Principal Amount</p>
+                        </div>
+    
+                        <div class="others">
+                            <p class="p1">Deposit StartDate : {cardType.TimeDepositAccount.depositStartDate}</p>
+                            <p class="p1">Maturity Date : {cardType.TimeDepositAccount.maturityDate}</p>
+                        </div>
+                    </div>
+                    <div class="card-flip-icon-back" onclick={rotateToFront}>
+                        <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            onclick={cardView}>
+                            <use href={CBCardRotate}></use>
+                        </svg>
+                    </div>
+    
+    
+                    <div class="share-icon">
+                        <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBShare}></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</template>

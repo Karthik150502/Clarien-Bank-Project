@@ -1,10 +1,12 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
+import CB_Page_Applynow from '@salesforce/label/c.CB_Page_Applynow';
+
 export default class CBRequestDraftConfirmation extends NavigationMixin(LightningElement)  {
 
     configuration = {
-        previousPageUrl: 'CBRequestDraft__c',
+        previousPageUrl: '',
         heading: 'Request a Draft',
         iconsExposed: true,
         logout: {
@@ -20,13 +22,13 @@ export default class CBRequestDraftConfirmation extends NavigationMixin(Lightnin
     amount = '2000';
     currency = 'BMD';
     payeeName = 'John';
-    remark = 'No Remark';
+    // remark = 'No Remark';
 
     successModalOpen = false;
 
     successModalconfig={
-        title: `Draft request Sucessfully`,
-        message: 'Thanks for requesting draft',
+        title: `Your request is submitted Sucessfully`,
+        message: '',
         okButton: {
             exposed: true,
             label: 'Ok',
@@ -48,7 +50,7 @@ export default class CBRequestDraftConfirmation extends NavigationMixin(Lightnin
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'CBServiceRequest__c'
+                name: CB_Page_Applynow
             }
         });
     }

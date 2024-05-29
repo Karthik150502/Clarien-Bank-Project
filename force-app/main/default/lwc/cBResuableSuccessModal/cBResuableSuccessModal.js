@@ -24,7 +24,12 @@ export default class CBResuableSuccessModal extends LightningElement {
         // alertMsg: ''
     }
 
-
+    handleSlotChange() {
+        let misallaneous = this.template.querySelector(".misallaneous")
+        if (misallaneous) {
+            misallaneous.classList.remove("slds-hide")
+        }
+    }
 
 
 

@@ -21,6 +21,7 @@
 .container .btn {
     display: flex;
     justify-content: center;
+    margin: 0% 0% 5% 0%
 }
 
 .container .btn button {
@@ -46,13 +47,13 @@
 
 .container .options {
     width: 100%;
-    height: auto;
+    height: 40px;
     padding: 2% 2% 2% 3%;
     border: 1px solid var(--border-blue);
-    border-radius: 7px;
-
+    border-radius: 12px;
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     color: var(--primary-black);
+    font-size: 16px;
 }
 
 

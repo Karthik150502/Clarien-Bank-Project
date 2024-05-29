@@ -1,0 +1,23 @@
+<template>
+    <div class="wrapper">
+        <div class="container">
+            <div class="heading">
+                <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+            </div>
+            <div class="casing">
+                <div class="account-detail">
+                    <p class="fields">Beneficiary Account Number</p>
+                    <input type="text">
+                    <p class="fields">Beneficiary Name</p>
+                    <input type="text">
+                </div>
+            </div>
+            <div class="btn">
+                <button class="submit-btn" disabled={disableButton} onclick={handleSubmit}>ADD</button>
+                <!-- <button class="cancel-btn" onclick={handleCancel}>CANCEL</button> -->
+            </div>
+        </div>
+    </div>
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
+</template>

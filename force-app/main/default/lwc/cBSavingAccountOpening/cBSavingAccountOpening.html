@@ -31,6 +31,32 @@
                         </template>
                     </select>
 				</div>
+				
+				<label class="terms-Conditions">
+					<div class="check-box">
+						<input class="checkBox" type="checkbox" onchange={termsConditions}>
+					</div>
+					<div>
+						<p>I agree to the company <a>Terms & Conditions & privacy policy</a></p>
+					</div>
+				</label>
+				<label class="terms-Conditions">
+					<div class="check-box">
+						<input class="checkBox" type="checkbox" onchange={conduct}>
+					</div>
+					<div>
+						<a>I agree for company code of conduct</a>
+					</div>
+				</label>
+				<label class="terms-Conditions">
+					<div class="check-box">
+						<input class="checkBox" type="checkbox" onchange={marketingConsent}>
+					</div>
+					<div>
+						<a>I accept Marketing consent</a>
+					</div>
+				</label>
+
 				<div class="btns">
 					<button class="submit-btn" disabled={buttonDisabled} onclick={submitHandler}>
                         SUBMIT
@@ -48,8 +74,7 @@
 
 		</div>
 	</div>
-	<template if:true={successModalOpen}>
-		<c-c-b-resuable-success-modal configuration={successModalConfiguration}></c-c-b-resuable-success-modal>
-	</template>
-</template>
+    <template if:true={successModalOpen}>
+        <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
+    </template>
 </template>

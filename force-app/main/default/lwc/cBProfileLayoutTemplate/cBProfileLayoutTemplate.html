@@ -63,7 +63,7 @@
                                 <use href={CBServiceRequest}></use>
                             </svg>
                         </div>
-                        <p>{label.SERVICE_REQUEST}</p>
+                        <p>{label.OPEN_AN_Account}</p>
                     </div>
                     <div class="menu-item" onclick={navigateToApplyNow}>
                         <div class="menu-item-svg">
@@ -71,7 +71,7 @@
                                 <use href={CBApplyNow}></use>
                             </svg>
                         </div>
-                        <p>{label.APPLY_NOW}</p>
+                        <p>{label.MAKE_A_REQUEST}</p>
                     </div>
                     <div class="menu-item" onclick={navigateToFeedbackRateUs}>
                         <div class="menu-item-svg">
@@ -318,6 +318,38 @@
                             </svg>
                         </div>
                         <p>{label.CHEQUEBOOK}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToScheduleAnRMAppointment}>
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBScheduleAnRmAppointment}></use>
+                            </svg>
+                        </div>
+                        <p>{label.SCHEDULE_AN_RM_APPOINTMENT}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToRequestDraft}>
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBRequestADraft}></use>
+                            </svg>
+                        </div>
+                        <p>{label.REQUEST_A_DRAFT}</p>
+                    </div>
+                    <div class="menu-item" onclick={navigateToStopPaperBasedStatements}>
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBStopPaperBasedStatements}></use>
+                            </svg>
+                        </div>
+                        <p>{label.STOP_PAPER_BASED_STATEMENTS}</p>
+                    </div>
+                    <div class="menu-item" onclick={openServiceRequestModal}>
+                        <div class="menu-item-svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="33" height="33">
+                                <use href={CBCardServices}></use>
+                            </svg>
+                        </div>
+                        <p>{label.CARD_SERVICES}</p>
                     </div>
                 </template>
                 <template if:true={metaInfo.chequeBook.exposed}>

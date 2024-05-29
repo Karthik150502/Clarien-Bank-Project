@@ -1,11 +1,11 @@
 /*
-	Author - __
-	Created Date - __/__/202_
-	Modified Date - __/__/202_, __/__/202_
-	Description - {***Purpose of creation or modification, Additional Comment***}
+    Author - __
+    Created Date - __/__/202_
+    Modified Date - __/__/202_, __/__/202_
+    Description - {***Purpose of creation or modification, Additional Comment***}
 */
 
-import { LightningElement } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 import CANCEL from '@salesforce/label/c.CB_Cancel';
 import DONE from '@salesforce/label/c.CB_Done';
@@ -22,6 +22,8 @@ export default class CBCalender extends LightningElement {
 
     }
 
+    @api maxDate = ''
+    @api minDate = ''
 
 
 
@@ -39,17 +41,17 @@ export default class CBCalender extends LightningElement {
     }
 
     months = [
-        "JANUARY", 
-        "FEBRUARY", 
-        "MARCH", 
-        "APRIL", 
-        "MAY", 
-        "JUNE", 
-        "JULY", 
-        "AUGUST", 
-        "SEPTEMBER", 
-        "OCTOBER", 
-        "NOVEMBER", 
+        "JANUARY",
+        "FEBRUARY",
+        "MARCH",
+        "APRIL",
+        "MAY",
+        "JUNE",
+        "JULY",
+        "AUGUST",
+        "SEPTEMBER",
+        "OCTOBER",
+        "NOVEMBER",
         "DECEMEBER"
     ]
 

@@ -18,9 +18,13 @@ export default class CBSecondaryHeader extends NavigationMixin(LightningElement)
         // },
         // search: {
         //     exposed: true
+        // },favorite:{
+        // selected:false
         // }
-
     }
+
+
+
 
 
     navigateBack() {

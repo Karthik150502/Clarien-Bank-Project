@@ -1,5 +1,4 @@
 import { LightningElement, wire } from 'lwc';
-import buildUpdatedJSON from '@salesforce/apex/JSONBuilder.buildUpdatedJSON';
 
 export default class JsonBuilderTest extends LightningElement {
     updatedJsonString;
@@ -9,19 +8,5 @@ export default class JsonBuilderTest extends LightningElement {
     handleClick() {
 
         // Create a map with key-value pairs to update JSON
-        const keyValueMap = {
-            "name": "john cena",
-            "age": "45"
-        }
- 
-        // Call the Apex method and pass the map
-        buildUpdatedJSON({ keyValueMap: keyValueMap,jsonTemplate: this.originalJsonString })
-            .then(result => {
-                this.updatedJsonString = result;
-                console.log('Updated JSON String:', this.updatedJsonString);
-            })
-            .catch(error => {
-                console.error('Error occurred:', error);
-            });
     }
 }
