@@ -1,0 +1,35 @@
+<template>
+    <div class="wrapper">
+        <div class="container">
+            <div class="heading">
+                <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+            </div>
+            <div class="casing">
+                <div class="account-detail">
+                    <p class="fields">Account</p>
+                    <p class="values">6000017836</p>
+                    <p class="fields">Account Type</p>
+                    <p class="values">Savings</p>
+                </div>
+                <div class="name">
+
+                    <p class="fields">Name</p>
+                    <input type="text" class="beneficiaryName">
+
+                    <div class="status">
+                        <p class="status-field">Status</p>
+                        <lightning-input data-id="toggle1" type="toggle" 
+                        onchange={statusHandler} message-toggle-active="" message-toggle-inactive="" value={status}>
+                       </lightning-input> 
+                    </div>
+                </div>
+            </div>
+            <div class="btn">
+                <button class="submit-btn" disabled={disableButton} onclick={handleSubmit}>SUBMIT</button>
+                <!-- <button class="cancel-btn" onclick={handleCancel}>CANCEL</button> -->
+            </div>
+        </div>
+    </div>
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
+</template>

@@ -6,7 +6,7 @@ export default class CBTopUpAccountOpening extends NavigationMixin(LightningElem
     accountOpenType = 'topUpAccount'
     configuration = {
         previousPageUrl: '',//should Navigate to Service Request after creating page for that
-        heading: 'Top Up Account',
+        heading: 'Top Up Account Opening',
         iconsExposed: true,
         logout: {
             exposed: false
@@ -19,8 +19,8 @@ export default class CBTopUpAccountOpening extends NavigationMixin(LightningElem
     successModalOpen = false;
 
     successModalconfig={
-        title: `Time-Up Account Created Successfully`,
-        message: 'Thanks for creating Top up account',
+        title: `Your Account has been opened successfully`,
+        message: '',
         okButton: {
             exposed: true,
             label: 'Ok',

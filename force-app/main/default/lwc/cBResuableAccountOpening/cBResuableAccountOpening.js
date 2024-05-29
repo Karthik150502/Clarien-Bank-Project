@@ -13,7 +13,7 @@ import SUBMIT from '@salesforce/label/c.CB_Submit';
 
 export default class CBResuableAccountOpening extends LightningElement {
 
-    @api type = ' '
+    @api type = ''
 
     get accountType(){
         return this.type === 'timeDepositAccount'
@@ -32,28 +32,26 @@ export default class CBResuableAccountOpening extends LightningElement {
         SUBMIT
     }
 
-    depositAmount = ' '
-    duration = ' '
-    createDate = ' '
-    depitAmount = ' '
-    product = ' '
-    interestPayment = ' '
-    principalMaturity = ' '
+    depositAmount = ''
+    duration = '2Y'
+    depitAmount = ''
+    currency = ''
+    product = ''
+    interestPayment = ''
+    principalMaturity = ''
 
     depositAmountHandler(event){
         this.depositAmount = event.target.value;
     }
-    get datePlaceHolder() {
-        return "DD/MM/YYYY";
-    }
-    dateHandler(event) {
-        this.createDate = event.target.value;
-    }
-    durationHandler(event){
-        this.duration = event.detail;
-    }
+    // durationHandler(event){
+    //     this.duration = event.detail;
+    // }
     debitAmountHandler(event){
         this.depitAmount = event.target.value
+        console.log(this.depitAmount);
+    }
+    currencyHandler(event){
+        this.currency = event.target.value
     }
     productHandler(event){
         this.product = event.target.value
@@ -64,18 +62,31 @@ export default class CBResuableAccountOpening extends LightningElement {
     principalMaturityHandler(event){
         this.principalMaturity = event.target.value
     }
-    remarkHandler(event){
-        this.remarks = event.target.value;
+
+    termsConditionsFlag = false
+    termsConditions(){
+        this.termsConditionsFlag = !this.termsConditionsFlag
+    }
+    conductFlag = false
+    conduct(){
+        this.conductFlag = !this.conductFlag
+    }
+    marketingConsentFlag = false
+    marketingConsent(){
+        this.marketingConsentFlag = !this.marketingConsentFlag
     }
 
     get buttonDisabled(){
         if(this.type === 'timeDepositAccount'){
-            return this.depositAmount === ' ' || this.duration === ' ' || this.createDate === ' ' || this.depitAmount === ' ' || this.product === ' ' || this.interestPayment === ' ' || this.principalMaturity === ' '
+            console.log('Acc Type',this.type);
+            return this.depositAmount === '' || this.duration === '' || this.depitAmount === '' || this.currency === '' || this.product === '' || this.interestPayment === '' || this.principalMaturity === '' || !this.termsConditionsFlag || !this.conductFlag || !this.marketingConsentFlag
         }
         else if(this.type === 'topUpAccount'){
-            return this.depositAmount === ' ' || this.duration === ' ' || this.createDate === ' ' || this.depitAmount === ' ' || this.principalMaturity === ' '
+            console.log('Acc Type',this.type);
+            return this.depositAmount === '' || this.duration === '' || this.depitAmount === '' || this.currency === '' || this.principalMaturity === '' || !this.termsConditionsFlag || !this.conductFlag || !this.marketingConsentFlag
         }
     }
+
 
     submitForm(event){
         event.preventDefault();
@@ -84,7 +95,7 @@ export default class CBResuableAccountOpening extends LightningElement {
                 detail : {
                     depositAmount : this.depositAmount,
                     duration : this.duration,
-                    createDate : this.createDate,
+                    currency : this.currency,
                     depitAmount : this.depitAmount,
                     product : this.product,
                     interestPayment : this.interestPayment,
@@ -92,7 +103,6 @@ export default class CBResuableAccountOpening extends LightningElement {
                 }
             })
         )
-        console.log(this.depositAmount,  this.duration, this.createDate,  this.depitAmount, this.product, this.interestPayment,  this.principalMaturity)
     }
 
 }

@@ -13,7 +13,19 @@ export default class CBFavoriteAccounts extends LightningElement {
     favAccModalOpened = false
 
 
-
+    configuration = {
+        previousPageUrl: 'Home',
+        heading: 'Accounts',
+        iconsExposed: false,
+        logout: {
+            exposed: false
+        },
+        search: {
+            exposed: false
+        }, favorite: {
+            selected: false
+        }
+    }
 
 
     // Sample data for account number, balance, and hold balance
@@ -21,13 +33,15 @@ export default class CBFavoriteAccounts extends LightningElement {
         {
             accountNo: '600017725563',
             accountBal: 'BMD 5556.54',
+            currentBal:'BMD 6857.42',
             totalHolds: 'BMD 0.0',
             accountType: 'SAVINGS ACCOUNT',
             favorite: false
         },
         {
             accountNo: '698547452632',
-            accountBal: 'BMD 5556.54',
+            accountBal: 'BMD 5556.54',  
+            currentBal:'BMD 6857.42',
             totalHolds: 'BMD 0.0',
             accountType: 'SAVINGS ACCOUNT',
             favorite: true
@@ -36,6 +50,7 @@ export default class CBFavoriteAccounts extends LightningElement {
             accountNo: '658596541425',
             accountBal: 'BMD 5556.54',
             totalHolds: 'BMD 0.0',
+            currentBal:'BMD 6857.42',
             accountType: 'SAVINGS ACCOUNT',
             favorite: false
         },
@@ -43,21 +58,24 @@ export default class CBFavoriteAccounts extends LightningElement {
             accountNo: '652547896541',
             accountBal: 'BMD 5556.54',
             totalHolds: 'BMD 0.0',
-            accountType: 'SAVINGS ACCOUNT',
-            favorite: false
+            currentBal:'BMD 6857.42',
+            accountType: 'JOINT ACCOUNT',
+            favorite: true
         },
         {
             accountNo: '365474859654',
             accountBal: 'BMD 55874.65',
             totalHolds: 'BMD 112.65',
-            accountType: 'CURRENT ACCOUNT',
+            currentBal:'BMD 6857.42',
+            accountType: 'CREDIT CARD ACCOUNT',
             favorite: true
         },
         {
             accountNo: '645187941316',
             accountBal: 'BMD 87845.33',
             totalHolds: 'BMD 45.65',
-            accountType: 'TIME ACCOUNT',
+            currentBal:'BMD 6857.42',
+            accountType: 'TIME DEPOSIT ACCOUNT',
             favorite: true
         },
         {

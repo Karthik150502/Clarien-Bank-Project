@@ -32,7 +32,7 @@ export default class CBAccountDetailCard extends NavigationMixin(LightningElemen
     get isALoanAccount() {
         return this.account.accountType === 'LOAN ACCOUNT';
     }
-    
+
     @api isFavorite = ''
 
     // Method to update favorite status of the account
@@ -49,8 +49,24 @@ export default class CBAccountDetailCard extends NavigationMixin(LightningElemen
 
     navigateToAccount() {
         console.log("Navigation initiated...!")
-        this.navigateTo('comm__namedPage', 'CBAccountDetails__c', this.account.accountNo)
+        console.log('account type: ', this.account.accountType);
+        if (this.account.accountType === 'SAVINGS ACCOUNT') {
+            this.navigateTo('comm__namedPage', 'CBSavingsAccount__c', this.account)
+        }
+        if (this.account.accountType === 'JOINT ACCOUNT') {
+            this.navigateTo('comm__namedPage', 'CBJointAccount__c', this.account)
+        }
+        if (this.account.accountType === 'CREDIT CARD ACCOUNT') {
+            this.navigateTo('comm__namedPage', 'CBCreditCardAccount__c', this.account)
+        }
+        if (this.account.accountType === 'LOAN ACCOUNT') {
+            this.navigateTo('comm__namedPage', 'CBLoanAccount__c', this.account)
+        }
+        if (this.account.accountType === 'TIME DEPOSIT ACCOUNT') {
+            this.navigateTo('comm__namedPage', 'CBTimeDepositAccount__c', this.account)
+        }
     }
+
     // navigateToAccount() {
     //     console.log("Fav account")
     // }
@@ -62,14 +78,14 @@ export default class CBAccountDetailCard extends NavigationMixin(LightningElemen
     * @param {String} url_name - source name as parameter
     * @return {void}
     */
-    navigateTo(type, url_name, accNo) {
+    navigateTo(type, url_name, acc) {
         const pageReference = {
             type,
             attributes: {
                 name: url_name
             },
             state: {
-                accountNumber: accNo // Pass the account number as a parameter
+                account: JSON.stringify(acc) // Pass the account number as a parameter
             }
         };
         this[NavigationMixin.Navigate](pageReference);

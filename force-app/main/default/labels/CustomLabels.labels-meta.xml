@@ -1359,14 +1359,6 @@
         <value>Own Account Transfers</value>
     </labels>
     <labels>
-        <fullName>CB_POST_ChangePassword_100489</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>CB_POST_ChangePassword_100489 Error Message</shortDescription>
-        <value>You&apos;ve had 1 failed attempt. Max retries for &quot;Sign-on Password&quot; is 5.
-            Exceeding it disables your access.</value>
-    </labels>
-    <labels>
         <fullName>CB_POST_Change_Password_100475</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1378,8 +1370,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_POST_Change_Password_100489</shortDescription>
-        <value>You&apos;ve had 1 failed attempt. Max retries for &quot;Sign-on Password&quot; is 5.
-            Exceeding it disables your access.</value>
+        <value>Password change failed. If you exceed 5 attempts, your access will be disabled.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Change_Password_11148</fullName>
@@ -2333,6 +2324,14 @@
         <protected>false</protected>
         <shortDescription>CB default Internal error</shortDescription>
         <value>Internal Error</value>
+    </labels>
+
+    <labels>
+        <fullName>CB_Continue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB default Internal error</shortDescription>
+        <value>Continue</value>
     </labels>
     <labels>
         <fullName>Test</fullName>

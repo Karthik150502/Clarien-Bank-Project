@@ -1,27 +1,55 @@
 <template>
     <div class="wrapper">
-        <div class="info-container">
-            <p class="heading">Deposit Duration</p>
-            <div class="full-form">
-                <p>Y = Year</p>
-                <p>M = month</p>
+
+        <div class="input">
+            <div class="popover">
+                {formattedrangeValue}
+                <div class="nubbin">
+                </div>
             </div>
-        </div>
-        <div class="slider-container">
-
-            <input type="range" min="0" max="7" value={value} id="duration" class="slider" onchange={sliderHandler}>
-
-            <div class="slider-values">
-                <div>1M</div>
-                <div class="slider-valueM">3M</div>
-                <div class="slider-valueM">6M</div>
-                <div class="slider-valueM">8M</div>
-                <div>1Y</div>
-                <div>2Y</div>
-                <div>3Y</div>
-                <div>5Y</div>
+            <input type="range" min="1" max="17" value={rangeValue} onchange={handleRange}>
+            <div class="marks">
+                <p class="large-marker">|</p>
+                <p>|</p>
+                <p class="large-marker">|</p>
+                <p>|</p>
+                <p class="large-marker">|</p>
+                <p>|</p>
+                <p class="large-marker">|</p>
+                <p>|</p>
+                <p class="large-marker">|</p>
+                <p>|</p>
+                <p class="large-marker">|</p>
+                <p>|</p>
+                <p>|</p>
+                <p class="large-marker">|</p>
+                <p>|</p>
+                <p>|</p>
+                <p class="large-marker">|</p>
             </div>
-
+            <div class="annotations">
+                <p>1</p>
+                <p></p>
+                <p>3</p>
+                <p></p>
+                <p>6</p>
+                <p></p>
+                <p>8</p>
+                <p></p>
+                <p>1</p>
+                <p></p>
+                <p>2</p>
+                <p></p>
+                <p></p>
+                <p>3</p>
+                <p></p>
+                <p></p>
+                <p>5</p>
+            </div>
+            <div class="time-period">
+                <p>Months</p>
+                <p>Years</p>
+            </div>
         </div>
     </div>
 </template>

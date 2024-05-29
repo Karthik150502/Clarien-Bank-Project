@@ -2,14 +2,16 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-14-2024
+  @last modified on  : 05-24-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
     <c-c-b-header icon-details={header_icons}></c-c-b-header>
+    <div class="secondary-header">
+        <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+    </div>
     <div class="card">
-        <c-c-b-credit-card account-no={accountNumber} card-detail={cardDetail}
-            account-type={accountType}></c-c-b-credit-card>
+        <c-c-b-card card-type={cardType}></c-c-b-card>
     </div>
     <div class="transaction-heading">
         <div class="slds-grid slds-wrap">
@@ -29,14 +31,16 @@
                 <p class="transactionDate">{fromDate} - {toDate}</p>
             </div>
             <div class="icons">
-                <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg" onclick={generatePdf}>
-						<use href={CBPdf}></use>
-					</svg>
+                <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    onclick={generatePdf}>
+                    <use href={CBPdf}></use>
+                </svg>
                 <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg"
                     onclick={sortDetails}>
                     <use href={CBSortOrder}></use>
                 </svg>
-                <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    onclick={navigateToFilter}>
                     <use href={CBFilter}></use>
                 </svg>
             </div>
@@ -60,9 +64,5 @@
             </div>
         </template>
     </div>
-    <template if:true={modalFilter}>
-        <c-c-b-filter-transaction-modal onfilter={openFilterPopup}>
-        </c-c-b-filter-transaction-modal>
-    </template>
     <c-c-b-footer></c-c-b-footer>
 </template>

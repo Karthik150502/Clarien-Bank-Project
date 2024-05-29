@@ -8,7 +8,7 @@ export default class CBSavingAccountOpening extends NavigationMixin(LightningEle
     @track currency = ' ';
     @track accountType = ' ';
     configuration = {
-        previousPageUrl: 'CBApplyNowChequebook__c',
+        previousPageUrl: 'CBServiceRequest__c',
         heading: 'Savings Account Opening',
         iconsExposed: false,
         logout: {
@@ -65,7 +65,7 @@ export default class CBSavingAccountOpening extends NavigationMixin(LightningEle
     }
 
     get buttonDisabled() {
-        return this.product === ' ' || this.accountType === ' ' || this.currency === ' '
+        return this.product === ' ' || this.accountType === ' ' || this.currency === ' ' ||  !this.termsConditionsFlag || !this.conductFlag || !this.marketingConsentFlag
     }
     productHandler(event) {
         this.product = event.target.value
@@ -83,21 +83,34 @@ export default class CBSavingAccountOpening extends NavigationMixin(LightningEle
 
     }
 
+    termsConditionsFlag = false
+    termsConditions(){
+        this.termsConditionsFlag = !this.termsConditionsFlag
+    }
+    conductFlag = false
+    conduct(){
+        this.conductFlag = !this.conductFlag
+    }
+    marketingConsentFlag = false
+    marketingConsent(){
+        this.marketingConsentFlag = !this.marketingConsentFlag
+    }
+
     submitHandler(event) {
-        this.navigateToCommunityPage('SavingAccountConfirmation__c');
+        this.navigateToCommunityPage('CBSavingaccountconfirmation__c');
     }
      navigateToCommunityPage(pageApiName) {
         // Define the pageReference object with the community page's name and any parameters
+        console.log('naviagteion Call');
         const pageReference = {
             type: 'comm__namedPage', // Replace with the appropriate type for your community page
             attributes: {
-                pageName: pageApiName // Replace 'yourPageName' with your actual page name
+                name: pageApiName // Replace 'yourPageName' with your actual page name
             },
             state: {
             product: this.product,
             currency: this.currency,
-            accountType: this.accountType
-            
+            accountType: this.accountType  
             }
         };
 

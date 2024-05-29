@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 20px auto 0 auto;
+}
+
+.wrapper .container .dates {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    padding: 5% 2% 5% 2%;
+    margin: 2% auto 0 auto;
+    border: 1px solid var(--border-blue);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper .container .dates .from-date,
+.wrapper .container .dates .to-date {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+    margin: 2% 0 2% 0;
+    position: relative;
+}
+
+.wrapper .container .dates .from-date .from-date-p,
+.wrapper .container .dates .to-date .to-date-p {
+    color: var(--primary-blue);
+}
+
+.wrapper .container .btns {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.wrapper .btns .done-btn {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    margin: 8% auto 0 auto;
+}
+
+
+.wrapper .btns .done-btn:disabled,
+.wrapper  .btns .done-btn:disabled[disabled] {
+    background-color: var(--light-grey);
+
+}

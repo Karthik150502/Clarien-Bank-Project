@@ -12,7 +12,7 @@ export default class CBFilterSavingsAccount extends LightningElement {
 
 
     headerConfguration = {
-        previousPageUrl: 'Home',
+        previousPageUrl: 'CBSavingsAccount__c',
         heading: 'Filter Transaction',
         iconsExposed: false,
         logout: {

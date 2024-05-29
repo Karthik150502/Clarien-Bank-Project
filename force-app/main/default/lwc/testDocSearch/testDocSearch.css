@@ -1,0 +1,8 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: var(--dxp-g-root-gotham-bold-font-family);
+	font-family: var(--dxp-g-root-gotham-medium-font-family);
+	font-family: var(--dxp-g-root-gotham-book-font-family);
+}

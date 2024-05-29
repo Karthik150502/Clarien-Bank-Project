@@ -1,0 +1,39 @@
+<template>
+    <div class="wrapper">
+        <div class="numbers">
+            <template if:true={numbers} iterator:num={numbers}>
+                <template lwc:if={num.first}>
+                    <div class="num-p-item-f" key={num.value}>{num.value}</div>
+                </template>
+                <template lwc:elseif={num.last}>
+                    <div class="num-p-item-l" key={num.value}>{num.value}</div>
+                </template>
+                <template lwc:else>
+                    <div class="num-p-item" key={num.value}>{num.value}</div>
+                </template>
+            </template>
+        </div>
+        <div class="month-year">
+            <template if:true={timePeriods} iterator:tp={timePeriods}>
+                <template lwc:if={tp.first}>
+                    <div class="time-p-item-f" key={tp.value}>{tp.value}</div>
+                </template>
+                <template lwc:elseif={tp.last}>
+                    <div class="time-p-item-l" key={tp.value}>{tp.value}</div>
+                </template>
+                <template lwc:else>
+                    <div class="time-p-item" key={tp.value}>{tp.value}</div>
+                </template>
+            </template>
+        </div>
+
+        <div class="numbers-vue">
+
+        </div>
+
+        <div class="month-year-vue">
+
+        </div>
+    </div>
+    <!-- <button onclick={getData}>Get Data</button> -->
+</template>

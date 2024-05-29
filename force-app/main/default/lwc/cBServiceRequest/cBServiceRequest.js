@@ -1,62 +1,71 @@
-import { LightningElement } from 'lwc';
-
+import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
+import TIME_DEPOSIT_ACCOUNT_OPENING from '@salesforce/label/c.CB_TimeDepositAccountOpening';
+import TOP_UP_ACCOUNT_OPENING from '@salesforce/label/c.CB_Top_UpAccountOpening';
+import SAVINGS_ACCOUNT_OPENING from '@salesforce/label/c.CB_SavingsAccountOpening';
+import CHEQUING_ACCOUNT_OPENING from '@salesforce/label/c.CB_ChequingAccountOpening';
+import TIMEDEPOSITACCOUNTOPENING_PAGE from '@salesforce/label/c.CB_Page_Timedepositaccountopening';
+import TOPUPACCOUNTOPENING_PAGE from '@salesforce/label/c.CB_Page_Topupaccountopening';
 
+import CBSVG from "@salesforce/resourceUrl/CBSVG";
 
-export default class CBServiceRequest extends NavigationMixin(LightningElement) {
-    // Labels for UI elements
+export default class CBManageBeneficiaries extends NavigationMixin(LightningElement) {
+
     label = {
-        SERVICE_REQUEST : 'Service Request'
+        TIME_DEPOSIT_ACCOUNT_OPENING,
+        TOP_UP_ACCOUNT_OPENING,
+        SAVINGS_ACCOUNT_OPENING,
+        CHEQUING_ACCOUNT_OPENING
     }
 
-    // Initial Header Item Configuration
-    header_icons = {
-        // Announcements icon settings
-        announcements: {
-            exposed: false, // Whether to display the Announcements icon
-            haveItems: false   // Whether the Announcements icon has items to display
-        },
-        // Notifications icon settings
-        notifications: {
-            exposed: false, // Whether to display the Notifications icon
-            haveItems: false   // Whether the Notifications icon has items to display
-        },
-        // Inbox icon settings
-        inbox: {
-            exposed: false,  // Whether to display the Inbox icon
-            haveItems: false // Whether the Inbox icon has items to display
-        },
-        // Scan Code icon settings
-        scanCode: {
-            exposed: false,  // Whether to display the Scan Code icon
-            haveItems: false    // Whether the Scan Code icon has items to display
-        },
-    };
+    CBChequingAccountOpening = `${CBSVG}/CBSVGs/CBChequingAccountOpening.svg#CBChequingAccountOpening`;
+    CBSavingsAccountOpening = `${CBSVG}/CBSVGs/CBSavingsAccountOpening.svg#CBSavingsAccountOpening`;
+    CBTopUpAccountOpening = `${CBSVG}/CBSVGs/CBTopUpAccountOpening.svg#CBTopUpAccountOpening`;
+    CBTimeDepositAccountOpening = `${CBSVG}/CBSVGs/CBTimeDepositAccountOpening.svg#CBTimeDepositAccountOpening`;
 
-    // Initial Profile Item Configuration
-    profileItems = {
-        previousPageUrl: 'Home',    // URL for the previous page
-        heading: this.label.SERVICE_REQUEST,   // Heading for the profile page (using label for security settings)
-        headingShow: true,
-        profileInfo: false, // Whether to display profile information
-        profileSettings: {
-            exposed: false   // Whether to display profile settings
-        },
-        profile: {
-            exposed: false  // Whether to display profile details
-        },
-        serviceRequest: {
-            exposed: true  // Whether to display service requests
-        },
-        securitySettings: {
-            exposed: false// Whether to display security settings (exposed)
-        },
-        applyNow: {
+    configuration = {
+        previousPageUrl: '',
+        heading: 'Open an Account',
+        iconsExposed: true,
+        logout: {
             exposed: false
         },
-        chequeBook: {
+        search: {
             exposed: false
         }
-    };
+    }
+
+    // Navigation method to navigate to Time Deposit Account Opening page
+    navigateToTimeDepositAccountOpening() {
+        this.navigateToPage(TIMEDEPOSITACCOUNTOPENING_PAGE)
+    }
+
+    // Navigation method to navigate to TopUp Account Opening page
+    navigateToTopUpAccountOpening() {
+        this.navigateToPage(TOPUPACCOUNTOPENING_PAGE);
+    }
+
+    // Navigation method to navigate to TopUp Account Opening page
+    navigateToSavingAccountOpening() {
+        this.navigateToPage('CBSavingsAccountOpening__c');
+    }
+
+    // Navigation method to navigate to TopUp Account Opening page
+    navigateToChequingAccountOpening() {
+        this.navigateToPage('CBChequingAccountOpening__c');
+    }
+
+    // Method to navigate to a named page
+    // @param {string} pageName - The name of the page to navigate to
+    navigateToPage(pageName, data = {}) {
+        console.log('navigate called', data);
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: pageName
+            },
+            state: data
+        });
+    }
 }

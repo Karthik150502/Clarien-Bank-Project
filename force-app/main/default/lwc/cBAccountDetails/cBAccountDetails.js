@@ -5,6 +5,32 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
 export default class CBAccountDetails extends LightningElement {
 
+    cardType = {
+        CreditAccount: {
+            cardNum: 600015474586,
+            accBal: 'BMD 10,000.00',
+            currentBal: 'BMD 10,000.00',
+            pendingBal: 'BMD 8000.00',
+            cardExpiryDate : '06/27',
+            productName: 'PLATINUM CREDIT CARD',
+            cardStatus: 'Active',
+        }
+    }
+
+    configuration = {
+        previousPageUrl: 'CBFavoriteAccounts__c',
+        heading: 'Credit Card Account',
+        iconsExposed: false,
+        logout: {
+            exposed: false
+        },
+        search: {
+            exposed: false
+        }, favorite: {
+            selected: false
+        }
+    }
+
     CBPdf = `${CBSVG}/CBSVGs/CBPdf.svg#CBPdf`;
     CBSortOrder = `${CBSVG}/CBSVGs/CBSortOrder.svg#CBSortOrder`;
     CBFilter = `${CBSVG}/CBSVGs/CBFilter.svg#CBFilter`;
@@ -14,18 +40,34 @@ export default class CBAccountDetails extends LightningElement {
 
     // accountNumber='222265449987';
 
-    @wire(CurrentPageReference) pageRef;
+    @wire(CurrentPageReference)
+    wiredPageRef;
+
+
+
+    initializeCardType(pageRef) {
+        const state = pageRef?.state;
+        if (state && state.account) {
+            try {
+                let obj = JSON.parse(state.account);
+                if (obj) {
+                    this.cardType.CreditAccount.cardNum = obj.accountNo || '';
+                    this.cardType.CreditAccount.accBal = obj.accountBal || '0';
+                    this.cardType.CreditAccount.totalHolds = obj.totalHolds || '0';
+                    this.cardType.CreditAccount.currentBal = obj.currentBal || '0';
+                } else {
+                    console.error('Parsed object is null or undefined');
+                }
+            } catch (e) {
+                console.error('Error parsing state.account:', e);
+            }
+        } else {
+            console.error('state.account is undefined or null');
+        }
+    }
 
     get accountNumber() {
         return this.pageRef && this.pageRef.state.accountNumber;
-    }
-    cardDetail = {
-        availableBalance : '11,000.00',
-        currentBalance : '11,000.00',
-        pendingAmount : '11,000.00',
-        creditExpiryDate : '10/29',
-        productName : 'PLATINUM CREDIT CARD',
-        cardStatus : 'Active'
     }
 
     header_icons = {

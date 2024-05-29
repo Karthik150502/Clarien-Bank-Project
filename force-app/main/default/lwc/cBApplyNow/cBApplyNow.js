@@ -28,7 +28,8 @@ export default class CBApplyNow extends LightningElement {
     // Initial Profile Item Configuration
     profileItems = {
         previousPageUrl: 'Home',    // URL for the previous page
-        heading: 'Apply Now',   // Heading for the profile page (using label for security settings)
+        //heading: 'Apply Now',   // Heading for the profile page (using label for security settings)
+        heading: 'Make a Request',
         headingShow: true,
         profileInfo: false, // Whether to display profile information
         profileSettings: {

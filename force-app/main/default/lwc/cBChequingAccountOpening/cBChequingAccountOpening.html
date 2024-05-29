@@ -1,0 +1,80 @@
+<template>
+	<div class="wrapper">
+
+		<div class="container">
+			<div class="heading">
+				<c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+			</div>
+			<div class="form">
+				<div class="input">
+					<p class="heading">Account Type</p>
+					<select class="options" id="AccountType" onchange={acccountTypeHandler} value={accountType}>
+                        <template for:each={accountTypes} for:item="type">
+                            <option key={type.value} value={type.value}>{type.label}</option>
+                        </template>
+                    </select>
+				</div>
+				<div class="input">
+					<p class="heading">Product</p>
+					<select class="options" id="product" onchange={productHandler} value={product}>
+                        <template for:each={products} for:item="product">
+                            <option key={product.value} value={product.value}>{product.label}</option>
+                        </template>
+                    </select>
+				</div>
+
+				<div class="input">
+					<p class="heading">Currency</p>
+					<select class="options" id="Currency" onchange={currencyHandler} value={currency}>
+                        <template for:each={currencies} for:item="currency">
+                            <option key={currency.value} value={currency.value}>{currency.label}</option>
+                        </template>
+                    </select>
+				</div>
+				
+				<label class="terms-Conditions">
+					<div class="check-box">
+						<input class="checkBox" type="checkbox" onchange={termsConditions}>
+					</div>
+					<div>
+						<p>I agree to the company <a>Terms & Conditions & privacy policy</a></p>
+					</div>
+				</label>
+				<label class="terms-Conditions">
+					<div class="check-box">
+						<input class="checkBox" type="checkbox" onchange={conduct}>
+					</div>
+					<div>
+						<a>I agree for company code of conduct</a>
+					</div>
+				</label>
+				<label class="terms-Conditions">
+					<div class="check-box">
+						<input class="checkBox" type="checkbox" onchange={marketingConsent}>
+					</div>
+					<div>
+						<a>I accept Marketing consent</a>
+					</div>
+				</label>
+
+				<div class="btns">
+					<button class="submit-btn" disabled={buttonDisabled} onclick={submitHandler}>
+                        SUBMIT
+                    </button>
+				</div>
+			</div>
+			<div class="notes-container">
+				<template for:each={notes} for:item="note">
+					<div key={note.id} class="notes-inner-container">
+						<span>{note.number}</span>
+						<lightning-formatted-rich-text value={note.content}></lightning-formatted-rich-text>
+					</div>
+				</template>
+			</div>
+
+		</div>
+	</div>
+	<template if:true={successModalOpen}>
+		<c-c-b-resuable-success-modal configuration={successModalConfiguration}></c-c-b-resuable-success-modal>
+	</template>
+</template>

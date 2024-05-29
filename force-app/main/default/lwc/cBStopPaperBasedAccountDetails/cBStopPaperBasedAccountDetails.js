@@ -3,6 +3,7 @@ import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
 import CURRENCY from '@salesforce/label/c.CBCurrency';
 import REMARKS from '@salesforce/label/c.CB_Remarks';
+import CB_Page_Applynow from '@salesforce/label/c.CB_Page_Applynow';
 
 export default class CBStopPaperBasedAccountDetails extends NavigationMixin(LightningElement)  {
         
@@ -49,9 +50,29 @@ export default class CBStopPaperBasedAccountDetails extends NavigationMixin(Ligh
         }
     };
 
+    successModalOpen = false;
+
+    successModalconfig={
+        title: `Your request is submitted Sucessfully`,
+        message: '',
+        okButton: {
+            exposed: true,
+            label: 'Ok',
+            function: () => {
+                this.navigateBack();
+            }
+        },
+        noButton: {
+            exposed: false,
+            label: 'Cancel',
+            function: () => {
+            }
+        }
+    }
+
     submitForm(){
         console.log('Submit');
-        this.navigateBack()
+        this.successModalOpen = true
     }
 
     navigateBack() {
@@ -59,7 +80,7 @@ export default class CBStopPaperBasedAccountDetails extends NavigationMixin(Ligh
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'CBServiceRequest__c'
+                name: CB_Page_Applynow
             }
         });
     }

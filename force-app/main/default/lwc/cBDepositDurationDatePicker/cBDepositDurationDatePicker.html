@@ -1,0 +1,19 @@
+<template>
+    <div class="wrapper">
+        <div class="numbers">
+            <div class="window" onscroll={checkNumberScrollPos}>
+                <template if:true={numbers} iterator:num={numbers}>
+                    <div class="num-p-item" key={num.value}>{num.value}</div>
+                </template>
+            </div>
+        </div>
+        <div class="month-year">
+            <div class="window" onscroll={checkMonOrYearScrollPos}>
+                <template if:true={timePeriods} iterator:tp={timePeriods}>
+                    <div class="time-p-item" key={tp.value}>{tp.value}</div>
+                </template>
+            </div>
+        </div>
+    </div>
+    <button onclick={getData}>Get Data</button>
+</template>

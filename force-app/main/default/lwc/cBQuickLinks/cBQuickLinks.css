@@ -19,7 +19,7 @@
 
 .wrapper {
     width: 100vw;
-    height: auto;
+    height: 100vh;
     margin: 0 auto;
     overflow: hidden;
     overflow-x: hidden;
@@ -94,7 +94,7 @@
 
 .wrapper .container .quick-links .icon-label {
     text-align: center;
-     font-size: 3vw;
+    font-size: 3vw;
     font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
 

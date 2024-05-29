@@ -29,4 +29,9 @@
             <button class="btn" onclick={submitForm}>OK</button>
         </div>
     </div>
+    <template if:true={successModalOpen}>
+        <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
+    </template>
+    <!-- for ending session -->
+    <c-c-b-session-end></c-c-b-session-end>
 </template>

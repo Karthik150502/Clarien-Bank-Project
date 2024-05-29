@@ -6,8 +6,6 @@ import SUBMIT from '@salesforce/label/c.CBChangePassword_submit';
 import REMARKS from '@salesforce/label/c.CB_Remarks';
 import StartDate from '@salesforce/schema/Contract.StartDate';
 
-
-
 export default class CBRequestDraft extends NavigationMixin(LightningElement) {
 
     label = {
@@ -17,7 +15,7 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
     }
 
     configuration = {
-        previousPageUrl: 'CBServiceRequest__c',
+        previousPageUrl: '',
         heading: 'Request a Draft',
         iconsExposed: true,
         logout: {
@@ -48,7 +46,7 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
     currency = 'BMD'
     subCurrency = 'USD Local'
     payeeName = ''
-    remark = ''
+    // remark = ''
     accountNumHandler(event) {
         this.accountNum = event.target.value;
         console.log('accountNum', this.accountNum);
@@ -65,10 +63,10 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
         this.payeeName = event.target.value;
         console.log('Payee Name', this.payeeName);
     }
-    remarkHandler(event) {
-        this.remark = event.target.value;
-        console.log(this.remark);
-    }
+    // remarkHandler(event) {
+    //     this.remark = event.target.value;
+    //     console.log(this.remark);
+    // }
 
     get usdCurrencyType() {
         return this.currency == 'USD'
@@ -90,7 +88,7 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
         console.log('Currency', this.currency);
         console.log('subCurrency', this.subCurrency);
         console.log('Payee Name', this.payeeName);
-        console.log('Remark', this.remark)
+        // console.log('Remark', this.remark)
 
         this.navigateBack()
     }

@@ -27,7 +27,7 @@ export default class CBFooter extends NavigationMixin(LightningElement) {
         sendReceive: {
             pageApiName: '', // Page API name for sendReceive
             url: '', //Page url
-            iconClass: "logo sendReceive in_active", // Icon class for sendReceive
+            iconClass: String(window.location.href).includes("/s/transfers") ? "logo is_active" : "logo in_active", // Icon class for sendReceive
         },
         services: {
             pageApiName: '', // Page API name for services
@@ -61,6 +61,11 @@ export default class CBFooter extends NavigationMixin(LightningElement) {
     // Method to navigate to home page
     navigateToHome() {
         this.navigateToPage(HOME_PAGE);
+    }
+
+    // Method to navigate to home page
+    navigateToSendRecieve() {
+        this.navigateToPage('CBTransfers__c');
     }
 
     /**

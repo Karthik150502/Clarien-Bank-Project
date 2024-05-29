@@ -1,8 +1,8 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import SUBMIT from '@salesforce/label/c.CBChangePassword_submit';
-
+import CB_Page_Applynow from '@salesforce/label/c.CB_Page_Applynow';
 export default class CBRMAppointment extends NavigationMixin(LightningElement) {
 
     label = {
@@ -10,7 +10,7 @@ export default class CBRMAppointment extends NavigationMixin(LightningElement) {
     }
 
     configuration = {
-        previousPageUrl: '',//should Navigate to Service Request after creating page for that
+        previousPageUrl: '',//should Navigate to Make Request after creating page for that
         heading: 'Schedule RM Appointment',
         iconsExposed: true,
         logout: {
@@ -21,7 +21,7 @@ export default class CBRMAppointment extends NavigationMixin(LightningElement) {
         }
     }
 
-    appointmentDate = ' '
+    appointmentDate = 'YYYY-MM-DD'
     comment = ' '
     today = new Date().toISOString().split('T')[0];
 
@@ -30,7 +30,7 @@ export default class CBRMAppointment extends NavigationMixin(LightningElement) {
         console.log(this.comment);
     }
 
-    dataHandler(event){
+    dateHandler(event){
         this.appointmentDate = event.target.value;
         console.log(this.appointmentDate);
     }
@@ -42,8 +42,8 @@ export default class CBRMAppointment extends NavigationMixin(LightningElement) {
     successModalOpen = false;
 
     successModalconfig={
-        title: `RM Appointment Created Sucessfully`,
-        message: 'Thanks for creating RM appointment',
+        title: `Your request is submitted Sucessfully`,
+        message: '',
         okButton: {
             exposed: true,
             label: 'Ok',
@@ -65,7 +65,7 @@ export default class CBRMAppointment extends NavigationMixin(LightningElement) {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'CBServiceRequest__c'
+                name: CB_Page_Applynow
             }
         });
     }

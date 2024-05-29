@@ -1,11 +1,17 @@
 import { LightningElement,wire } from 'lwc';
 import ACCOUNT_NAME from '@salesforce/label/c.CB_AccountName';
 import PRODUCT from '@salesforce/label/c.CB_Product';
-import { CurrentPageReference } from 'lightning/navigation';
+import { NavigationMixin,CurrentPageReference } from 'lightning/navigation';
 
-export default class CBsavingAccountConfirmation extends LightningElement {
+export default class CBsavingAccountConfirmation extends NavigationMixin(LightningElement) {
+
+    label = {
+        ACCOUNT_NAME,
+        PRODUCT
+    }
+
        configuration = {
-        previousPageUrl: 'SavingsAccountOpening__c',
+        previousPageUrl: 'CBSavingsAccountOpening__c',
         heading: 'Confirmation',
         iconsExposed: false,
         logout: {
@@ -28,8 +34,39 @@ export default class CBsavingAccountConfirmation extends LightningElement {
     }
 
 
- label = {
-        ACCOUNT_NAME,
-        PRODUCT
+    successModalOpen = false;
+
+    successModalconfig={
+        title: `Your Account has been opened successfully`,
+        message: '',
+        okButton: {
+            exposed: true,
+            label: 'Ok',
+            function: () => {
+                this.navigateBack();
+            }
+        },
+        noButton: {
+            exposed: false,
+            label: 'Cancel',
+            function: () => {
+            }
+        },
+        alertMsg: ''
+    }
+
+    submitForm(){
+        console.log('Submit');
+        this.successModalOpen = true
+    }
+
+    navigateBack() {
+        console.log('navigate called');
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'CBServiceRequest__c'
+            }
+        });
     }
 }

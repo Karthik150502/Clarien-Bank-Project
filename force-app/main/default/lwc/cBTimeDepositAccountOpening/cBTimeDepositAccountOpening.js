@@ -6,7 +6,7 @@ export default class CBTimeDepositAccountOpening extends NavigationMixin(Lightni
     accountOpenType = 'timeDepositAccount'
     configuration = {
         previousPageUrl: 'CBServiceRequest__c',
-        heading: 'Time Deposit Account',
+        heading: 'Time Deposit Account Opening',
         iconsExposed: true,
         logout: {
             exposed: false
@@ -20,8 +20,8 @@ export default class CBTimeDepositAccountOpening extends NavigationMixin(Lightni
     successModalOpen = false;
 
     successModalconfig={
-        title: `Time Deposit Account Created Successfully`,
-        message: 'Thanks for creating Fixed deposit account',
+        title: `Your Account has been opened successfully`,
+        message: '',
         okButton: {
             exposed: true,
             label: 'Ok',
@@ -50,7 +50,7 @@ export default class CBTimeDepositAccountOpening extends NavigationMixin(Lightni
 
     createCase(event){
         console.log(event.detail.depositAmount);
-        console.log(event.detail.product);
+        console.log(JSON.stringify(event.detail));
         this.successModalOpen = true;
     }
 }
