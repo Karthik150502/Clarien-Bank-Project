@@ -7,9 +7,15 @@
             <div class="casing">
                 <div class="account-detail">
                     <p class="fields">Beneficiary Account Number</p>
-                    <input type="text">
+                    <input type="number" onkeyup={accountNumberHandler}>
+
                     <p class="fields">Beneficiary Name</p>
-                    <input type="text">
+                    <input type="text" onkeyup={beneficiaryNameHandler}>
+
+                    <template if:true={bankName}>
+                        <p class="fields">Beneficiary Bank</p>
+                        <input type="text" onkeyup={beneficiaryBankHandler}>
+                    </template>
                 </div>
             </div>
             <div class="btn">

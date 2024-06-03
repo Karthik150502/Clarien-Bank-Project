@@ -17,7 +17,7 @@
                     view-all={showViewALl}></c-c-b-account-card>
             </div>
             <div class="quick-links">
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToSendMoney}>
                     <div class="icon-svg">
                         <svg width="53" height="31" viewBox="0 0 53 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBSendMoney}></use>
@@ -33,7 +33,7 @@
                     </div>
                     <p class="icon-label">{label.QR_CODE}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToBillPayments}>
                     <div class="icon-svg">
                         <svg width="39" height="41" viewBox="0 0 39 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBBillPayments}></use>
@@ -73,7 +73,7 @@
                     </div>
                     <p class="icon-label">{label.ACCOUNT_STATEMENTS}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToApplyForLoans}>
                     <div class="icon-svg">
                         <svg width="43" height="28" viewBox="0 0 43 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBApplyForLoans}></use>

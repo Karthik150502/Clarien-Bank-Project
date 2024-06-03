@@ -1,0 +1,36 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-30-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+            <div class="search-bar">
+                <input type="text">
+            </div>
+            <div class="image">
+                <p>Offers <br> and <br> Campaigns</p>
+            </div>
+            <template for:each={offers} for:item="offer">
+                <div class="offers-container" key={offer.id}>
+                    <div class="message">
+                        <p>{offer.message}</p>
+                    </div>
+                    <div class="message-time">
+                        <p>{offer.time}</p>
+                    </div>
+                </div>
+        </template>
+        </div>
+
+        <div class="footer">
+            <c-c-b-footer></c-c-b-footer>
+        </div>
+    </div>
+</template>

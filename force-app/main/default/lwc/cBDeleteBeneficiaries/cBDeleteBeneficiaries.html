@@ -27,6 +27,7 @@
                     <label id={beneficiary.accountNum} key={beneficiary}>
                         <c-c-b-beneficiary-details 
                             beneficiary-details={beneficiary}
+                            onselected = {selectedBeneficiary}
                             beneficiary-action = {beneficiaryAction}
                         >
                         </c-c-b-beneficiary-details>
@@ -41,4 +42,11 @@
     </div>
     <!-- for ending session -->
     <c-c-b-session-end></c-c-b-session-end>
+
+    <template if:true={confirmModal}>
+        <c-c-b-reusable-confirm-modal
+        onclose={closeConfirmModal}
+        configuration={confirmModalConfiguration}></c-c-b-reusable-confirm-modal>
+    </template>
+
 </template>

@@ -1,9 +1,20 @@
-import { LightningElement, track } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
+import { LightningElement, track, wire } from 'lwc';
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG";
 
 export default class CBDeleteBeneficiaries extends NavigationMixin(LightningElement) {
+
+    @wire(CurrentPageReference) pageRef;
+
+    connectedCallback(){
+        console.log('Page Ref',this.pageRef);
+        console.log('Page Ref State',this.pageRef.state.benefList);
+        this.beneficiaryList = JSON.parse(this.pageRef.state.benefList);
+        console.log(JSON.stringify(this.beneficiaryList));
+    }
+
+    confirmModal = false
     
     configuration = {
         previousPageUrl: '',
@@ -17,34 +28,47 @@ export default class CBDeleteBeneficiaries extends NavigationMixin(LightningElem
         }
     }
 
+    @track confirmModalConfiguration={
+        logo : true,
+        message : ' Are you sure do you want to delete beneficiaries?',
+        navigateTo : this.navigateTo()
+    }
+
     beneficiaryAction ={
         delete:true,
         detailView:false
     }
     
-    beneficiaryList = [
-        {
-            accountNum : 604567891,
-            name: 'John',
-            status : true
-        },
-        {
-            accountNum : 604567882,
-            name: 'Johnny',
-            status : true
-        }
-        ,
-        {
-            accountNum : 604567793,
-            name: 'Robert',
-            status : false
-        }
-    ]
+    beneficiaryList = [ ]
 
-    navigateToAddBeneficiary(){
-        console.log('Add called');
-        this.navigateTo('CBAddBeneficiary__c')
+    beneficiarySelected = []
+    get disableButton(){
+        this.beneficiarySelected.length<1
     }
+    selectedBeneficiary(event){
+        if(this.beneficiarySelected.includes(event.detail.accountNum)){
+            this.beneficiarySelected.pop(event.detail.accountNum)
+        }
+        else{
+            this.beneficiarySelected.push(event.detail.accountNum)
+        }
+        console.log(this.beneficiarySelected.length,this.beneficiarySelected.length<1);
+        console.log(JSON.stringify(this.beneficiarySelected));
+    }
+
+    // navigateToIntraBankBeneficiary(){
+    //     console.log('Intra called');
+    //     this.navigateTo('CBIntraBankBeneficiary__c')
+    // }
+    
+    // navigateToDomesticBeneficiary(){
+    //     console.log('Domestic Called');
+    //     this.navigateTo('CBDomesticBeneficiary__c')
+    // }
+    // navigateToInternationalBeneficiary(){
+    //     console.log('called');
+    //     this.navigateTo('CBInternationalBeneficiary__c')
+    // }
 
     navigateTo(pageName) {
         console.log('navigate called');
@@ -59,11 +83,10 @@ export default class CBDeleteBeneficiaries extends NavigationMixin(LightningElem
     handleDelete(event){
         event.preventDefault()
         console.log("Delete Called");
-        let beneficiarySelected = this.template.querySelectorAll('.beneficiarySelected')
-        beneficiarySelected.forEach((bs)=>{
-            console.log(bs);
-            console.log('bvs value',bs.value, bs.checked);
-        })
-        console.log(beneficiarySelected);
+        this.confirmModal = true
+    }
+
+    closeConfirmModal(){
+        this.confirmModal = false
     }
 }

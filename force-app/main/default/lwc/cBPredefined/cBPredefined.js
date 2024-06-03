@@ -29,7 +29,7 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
     // Labels for UI elements
     label = {
         OWN_ACCOUNT_TRANSFER: 'Own Account Transfer',
-        INTRABANK_TRANSFER: 'Intrbank Transfer',
+        INTRABANK_TRANSFER: 'Intrabank Transfer',
         DOMESTIC_PAYMENTS: 'Domestic Payments',
         INTERNATIONAL_PAYMENTS: 'International Payments',
         PREDEFINED: 'Predefined'
@@ -51,13 +51,21 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
         }
     }
 
-
+    navigateToOwnAccTransfer() {
+        this.navigateToPage('CBPredefinedOwnAccTransfer__c')
+    }
 
     navigateToPreviousPage() {
         this.navigateToPage('CBTransfers__c')
     }
 
+    navigateToIntrabankTransfer() {
+        this.navigateToPage('CBPredefinedIntrabankTransfer__c')
+    }
 
+    navigateToDomesticPayments() {
+        this.navigateToPage('CBPredefinedDomesticTransfer__c')
+    }
     // Method to navigate to a named page
     // @param {string} pageName - The name of the page to navigate to
     navigateToPage(pageName, data = {}) {

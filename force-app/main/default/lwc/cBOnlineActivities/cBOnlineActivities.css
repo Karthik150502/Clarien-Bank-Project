@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+.wrapper .heading {
+    margin: 0 auto;
+    width: 95%;
+}
+
+.wrapper .container {
+    width: 95%;
+    margin: 5% auto 0 auto;
+    /* border: 1px solid var(--primary-blue);
+    border-radius: 14px;
+    padding: 0 0 7% 0;
+    position: relative; */
+}
+
+.icons-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2%;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid var(--primary-blue);
+    /* margin-left: 10px; */
+    /* margin: 0 0 2% 10px; */
+}
+
+.transactionDate {
+    margin: 8% 0 0 0;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-black)
+}
+
+.wrapper .icons-container .icons svg {
+    margin: 0 0 0 10px;
+}
+
+.wrapper .icons-container .icons {
+    padding: 1% 0 0 0
+}
+
+.wrapper .container .activities {
+    width: 100%;
+    height: calc(100vh - 200px);
+    border-radius: 5px;
+    border: 1px solid var(--primary-blue);
+    padding: 2%;
+    margin: 5% 0 0 0;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.activityDetail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3% 0;
+}
+
+.activityDetail .logo {
+    width: 8%;
+}
+
+.activityDetail .details {
+    width: 70%;
+}
+
+
+.activityDetail .details .action {
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-black)
+}
+
+.activityDetail .process {
+    width: 22%;
+    display: flex;
+    align-items: center;
+}
+
+.activityDetail .process p {
+    font-size: 10px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-blue)
+}
+
+.footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}

@@ -1,151 +1,160 @@
-<!-- 
-	Author - Mahalakshmi
-	Created Date - 06/03/2024
-	Modified Date - 21/03/2024
-	Description - "Login Form HTML structure" -->
-
-
 <template>
-	<div class="wrapper" lwc:ref="mainDiv" ontouchstart={closePopOvers}>
-		<!-- <div class="wrapper"  style={loginBackground} ontouchstart={closePopOvers}> -->
+    <div class="wrapper" ontouchstart={closePopOvers}>
+        <div class="maincontainer">
+            <div class="top-container">
+                <div class="comp-logo">
+                    <svg class="clarien-logo" width="39" height="46" viewBox="0 0 39 46" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <use href={CBLoginFormCompanyLogo}></use>
+                    </svg>
 
-		<div class="maincontainer">
-			<div class="topcontainer">
-				<br>
-				<br>
-			</div>
-			<div class="belowcontainer">
-				<div class={container}>
-					<div class="comp-logo">
-						<svg class="clarien-logo" width="39" height="46" viewBox="0 0 39 46" fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<use href={CBLoginFormCompanyLogo}></use>
-						</svg>
+                    <svg class="clarien" width="128" height="18" viewBox="0 0 128 18" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <use href={CBLoginFormCompanyName}></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="center-container">
+                <div class={container}>
+                    <form action="">
+                        <div class="inputs">
+                            <template if:true={showError}>
+                                <div class="errorMsg">
+                                    <c-c-b-field-error>
+                                        <span slot="error-msg">{errorMsg}</span>
+                                    </c-c-b-field-error>
+                                </div>
+                            </template>
 
-						<svg class="clarien" width="128" height="18" viewBox="0 0 128 18" fill="none"
-							xmlns="http://www.w3.org/2000/svg">
-							<use href={CBLoginFormCompanyName}></use>
-						</svg>
-					</div>
-					<form action="">
-						<div class="inputs">
-							<template if:true={showError}>
-								<div class="errorMsg">
-									<c-c-b-field-error>
-										<span slot="error-msg">{errorMsg}</span>
-									</c-c-b-field-error>
-								</div>
-							</template>
+                            <input type="text" required class={usernameClass} value={username}
+                                onchange={usernameHandler} onkeyup={usernameHandler} placeholder={label.USERNAME}>
+                            <div class="pass">
+                                <input type="password" value={password} onchange={passwordHandler}
+                                    onkeyup={passwordHandler} class={passwordClass} placeholder={label.PASSWORD}>
+                                <template if:false={passwordIcon}>
+                                    <svg onclick={passwordHideShow} class="pass-show-icon" width="22" height="15"
+                                        viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <use href={CBHidePassword}></use>
+                                    </svg>
+                                </template>
+                                <template if:true={passwordIcon}>
+                                    <svg onclick={passwordHideShow} class="pass-show-icon" width="22" height="15"
+                                        viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <use href={CBShowPassword}></use>
+                                    </svg>
+                                </template>
+                            </div>
+                            <!-- <template if:true={rem_me}>
+                                <label class="rem-me" for="rem-me-checked">
+                                    <input onclick={handleRembme} id="rem-me-checked" type="checkbox" class="remme"
+                                        value={rem_me} checked>
+                                    <p>{label.REM_ME}</p>
+                                </label>
+                            </template>
+                            <template if:false={rem_me}>
+                                <label class="rem-me" for="rem-me">
+                                    <input onclick={handleRembme} id="rem-me" type="checkbox" class="remme" value={rem_me}>
+                                    <p>{label.REM_ME}</p>
+                                </label>
+                            </template> -->
 
-							<input type="text" required class={usernameClass} value={username}
-								onchange={usernameHandler} onkeyup={usernameHandler} placeholder={label.USERNAME}>
-							<div class="pass">
-								<input type="password" value={password} onchange={passwordHandler} onkeyup={passwordHandler} class={passwordClass}
-									placeholder={label.PASSWORD}>
-								<template if:false={passwordIcon}>
-									<svg onclick={passwordHideShow} class="pass-show-icon" width="22" height="15"
-										viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<use href={CBHidePassword}></use>
-									</svg>
-								</template>
-								<template if:true={passwordIcon}>
-									<svg onclick={passwordHideShow} class="pass-show-icon" width="22" height="15"
-										viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-										<use href={CBShowPassword}></use>
-									</svg>
-								</template>
-							</div>
-							<template if:true={rem_me}>
-								<label class="rem-me" for="rem-me-checked">
-									<input onclick={handleRembme} id="rem-me-checked" type="checkbox" class="remme"
-										value={rem_me} checked>
-									<p>{label.REM_ME}</p>
-								</label>
-							</template>
-							<template if:false={rem_me}>
-								<label class="rem-me" for="rem-me">
-									<input onclick={handleRembme} id="rem-me" type="checkbox" class="remme"
-										value={rem_me}>
-									<p>{label.REM_ME}</p>
-								</label>
-							</template>
-						</div>
+                            <div class="forgot-password">
+                                <p onclick={navigateToForgotPassword}>Forgot Password</p>
+                            </div>
 
-						<button onclick={doLogin} class="login" disabled={loginButtomDisable}>
-							{label.LOG_IN}
-						</button>
-					</form>
-					<!-- <template if:true={showError}>
-								<div class="error-msg">
-									<p>{errorMsg}</p>
-								</div>
-							</template> -->
-					<div class="lower">
-						<div class="emoji">
-							<svg width="46" height="47" viewBox="0 0 46 47" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<use href={CBFaceBiometric}></use>
-							</svg>
-						</div>
+                        </div>
 
-						<div class="links">
-							<a href="" onclick={navigateToForgotPassword}>{label.FORGOT_PASSWORD}</a>
-							<div class="signup">
-								{label.NEW_TO_CLARIEN}?
-								<span class="signup-link" onclick={navigateToSignUp}> {label.SIGNUP}</span>
-							</div>
-							<div class="token-reg">
-								<p>{label.REGISTERED_TOKEN}?</p>
-								<p class="register-link" onclick={navigateToRegisterToken}>{label.CLICK_HERE_TOKEN}
-								</p>
-							</div>
-						</div>
+                        <button onclick={doLogin} class="login" disabled={loginButtomDisable}>
+                            {label.LOG_IN}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="bottom-container-1">
+                <div class="bio-metric">
+                    <svg width="45" height="45" viewBox="0 0 37 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.2335 28.6019C17.3471 26.0868 18.7523 23.0855 19.3126 19.8897C19.3126 18.905 20.2994 16.1838 18.8076 16.0034C17.4712 16.0711 18.2093 18.702 17.782 19.6416C17.3412 22.1628 16.3279 24.558 14.8151 26.6546C13.3023 28.7513 11.3276 30.4971 9.03332 31.7665C8.85561 31.8657 8.72564 32.0288 8.67178 32.2203C8.61793 32.4119 8.64455 32.6162 8.74585 32.7888C9.81029 34.3373 14.4022 29.5791 15.2335 28.6019Z"
+                            fill="white" />
+                        <path
+                            d="M18.2281 29.1643C20.753 25.7877 25.527 13.6837 18.0685 13.5608C17.1549 13.6302 16.3015 14.0415 15.6797 14.7121C15.0579 15.3827 14.7138 16.263 14.7165 17.1761C14.7209 19.5909 14.0825 21.9637 12.8663 24.0523C11.426 26.5353 9.24502 28.5091 6.62671 29.6994C6.54 29.7388 6.46194 29.7948 6.39696 29.8643C6.33199 29.9338 6.28139 30.0153 6.24804 30.1043C6.18068 30.2839 6.18771 30.4829 6.26757 30.6574C6.34742 30.8319 6.49357 30.9677 6.67385 31.0348C6.85414 31.1019 7.0538 31.0949 7.2289 31.0153C9.14514 30.1425 10.8599 28.8847 12.2657 27.3208C13.6714 25.7568 14.738 23.9204 15.3985 21.9265C15.9121 20.3927 16.1719 18.7858 16.1675 17.1688C16.1671 16.6083 16.3844 16.0693 16.774 15.6649C17.1635 15.2605 17.695 15.0221 18.2571 14.9997C23.3359 15.1443 18.852 26.1853 17.0382 28.3328C15.7571 30.1698 14.1694 31.7741 12.344 33.0761C12.2661 33.1314 12.1999 33.2016 12.1493 33.2825C12.0987 33.3634 12.0647 33.4535 12.0492 33.5476C12.0337 33.6417 12.037 33.7379 12.0589 33.8307C12.0809 33.9235 12.121 34.011 12.1771 34.0883C13.3379 35.4694 17.5098 30.1621 18.2281 29.1643Z"
+                            fill="white" />
+                        <path
+                            d="M23.2827 25.2088C24.1391 22.6564 24.5553 19.9766 24.5132 17.2844C24.4053 12.1551 17.8496 9.20866 13.9277 12.5225C9.30778 16.3839 13.791 21.7004 6.73156 26.5631C5.9612 27.0922 5.12388 27.5161 4.2417 27.8238C4.15224 27.8553 4.06989 27.9042 3.99936 27.9676C3.92884 28.0311 3.87153 28.1079 3.83074 28.1935C3.78995 28.2792 3.76647 28.3721 3.76167 28.4669C3.75686 28.5617 3.77082 28.6566 3.80273 28.746C4.63749 30.4029 9.11349 26.6712 9.84749 25.7203C11.8386 23.4864 12.9354 20.5952 12.9274 17.6013C12.9279 16.842 13.0996 16.0926 13.4298 15.4091C13.76 14.7255 14.2402 14.1254 14.8344 13.6535C17.8856 11.0529 23.002 13.3438 23.0812 17.3492C23.1188 20.5498 22.4688 23.7212 21.175 26.6483C19.8813 29.5754 17.9741 32.1899 15.5828 34.3147C15.4398 34.4409 15.3527 34.6187 15.3406 34.8091C15.3284 34.9996 15.3923 35.187 15.5181 35.3304C16.5471 36.3678 18.5188 33.2052 19.2816 32.5137C21.0333 30.3327 22.3877 27.86 23.2827 25.2088Z"
+                            fill="white" />
+                        <path
+                            d="M28.1782 17.0765C28.2946 7.88335 16.2555 3.8905 10.9962 11.3576C9.78492 13.0085 9.13384 15.0158 9.1412 17.0765C9.1297 18.891 8.5302 20.6509 7.43581 22.0828C6.34141 23.5148 4.81336 24.5387 3.08893 24.9956C2.99539 25.0197 2.9075 25.0625 2.83038 25.1215C2.75325 25.1806 2.68843 25.2547 2.63969 25.3395C2.59094 25.4243 2.55925 25.5181 2.54646 25.6155C2.53367 25.7129 2.54003 25.8119 2.56517 25.9067C3.0962 27.3068 5.54039 25.5512 6.36239 25.1141C13.0112 20.736 8.15188 14.3801 14.1823 10.2983C19.2744 6.59438 26.9343 10.7576 26.7233 17.0988C26.7183 23.4298 24.4388 29.5402 20.3146 34.2776C20.2126 34.3834 20.1441 34.5179 20.118 34.6638C20.0919 34.8096 20.1093 34.9601 20.1681 35.0957C20.2268 35.2313 20.3242 35.3459 20.4476 35.4246C20.571 35.5032 20.7147 35.5424 20.8602 35.537C25.8286 31.1293 28.0691 23.6844 28.1782 17.0765Z"
+                            fill="white" />
+                        <path
+                            d="M25.7809 7.52857C19.9709 2.78739 10.5546 5.03398 7.40636 11.9051C5.22403 15.7272 7.59955 21.3218 1.92549 22.4815C1.83153 22.4973 1.74154 22.5319 1.66066 22.5831C1.57978 22.6344 1.5096 22.7014 1.45412 22.7803C1.39864 22.8592 1.35895 22.9485 1.33732 23.043C1.31569 23.1376 1.31253 23.2355 1.32803 23.3313C1.34354 23.4271 1.3774 23.5188 1.42768 23.6013C1.47796 23.6837 1.54368 23.7553 1.62109 23.8118C1.69849 23.8684 1.78606 23.9088 1.87881 23.9309C1.97155 23.953 2.06765 23.9562 2.16161 23.9404C3.6669 23.6781 5.03344 22.8836 6.02133 21.6965C7.00923 20.5093 7.55533 19.0053 7.56377 17.4486C7.5695 15.1734 8.26487 12.9557 9.55469 11.0989C10.8445 9.24221 12.6657 7.83722 14.769 7.07634C21.4734 4.43586 29.4157 10.0742 29.1867 17.4267C29.1904 23.0393 27.562 28.5271 24.5072 33.1966C24.4549 33.2765 24.4185 33.3662 24.4002 33.4605C24.3819 33.5548 24.3821 33.6518 24.4007 33.746C24.4193 33.8402 24.456 33.9298 24.5087 34.0095C24.5613 34.0892 24.6289 34.1575 24.7076 34.2105C25.9955 35.1296 27.8702 29.7903 28.4211 28.7837C31.1043 21.9637 32.4352 12.4521 25.7809 7.52857Z"
+                            fill="white" />
+                        <path
+                            d="M2.02226 9.44072C1.46495 10.5218 -1.1163 15.7729 0.555641 16.1627C0.653146 16.1828 0.753709 16.1827 0.851203 16.1626C0.948696 16.1424 1.04108 16.1026 1.12272 16.0455C1.20437 15.9884 1.27356 15.9152 1.32609 15.8304C1.37863 15.7456 1.41339 15.651 1.42828 15.5523C1.90912 12.6759 3.12712 9.97435 4.96283 7.71243C14.9212 -4.6283 35.1605 2.45402 35.1605 18.3764C35.1608 20.1025 34.8987 21.8187 34.3832 23.4656C34.3536 23.5578 34.3424 23.655 34.3504 23.7516C34.3583 23.8482 34.3852 23.9422 34.4295 24.0283C34.4738 24.1144 34.5346 24.1909 34.6085 24.2534C34.6823 24.3158 34.7678 24.363 34.8599 24.3923C36.4805 24.8335 36.5465 19.4869 36.6271 18.3764C36.4878 -0.598072 11.2766 -7.04056 2.02226 9.44072Z"
+                            fill="white" />
+                        <path
+                            d="M27.8205 6.18039C20.1124 -0.81778 6.48872 2.88713 3.50586 12.8095C3.00164 14.3159 2.74503 15.8927 2.7458 17.4797C2.7474 18.0172 2.54354 18.5355 2.17515 18.9304C1.80675 19.3253 1.30108 19.5677 0.75962 19.6089C0.569451 19.624 0.393114 19.7132 0.269402 19.857C0.145689 20.0007 0.0847353 20.1872 0.0999488 20.3755C0.115162 20.5637 0.205297 20.7382 0.350525 20.8607C0.495752 20.9832 0.684176 21.0435 0.874346 21.0284C5.17655 20.5529 3.74248 16.1027 4.86822 13.2566C11.845 -4.48721 40.3829 4.23567 29.061 29.6945C28.9964 29.8647 29.0002 30.0529 29.0716 30.2203C29.1431 30.3878 29.2767 30.5217 29.445 30.5945C29.6132 30.6673 29.8033 30.6734 29.976 30.6116C30.1487 30.5498 30.2908 30.4248 30.3731 30.2623C32.1561 26.2349 33.0719 21.8839 33.062 17.4868C33.0654 15.3392 32.5987 13.2165 31.6938 11.2646C30.789 9.31279 29.4675 7.57823 27.8205 6.18039Z"
+                            fill="white" />
+                    </svg>
+
+                </div>
+            </div>
 
 
-						<template if:true={footerItemInfo.contactUs.opened}>
-							<c-c-b-login-contact-us onclosecontactus={closeContactUs} data-element="contactUs">
-							</c-c-b-login-contact-us>
-						</template>
+            <div class="bottom-container-2">
+                <div class="footer-container">
+                    <div class="content-footer">
+                        <template if:true={footerItemInfo.contactUs.opened}>
+                            <c-c-b-login-contact-us onclosecontactus={closeContactUs} data-element="contactUs">
+                            </c-c-b-login-contact-us>
+                        </template>
 
-						<template if:true={footerItemInfo.atmLocater.opened}>
-							<c-c-b-atm-map oncloseamtlocator={openAtmLocater} data-element="atmLocator">
-							</c-c-b-atm-map>
-						</template>
+                        <template if:true={footerItemInfo.atmLocater.opened}>
+                            <c-c-b-atm-map oncloseamtlocator={openAtmLocater} data-element="atmLocator">
+                            </c-c-b-atm-map>
+                        </template>
 
-						<template if:true={footerItemInfo.exchangeRates.opened}>
-							<c-c-b-login-exchange-rates exchange-rates={exchangeRates}
-								is-page-loading={exchangeRatesLoaded} oncloseexchanegrates={closeExchangeRates}
-								data-element="exchangeRates">
-							</c-c-b-login-exchange-rates>
-						</template>
+                        <template if:true={footerItemInfo.exchangeRates.opened}>
+                            <c-c-b-login-exchange-rates exchange-rates={exchangeRates}
+                                is-page-loading={exchangeRatesLoaded} oncloseexchanegrates={closeExchangeRates}
+                                data-element="exchangeRates">
+                            </c-c-b-login-exchange-rates>
+                        </template>
 
-						<div class="footer">
-							<c-c-b-login-footer footer-item-info={footerItemInfo}
-								onopenexchanegrates={openExchangeRates} onopencontactus={openContactUs}
-								onopenatmlocater={openAtmLocater}>
-							</c-c-b-login-footer>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <div class="registration">
+                            <div class="token-reg">
+                                <p class="register-link" onclick={navigateToRegisterToken}>Token Registration
+                                </p>
+                            </div>
+                            <div class="signup">
+                                <p class="signup-link" onclick={navigateToSignUp}> {label.SIGNUP}</p>
+                            </div>
+                        </div>
 
-	<template if:true={authenticationPopup.openModal}>
-		<c-c-b-authentication-result status={authenticationPopup.authenticationStatus}
-			loading-gif={authenticationPopup.authenticationSpinnergif}
-			is-loading={authenticationPopup.showLoadingAnimation}>
-		</c-c-b-authentication-result>
-	</template>
+                        <div class="footer">
+                            <c-c-b-login-footer footer-item-info={footerItemInfo}
+                                onopenexchanegrates={openExchangeRates} onopencontactus={openContactUs}
+                                onopenatmlocater={openAtmLocater}>
+                            </c-c-b-login-footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template if:true={authenticationPopup.openModal}>
+        <c-c-b-authentication-result status={authenticationPopup.authenticationStatus}
+            loading-gif={authenticationPopup.authenticationSpinnergif}
+            is-loading={authenticationPopup.showLoadingAnimation}>
+        </c-c-b-authentication-result>
+    </template>
 
-	<template if:true={confirmModal}>
-		<c-c-b-operation-confirm modal-info={modal}>
-		</c-c-b-operation-confirm>
-	</template>
-	<template if:true={isPageLoading}>
-		<c-c-b-loading-spinner>
-		</c-c-b-loading-spinner>
-	</template>
-
-	<c-logger></c-logger>
+    <template if:true={confirmModal}>
+        <c-c-b-operation-confirm modal-info={modal}>
+        </c-c-b-operation-confirm>
+    </template>
+    <template if:true={isPageLoading}>
+        <c-c-b-loading-spinner>
+        </c-c-b-loading-spinner>
+    </template>
+    <c-logger></c-logger>
 </template>

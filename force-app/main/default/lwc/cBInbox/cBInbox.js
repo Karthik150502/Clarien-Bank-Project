@@ -1,8 +1,8 @@
 import { LightningElement } from 'lwc';
-
+import { NavigationMixin } from 'lightning/navigation'; // Importing NavigationMixin for navigation functionality
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
-export default class CBInbox extends LightningElement {
+export default class CBInbox extends NavigationMixin(LightningElement) {
 
     CBNewMessage = `${CBSVG}/CBSVGs/CBNewMessage.svg#CBNewMessage`;
 
@@ -58,5 +58,12 @@ export default class CBInbox extends LightningElement {
         }
     }
 
-    
+    naviagteToCreateMessage() {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'CBCreateMessage__c'
+            }
+        });
+    }
 }

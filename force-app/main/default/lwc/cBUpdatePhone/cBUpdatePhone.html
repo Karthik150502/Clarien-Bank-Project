@@ -32,6 +32,18 @@
 					</div>
 				</label>
 			</form>
+
+			<template lwc:if={showOtphandler}>
+				<div class="error-div">
+					<c-c-b-field-error>
+						<span slot="error-msg">{otpDisclaimer}</span>
+					</c-c-b-field-error>
+				</div>
+			</template>
+
+			<template lwc:if={showOtphandler}>
+				<c-c-b-otp-handler otpconf={otpconf}></c-c-b-otp-handler>
+			</template>
 		</div>
 		<c-c-b-footer></c-c-b-footer>
 	</div>

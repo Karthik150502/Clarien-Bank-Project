@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+.wrapper {
+    width: 100vw;
+    margin: 10px 0;
+    overflow-y: scroll;
+}
+
+.wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.wrapper .header {
+    width: 90%;
+    margin: 5% auto;
+}
+
+.wrapper .container {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 7px;
+    height: fit-content;
+    padding: 10px 10px 10px 10px;
+    overflow-y: scroll;
+    border-radius: 12px;
+    border: 1px solid var(--border-blue);
+}
+
+
+.wrapper .error-div {
+    width: 90%;
+    height: auto;
+    margin: 4% auto 0% auto;
+}
+
+.wrapper .btns {
+    width: 90%;
+    height: auto;
+    margin: 4% auto 0% auto;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.wrapper .btns .sub {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.wrapper .btns .cancel {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--light-grey);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.wrapper .container .row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin: 4% auto 4% auto;
+    height: auto;
+    width: 90%;
+}
+
+
+.wrapper .container .row4{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 4% auto 4% auto;
+    height: auto;
+    width: 90%;
+}
+
+.wrapper .container .row4 .left{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    text-align: left;
+}
+
+
+.wrapper .container .row4 .right{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 50%;
+    text-align: right;
+}
+
+.wrapper .container [class^="row"] .value {
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-black);
+}
+
+
+.wrapper .container [class^="row"] .label {
+    font-size: 12px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+
+.add-ons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.add-ons .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+}
+
+.add-ons .desc {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 15px 0 0 0;
+}
+
+.add-ons .desc textarea {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 6px;
+    border: 1px solid var(--border-blue);
+    max-height: 150px;
+    padding: 5px;
+}
+
+.add-ons .save-as-temp {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: fit-content;
+}
+
+.add-ons .save-as-temp svg {
+    margin: 0 5px 0 0;
+}
+
+
+.add-ons .save-as-temp p {
+    margin: 0 0 0 5px;
+    font-size: 12px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.add-ons .e-receipt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: fit-content;
+}
+
+
+.add-ons .e-receipt svg {
+    margin: 0 5px 0 0;
+}
+
+
+.add-ons .e-receipt p {
+    margin: 0 0 0 5px;
+    font-size: 12px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}

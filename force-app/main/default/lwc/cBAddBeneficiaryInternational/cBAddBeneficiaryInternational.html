@@ -1,0 +1,51 @@
+<template>
+    <div class="wrapper">
+        <div class="container">
+            <div class="heading">
+                <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+            </div>
+            <div class="casing">
+
+                <label for="acc-num">
+                    <p class="title">Account Number / IBAN</p>
+                    <input type="number" id="acc-num" onkeyup={accountNumberHandler}>
+                </label>
+                
+                <label for="ben-name">
+                    <p class="title">Beneficiary Name</p>
+                    <input type="text" id="ben-name" onkeyup={beneficiaryNameHandler}>
+                </label>
+
+                <label for="ben-bank">
+                    <p class="title">Beneficiary Bank</p>
+                    <input type="text" id="ben-bank" onkeyup={beneficiaryBankHandler}>
+                </label>
+
+                <label for="ben-address">
+                    <p class="title">Beneficiary Address</p>
+                    <textarea name="" id="ben-address" onkeyup={beneficiaryAddressHandler}>
+                    </textarea>
+                </label>
+
+                <label for="ben-city">
+                    <p class="title">Beneficiary City/State/province/post code</p>
+                    <input type="text" id="ben-city" onkeyup={beneficiaryCityHandler}>
+                </label>
+
+                <label for="ben-country">
+                    <p class="title">Beneficiary Countrty</p>
+                    <input type="text" id="ben-country" onkeyup={beneficiaryCountryHandler}>
+                </label>
+
+                <label for="ben-code">
+                    <p class="title">Swift Code / Clearing Code</p>
+                    <input type="text" id="ben-code" onkeyup={beneficiarySwiftCodeHandler}>
+                </label>
+            </div>
+            <div class="btn">
+                <button class="submit-btn" disabled={submitDisable} onclick={submitForm}>ADD</button>
+                <!-- <button class="cancel-btn" onclick={handleCancel}>CANCEL</button> -->
+            </div>
+        </div>
+    </div>
+</template>

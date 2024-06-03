@@ -36,14 +36,14 @@ export default class CBFavoriteAccounts extends LightningElement {
             currentBal:'BMD 6857.42',
             totalHolds: 'BMD 0.0',
             accountType: 'SAVINGS ACCOUNT',
-            favorite: false
+            favorite: true
         },
         {
             accountNo: '698547452632',
             accountBal: 'BMD 5556.54',  
             currentBal:'BMD 6857.42',
             totalHolds: 'BMD 0.0',
-            accountType: 'SAVINGS ACCOUNT',
+            accountType: 'CURRENT ACCOUNT',
             favorite: true
         },
         {

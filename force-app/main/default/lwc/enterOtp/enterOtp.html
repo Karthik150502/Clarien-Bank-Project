@@ -1,0 +1,8 @@
+<template>
+    <div class="form-input">
+        <template for:each={Inputlabelnumber} for:item="number">
+        <lightning-input key={number} for:index=""  class="inputnumber" tabindex="0" maxlength="1" type="number" name="input1" onchange={handleInputChange}></lightning-input>
+        </template>
+    </div>
+    
+   </template>

@@ -13,7 +13,7 @@
                 <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
             </div>
             <div class="quick-links">
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToSendMoney}>
                     <div class="icon-svg">
                         <svg width="53" height="31" viewBox="0 0 53 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBSendMoney}></use>
@@ -29,7 +29,7 @@
                     </div>
                     <p class="icon-label">{label.QR_CODE}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToBillPayments}>
                     <div class="icon-svg">
                         <svg width="39" height="41" viewBox="0 0 39 41" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBBillPayments}></use>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="icon-box">
                     <div class="icon-svg">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">	
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBApprovals}></use>
                         </svg>
                     </div>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="icon-box">
                     <div class="icon-svg">
-                        <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">	
+                        <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBCreditCards}></use>
                         </svg>
                     </div>
@@ -69,7 +69,7 @@
                     </div>
                     <p class="icon-label">{label.ACCOUNT_STATEMENTS}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToApplyForLoans}>
                     <div class="icon-svg">
                         <svg width="43" height="28" viewBox="0 0 43 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBApplyForLoans}></use>
@@ -77,7 +77,7 @@
                     </div>
                     <p class="icon-label">{label.APPLY_FOR_LOANS}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToAdHocPayments}>
                     <div class="icon-svg">
                         <svg width="46" height="21" viewBox="0 0 46 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBAdHocPayment}></use>
@@ -85,15 +85,15 @@
                     </div>
                     <p class="icon-label">{label.ADHOC_PAYMENTS}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box"  onclick={navigateToOpenAnAccount}>
                     <div class="icon-svg">
                         <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBServiceRequest}></use>
                         </svg>
                     </div>
-                    <p class="icon-label">{label.SERVICE_REQUEST}</p>
+                    <p class="icon-label">{label.OPEN_AN_ACCOUNT}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToBankAccounts}>
                     <div class="icon-svg">
                         <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBBankAccounts}></use>
@@ -125,7 +125,7 @@
                     </div>
                     <p class="icon-label">{label.ACCOUNTS_AND_DEPOSITS}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box" onclick={navigateToChequebookServices}>
                     <div class="icon-svg">
                         <svg width="34" height="33" viewBox="0 0 34 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBChequebookServices}></use>
@@ -133,7 +133,7 @@
                     </div>
                     <p class="icon-label">{label.CHEQUEBOOK_SERVICES}</p>
                 </div>
-                <div class="icon-box">
+                <div class="icon-box"  onclick={navigateToSecuritySetting}>
                     <div class="icon-svg">
                         <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBEnableDisableBiometric}></use>

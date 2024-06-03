@@ -132,15 +132,20 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
 
     connectedCallback() {
         this.initializeCardType(this.wiredPageRef);
-        let currentDate = new Date();
-        let month = currentDate.getMonth() + 1;
-        let year = currentDate.getFullYear();
-        this.toDate = new Date(`${year}-${month}`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-        currentDate.setMonth(currentDate.getMonth() - 7)
-        month = currentDate.getMonth() + 1;
-        year = currentDate.getFullYear();
-        this.fromDate = new Date(`${year}-${month}`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-        console.log("CCB");
+        this.setFromToDate();
+    }
+
+    setFromToDate() {
+        if (this.wiredPageRef?.state?.toDate && this.wiredPageRef?.state?.fromDate) {
+            this.toDate = this.wiredPageRef?.state?.toDate
+            this.fromDate = this.wiredPageRef?.state?.fromDate
+        }
+        else {
+            let today = new Date()
+            this.toDate = `${today.getFullYear()}-${String(today.getMonth() + 1) < 10 ? "0" : ""}${today.getMonth() + 1}-${today.getDate() < 10 ? '0' : ''}${today.getDate()}`
+            today.setMonth(today.getMonth() - 7);
+            this.fromDate = `${today.getFullYear()}-${String(today.getMonth() + 1) < 10 ? "0" : ""}${today.getMonth() + 1}-${today.getDate() < 10 ? '0' : ''}${today.getDate()}`
+        }
     }
 
     fromDate = ''

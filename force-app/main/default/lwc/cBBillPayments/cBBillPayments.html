@@ -7,7 +7,7 @@
             <div class="from-acc-box">
                 <p class="from-acc">From Amount</p>
                 <select name="" id="from_acc" class="from-acc-inp" onchange={handleFromAccount}>
-                    <option value="Select from Account">Select from Account</option>
+                    <option value="Select Account">Select Account</option>
                     <template if:true={accounts} for:each={accounts} for:item="acc">
                         <option key={acc.accountNo} value={acc.accountNo}>
                             {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accBal}
@@ -20,7 +20,7 @@
             <div class="inp-box">
                 <p>Biller</p>
                 <select name="" id="biller" class="inp biller-inp" onchange={handleBiller}>
-                    <option value="Select a biller">Select Biller</option>
+                    <option value="Select biller">Select biller</option>
                     <template if:true={biller} for:each={biller} for:item="bill">
                         <option key={bill.name} value={bill.name}>
                             {bill.name}
@@ -85,7 +85,8 @@
         </div>
     </div>
     <template if:true={showTransDatePicker}>
-        <c-c-b-bill-payments-select-transaction-modal ontransdateinput={handleTransDate} onmodalclose={closeTransDatInput}>
-        </c-c-b-bill-payments-select-transaction-modal>
+
+        <c-c-b-select-transaction-date-modal ontransdateinput={handleTransDate} onmodalclose={closeTransDatInput}>
+        </c-c-b-select-transaction-date-modal>
     </template>
 </template>

@@ -10,7 +10,7 @@
 
 .wrapper {
     width: 100vw;
-    height: auto;
+    height: 100vh;
     margin: 0 auto;
     overflow: hidden;
     overflow-x: hidden;
@@ -59,6 +59,39 @@
     font-size: 14px;
     font-family: var(--dxp-g-root-gotham-book-font-family);
 }
+
+.error-icon {
+    margin-bottom: 20px;
+   
+}
+.error-caption{
+    padding: 0 5vw;
+}
+.ok-button{
+    margin: 0% 0 0% 0;
+    width: 70%;
+    height: 35px;
+    border: none;
+    background-color: var(--primary-blue);
+    text-align: center;
+    color: var(--primary-white);
+    border-radius: 20px;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+p {
+    margin: 10px 0;
+}
+.error-Title{
+    font-size: x-large;
+    font-weight: 600;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+a {
+    color:var(--primary-blue);
+    text-decoration: none;
+}
+
 
 c-c-b-header {
     position: fixed;

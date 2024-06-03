@@ -516,7 +516,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_AccountStatements</shortDescription>
-        <value>Account Statements</value>
+        <value>Statements</value>
     </labels>
     <labels>
         <fullName>CB_AccountsAndDeposits</fullName>
@@ -848,6 +848,13 @@
         <value>Contact Us</value>
     </labels>
     <labels>
+        <fullName>CB_Continue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB default Internal error</shortDescription>
+        <value>Continue</value>
+    </labels>
+    <labels>
         <fullName>CB_CreateUserCred</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -909,6 +916,13 @@
         <protected>false</protected>
         <shortDescription>CB_DebitCard</shortDescription>
         <value>Debit Card</value>
+    </labels>
+    <labels>
+        <fullName>CB_Debit_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Debit Account</shortDescription>
+        <value>Debit Account</value>
     </labels>
     <labels>
         <fullName>CB_DepositAmount</fullName>
@@ -1350,6 +1364,13 @@
         <protected>false</protected>
         <shortDescription>CB_OnlineActivites</shortDescription>
         <value>Online Activites</value>
+    </labels>
+    <labels>
+        <fullName>CB_Open_An_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Open An Account</shortDescription>
+        <value>Open an account</value>
     </labels>
     <labels>
         <fullName>CB_OwnAccountTransfers</fullName>
@@ -2290,6 +2311,15 @@
         <shortDescription>CB_ViewAll</shortDescription>
         <value>View All</value>
     </labels>
+
+
+    <labels>
+        <fullName>CB_Confirm</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Confirm</shortDescription>
+        <value>CONFIRM</value>
+    </labels>
     <labels>
         <fullName>CB_ViewIssuedCheques</fullName>
         <language>en_US</language>
@@ -2325,13 +2355,19 @@
         <shortDescription>CB default Internal error</shortDescription>
         <value>Internal Error</value>
     </labels>
-
     <labels>
-        <fullName>CB_Continue</fullName>
+        <fullName>MAKE_A_REQUEST</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>CB default Internal error</shortDescription>
-        <value>Continue</value>
+        <shortDescription>MAKE_A_REQUEST</shortDescription>
+        <value>Make a Request</value>
+    </labels>
+    <labels>
+        <fullName>OPEN_AN_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OPEN_AN_Account</shortDescription>
+        <value>Open an Account</value>
     </labels>
     <labels>
         <fullName>Test</fullName>

@@ -8,6 +8,7 @@
 }
 
 .wrapper {
+    height: 100vh;
     width: 100vw;
 }
 
@@ -58,6 +59,9 @@
     background-color: var(--light-grey);
 }
 
+.title{
+    color: var(--primary-grey);
+}
 p{
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     color: var(--primary-black);
@@ -102,11 +106,12 @@ p span{
     opacity: 0;
     position: absolute;
     right: 0;
+    z-index: 1;
 }
 
 .date .date-pick {
     position: absolute;
     right: 8px;
     bottom: 8px;
-    z-index: -10;
+    /* z-index: -10; */
 }

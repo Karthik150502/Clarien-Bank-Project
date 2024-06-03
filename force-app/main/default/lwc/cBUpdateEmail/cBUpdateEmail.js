@@ -33,7 +33,7 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
 
     CBBackIcon = `${CBSVG}/CBSVGs/CBBackIcon.svg#CBBackIcon`;
     CBEditIcon = `${CBSVG}/CBSVGs/CBEditIcon.svg#CBEditIcon`;
-
+    z
     // Object to hold custom labels
     label = {
         SUBMIT: SUBMIT.toUpperCase(),
@@ -58,9 +58,10 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
     emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     @track errors = ['']
     hasRendered = false;
-
+    showOtphandler = false
     username = ''
     password = ''
+    otpDisclaimer = 'The OTP has been sent to your updated Email Address.'
     //Hardcoded fields for testing 
 
 
@@ -85,6 +86,19 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
             haveItems: false
         }
     };
+
+    otpconf = {
+        title: '',
+        companyLogoExposed: false,
+        implementation: () => {
+
+            console.log("Updated the Email....!")
+            this.updateEmailHandler();
+        },
+        tokenValue: '123456',
+
+    }
+
 
     /**
     * Metadata for the Phone Update modal.
@@ -221,7 +235,9 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
     updateEmail(event) {
         // Implement form submission logic her
         event.preventDefault();
-        this.updateEmailHandler();
+        console.log("Updated with OTP authentication...!")
+        // this.updateEmailHandler();
+        this.showOtphandler = true
         // this.authenticate(this.successGif, 'Authentication Successful');
     }
 

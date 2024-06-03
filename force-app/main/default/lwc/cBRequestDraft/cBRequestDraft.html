@@ -8,6 +8,7 @@
                 <label for="accountNum">
                     <p class="heading">Account No</p>
                     <select class="fields" id="accountNum" onclick={accountNumHandler} value={accountNum}>
+                        <option value={Select}>Select</option>
                         <template for:each={accountList} for:item="account">
                             <option key={account.accountNo} value={account.accountNo}>
                                 <p>{account.accountNo}</p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
@@ -23,17 +24,20 @@
                 <label for="currency">
                     <p class="heading">{label.CURRENCY}</p>
                     <select class="fields" id="currency" onclick={currencyHandler} value={currency}>
-                        <option value="BMD">BMD</option>
-                        <option value="USD">USD</option>
+                        <template for:each={currencyList} for:item="currency">
+                            <option key={currency} value={currency}>{currency}</option>
+                        </template>
                     </select>
                 </label>
                 <div class="sub-currency">
                     <template if:true={usdCurrencyType}>
                         <label for="usd-local">
-                           <input class="subCurrency" type="radio" id="usd-local" name="sub-currency" value="USD Local"  checked="checked"><span>USD Local</span>
+                            <input class="subCurrency" type="radio" id="usd-local" name="sub-currency" value="USD Local"
+                                checked="checked"><span>USD Local</span>
                         </label>
                         <label for="usd-international">
-                            <input class="subCurrency" type="radio" id="usd-international" name="sub-currency" value="USD International"><span>USD International</span>
+                            <input class="subCurrency" type="radio" id="usd-international" name="sub-currency"
+                                value="USD International"><span>USD International</span>
                         </label>
                     </template>
                 </div>
@@ -48,7 +52,7 @@
                 </label> -->
                 <p class="fee">"Refer <a href="www.google.com"> Fee schedule </a>for applicable fees."</p>
                 <div class="btns">
-                    <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>{label.SUBMIT}</button>
+                    <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>{label.NEXT}</button>
                     <!-- <button class="cancel">CANCEL</button> -->
                 </div>
             </div>

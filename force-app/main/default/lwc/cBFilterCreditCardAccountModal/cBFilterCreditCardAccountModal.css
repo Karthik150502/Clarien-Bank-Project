@@ -1,0 +1,98 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+
+
+.wrapper {
+    max-height: 70%;
+    min-height: fit-content;
+    width: 90%;
+    background-color:var(--primary-white);
+    margin: auto auto;
+    overflow: auto;
+    padding: 6% 4%;
+}
+.wrapper .heading{
+    display: flex;
+    align-items: center;
+}
+.wrapper .heading p {
+    font-size: 18.25px;
+    margin: 0 0 0 3%;
+}
+.wrapper .container {
+    height: 100%;
+    width: 100%;
+    margin:5% 0%;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0% 5% 0% 5%;
+    text-align: center; */
+}
+.wrapper .container input{
+    width: 100%;
+    height: auto;
+    margin:3% 0%;
+    padding: 2% 2% 2% 3%;
+    border: 1px solid var(--border-blue);
+    color: var(--primary-blue);
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    border-radius: 7px;
+}
+
+.wrapper .container .fieldName{
+    color: var(--primary-blue);
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+.wrapper .container .sub-fieldName{
+    color: var(--primary-blue);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper .btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.wrapper .btns .submit-btn {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.wrapper .btns .submit-btn:disabled,
+.wrapper .btns .submit-btn[disabled] {
+    background-color: var(--light-grey);
+}
+
+.wrapper .btns .cancel-btn {
+    background-color: #9C9C9C;
+    justify-content: center;
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+
+/* .menu-items::-webkit-scrollbar {
+    display: none;
+} */

@@ -43,7 +43,7 @@ export default class CBTravelNotificationConfirmation extends NavigationMixin(Li
         message: '',
         okButton: {
             exposed: true,
-            label: 'Ok',
+            label: 'OK',
             function: () => {
                 this.navigateBack();
             }

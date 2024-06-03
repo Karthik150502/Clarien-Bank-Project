@@ -20,11 +20,11 @@ export default class CBTimeDepositAccountOpening extends NavigationMixin(Lightni
     successModalOpen = false;
 
     successModalconfig={
-        title: `Your Account has been opened successfully`,
+        title: `Your account has been opened successfully`,
         message: '',
         okButton: {
             exposed: true,
-            label: 'Ok',
+            label: 'OK',
             function: () => {
                 this.navigateBack();
             }

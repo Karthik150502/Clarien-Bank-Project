@@ -24,6 +24,7 @@ export default class CBBeneficiaryDetails extends NavigationMixin(LightningEleme
         return this.beneficiaryDetails.status?'Enabled':'Disable'
     }
 
+
     beneficiarySelected = false
     selectHandler(event){
         if(this.beneficiarySelected){
@@ -33,25 +34,29 @@ export default class CBBeneficiaryDetails extends NavigationMixin(LightningEleme
         else{
             this.beneficiarySelected = event.target.checked
         }
-        console.log('Checked',event.target.checked);
+        this.dispatchEvent(new CustomEvent('selected',{
+            detail: this.beneficiaryDetails
+        }))
     }
+
     navigateToEditBeneficiary(){
         console.log('Edit called');
-        this.navigateTo('CBEditBeneficiary__c')
+        this.navigateTo('CBEditBeneficiary__c', this.beneficiaryDetails)
     }
 
     navigateToDeleteBeneficiary(){
-        console.log('Delete called');
-        this.navigateTo('CBDeleteBeneficiary__c')
+        // this.navigateTo('CBDeleteBeneficiary__c')
+        this.dispatchEvent(new CustomEvent("delete"));
     }
 
-    navigateTo(pageName) {
+    navigateTo(pageName, data) {
         console.log('navigate called');
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
                 name: pageName
-            }
+            },
+            state:data
         });
     }
 }

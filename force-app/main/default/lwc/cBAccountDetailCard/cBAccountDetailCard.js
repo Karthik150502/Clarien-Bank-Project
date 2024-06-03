@@ -65,6 +65,9 @@ export default class CBAccountDetailCard extends NavigationMixin(LightningElemen
         if (this.account.accountType === 'TIME DEPOSIT ACCOUNT') {
             this.navigateTo('comm__namedPage', 'CBTimeDepositAccount__c', this.account)
         }
+        if (this.account.accountType === 'CURRENT ACCOUNT') {
+            this.navigateTo('comm__namedPage', 'CBCurrentAccount__c', this.account)
+        }
     }
 
     // navigateToAccount() {

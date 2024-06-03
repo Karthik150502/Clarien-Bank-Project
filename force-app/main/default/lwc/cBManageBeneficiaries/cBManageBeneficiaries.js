@@ -10,7 +10,7 @@ export default class CBManageBeneficiaries extends NavigationMixin(LightningElem
     }
 
     configuration = {
-        previousPageUrl: '',
+        previousPageUrl: 'CBTransfers__c',
         heading: 'Manage Beneficiaries',
         iconsExposed: true,
         logout: {

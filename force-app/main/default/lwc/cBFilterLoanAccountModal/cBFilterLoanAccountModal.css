@@ -8,22 +8,37 @@
 
 }
 
+.wrapper {
+    background-color: white;
+    height: fit-content;
+    width: 360px;
+    margin: auto auto;
+    padding: 5% 2% 5% 2%;
+}
+
+.wrapper .heading{
+    display: flex;
+    width: 90%;
+    margin: 0 auto;
+}
+.wrapper .heading p {
+    margin-left: 10px;
+}
+
 .container {
-    width: 100%;
-    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 20px auto 0 auto;
+    
 }
 
-.wrapper .container .dates {
+.container .dates {
     width: 90%;
     height: auto;
     margin: 0 auto;
     padding: 5% 2% 5% 2%;
-    margin: 2% auto 0 auto;
+    margin: 2% auto 2% auto;
     border: 1px solid var(--border-blue);
     border-radius: 12px;
     display: flex;
@@ -31,8 +46,8 @@
     flex-direction: column;
 }
 
-.wrapper .container .dates .from-date,
-.wrapper .container .dates .to-date {
+.container .dates .from-date,
+.container .dates .to-date {
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -42,20 +57,36 @@
     position: relative;
 }
 
-.wrapper .container .dates .from-date .from-date-p,
-.wrapper .container .dates .to-date .to-date-p {
+.container .dates .from-date .from-date-p,
+.container .dates .to-date .to-date-p {
     color: var(--primary-blue);
 }
 
-.wrapper .container .btns {
-    width: 90%;
+.to-date-display,
+.from-date-display{
+    margin-right: 10px;
+}
+.date-box {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    flex-direction: row;
 }
 
-.wrapper .btns .done-btn {
+input{
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+/* input[type=date]::-webkit-calendar-picker-indicator {
+    visibility: hidden;
+} */
+
+.wrapper .btns{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btns .submit-btn {
     width: 120px;
     height: 35px;
     border: none;
@@ -65,12 +96,9 @@
     text-align: center;
     font-size: 14px;
     font-family: var(--dxp-g-root-gotham-bold-font-family);
-    margin: 8% auto 0 auto;
 }
 
-
-.wrapper .btns .done-btn:disabled,
-.wrapper  .btns .done-btn:disabled[disabled] {
+.btns .submit-btn:disabled,
+.btns .submit-btn[disabled] {
     background-color: var(--light-grey);
-
 }

@@ -26,6 +26,10 @@ export default class CBTravelNotification extends NavigationMixin(LightningEleme
         }
     }
 
+    cardTypeList = ['Select','Credit Card','Debit card']
+    countryList = ['Select','USA','BERMUDA']
+    stateList = ['Select','France','Los Angles','Texas','California']
+
     cardType = '';
     country = '';
     state = '';
@@ -40,18 +44,19 @@ export default class CBTravelNotification extends NavigationMixin(LightningEleme
         this.state = event.target.value;
     }
 
-    fromDate = 'YYYY-MM-DD'
-    toDate = 'YYYY-MM-DD'
+    @track fromDate = 'YYYY-MM-DD'
+    @track toDate = 'YYYY-MM-DD'
 
     openFromDate() {
         let fromDate = this.template.querySelector('.from-date-invis')
         fromDate.showPicker()
-        this.fromDate = this.template.querySelector('.from-date-invis').value;
+        this.fromDate = this.template.querySelector('.from-date-invis').value?this.template.querySelector('.from-date-invis').value:'YYYY-MM-DD';
     }
 
     openToDate() {
         let toDate = this.template.querySelector('.to-date-invis')
         toDate.showPicker()
+        this.toDate = this.template.querySelector('.to-date-invis').value?this.template.querySelector('.to-date-invis').value:'YYYY-MM-DD';
     }
 
     fromDateHandler(event) {
@@ -63,7 +68,7 @@ export default class CBTravelNotification extends NavigationMixin(LightningEleme
     }
 
     get submitDisable() {
-        return this.cardType == '' || this.country == '' || this.state == '' || this.fromDate === 'YYYY-MM-DD' || this.fromDate === '' || this.toDate ==='' || this.toDate === 'YYYY-MM-DD';
+        return this.cardType == 'Select' || this.country == 'Select' || this.state == 'Select' || this.cardType == '' || this.country == '' || this.state == '' || this.fromDate === 'YYYY-MM-DD' || this.toDate === '' || this.toDate ==='' || this.toDate === 'YYYY-MM-DD';
 
     }
 
