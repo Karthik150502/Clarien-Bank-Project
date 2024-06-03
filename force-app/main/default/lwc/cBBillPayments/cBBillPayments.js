@@ -16,7 +16,7 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
         CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
     };
     headerConfguration = {
-        previousPageUrl: 'CBAccountStatementSearch__c',
+        previousPageUrl: 'CBTransfers__c',
         heading: 'Bill Payments',
         iconsExposed: true,
         logout: {
@@ -178,15 +178,15 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
     recurringTransfer = false
     accRefNumber = ''
     name = ''
-    selectedFromAccount = 'Select from Account'
-    selectedBiller = 'Select Biller'
+    selectedFromAccount = 'Select Account'
+    selectedBiller = 'Select biller'
 
     get disableSubmit() {
         return this.verifyValues()
     }
 
     verifyValues() {
-        return this.amount === '' || this.dateSelected === '' || this.selectedBiller === 'Select Biller' || this.selectedFromAccount === 'Select from Account' || this.recurringTransfer && (this.accRefNumber === '' || this.name === '')
+        return this.amount === '' || this.dateSelected === '' || this.selectedBiller === 'Select biller' || this.selectedFromAccount === 'Select Account' || this.recurringTransfer && (this.accRefNumber === '' || this.name === '')
     }
 
 

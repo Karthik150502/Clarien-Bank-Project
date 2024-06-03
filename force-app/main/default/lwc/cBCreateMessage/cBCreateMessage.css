@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid var(--primary-blue);
+    border-radius: 5%;
+    padding: 6% 6%;
+}
+
+.container label p {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 3% 3%;
+}
+
+.container label select {
+    height: 30px;
+    border-radius: 10px;
+    width: 100%;
+    border: 1px solid var(--primary-blue);
+    padding: 0 0px 0px 7px;
+}
+
+.container label .subject {
+    width: 100%;
+    border: 1px solid var(--primary-blue);
+    border-radius: 10px;
+    height: 50px;
+    padding: 0 0 0 10px;
+}
+
+.container label .message-body {
+    width: 100%;
+    border: 1px solid var(--primary-blue);
+    border-radius: 10px;
+    height: 100px;
+    padding: 0 0 0 10px;
+}
+
+.container .attachment {
+    border: 1px solid var(--primary-blue);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 3% 0;
+    border-radius: 10px;
+}
+
+.container .attachment button {
+    height: 30px;
+    width: 30%;
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    margin-right: 10px;
+    border-radius: 8px;
+}
+
+.submit {
+    width: 100%;
+    text-align: center;
+    margin: 9% 0;
+}
+
+.submit button {
+    width: 120px;
+    background: var(--primary-blue);
+    height: 40px;
+    border: none;
+    color: white;
+    border-radius: 9px;
+}
+
+.header {
+    width: 90%;
+    margin: 4% auto;
+}

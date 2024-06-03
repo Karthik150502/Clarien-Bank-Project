@@ -1,0 +1,43 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 05-30-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+            <label for="">
+                <p>TOPIC</p>
+                <select name="" id="">
+                    <option value="">Account Info</option>
+                    <option value="">Appointment Request</option>
+                    <option value="">Complaint</option>
+                    <option value="">Liquidity Withdrawl Notice</option>
+                    <option value="">Technical issue</option>
+                    <option value="">Transaction Dispute</option>
+                    <option value="">Travel Notification</option>
+                </select>
+            </label>
+            <label for="">
+                <p>Subject</p>
+                <textarea name="" class="subject"></textarea>
+            </label>
+            <label for="">
+                <p>Message Body</p>
+                <textarea name="" class="message-body"></textarea>
+            </label>
+            <label for="" class="attachment">
+                <p>Add Attachment</p>
+                <button>BROWSE</button>
+            </label>
+        </div>
+        <div class="submit">
+            <button>DONE</button>
+        </div>
+    </div>
+</template>

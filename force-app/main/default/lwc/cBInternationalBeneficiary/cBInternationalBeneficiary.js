@@ -1,57 +1,28 @@
 import { LightningElement } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
 
-export default class CBInternationalBeneficiary extends NavigationMixin(LightningElement) {
+export default class CBInternationalBeneficiary extends LightningElement {
     
-    configuration = {
-        previousPageUrl: '',
-        heading: 'Manage Beneficiaries',
-        iconsExposed: true,
-        logout: {
-            exposed: false
-        },
-        search: {
-            exposed: false
-        }
-    }
-
-    beneficiaryAction ={
-        delete:false,
-        detailView:true
-    }
+    
+    beneficiaryType = [
+        'International Beneficiary', 'Intra Bank Beneficiary', 'Domestic Beneficiary'
+    ]
 
     beneficiaryList = [
         {
-            accountNum : 604567891,
-            name: 'John',
+            accountNum : 604567897,
+            name: 'Robin',
+            accountType : 'Saving',
+            beneficiaryBank: 'SBI',
+            beneficiaryAddress: '5W main street',
             status : true
         },
         {
-            accountNum : 604567882,
-            name: 'Johnny',
-            status : true
-        }
-        ,
-        {
-            accountNum : 604567793,
-            name: 'Robert',
+            accountNum : 604567888,
+            name: 'Devil',
+            accountType : 'Saving',
+            beneficiaryBank: 'HDFC',
+            beneficiaryAddress: '4W main street',
             status : false
         }
     ]
-
-    navigateToAddBeneficiary(){
-        console.log('Add called');
-        this.navigateTo('CBAddBeneficiary__c')
-    }
-
-    navigateTo(pageName) {
-        console.log('navigate called');
-        this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: {
-                name: pageName
-            }
-        });
-    }
-    
 }

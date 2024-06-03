@@ -195,9 +195,22 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
     navigateToInvestmentProfile() {
         this.navigateTo(INVESTMENTPROFILE_PAGE)
     }
+
     navigateToAccountStatements() {
         this.navigateTo(ACCOUNTSTATEMENTSEARCH_PAGE)
     }
+
+    navigateToSendMoney() {
+        this.navigateTo('CBTransfers__c')
+    }
+
+    navigateToBillPayments() {
+        this.navigateTo('CBBillPayments__c')
+    }
+    navigateToApplyForLoans() {
+        this.navigateTo('CBApplyNowLoans__c')
+    }
+
     // Helper function for navigation
     navigateTo(pageApiName) {
         this[NavigationMixin.Navigate]({

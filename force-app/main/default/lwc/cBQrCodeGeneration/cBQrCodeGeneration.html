@@ -1,0 +1,64 @@
+<!--
+	Author - Aditya
+	Created Date - 06/03/2024
+	Modified Date - 14/03/2024, 21/03/2024
+	Description - This component allows users to change their password with authentication. It includes custom labels
+                for UI elements such as submit button, old password, new password, and confirm password inputs. The component
+                integrates with NavigationMixin for navigation functionality and uses resources for loading spinner and
+                authentication success image.
+-->
+
+<template>
+    <div class="wrapper">
+        <c-c-b-header icon-details={header_icons}></c-c-b-header>
+        <div class="container">
+            <div class="header">
+                <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
+
+            </div>
+
+            <div class="content">
+                <label class="inp-box">
+                    <p>Account No</p>
+                    <select class="inp" onchange={handleAccount}>
+                        <option value="Select Account" selected>Select Account</option>
+                        <template for:each={accounts} for:item="acc" lwc:if={accounts}>
+                            <option key={acc.accountNo} value={acc.accountNo}>
+                                {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accountType}
+                            </option>
+                        </template>
+                    </select>
+                </label>
+            </div>
+
+
+            
+            <div class="btns">
+                <button class="sub" onclick={handleSubmit} disabled={disableSubmit}>
+                    {label.CONTINUE}
+                </button>
+                <button class="cancel" onclick={handleCancel}>
+                    {label.CANCEL}
+                </button>
+            </div>
+
+        </div>
+        <c-c-b-footer></c-c-b-footer>
+
+    </div>
+    <!-- <template if:true={confirmModal}>
+        <c-c-b-operation-confirm modal-info={comfirmModalConf}>
+        </c-c-b-operation-confirm>
+    </template> -->
+    <!-- 
+
+    <template if:true={authenticationPopup.openModal}>
+        <c-c-b-authentication-result status={authenticationPopup.authenticationStatus}
+            loading-gif={authenticationPopup.authenticationSpinnergif}
+            is-loading={authenticationPopup.showLoadingAnimation}>
+        </c-c-b-authentication-result>
+    </template> -->
+
+    <!-- for ending session -->
+    <!-- <c-c-b-session-end></c-c-b-session-end> -->
+</template>

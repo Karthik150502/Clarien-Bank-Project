@@ -1,8 +1,8 @@
 /*
-	Author - 
-	Created Date - 28/03/2024
-	Modified Date - 
-	Description - 
+    Author - 
+    Created Date - 28/03/2024
+    Modified Date - 
+    Description - 
 */
 
 import { LightningElement } from 'lwc';
@@ -18,7 +18,7 @@ import MANAGE_BENEF from '@salesforce/label/c.CB_ManageBeneficiaries'; // Import
 import VIEW_ALL from '@salesforce/label/c.CB_ViewAll'; // Importing label for "View All"
 import SEND_MONEY from '@salesforce/label/c.CB_SendMoney';
 import QR_CODE from '@salesforce/label/c.CB_QrCode';
-import BILL_PAYMENTS from '@salesforce/label/c.CB_BillPayments'; 
+import BILL_PAYMENTS from '@salesforce/label/c.CB_BillPayments';
 import APPROVALS from '@salesforce/label/c.CB_Approvals';
 import CREDIT_CARDS from '@salesforce/label/c.CB_CreditCards';
 import INVESTMENT_PLANS from '@salesforce/label/c.CB_InvestmentPlans';
@@ -26,7 +26,7 @@ import INVESTMENT_PROFILES from '@salesforce/label/c.CB_InvestmentProfiles';
 import ACCOUNT_STATEMENTS from '@salesforce/label/c.CB_AccountStatements';
 import APPLY_FOR_LOANS from '@salesforce/label/c.CB_ApplyForLoans';
 import ADHOC_PAYMENTS from '@salesforce/label/c.CB_AdHocPayments';
-import SERVICE_REQUEST from '@salesforce/label/c.CB_ServiceRequest';
+import OPEN_AN_ACCOUNT from '@salesforce/label/c.CB_Open_An_Account';
 import BANK_ACCOUNTS from '@salesforce/label/c.CB_BankAccounts';
 import SCAN_AND_PAY from '@salesforce/label/c.CB_ScanAndPay';
 import OFFERS from '@salesforce/label/c.CB_Offers';
@@ -39,7 +39,7 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 import INVESTMENTPROFILE_PAGE from '@salesforce/label/c.CB_Page_Investmentprofile';
 import ACCOUNTSTATEMENTSEARCH_PAGE from '@salesforce/label/c.CB_Page_AccountStatementSearch';
 
-export default class CBQuickLinks extends  NavigationMixin(LightningElement) {
+export default class CBQuickLinks extends NavigationMixin(LightningElement) {
 
     // Labels for dashboard icons
     label = {
@@ -60,7 +60,7 @@ export default class CBQuickLinks extends  NavigationMixin(LightningElement) {
         INVESTMENT_PROFILES,
         ACCOUNT_STATEMENTS,
         APPLY_FOR_LOANS,
-        SERVICE_REQUEST,
+        OPEN_AN_ACCOUNT,
         BANK_ACCOUNTS,
         SCAN_AND_PAY,
         OFFERS,
@@ -124,11 +124,42 @@ export default class CBQuickLinks extends  NavigationMixin(LightningElement) {
 
     };
 
-    navigateToInvestmentProfile(){
+    navigateToInvestmentProfile() {
         this.navigateTo(INVESTMENTPROFILE_PAGE)
     }
     navigateToAccountStatements() {
         this.navigateTo(ACCOUNTSTATEMENTSEARCH_PAGE)
+    }
+    
+    navigateToOpenAnAccount() {
+        this.navigateTo('CBServiceRequest__c')
+    }
+
+    
+    navigateToSecuritySetting() {
+        this.navigateTo('CBSecuritySettings__c')
+    }
+
+    navigateToSendMoney() {
+        this.navigateTo('CBTransfers__c')
+    }
+    navigateToChequebookServices() {
+        this.navigateTo('CBApplyNowChequebook__c')
+    }
+
+    navigateToBillPayments() {
+        this.navigateTo('CBBillPayments__c')
+    }
+    navigateToApplyForLoans() {
+        this.navigateTo('CBApplyNowLoans__c')
+    }
+    navigateToAdHocPayments() {
+        this.navigateTo('CBAdHocPayments__c')
+    }
+
+
+    navigateToBankAccounts() {
+        this.navigateTo('CBFavoriteAccounts__c')
     }
     // Helper function for navigation
     navigateTo(pageApiName) {

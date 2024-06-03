@@ -183,6 +183,24 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
     navigateToPredefined() {
         this.navigateTo('CBPredefined__c')
     }
+
+    navigateToAdHocPaymts() {
+        this.navigateTo('CBAdHocPayments__c')
+    }
+
+    navigateToOwnAccTransfer() {
+        this.navigateTo('CBOwnAccountTransfer__c')
+    }
+    navigateToIntrabankTransfer() {
+        this.navigateTo('CBIntraBankTransfers__c')
+    }
+    navigateToInternationalTransfer() {
+        this.navigateTo('CBInternationalTransfers__c')
+    }
+    navigateToDomesticPayments() {
+        this.navigateTo('CBPredefinedDomesticTransfer__c')
+    }
+
     navigateTo(pageName) {
         console.log('navigate called');
         this[NavigationMixin.Navigate]({

@@ -1,8 +1,8 @@
 /*
-	Author - Prateek Deshmukh
-	Created Date - 06/03/2024
-	Modified Date - 08/03/2024, 17/03/2024, 19/03/2024
-	Description - This is a reusable Lightning Web Component (LWC) designed to be utilized as a child component wherever a footer is required. 
+    Author - Prateek Deshmukh
+    Created Date - 06/03/2024
+    Modified Date - 08/03/2024, 17/03/2024, 19/03/2024
+    Description - This is a reusable Lightning Web Component (LWC) designed to be utilized as a child component wherever a footer is required. 
                   It allows flexibility by enabling users to specify icons and data to expose as needed
 */
 
@@ -41,7 +41,7 @@ export default class CBFooter extends NavigationMixin(LightningElement) {
         },
     }
 
- 
+
     // Method to navigate to a named page
     // @param {string} pageName - The name of the page to navigate to
     navigateToPage(pageName) {
@@ -52,7 +52,7 @@ export default class CBFooter extends NavigationMixin(LightningElement) {
             }
         });
     }
-     
+
     // Method to navigate to profile page
     navigateToProfileSettings() {
         this.navigateToPage(PROFILESETTINGS_PAGE);
@@ -66,6 +66,13 @@ export default class CBFooter extends NavigationMixin(LightningElement) {
     // Method to navigate to home page
     navigateToSendRecieve() {
         this.navigateToPage('CBTransfers__c');
+    }
+
+
+    // Method to navigate to home page
+    navigateToServices() {
+        // this.navigateToPage('CBApplyNow__c');
+        this.navigateToPage('testpage__c');
     }
 
     /**

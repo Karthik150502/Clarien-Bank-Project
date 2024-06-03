@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : Prateek Deshmukh
+  @group             : 
+  @last modified on  : 05-28-2024
+  @last modified by  : Prateek Deshmukh
+-->
 <template>
     <div class="wrapper">
         <template if:true={userAuthenticated}>
@@ -5,15 +12,26 @@
         </template>
 
         <div class="container">
-            <div class="con-header">
+            <!-- <div class="con-header">
                 <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg"
                     onclick={navigateBack}>
                     <use href={CBBackIcon}></use>
                 </svg>
-            </div>
-            <div class="content">
-                <p class="title">Oops, some Technical error occurred!</p>
-                <p class="msg">{error}</p>
+            </div> -->
+            <div class="slds-text-align_center slds-m-around_medium">
+                <div class="error-container">
+                    <div class="error-icon">
+                        <svg width="63" height="60" viewBox="0 0 63 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M28.0033 22.6667H34.6667V39.3334H28.0033V22.6667ZM28 42.6667H34.6633V49.3334H28V42.6667Z" fill="#0767AD"/>
+                            <path d="M37.2629 3.56734C36.0956 1.36715 33.8214 0 31.3324 0C28.8435 0 26.5692 1.36715 25.4019 3.57071L0.787503 50.1377C0.241304 51.1603 -0.0292575 52.3078 0.00250691 53.4671C0.0342713 54.6263 0.367264 55.7573 0.968639 56.7483C1.56135 57.7439 2.4031 58.5675 3.41079 59.1377C4.41847 59.7079 5.55724 60.0051 6.71468 59.9999H55.9502C58.325 59.9999 60.4752 58.7839 61.6995 56.7483C62.3 55.7569 62.6324 54.6261 62.6642 53.467C62.6959 52.308 62.4259 51.1606 61.8807 50.1377L37.2629 3.56734ZM6.71468 53.2818L31.3324 6.71481L55.9669 53.2818H6.71468Z" fill="#0767AD"/>
+                        </svg>                            
+                    </div>
+                    <span class="error-Title">Technical error</span>
+                    
+                    <p class="error-caption">Something went wrong, please try again. For more info please <a href="https://clarienbank.com">contact us</a> for further assistance.
+                    </p>
+                    <button class="ok-button" onclick={handleOkClick}>OK</button>
+                </div>
             </div>
         </div>
         <template if:true={userAuthenticated}>

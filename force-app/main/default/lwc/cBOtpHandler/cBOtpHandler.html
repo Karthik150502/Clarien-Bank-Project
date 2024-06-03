@@ -1,0 +1,39 @@
+<template>
+    <div class="container">
+        <template if:true={companyLogoExposed}>
+            <div class="cb-logo">
+
+                <c-c-b-company-logo>
+                    <template if:true={otpconf.title}>
+                        <p slot="title">{otpconf.title}</p>
+                    </template>
+                </c-c-b-company-logo>
+            </div>
+        </template>
+
+
+        <div class="heading">
+            <p>Please enter security token</p>
+        </div>
+        <template if:false={validTokenType}>
+            <span class={tokenValidClass}>{tokenErrorMessage}</span>
+        </template>
+        <form>
+            <div class="input-field">
+                <input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="0"
+                    tabindex="0" />
+                <input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="1"
+                    disabled tabindex="-1" />
+                <input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="2"
+                    disabled tabindex="-1" />
+                <input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="3"
+                    disabled tabindex="-1" />
+                <input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="4"
+                    disabled tabindex="-1" />
+                <input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="5"
+                    disabled tabindex="-1" />
+            </div>
+        </form>
+        <button class={buttonClass} disabled={buttonDisable} onclick={handleSubmit}>{label.SUBMIT}</button>
+    </div>
+</template>

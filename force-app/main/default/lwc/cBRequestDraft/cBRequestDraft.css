@@ -4,10 +4,11 @@
     box-sizing: border-box;
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     font-family: var(--dxp-g-root-gotham-medium-font-family);
-    font-family: var(--dxp-g-root-gotham-book-font-family);
+    /* font-family: var(--dxp-g-root-gotham-book-font-family); */
 }
 
 .wrapper {
+    height:100vh;
     width: 100vw;
 }
 
@@ -115,4 +116,8 @@ option p{
     text-align: center;
     font-size: 14px;
     font-weight: 700;
+}
+
+option, p{
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
 }

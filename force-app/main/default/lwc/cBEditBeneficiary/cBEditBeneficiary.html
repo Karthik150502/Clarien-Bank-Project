@@ -6,21 +6,50 @@
             </div>
             <div class="casing">
                 <div class="account-detail">
+
+                    <!-- <template for:each={details} for:item="detail">
+                        <div key={detail}>
+                            <p class="fields">{detail.label}</p>
+                            <p class="values">{detail.value}</p>
+                        </div>
+                    </template> -->
+
                     <p class="fields">Account</p>
-                    <p class="values">6000017836</p>
+                    <p class="values">{accountNumber}</p>
                     <p class="fields">Account Type</p>
-                    <p class="values">Savings</p>
+                    <p class="values">{accountType}</p>
+
+                    <template if:true={beneficiaryBank}>
+                        <p class="fields">Beneficiary Bank</p>
+                        <p class="values">{beneficiaryBank}</p>
+                    </template>
+
                 </div>
                 <div class="name">
-
-                    <p class="fields">Name</p>
-                    <input type="text" class="beneficiaryName">
-
+                    <p class="fields">Name <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        onclick={navigateToEditBeneficiary}>
+                        <use href={CBEditIcon}></use>
+                </svg></p>
+                    
+                    <input type="text" class="beneficiaryName" value={beneficiaryName} onkeyup={beneficiaryNameHandler}>
                     <div class="status">
                         <p class="status-field">Status</p>
-                        <lightning-input data-id="toggle1" type="toggle" 
-                        onchange={statusHandler} message-toggle-active="" message-toggle-inactive="" value={status}>
-                       </lightning-input> 
+                        <label class="slds-checkbox_toggle slds-grid">
+                            <template if:true={status}>
+                                <input type="checkbox" name="checkbox-toggle-16" value={status}
+                                    onclick={statusHandler} checked aria-describedby="checkbox-toggle-16" />
+                                <span id="checkbox-toggle-16" class="slds-checkbox_faux_container">
+                                    <span class="slds-checkbox_faux"></span>
+                                </span>
+                            </template>
+                            <template if:false={status}>
+                                <input type="checkbox" name="checkbox-toggle-16" value={status}
+                                    onclick={statusHandler} aria-describedby="checkbox-toggle-16" />
+                                <span id="checkbox-toggle-19" class="slds-checkbox_faux_container">
+                                    <span class="slds-checkbox_faux"></span>
+                                </span>
+                            </template>
+                        </label>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,6 @@
 <template>
     <div class="container">
         <form class="account-open-form">
-
-
             <!-- <div class="duration-range-slider">
                 <c-c-b-duration-range-slider onduration={durationHandler}></c-c-b-duration-range-slider>
             </div> -->
@@ -15,29 +13,30 @@
             <!-- <p class="min-heading">Note: Deposit Account will be opened next business day</p> -->
 
             <label for="debit-amount">
-                <p class="heading">{label.DEBIT_AMOUNT}*</p>
-                <select class="fields" id="debit-amount" onclick={debitAmountHandler} value={debitAmount}>
-                    <option value="1000">1000</option>
-                    <option value="2000">2000</option>
-                    <option value="3000">3000</option>
-                    <option value="4000">4000</option>
+                <p class="heading">{label.DEBIT_ACCOUNT}*</p>
+                <select class="fields" id="debit-amount" onchange={depositAccountHandler}>
+                    <template for:each={accountTypes} for:item="accountType">
+                        <option key={accountType} value={accountType}>{accountType}</option>
+                    </template>
+
                 </select>
             </label>
             <label for="product">
                 <p class="heading">{label.PRODUCT}*</p>
-                <select id="product" class="fields" onclick={productHandler} value={product}>
-                    <option value="product1">product1</option>
-                    <option value="product2">product2</option>
+                <select id="product" class="fields" onchange={productHandler} value={product}>
+                    <template for:each={productList} for:item="product">
+                        <option key={product} value={product}>{product}</option>
+                    </template>
                 </select>
             </label>
             <div class="sub-fields">
                 <label for="deposit-amount">
                     <p class="heading">{label.DEPOSIT_AMOUNT}</p>
-                    <input id="deposit-amount" type="number" onkeyup={depositAmountHandler} class="fields">
+                    <input id="deposit-amount" type="number" onkeyup={debitAmountHandler} class="fields">
                 </label>
                 <label for="currency">
                     <p class="heading">Curreny</p>
-                    <input id="currency" type="number" onkeyup={currencyHandler} class="fields">
+                    <input id="currency" type="text" value={currencyHandler} readonly class="fields">
                 </label>
             </div>
             <!-- <div class="deposit-duration">
@@ -45,26 +44,29 @@
                 <c-c-b-deposit-duration-date-picker></c-c-b-deposit-duration-date-picker>
             </div> -->
             <div>
+                <p class="heading duration">Deposit Duration</p>
                 <c-c-b-duration-range-slider></c-c-b-duration-range-slider>
             </div>
             <template if:true={accountType}>
                 <label for="interest-payment">
                     <p class="heading">{label.INTEREST_INSTRUCTIONS}</p>
                     <p class="min-heading">{label.INTEREST_PAYMENT}*</p>
-                    <select id="interest-payment" class="fields" onclick={interestPaymentHandler}
+                    <select id="interest-payment" class="fields" onchange={interestPaymentHandler}
                         value={interestPayment}>
-                        <option value="interest-payment-1">interest-payment-1</option>
-                        <option value="interest-payment-2">interest-payment-2</option>
+                        <template for:each={interestPaymentList} for:item="interestPayment">
+                            <option key={interestPayment} value={interestPayment}>{interestPayment}</option>
+                        </template>
                     </select>
                 </label>
             </template>
             <label for="principal-maturity">
                 <p class="heading">{label.RENEWAL_INSTRUCTIONS}</p>
                 <p class="min-heading">{label.PRINCIPAL_MATURITY}*</p>
-                <select id="principal-maturity" class="fields" onclick={principalMaturityHandler}
+                <select id="principal-maturity" class="fields" onchange={principalMaturityHandler}
                     value={principalMaturity}>
-                    <option value="Fixed Deposit">Fixed Deposit</option>
-                    <option value="Savings Account">Savings Account</option>
+                    <template for:each={principalMaturityList} for:item="principalMaturity">
+                        <option key={principalMaturity} value={principalMaturity}>{principalMaturity}</option>
+                    </template>
                 </select>
             </label>
 

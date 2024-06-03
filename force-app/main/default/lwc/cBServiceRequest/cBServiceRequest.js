@@ -25,7 +25,7 @@ export default class CBManageBeneficiaries extends NavigationMixin(LightningElem
     CBTimeDepositAccountOpening = `${CBSVG}/CBSVGs/CBTimeDepositAccountOpening.svg#CBTimeDepositAccountOpening`;
 
     configuration = {
-        previousPageUrl: '',
+        previousPageUrl: 'Home',
         heading: 'Open an Account',
         iconsExposed: true,
         logout: {

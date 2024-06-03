@@ -49,6 +49,20 @@ export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
     initialPhone = ''
     phone = '';
     hasRendered = false;
+    showOtphandler = false
+    otpDisclaimer = 'The OTP has been sent to your updated Email Address.'
+
+    otpconf = {
+        title: '',
+        companyLogoExposed: false,
+        implementation: () => {
+
+            console.log("Updated the Phone....!")
+            this.updatePhoneHandler();
+        },
+        tokenValue: '123456',
+
+    }
 
 
     // Authentication Status Modal initial configuration
@@ -74,6 +88,7 @@ export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
 
 
     requestUUID = ''
+
 
     connectedCallback() {
         this.getUsernamePasswordHandler();
@@ -230,7 +245,10 @@ export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
  * @returns {void}
  */    updatePhone(event) {
         event.preventDefault();
-        this.updatePhoneHandler();
+
+        console.log("Updated with OTP authentication...!")
+        this.showOtphandler = true
+        // this.updatePhoneHandler();
 
     }
     /**

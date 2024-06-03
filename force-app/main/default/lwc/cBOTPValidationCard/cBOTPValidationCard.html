@@ -1,0 +1,25 @@
+<!--
+  @description       : 
+  @author            : Prateek Deshmukh
+  @group             : 
+  @last modified on  : 05-29-2024
+  @last modified by  : Prateek Deshmukh
+-->
+<template>
+	<div class="container">
+		<c-c-b-field-error>
+			<span slot="error-msg">{tokenErrorMessage}</span>
+		</c-c-b-field-error>
+			<form>
+				<div class="input-field">
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="0" tabindex="0" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="1" disabled tabindex="-1" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="2" disabled tabindex="-1" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="3" disabled tabindex="-1" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="4" disabled tabindex="-1" />
+					<input type="number" maxlength="1" onkeydown={focusPrevious} oninput={handleInput} data-index="5" disabled tabindex="-1" />
+            </div>
+			</form>
+			<button class={button} disabled={buttonDisable} onclick={handleSubmit}>Submit</button>
+	</div>
+</template>

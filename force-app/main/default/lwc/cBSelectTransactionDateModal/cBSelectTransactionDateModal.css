@@ -1,0 +1,291 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+
+.wrapper-main {
+    width: 360px;
+    height: fit-content;
+    background-color: var(--primary-white);
+    margin: auto auto;
+    padding: 5%;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.wrapper .header {
+    width: 90%;
+    margin: 5% auto;
+}
+
+.wrapper .container {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 7px;
+    height: 100%;
+    padding: 0 10px;
+    overflow-y: scroll;
+}
+
+.wrapper .container .until-date {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    height: auto;
+    margin: 5% auto 5% auto;
+    position: relative;
+}
+
+.wrapper .container .until-date .until-p {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+.wrapper .container .until-date .date {
+    position: absolute;
+    right: 0;
+    opacity: 0;
+}
+
+.wrapper .container .until-date .until-date-p {
+    position: absolute;
+    right: 30px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-black);
+}
+
+.wrapper .container .until-date svg {
+    position: absolute;
+    right: 5px;
+    z-index: -10;
+}
+
+.wrapper .container .trans-date-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    height: auto;
+}
+
+.wrapper .container .repeat-freq {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    height: auto;
+    margin: 10% auto 5% auto;
+}
+
+.wrapper .container .repeat-freq .repeat-freq-options {
+    font-size: 13px;
+    width: 80%;
+    height: 25px;
+    border-radius: 6px;
+    border: 1px solid var(--border-blue);
+    padding: 0 2% 0 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-black);
+}
+
+.wrapper .container .repeat-freq .repeat-freq-date {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.wrapper .container .repeat-freq .select-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 25px;
+    margin: 0 4% 0 0;
+}
+
+.wrapper .container .repeat-freq .select-number .increase,
+.wrapper .container .repeat-freq .select-number .decrease {
+    background-color: var(--primary-blue);
+    height: 18px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper .container .repeat-freq .select-number .increase {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+
+.wrapper .container .repeat-freq .select-number .decrease {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.wrapper .container .repeat-freq .select-number .display {
+    height: 30px;
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-grey);
+    background-color: var(--light-blue);
+}
+
+.wrapper .container .repeat-freq>p {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+
+.wrapper .container .trans-date {
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+}
+
+
+.wrapper .container .recurring {
+    width: 50%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+}
+
+.wrapper .container .recurring>p {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+.wrapper .container .recurring .checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.wrapper .container .trans-date .date {
+    position: relative;
+    margin: 0 auto;
+    font-size: 13px;
+    width: 100%;
+    height: 25px;
+    border-radius: 6px;
+    border: 1px solid var(--border-blue);
+    padding: 0 2% 0 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.wrapper .container .trans-date .date>p {
+    position: absolute;
+    left: 10px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-black);
+}
+
+.wrapper .container .trans-date>p {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+.wrapper .container .trans-date .trans-date-inp {
+    opacity: 0;
+    position: absolute;
+    right: 0;
+}
+
+.wrapper .container .date .date-pick {
+    position: absolute;
+    right: 5px;
+    bottom: 3px;
+    z-index: -10;
+}
+
+hr {
+    margin: 10% 0 5% 0;
+    height: 1px;
+    width: 100%;
+    background-color: var(--border-blue);
+}
+
+.wrapper .container .btns {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    height: auto;
+    margin: 8% auto 4% auto;
+    position: relative;
+}
+
+.wrapper .container .btns .sub {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.wrapper .container .btns .cancel {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--light-grey);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.wrapper .container .btns .sub:disabled,
+.wrapper .container .btns .sub[disabled] {
+    background-color: var(--light-grey);
+}
+
+
+.slds-checkbox_toggle {
+    width: fit-content;
+}

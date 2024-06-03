@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.container {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.wrapper .container .casing {
+    width: 100%;
+    height: auto;
+    margin: 5% 0;
+
+    /* padding:4%; */
+    /* padding: 0% 4% 4% 4%; */
+    /* border-radius: 12px;
+    border: 0.3px solid var(--border-blue); */
+}
+
+.container .heading {
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+    margin: 3% 0% 1% 0%;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 5% 0 0 0;
+}
+
+.menu-item::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-item p {
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-size: 14.14px;
+    margin: 1% 0 0 2%;
+    cursor: pointer;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
+.search-container svg{
+    position: absolute;
+    left: 44px;
+}
+.search-input {
+    width: 100%;
+    height: 40px;
+    border-radius: 12px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    border: 1px solid var(--border-blue);
+    padding-left: 5px;
+    padding: 2% 2% 2% 30px
+}
+
+.beneficiary-type{
+    width: 100%;
+    margin: 5% 0 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.beneficiary-type .fields{
+    width: 85%;
+    height: 40px;
+    border-radius: 12px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    border: 1px solid var(--border-blue);
+    padding-left: 5px;
+    padding: 2% 2%;
+}
+.beneficiary-type .btn {
+    width: 20%;
+    position: absolute;
+    right:33px
+}
+.beneficiary-type .btn button{
+    height: 40px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+.beneficiary-type .btn button p{
+    margin: 0 0 0 2%;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.beneficiaryList{
+    overflow: scroll;
+    height: calc(100vh - 235px);
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+.footer{
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}

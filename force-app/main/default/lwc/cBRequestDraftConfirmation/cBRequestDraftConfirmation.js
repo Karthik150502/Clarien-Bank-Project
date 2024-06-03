@@ -27,11 +27,11 @@ export default class CBRequestDraftConfirmation extends NavigationMixin(Lightnin
     successModalOpen = false;
 
     successModalconfig={
-        title: `Your request is submitted Sucessfully`,
+        title: `Your request is submitted sucessfully`,
         message: '',
         okButton: {
             exposed: true,
-            label: 'Ok',
+            label: 'OK',
             function: () => {
                 this.navigateBack();
             }

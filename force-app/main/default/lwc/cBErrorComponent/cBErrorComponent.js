@@ -50,13 +50,18 @@ export default class CBErrorComponent extends NavigationMixin(LightningElement) 
     *
     * @return {void} 
     */
-    navigateBack() {
+    // navigateBack() {
+    //     window.history.back();
+    //     // this[NavigationMixin.Navigate]({
+    //     //     type: 'comm__namedPage',
+    //     //     attributes: {
+    //     //         name: this.previousPageUrl
+    //     //     }
+    //     // })
+    // }
+
+    handleOkClick() {
+        // Logic to handle the OK button click
         window.history.back();
-        // this[NavigationMixin.Navigate]({
-        //     type: 'comm__namedPage',
-        //     attributes: {
-        //         name: this.previousPageUrl
-        //     }
-        // })
     }
 }

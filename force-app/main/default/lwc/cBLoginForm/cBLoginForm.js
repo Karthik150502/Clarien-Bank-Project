@@ -204,14 +204,14 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
             })
     }
 
+    /**
+      *  for loading background style. 
+      *
+      **/
     renderedCallback() {
-        /**
-          *  for loading background style. 
-          *
-          **/
         if (!this.hasRendered) {
             this.hasRendered = true
-            this.refs.mainDiv.style.backgroundImage = `url(${this.bg})`;
+            // this.refs.mainDiv.style.backgroundImage = `url(${this.bg})`;
             this.isPageLoading = false;
         }
 

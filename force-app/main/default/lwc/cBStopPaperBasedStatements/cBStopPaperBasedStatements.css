@@ -7,6 +7,7 @@
     font-family: var(--dxp-g-root-gotham-book-font-family);
 }
 .wrapper {
+    height:100vh;
     width: 100vw;
 }
 .container {
@@ -108,4 +109,9 @@
   transform: translate(-50%, -50%);
   color: #28a745; 
   font-size: 14px; 
+}
+
+.btns .submit-btn:disabled,
+.btns .submit-btn[disabled] {
+    background-color: var(--light-grey);
 }

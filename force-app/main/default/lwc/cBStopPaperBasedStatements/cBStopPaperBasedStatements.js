@@ -45,13 +45,14 @@ export default class CBStopPaperBasedStatements extends NavigationMixin(Lightnin
         // this.selectedAccounts.forEach(account =>{
         //     console.log(account)
         // })
-        console.log('1st Page',JSON.stringify(this.selectedAccounts))
-        this.navigateTo('CBStopPaperBasedStatementsAccountDeatils__c',this.selectedAccounts);//need to add after creating the page for SPBS detail
+        
+        this.navigateTo('CBStopPaperBasedStatementsAccountDeatils__c',{accounts:JSON.stringify(this.selectedAccounts)});
 
     }
 
     navigateTo(pageApiName,dataToSend) {
         console.log('navigate executed')
+        console.log('1st Page',dataToSend)
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -65,10 +66,37 @@ export default class CBStopPaperBasedStatements extends NavigationMixin(Lightnin
         this.checkboxAction('reset');
     }
 
+    // get buttonDiable(){
+    //     return this.checkSelected()
+    // }
+
+    buttonEnable = true
+    checkSelected(){
+        const selectedAccount = this.template.querySelectorAll(".checkBox");
+        for(let i=0;i<selectedAccount.length;i++){
+            if (selectedAccount[i].checked) {
+                console.log('one true');
+                this.buttonEnable = false;
+                break;
+            }
+            this.buttonEnable = true
+        }
+        // selectedAccount.forEach(checkbox => {
+        //     if (checkbox.checked) {
+        //         console.log('one true');
+        //         this.buttonEnable = false;
+        //     }
+        // });
+ 
+    }
+
     checkboxAction(action) {
+        console.log('test selected',this.checkSelected())
         const selectedAccount = this.template.querySelectorAll(".checkBox");
         selectedAccount.forEach(checkbox => {
             if (checkbox.checked) {
+                console.log('checkbox',checkbox)
+                console.log('cc',checkbox.checked);
                 if (action === 'submit') {
 
                     // this.accounts.forEach((account)=>{

@@ -1,4 +1,4 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import YOUR_PASSWORD_EXPIRED from '@salesforce/label/c.CB_YourPasswordExpired';
@@ -11,10 +11,10 @@ import SUBMIT from '@salesforce/label/c.CB_Submit';
 
 export default class CBAccessTokenForm extends NavigationMixin(LightningElement) {
 
-    label={
+    label = {
         YOUR_PASSWORD_EXPIRED,
         PLS_ENTER_SECURITY_TOKEN,
-        SUBMIT:SUBMIT.toUpperCase()
+        SUBMIT: SUBMIT.toUpperCase()
     }
 
 
@@ -28,9 +28,10 @@ export default class CBAccessTokenForm extends NavigationMixin(LightningElement)
     tokenValidClass = 'invalidToken'; // CSS class for token validation
     validTokenType = true; // Flag indicating token type validity
     // clarienHorizontalLogo = clarienHorizontalLogo; // Logo resource
-    buttonClass='inActive';
+    buttonClass = 'inActive';
     // Hardcoded token value
     token = '585326';
+    @api title = ''
     buttonDisable = true; // Button disable state
     Otp = ''; // User-entered OTP
 
@@ -45,7 +46,7 @@ export default class CBAccessTokenForm extends NavigationMixin(LightningElement)
     nextPageApiName
 
 
-    connectedCallback(){
+    connectedCallback() {
     }
 
 
@@ -132,9 +133,9 @@ export default class CBAccessTokenForm extends NavigationMixin(LightningElement)
         this.Otp = this.inputValues.join('');
         if (!isValid) {
             this.buttonDisable = !isValid
-            this.buttonClass='inActive'
-        }else{
-            this.buttonClass='active'
+            this.buttonClass = 'inActive'
+        } else {
+            this.buttonClass = 'active'
 
         }
     }
@@ -156,21 +157,21 @@ export default class CBAccessTokenForm extends NavigationMixin(LightningElement)
 
 
 
-    navigateToSignUp(){
+    navigateToSignUp() {
         this[NavigationMixin.Navigate]({
-            type:'comm__namedPage',
-            attributes:{
-                name:'CBSignUp__c'
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'CBSignUp__c'
             }
         })
     }
 
 
-    navigateToNextPage(){
+    navigateToNextPage() {
         this[NavigationMixin.Navigate]({
-            type:'comm__namedPage',
-            attributes:{
-                name:this.nextPageApiName
+            type: 'comm__namedPage',
+            attributes: {
+                name: this.nextPageApiName
             }
         })
     }

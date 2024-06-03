@@ -35,12 +35,16 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
         this.fetchAccountTypes();
         this.fetchProducts();
         this.fetchCurrencies();
+        this.product = this.products[0].value
+        this.accountType = this.accountTypes[0].value
+        this.currency = this.currencies[0].value
     }
 
     fetchAccountTypes() {
         // Simulated data fetching, replace it with actual data fetching logic
         // Example data
         this.accountTypes = [
+            { label: 'Select', value: 'Select' },
             { label: 'Savings', value: 'Savings' },
             { label: 'Chequing', value: 'Chequing' }
         ];
@@ -50,6 +54,7 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
         // Simulated data fetching, replace it with actual data fetching logic
         // Example data
         this.products = [
+            { label: 'Select', value: 'Select' },
             { label: 'product1', value: 'product1' },
             { label: 'product2', value: 'product2' }
         ];
@@ -59,14 +64,17 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
         // Simulated data fetching, replace it with actual data fetching logic
         // Example data
         this.currencies = [
+            { label: 'Select', value: 'Select' },
             { label: 'BMD', value: 'BMD' },
             { label: 'USD', value: 'USD' }
         ];
     }
 
     get buttonDisabled() {
-        return this.product === ' ' || this.accountType === ' ' || this.currency === ' ' ||  !this.termsConditionsFlag || !this.conductFlag || !this.marketingConsentFlag
+        console.log(this.product === ' ' ||  this.product === 'Select' || this.accountType === ' ' || this.currency === ' ' || this.accountType === 'Select' || this.currency === 'Select' ||  !this.termsConditionsFlag || !this.conductFlag || !this.marketingConsentFlag);
+        return this.product === ' ' ||  this.product === 'Select' || this.accountType === ' ' || this.currency === ' ' || this.accountType === 'Select' || this.currency === 'Select' ||  !this.termsConditionsFlag || !this.conductFlag || !this.marketingConsentFlag
     }
+
     productHandler(event) {
         this.product = event.target.value
         console.log('Product : ', this.product);

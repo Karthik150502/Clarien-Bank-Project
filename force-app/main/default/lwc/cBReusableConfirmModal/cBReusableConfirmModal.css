@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+
+
+.wrapper {
+    max-height: 60%;
+    min-height: fit-content;
+    width: 80%;
+    background-color:var(--primary-white);
+    margin: auto auto;
+    border-radius: 12px;
+    overflow: auto;
+    padding: 4%;
+}
+
+.wrapper .container {
+    height: 100%;
+    width: 100%;
+}
+
+.wrapper .container .logo{
+    display: flex;
+    justify-content: center;
+}
+.wrapper .container .msg{
+    margin: 8% 0%;
+}
+.wrapper .container .message{
+    font-size: 16px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+    color: var(--primary-blue);
+    text-align: center;
+}
+
+.btn{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn .submit-btn, .btn .cancel-btn {
+    width: 105px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.btn .cancel-btn {
+    background-color: var(--light-grey);
+}

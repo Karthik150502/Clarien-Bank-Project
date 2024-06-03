@@ -6,7 +6,17 @@ import REMARKS from '@salesforce/label/c.CB_Remarks';
 import CB_Page_Applynow from '@salesforce/label/c.CB_Page_Applynow';
 
 export default class CBStopPaperBasedAccountDetails extends NavigationMixin(LightningElement)  {
-        
+    
+    @wire(CurrentPageReference) pageRef;
+
+    connectedCallback(){
+        console.log('Page Ref',this.pageRef);
+        console.log('Page Ref State',this.pageRef.state);
+        console.log('Page Ref State acc',this.pageRef.state.accounts);
+        this.accounts = JSON.parse(this.pageRef.state.accounts);
+        console.log(JSON.stringify(this.accounts));
+    }
+
     label = {
         CURRENCY,
         REMARKS
@@ -29,15 +39,6 @@ export default class CBStopPaperBasedAccountDetails extends NavigationMixin(Ligh
         }
     ];
 
-    // @wire(CurrentPageReference)
-    // urlDataHandler({ state }){
-    //     console.log('2nd Page',JSON.parse(state))
-    //     this.accounts = state ? JSON.parse(state) : ' ' ;
-    //     // this.accounts.forEach(account=>{
-    //     //     console.log(account)
-    //     // })
-    // }
-
     configuration = {
         previousPageUrl: 'CBStopPaperBasedStatements__c',
         heading: 'Stop Paper Based',
@@ -53,11 +54,11 @@ export default class CBStopPaperBasedAccountDetails extends NavigationMixin(Ligh
     successModalOpen = false;
 
     successModalconfig={
-        title: `Your request is submitted Sucessfully`,
+        title: `Your request is submitted sucessfully`,
         message: '',
         okButton: {
             exposed: true,
-            label: 'Ok',
+            label: 'OK',
             function: () => {
                 this.navigateBack();
             }

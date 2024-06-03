@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-24-2024
+  @last modified on  : 05-28-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -68,8 +68,9 @@
 		</template>
 	</div>
 	<template if:true={modalFilter}>
-		<c-c-b-filter-transaction-modal onfilter={openFilterPopup}>
-		</c-c-b-filter-transaction-modal>
+		<!-- <c-c-b-filter-transaction-modal onfilter={openFilterPopup}>
+		</c-c-b-filter-transaction-modal> -->
+		<c-c-b-filter-loan-account-modal onfilter={openFilterPopup}></c-c-b-filter-loan-account-modal>
 	</template>
 	<c-c-b-footer></c-c-b-footer>
 </template>

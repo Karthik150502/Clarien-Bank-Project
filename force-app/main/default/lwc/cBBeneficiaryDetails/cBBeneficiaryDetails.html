@@ -3,7 +3,8 @@
         <div class="container">
             <template if:true={beneficiaryAction.delete}>
                 <div class="delete">
-                    <input class="beneficiarySelected" value={beneficiaryDetails.accountNum} type='radio' id={beneficiaryDetails.accountNum} onclick={selectHandler}>
+                    <input class="beneficiarySelected" value={beneficiaryDetails.accountNum} type='radio'
+                        id={beneficiaryDetails.accountNum} onclick={selectHandler}>
                 </div>
             </template>
             <div class="casing">
@@ -54,6 +55,26 @@
                             <p class="values">{beneficiaryName}</p>
                         </div>
 
+                        <template if:true={beneficiaryDetails.beneficiaryBank}>
+                            <div
+                                class="slds-col slds-large-size_7-of-12 slds-medium-size_7-of-12 slds-size_7-of-12 slds-text-align_left">
+                                <p class="fields">Beneficiary Bank</p>
+                            </div>
+                            <div class="slds-col slds-large-size_5-of-12 slds-medium-size_5-of-12 slds-size_5-of-12">
+                                <p class="values">{beneficiaryDetails.beneficiaryBank}</p>
+                            </div>
+                        </template>
+
+                        <template if:true={beneficiaryDetails.beneficiaryAddress}>
+                            <div
+                                class="slds-col slds-large-size_7-of-12 slds-medium-size_7-of-12 slds-size_7-of-12 slds-text-align_left">
+                                <p class="fields">Beneficiary Address</p>
+                            </div>
+                            <div class="slds-col slds-large-size_5-of-12 slds-medium-size_5-of-12 slds-size_5-of-12">
+                                <p class="values">{beneficiaryDetails.beneficiaryAddress}</p>
+                            </div>
+                        </template>
+
                         <div
                             class="slds-col slds-large-size_7-of-12 slds-medium-size_7-of-12 slds-size_7-of-12 slds-text-align_left">
                             <p class="fields">Status</p>
@@ -61,6 +82,7 @@
                         <div class="slds-col slds-large-size_5-of-12 slds-medium-size_5-of-12 slds-size_5-of-12">
                             <p class="values status">{status}</p>
                         </div>
+
                     </div>
                 </div>
             </div>

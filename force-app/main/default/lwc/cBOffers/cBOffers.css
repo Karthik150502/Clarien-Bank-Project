@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.container .search-bar {
+    width: 100%;
+    margin: 6% 0;
+}
+
+.container .search-bar input {
+    width: 100%;
+    border: 1px solid blue;
+    border-radius: 8px;
+    height: 33px;
+}
+
+.container .image {
+    background: url('/resource/CBOfferBg');
+    /* background-color: bisque; */
+    height: 150px;
+    width: 100%;
+    padding: 10% 15%;
+}
+
+.container .image p {
+    font-weight: 600;
+}
+
+.offers-container {
+    margin: 10px auto;
+    width: 95%;
+    height: 100px;
+    padding: 5px 5px;
+    background-color: var(--light-blue);
+    display: flex;
+    overflow: hidden;
+    border-radius: 7px;
+}
+.offers-container:hover {
+    background-color: var(--light-grey);
+}
+
+.offers-container .message {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+.offers-container .message-time {
+    width: 30%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    color: var(--primary-grey);
+}
+
+c-c-b-footer{
+	position: fixed;
+	bottom: 0;
+}

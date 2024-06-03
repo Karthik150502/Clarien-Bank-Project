@@ -31,22 +31,22 @@ export default class CBRMAppointment extends NavigationMixin(LightningElement) {
     }
 
     dateHandler(event){
-        this.appointmentDate = event.target.value;
+        this.appointmentDate = event.target.value?event.target.value:'YYYY-MM-DD';
         console.log(this.appointmentDate);
     }
 
     get submitBtnDisable(){
-        return this.appointmentDate === ' '
+        return this.appointmentDate === '' || this.appointmentDate === 'YYYY-MM-DD'
     }
 
     successModalOpen = false;
 
     successModalconfig={
-        title: `Your request is submitted Sucessfully`,
+        title: `Your request is submitted sucessfully`,
         message: '',
         okButton: {
             exposed: true,
-            label: 'Ok',
+            label: 'OK',
             function: () => {
                 this.navigateBack();
             }

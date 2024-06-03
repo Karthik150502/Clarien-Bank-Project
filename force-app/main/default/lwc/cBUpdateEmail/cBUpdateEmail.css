@@ -57,11 +57,6 @@
     margin: 0 0 3% 0;
 }
 
-.error-div{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
 
 .container form .update-email p svg {
     margin: 0 0 1% 1%;
@@ -87,7 +82,7 @@
 }
 
 .container form .label-phone .next-btn button:disabled,
-.container form .label-phone .next-btn button[disabled] {
+z .container form .label-phone .next-btn button[disabled] {
     background-color: var(--light-grey);
 }
 
@@ -127,7 +122,15 @@ input {
 
 .error-div {
     margin: 1% 0 0 0;
-    width: 90%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.error-div-2 {
+    margin: 10px 0 15px 0;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -137,4 +140,12 @@ input {
 .error-div p {
     text-align: center;
     font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+c-c-b-field-error {
+    margin: 0 auto;
+}
+
+c-c-b-otp-handler {
+    margin: 15px 0 0 0;
 }

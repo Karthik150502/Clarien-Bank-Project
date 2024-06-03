@@ -99,7 +99,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
 
     status;
     biometricsService;
-    isAvailable =false;
+    isAvailable = false;
 
     // Default user information placeholders
     UserPassword = '*********';
@@ -193,7 +193,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
     connectedCallback() {
         this.getCustomerData();
         this.loadProfileImage();
-       // this.biometricsService = getBiometricsService();
+        // this.biometricsService = getBiometricsService();
         //console.log('biometricsService ---' + this.biometricsService.isAvailable());
         console.log('MetaInfo----' + this.metaInfo.securitySettings.exposed);
 
@@ -318,6 +318,11 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
     // Navigation method to navigate to update email page
     navigateToUpdateEmail() {
         this.navigateToPage(UPDATEEMAIL_PAGE, { 'email': this.metaInfo.email, 'phone': this.metaInfo.phone });
+    }
+
+    // Navigation method to navigate to Online Activities
+    navigateToOnlineActivities() {
+        this.navigateToPage('CBOnlineActivities__c');
     }
 
     // Navigation method to navigate to All Accounts page
@@ -483,17 +488,17 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
     }
 
     handleVerifyClick() {
-        
-         const biometricsService = getBiometricsService();
-         console.log('biometricsService',biometricsService);
-         if(biometricsService.isAvailable()) {
-             console.log('inbiometric',biometricsService);
-             this.status = 'withinbiometric'+biometricsService;
-            }
-            else {
-                console.log('elsebiometric',biometricsService);
-                this.status = 'elsebiometric'+biometricsService;
-            }
+
+        const biometricsService = getBiometricsService();
+        console.log('biometricsService', biometricsService);
+        if (biometricsService.isAvailable()) {
+            console.log('inbiometric', biometricsService);
+            this.status = 'withinbiometric' + biometricsService;
+        }
+        else {
+            console.log('elsebiometric', biometricsService);
+            this.status = 'elsebiometric' + biometricsService;
+        }
     }
 
 

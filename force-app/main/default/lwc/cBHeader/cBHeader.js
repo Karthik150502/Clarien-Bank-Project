@@ -88,6 +88,7 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
      */
     handleAnnouncements() {
         console.log("Announcements");
+        this.navigateToOffers();
     }
 
     // Event handler for handling notifications
@@ -99,6 +100,7 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
     // Event handler for handling inbox
     handleInbox() {
         console.log("Inbox");
+        this.navigateToInbox();
     }
 
     // Event handler for handling logout
@@ -130,6 +132,24 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
             type: 'comm__namedPage',
             attributes: {
                 name: ALERT_PAGE
+            }
+        });
+    }
+
+    navigateToOffers() {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'CBOffers__c'
+            }
+        });
+    }
+
+    navigateToInbox() {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'CBInbox__c'
             }
         });
     }

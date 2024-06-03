@@ -2,7 +2,7 @@ import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import CURRENCY from '@salesforce/label/c.CBCurrency';
-import SUBMIT from '@salesforce/label/c.CBChangePassword_submit';
+import NEXT from '@salesforce/label/c.CBForgotPassword2_NEXT';
 import REMARKS from '@salesforce/label/c.CB_Remarks';
 import StartDate from '@salesforce/schema/Contract.StartDate';
 
@@ -11,7 +11,7 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
     label = {
         CURRENCY,
         REMARKS,
-        SUBMIT
+        NEXT
     }
 
     configuration = {
@@ -40,10 +40,11 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
             accountType: 'Personal Saving Accounts'
         }
     ]
+    currencyList = ['Select','BMD','USD']
 
-    accountNum = this.accountList[0].accountNo;
+    accountNum = '';
     amount = ''
-    currency = 'BMD'
+    currency = ''
     subCurrency = 'USD Local'
     payeeName = ''
     // remark = ''
@@ -72,7 +73,7 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
         return this.currency == 'USD'
     }
     get submitBtnDisable() {
-        return this.accountNum === '' || this.amount === '' || this.currency === '' || this.payeeName === '';
+        return this.accountNum === '' || this.amount === '' || this.currency === '' || this.payeeName === ''|| this.accountNum === 'Select' || this.currency === 'Select';
     }
     submitForm(event) {
         event.preventDefault();

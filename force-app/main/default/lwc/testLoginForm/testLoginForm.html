@@ -1,0 +1,161 @@
+<template>
+    <div class="wrapper" ontouchstart={closePopOvers}>
+        <div class="maincontainer">
+            <div class="top-container">
+                <div class="comp-logo">
+                    <svg class="clarien-logo" width="39" height="46" viewBox="0 0 39 46" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <use href={CBLoginFormCompanyLogo}></use>
+                    </svg>
+
+                    <svg class="clarien" width="128" height="18" viewBox="0 0 128 18" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <use href={CBLoginFormCompanyName}></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="center-container">
+                <div class={container}>
+                    <form action="">
+                        <div class="inputs">
+                            <template if:true={showError}>
+                                <div class="errorMsg">
+                                    <c-c-b-field-error>
+                                        <span slot="error-msg">{errorMsg}</span>
+                                    </c-c-b-field-error>
+                                </div>
+                            </template>
+
+                            <input type="text" required class={usernameClass} value={username}
+                                onchange={usernameHandler} onkeyup={usernameHandler} placeholder={label.USERNAME}>
+                            <div class="pass">
+                                <input type="password" value={password} onchange={passwordHandler}
+                                    onkeyup={passwordHandler} class={passwordClass} placeholder={label.PASSWORD}>
+                                <template if:false={passwordIcon}>
+                                    <svg onclick={passwordHideShow} class="pass-show-icon" width="22" height="15"
+                                        viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <use href={CBHidePassword}></use>
+                                    </svg>
+                                </template>
+                                <template if:true={passwordIcon}>
+                                    <svg onclick={passwordHideShow} class="pass-show-icon" width="22" height="15"
+                                        viewBox="0 0 22 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <use href={CBShowPassword}></use>
+                                    </svg>
+                                </template>
+                            </div>
+                            <!-- <template if:true={rem_me}>
+                                <label class="rem-me" for="rem-me-checked">
+                                    <input onclick={handleRembme} id="rem-me-checked" type="checkbox" class="remme"
+                                        value={rem_me} checked>
+                                    <p>{label.REM_ME}</p>
+                                </label>
+                            </template>
+                            <template if:false={rem_me}>
+                                <label class="rem-me" for="rem-me">
+                                    <input onclick={handleRembme} id="rem-me" type="checkbox" class="remme" value={rem_me}>
+                                    <p>{label.REM_ME}</p>
+                                </label>
+                            </template> -->
+
+                            <div class="forgot-password">
+                                <p onclick={navigateToForgotPassword}>Forgot Password</p>
+                            </div>
+
+                        </div>
+
+                        <button onclick={doLogin} class="login" disabled={loginButtomDisable}>
+                            {label.LOG_IN}
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="bottom-container-1">
+                <div class="bio-metric">
+                    <svg width="64" height="59" viewBox="0 0 64 59" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.743652" width="62.6565" height="58.6962" rx="10" fill="#0073C2" />
+                        <path
+                            d="M29.2331 38.6019C31.3466 36.0868 32.7518 33.0855 33.3121 29.8897C33.3121 28.905 34.2989 26.1839 32.8071 26.0034C31.4707 26.0711 32.2088 28.702 31.7815 29.6417C31.3407 32.1628 30.3274 34.558 28.8146 36.6546C27.3018 38.7513 25.3271 40.4972 23.0328 41.7665C22.8551 41.8657 22.7252 42.0288 22.6713 42.2204C22.6174 42.4119 22.6441 42.6162 22.7454 42.7888C23.8098 44.3373 28.4017 39.5791 29.2331 38.6019Z"
+                            fill="white" />
+                        <path
+                            d="M32.2281 39.1643C34.753 35.7877 39.527 23.6837 32.0685 23.5608C31.1549 23.6302 30.3015 24.0415 29.6797 24.7121C29.0579 25.3827 28.7138 26.263 28.7165 27.1761C28.7209 29.5909 28.0825 31.9637 26.8663 34.0523C25.426 36.5353 23.245 38.5091 20.6267 39.6994C20.54 39.7388 20.4619 39.7948 20.397 39.8643C20.332 39.9338 20.2814 40.0153 20.248 40.1043C20.1807 40.2839 20.1877 40.4829 20.2676 40.6574C20.3474 40.8319 20.4936 40.9677 20.6739 41.0348C20.8541 41.1019 21.0538 41.0949 21.2289 41.0153C23.1451 40.1425 24.8599 38.8847 26.2657 37.3208C27.6714 35.7568 28.738 33.9204 29.3985 31.9265C29.9121 30.3927 30.1719 28.7858 30.1675 27.1688C30.1671 26.6083 30.3844 26.0693 30.774 25.6649C31.1635 25.2605 31.695 25.0221 32.2571 24.9997C37.3359 25.1443 32.852 36.1853 31.0382 38.3328C29.7571 40.1698 28.1694 41.7741 26.344 43.0761C26.2661 43.1314 26.1999 43.2016 26.1493 43.2825C26.0987 43.3634 26.0647 43.4535 26.0492 43.5476C26.0337 43.6417 26.037 43.7379 26.0589 43.8307C26.0809 43.9235 26.121 44.011 26.1771 44.0883C27.3379 45.4694 31.5098 40.1621 32.2281 39.1643Z"
+                            fill="white" />
+                        <path
+                            d="M37.2822 35.2088C38.1386 32.6564 38.5548 29.9766 38.5127 27.2844C38.4048 22.1551 31.8491 19.2087 27.9272 22.5225C23.3073 26.3839 27.7905 31.7004 20.7311 36.5631C19.9607 37.0922 19.1234 37.5161 18.2412 37.8238C18.1518 37.8553 18.0694 37.9042 17.9989 37.9676C17.9283 38.0311 17.871 38.1079 17.8303 38.1935C17.7895 38.2792 17.766 38.3721 17.7612 38.4669C17.7564 38.5617 17.7703 38.6566 17.8022 38.746C18.637 40.4029 23.113 36.6712 23.847 35.7203C25.8381 33.4864 26.9349 30.5952 26.927 27.6013C26.9274 26.842 27.0992 26.0926 27.4294 25.4091C27.7596 24.7255 28.2397 24.1254 28.8339 23.6535C31.8851 21.0529 37.0016 23.3438 37.0807 27.3492C37.1183 30.5498 36.4683 33.7212 35.1745 36.6483C33.8808 39.5754 31.9737 42.1899 29.5823 44.3147C29.4394 44.4409 29.3522 44.6187 29.3401 44.8091C29.3279 44.9996 29.3918 45.187 29.5176 45.3304C30.5466 46.3678 32.5184 43.2052 33.2811 42.5137C35.0328 40.3327 36.3872 37.86 37.2822 35.2088Z"
+                            fill="white" />
+                        <path
+                            d="M42.1777 27.0765C42.2941 17.8834 30.255 13.8905 24.9957 21.3576C23.7844 23.0085 23.1334 25.0158 23.1407 27.0765C23.1292 28.891 22.5297 30.6509 21.4353 32.0828C20.3409 33.5148 18.8129 34.5387 17.0884 34.9956C16.9949 35.0197 16.907 35.0625 16.8299 35.1215C16.7528 35.1806 16.6879 35.2547 16.6392 35.3395C16.5905 35.4243 16.5588 35.5181 16.546 35.6155C16.5332 35.7129 16.5395 35.8119 16.5647 35.9067C17.0957 37.3068 19.5399 35.5512 20.3619 35.1141C27.0107 30.736 22.1514 24.3801 28.1818 20.2983C33.2739 16.5944 40.9338 20.7576 40.7228 27.0988C40.7178 33.4298 38.4383 39.5402 34.3141 44.2776C34.2121 44.3834 34.1436 44.5179 34.1175 44.6638C34.0914 44.8096 34.1088 44.9601 34.1676 45.0957C34.2264 45.2313 34.3237 45.3459 34.4471 45.4246C34.5705 45.5032 34.7142 45.5424 34.8597 45.537C39.8281 41.1293 42.0686 33.6844 42.1777 27.0765Z"
+                            fill="white" />
+                        <path
+                            d="M39.7814 17.5285C33.9713 12.7873 24.5551 15.0339 21.4068 21.905C19.2245 25.7271 21.6 31.3217 15.926 32.4815C15.832 32.4973 15.742 32.5318 15.6611 32.5831C15.5803 32.6343 15.5101 32.7013 15.4546 32.7802C15.3991 32.8591 15.3594 32.9484 15.3378 33.0429C15.3162 33.1375 15.313 33.2355 15.3285 33.3312C15.344 33.427 15.3779 33.5188 15.4282 33.6012C15.4784 33.6837 15.5442 33.7552 15.6216 33.8118C15.699 33.8683 15.7866 33.9088 15.8793 33.9308C15.972 33.9529 16.0681 33.9561 16.1621 33.9403C17.6674 33.678 19.0339 32.8835 20.0218 31.6964C21.0097 30.5092 21.5558 29.0053 21.5643 27.4485C21.57 25.1734 22.2654 22.9556 23.5552 21.0989C24.845 19.2421 26.6662 17.8372 28.7695 17.0763C35.4739 14.4358 43.4162 20.0742 43.1872 27.4266C43.1909 33.0393 41.5625 38.5271 38.5077 43.1966C38.4553 43.2765 38.419 43.3661 38.4007 43.4604C38.3824 43.5547 38.3825 43.6517 38.4012 43.746C38.4198 43.8402 38.4565 43.9297 38.5091 44.0094C38.5618 44.0891 38.6294 44.1574 38.7081 44.2104C39.996 45.1295 41.8707 39.7902 42.4216 38.7836C45.1048 31.9636 46.4357 22.4521 39.7814 17.5285Z"
+                            fill="white" />
+                        <path
+                            d="M16.0223 19.4407C15.4649 20.5218 12.8837 25.7729 14.5556 26.1627C14.6531 26.1828 14.7537 26.1827 14.8512 26.1626C14.9487 26.1424 15.0411 26.1026 15.1227 26.0455C15.2044 25.9884 15.2736 25.9152 15.3261 25.8304C15.3786 25.7456 15.4134 25.651 15.4283 25.5523C15.9091 22.6759 17.1271 19.9744 18.9628 17.7124C28.9212 5.3717 49.1605 12.454 49.1605 28.3764C49.1608 30.1025 48.8987 31.8187 48.3832 33.4656C48.3536 33.5578 48.3424 33.655 48.3504 33.7516C48.3583 33.8482 48.3852 33.9422 48.4295 34.0283C48.4738 34.1144 48.5346 34.1909 48.6085 34.2534C48.6823 34.3158 48.7678 34.363 48.8599 34.3923C50.4805 34.8335 50.5465 29.4869 50.6271 28.3764C50.4878 9.40193 25.2766 2.95944 16.0223 19.4407Z"
+                            fill="white" />
+                        <path
+                            d="M41.8205 16.1805C34.1124 9.18228 20.4887 12.8872 17.5059 22.8096C17.0016 24.316 16.745 25.8928 16.7458 27.4797C16.7474 28.0173 16.5435 28.5355 16.1751 28.9304C15.8067 29.3254 15.3011 29.5678 14.7596 29.609C14.5695 29.6241 14.3931 29.7133 14.2694 29.857C14.1457 30.0008 14.0847 30.1873 14.0999 30.3755C14.1152 30.5638 14.2053 30.7383 14.3505 30.8608C14.4958 30.9832 14.6842 31.0436 14.8743 31.0285C19.1765 30.553 17.7425 26.1028 18.8682 23.2567C25.845 5.51285 54.3829 14.2357 43.061 39.6946C42.9964 39.8647 43.0002 40.0529 43.0716 40.2204C43.1431 40.3878 43.2767 40.5218 43.445 40.5946C43.6132 40.6674 43.8033 40.6735 43.976 40.6117C44.1487 40.5499 44.2908 40.4249 44.3731 40.2624C46.1561 36.235 47.0719 31.884 47.062 27.4868C47.0654 25.3393 46.5987 23.2165 45.6938 21.2647C44.789 19.3128 43.4675 17.5783 41.8205 16.1805Z"
+                            fill="white" />
+                    </svg>
+                </div>
+            </div>
+
+
+            <div class="bottom-container-2">
+                <div class="footer-container">
+                    <div class="content-footer">
+                        <template if:true={footerItemInfo.contactUs.opened}>
+                            <c-c-b-login-contact-us onclosecontactus={closeContactUs} data-element="contactUs">
+                            </c-c-b-login-contact-us>
+                        </template>
+
+                        <template if:true={footerItemInfo.atmLocater.opened}>
+                            <c-c-b-atm-map oncloseamtlocator={openAtmLocater} data-element="atmLocator">
+                            </c-c-b-atm-map>
+                        </template>
+
+                        <template if:true={footerItemInfo.exchangeRates.opened}>
+                            <c-c-b-login-exchange-rates exchange-rates={exchangeRates}
+                                is-page-loading={exchangeRatesLoaded} oncloseexchanegrates={closeExchangeRates}
+                                data-element="exchangeRates">
+                            </c-c-b-login-exchange-rates>
+                        </template>
+
+                        <div class="registration">
+                            <div class="token-reg">
+                                <p class="register-link" onclick={navigateToRegisterToken}>Token Registration
+                                </p>
+                            </div>
+                            <div class="signup">
+                                <p class="signup-link" onclick={navigateToSignUp}> {label.SIGNUP}</p>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <c-c-b-login-footer footer-item-info={footerItemInfo}
+                                onopenexchanegrates={openExchangeRates} onopencontactus={openContactUs}
+                                onopenatmlocater={openAtmLocater}>
+                            </c-c-b-login-footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template if:true={authenticationPopup.openModal}>
+        <c-c-b-authentication-result status={authenticationPopup.authenticationStatus}
+            loading-gif={authenticationPopup.authenticationSpinnergif}
+            is-loading={authenticationPopup.showLoadingAnimation}>
+        </c-c-b-authentication-result>
+    </template>
+
+    <template if:true={confirmModal}>
+        <c-c-b-operation-confirm modal-info={modal}>
+        </c-c-b-operation-confirm>
+    </template>
+    <template if:true={isPageLoading}>
+        <c-c-b-loading-spinner>
+        </c-c-b-loading-spinner>
+    </template>
+
+    <c-logger></c-logger>
+</template>

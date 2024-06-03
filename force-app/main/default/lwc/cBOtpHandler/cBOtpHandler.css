@@ -1,0 +1,115 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.container {
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 350px;
+    height: auto;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    width: 100%;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+.token-status {
+    margin: 0 0 10px 0;
+}
+
+.heading p {
+    font-size: 16px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+h4 {
+    font-size: 1.25rem;
+    color: #333;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.input-field {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+}
+
+.input-field input {
+    height: 50px;
+    width: 42px;
+    border-radius: 6px;
+    outline: none;
+    font-size: 1.225rem;
+    text-align: center;
+    border: 1px solid #279CEE;
+}
+
+.input-field input:focus {
+    /* box-shadow: 1px 1px 0 #279CEE; */
+    outline: 2px solid #279CEE;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button {
+    margin-top: 25px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: #9C9C9C;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.invalidToken {
+    color: red;
+    font-size: medium;
+}
+
+.validToken {
+    color: green;
+    font-size: medium;
+}
+
+img {
+    max-width: 69%;
+    height: auto;
+}
+
+.inActive {
+    background: rgb(153, 151, 151);
+}
+
+.active {
+    background: #0767AD;
+}
+
+.cb-logo {
+    margin: 30% auto 6% auto;
+}

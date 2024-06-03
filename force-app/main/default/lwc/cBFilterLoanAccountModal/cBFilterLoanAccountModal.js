@@ -1,14 +1,20 @@
 import { LightningElement } from 'lwc';
+import CBSVG from "@salesforce/resourceUrl/CBSVG";
 
 export default class CBFilterLoanAccountModal extends LightningElement {
 
+    CBBackIcon = `${CBSVG}/CBSVGs/CBBackIcon.svg#CBBackIcon`;
+
     fromDate = 'YYYY-MM-DD'
     toDate = 'YYYY-MM-DD'
-    selectedTransactionType = ''
-    transactionTypes = ["Credit", "Debit"]
-    fromAmount = ''
-    toAmount = ''
+    currDate = ''
 
+    closeFilter(data) {
+        this.dispatchEvent(new CustomEvent('filter',{
+            detail : data
+        }))
+    }
+    
     connectedCallback() {
         this.setCurrentDate()
     }
@@ -21,19 +27,29 @@ export default class CBFilterLoanAccountModal extends LightningElement {
         this.toDate = event.target.value
     }
 
-    
-    get disableDoneButton() {
-        return this.fromDate === 'YYYY-MM-DD' || this.toDate === 'YYYY-MM-DD' 
+    get fromDateMax() {
+        if (this.currDate && this.toDate === 'YYYY-MM-DD') {
+            return this.currDate
+        } else if (this.toDate) {
+            return this.toDate
+        }
     }
 
+    get toDateMax() {
+        if (this.currDate) {
+            return this.currDate
+        }
+    }
+
+
     get validateDate(){
-        return this.transFromDate >= this.transToDate
+        return this.fromDate >= this.toDate
     }
 
     submitHandler(){
         this.closeFilter({
-            fromDate : this.transFromDate,
-            toDate: this.transToDate
+            fromDate : this.fromDate,
+            toDate: this.toDate
         })
     }
 

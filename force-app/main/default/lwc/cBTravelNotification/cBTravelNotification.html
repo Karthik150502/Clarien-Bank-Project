@@ -9,27 +9,27 @@
                 <label for="select-card">
                     <p class="title">Select Card</p>
                     <select id="select-card" class="options" onclick={cardHandler}>
-                        <option value="Credit Card">Credit Card</option>
-                        <option value="Debit Card">Debit Card</option>
+                        <template for:each={cardTypeList} for:item="cardType">
+                            <option key={cardType} value={cardType}>{cardType}</option>
+                        </template>
                     </select>
                 </label>
             
                 <label for="select-country">
                     <p class="title">Select Country</p>
                     <select id="select-country" class="options" onclick={countryHandler}>
-                        <option value="United States">United States</option>
-                        <option value="International">International</option>
+                        <template for:each={countryList} for:item="country">
+                            <option key={country} value={country}>{country}</option>
+                        </template>
                     </select>
                 </label>
 
                 <label for="select-state">
                     <p class="title">Select State</p>
                     <select id="select-state" class="options" onclick={stateHandler}>
-                        <option value="San Francisco">San Francisco</option>
-                        <option value="Texas">Texas</option>
-                        <option value="California">California</option>
-                        <option value="Florida">Florida</option>
-                        <option value="Alaska">Alaska</option>
+                        <template for:each={stateList} for:item="state">
+                            <option key={state} value={state}>{state}</option>
+                        </template>
                     </select>
                 </label>
 
