@@ -16,7 +16,7 @@
 
 .wrapper {
     width: 100vw;
-    background-color: var(--primary-white);
+    height: 100vh;
 }
 
 .container {

@@ -13,7 +13,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 350px;
+    /* width: 350px; */
+    width: 335px;
     height: auto;
     margin: 0 auto;
 }

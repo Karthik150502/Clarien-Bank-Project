@@ -35,7 +35,7 @@ import ACCOUNTSTATEMENTSEARCH_PAGE from '@salesforce/label/c.CB_Page_AccountStat
 import PromImage from "@salesforce/resourceUrl/PromImage";
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
-import { getMobileSessionStorage, getJsonData, dateToTimestamp, setAllSessData, removeMobileSessionStorage, getLocalStorage, getAllSessData } from 'c/cBUtilities';
+import { getMobileSessionStorage, getJsonData, dateToTimestamp, setAllSessData, removeMobileSessionStorage, setLocalStorage, getLocalStorage, getAllSessData } from 'c/cBUtilities';
 
 export default class CBHomeDashboards extends NavigationMixin(LightningElement) {
     // Labels for dashboard icons
@@ -123,6 +123,13 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
     */
     connectedCallback() {
         this.getUserDetails()
+        this.setPagePath()
+    }
+
+
+    setPagePath() {
+        setLocalStorage('pagePath', 'Home')
+        console.log('Home Path',getLocalStorage('pagePath'))
     }
 
     getUserDetails() {
@@ -145,8 +152,7 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
         }
     }
 
-
-
+    
 
     /**
     * This function uses a method from the cBJsonDataHandler package that calls an Apex method that returns the API's request body and JSON paths for substitution.
@@ -209,6 +215,9 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
     }
     navigateToApplyForLoans() {
         this.navigateTo('CBApplyNowLoans__c')
+    }
+    navigateToApprovals() {
+        this.navigateTo('CBApprovals__c')
     }
 
     // Helper function for navigation

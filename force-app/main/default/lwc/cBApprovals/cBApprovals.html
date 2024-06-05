@@ -1,0 +1,53 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-03-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+            <table class="approval-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>From Account</th>
+                        <th>To Account</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>   
+                </thead>
+                <tbody>
+                    <template for:each={approvals} for:item="approval">
+                        <tr key={approval.id}>
+                            <td>
+                                <input type="checkbox">
+                            </td>
+                            <td>
+                                <p>{approval.fromAccount}</p>
+                            </td>
+                            <td>
+                                <p>{approval.toAccount}</p>
+                            </td>
+                            <td>
+                                <p>{approval.amount}</p>
+                            </td>
+                            <td>
+                                <p>{approval.status}</p>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <div class="button">
+                <button class="approved">APPROVED</button>
+                <button class="reject">REJECT</button>
+            </div>
+        </div>
+    </div>
+    <c-c-b-footer></c-c-b-footer>
+</template>

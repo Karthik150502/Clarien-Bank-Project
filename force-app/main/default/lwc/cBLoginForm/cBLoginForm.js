@@ -578,6 +578,11 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
                     console.log(getMobileSessionStorage('LastLogin'));
                 }
 
+                if (result?.segmentRets) {
+                    setMobileSessionStorage('SegmentRets', result?.segmentRets)
+                    console.log(getMobileSessionStorage('SegmentRets'));
+                }
+
 
                 setMobileSessionStorage('CBUsername', this.username)
                 console.log(getMobileSessionStorage('CBUsername'));
@@ -641,12 +646,12 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
      * @returns {Object} - The mapped JSON request object
      */
     mapTheData(jsonReq, JsonPath) {
-        let evalStr = ''
+        console.log(jsonReq)
+        console.log(JsonPath)
         JsonPath.forEach((record) => {
             // Dynamically set values in JSON request object
-            evalStr += `jsonReq${record.JSON_Path__c}=this.${record.Field_Name__c};`
+            eval(`jsonReq${record.JSON_Path__c}=this.${record.Field_Name__c};`);
         });
-        eval(evalStr);
         console.log('jsonReq : ', JSON.stringify(jsonReq));
         return jsonReq;
     }

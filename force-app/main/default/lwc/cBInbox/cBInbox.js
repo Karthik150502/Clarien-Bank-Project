@@ -1,10 +1,43 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation'; // Importing NavigationMixin for navigation functionality
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
+import { setLocalStorage, getLocalStorage } from 'c/cBUtilities';
+
 
 export default class CBInbox extends NavigationMixin(LightningElement) {
 
     CBNewMessage = `${CBSVG}/CBSVGs/CBNewMessage.svg#CBNewMessage`;
+
+    /**
+* Lifecycle hook invoked when the component is inserted into the DOM
+* Loads the username, password from local session storage when the component is connected to the DOM.
+* @returns {void}
+*/
+    connectedCallback() {
+        this.setPagePath()
+    }
+
+    setPagePath() {
+        if (getLocalStorage('pagePath')) {
+
+            let path = getLocalStorage('pagePath')
+
+            if(path.indexOf('CBInbox__c') !== -1){
+                setLocalStorage('pagePath', path.substring(0, path.indexOf('CBInbox__c') + ('CBInbox__c').length))
+                path = getLocalStorage('pagePath')
+                this.configuration.previousPageUrl = path.split('.')[path.split('.').length-2]
+            }
+            else{
+                this.configuration.previousPageUrl = path.split('.')[path.split('.').length-1]
+                setLocalStorage('pagePath', `${path}.CBInbox__c`)
+                console.log('inbox path',getLocalStorage('pagePath'))
+            }
+        }
+        else {
+            setLocalStorage('pagePath', 'Home')
+        }
+        console.log('previousPageUrl',this.configuration.previousPageUrl);
+    }
 
     messages = [
         {

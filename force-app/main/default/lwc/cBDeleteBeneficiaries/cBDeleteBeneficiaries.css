@@ -56,6 +56,9 @@
 .search-container {
     display: flex;
     align-items: center;
+    display: flex;
+    align-items: center;
+    margin: 0% 0 5% 0;
 }
 
 .search-container svg{
@@ -71,8 +74,13 @@
     padding-left: 5px;
     padding: 2% 2% 2% 30px
 }
-
-
+.beneficiaryList{
+    overflow: scroll;
+    height: calc(100vh - 190px);
+}
+::-webkit-scrollbar {
+    width: 0px;
+}
 .wrapper .container .btn{
     display: flex;
     justify-content: space-around;

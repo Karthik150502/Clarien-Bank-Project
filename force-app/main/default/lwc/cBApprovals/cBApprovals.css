@@ -1,0 +1,67 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+.header {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.container .approval-table {
+    margin: 10% 0 0 0;
+}
+.container .approval-table thead {
+    border-top: 1px solid var(--light-grey);
+    border-bottom: 1px solid var(--light-grey);
+    height: 70px;
+}
+.container .approval-table tbody tr {
+    height: 50px;
+}
+
+.container .button {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10% 0 0 0;
+}
+.container .button button {
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+
+.container .button .approved {
+    background-color: var(--primary-blue);
+}
+.container .button .reject {
+    background-color: var(--light-grey);
+}
+
+c-c-b-footer{
+    position: fixed;
+    bottom: 0;
+}

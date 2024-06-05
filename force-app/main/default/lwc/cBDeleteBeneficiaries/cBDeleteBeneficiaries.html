@@ -23,16 +23,15 @@
                     <input type="text" class="search-input" placeholder="Search beneficiaries">
                 </div>
 
-                <template for:each={beneficiaryList} for:item="beneficiary">
-                    <label id={beneficiary.accountNum} key={beneficiary}>
-                        <c-c-b-beneficiary-details 
-                            beneficiary-details={beneficiary}
-                            onselected = {selectedBeneficiary}
-                            beneficiary-action = {beneficiaryAction}
-                        >
-                        </c-c-b-beneficiary-details>
-                    </label>
-                </template>
+                <div class="beneficiaryList">
+                    <template for:each={beneficiaryList} for:item="beneficiary">
+                        <label id={beneficiary.accountNum} key={beneficiary}>
+                            <c-c-b-beneficiary-details beneficiary-details={beneficiary}
+                                onselected={selectedBeneficiary} beneficiary-action={beneficiaryAction}>
+                            </c-c-b-beneficiary-details>
+                        </label>
+                    </template>
+                </div>
             </div>
             <div class="btn">
                 <button class="submit-btn" disabled={disableButton} onclick={handleDelete}>DELETE</button>
@@ -44,9 +43,8 @@
     <c-c-b-session-end></c-c-b-session-end>
 
     <template if:true={confirmModal}>
-        <c-c-b-reusable-confirm-modal
-        onclose={closeConfirmModal}
-        configuration={confirmModalConfiguration}></c-c-b-reusable-confirm-modal>
+        <c-c-b-reusable-confirm-modal onclose={closeConfirmModal}
+            configuration={confirmModalConfiguration}></c-c-b-reusable-confirm-modal>
     </template>
 
 </template>
