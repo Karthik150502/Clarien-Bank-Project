@@ -11,11 +11,20 @@ import { NavigationMixin } from 'lightning/navigation';
 
 import HOME_PAGE from '@salesforce/label/c.CB_Page_Home';
 import PROFILESETTINGS_PAGE from '@salesforce/label/c.CB_Page_Profilesettings';
+import { setMobileSessionStorage, getMobileSessionStorage } from 'c/cBUtilities';
 
 export default class CBFooter extends NavigationMixin(LightningElement) {
 
     // Variable to hold the current page reference
     currPageReference = null;
+    segmentRets = ''
+
+    connectedCallback() {
+        if (getMobileSessionStorage("SegmentRets")) {
+            this.segmentRets = getMobileSessionStorage("SegmentRets") === 'false'
+        }
+    }
+
 
     // Footer items configuration
     footerItems = {

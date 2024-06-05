@@ -287,7 +287,7 @@ export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
 
     authenticationInProgress() {
         this.authenticationPopup.openModal = true
-        this.authenticationPopup.authenticationStatus = AUTHENTICATION_INPROGRESS_MESSAGE
+        this.authenticationPopup.authenticationStatus = '' //AUTHENTICATION_INPROGRESS_MESSAGE
         this.authenticationPopup.showLoadingAnimation = true
     }
 
@@ -329,6 +329,7 @@ export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
     }
 
     updatePhoneHandler() {
+        console.log('entered update phone');
         this.authenticationInProgress()
         this.reqBody = this.dataMap(this.reqBody, this.jsonPathData);
         console.log('reqbody ', JSON.stringify(this.reqBody));
@@ -346,7 +347,11 @@ export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
                     this.navigateToMyProfileAfterUpdate();
                 }
                 this.modal.yesButton.label = "OK"
-                this.authenticate(this.successGif, AUTHENTICATION_SUCCESSFUL_MESSAGE, true);
+               // this.authenticate(this.successGif, AUTHENTICATION_SUCCESSFUL_MESSAGE, true);
+                setTimeout(() => {
+                    this.authenticationPopup.openModal = false;
+                    this.modalOpen = true
+                }, 1000)
             })
             .catch((error) => {
                 console.log(error);
@@ -357,7 +362,11 @@ export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
                     this.navigateToMyProfileAfterUpdate();
                 }
                 this.modal.yesButton.label = "OK"
-                this.authenticate(this.failureGif, AUTHENTICATION_FAILURE_MESSAGE, true)
+                setTimeout(() => {
+                    this.authenticationPopup.openModal = false;
+                    this.modalOpen = true
+                }, 1000)
+               // this.authenticate(this.failureGif, AUTHENTICATION_FAILURE_MESSAGE, true)
             })
     }
 }

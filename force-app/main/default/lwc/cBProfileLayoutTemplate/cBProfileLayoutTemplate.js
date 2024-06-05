@@ -9,6 +9,11 @@
 
 import { LightningElement, api, wire, track } from 'lwc';
 
+
+import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSuccess';
+import AUTHENTICATION_SUCCESSFUL_MESSAGE from '@salesforce/label/c.CB_Authentication_Successful';
+
+
 import LOGIN_FLOW_IMAGES from '@salesforce/resourceUrl/LoginFlowImages'
 // import CBSVG from "@salesforce/resourceUrl/profileLayoutTemplateSVG";
 import CBSVG from "@salesforce/resourceUrl/CBSVG";
@@ -149,6 +154,21 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
         MAKE_A_REQUEST,
         OPEN_AN_Account
     };
+
+    // Authentication Status Modal initial configuration
+    @track authenticationPopup = {
+        // Initial Authentication Status message
+        authenticationStatus: AUTHENTICATION_SUCCESSFUL_MESSAGE,
+        // Authentication Status GIF
+        authenticationSpinnergif: this.successGif,
+        // Authentication Status open or close status
+        openModal: false,
+        // Authentication loading animation visibility
+        showLoadingAnimation: true
+    }
+    successGif = CB_AUTHENTICATION_SUCCESS
+
+
 
     //SVG's from static resource
     CBCardServices = `${CBSVG}/CBSVGs/CBCardServices.svg#CBCardServices`;
@@ -312,12 +332,26 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
 
     // Navigation method to navigate to update phone page
     navigateToUpdatePhone() {
-        this.navigateToPage(UPDATEPHONE_PAGE, { 'email': this.metaInfo.email, 'phone': this.metaInfo.phone });
+        this.authenticationPopup.openModal = true
+        console.log('Modal Load');
+        setTimeout(() => {
+            this.authenticationPopup.openModal = false;
+            console.log('Modal unload');
+            this.navigateToPage(UPDATEPHONE_PAGE, { 'email': this.metaInfo.email, 'phone': this.metaInfo.phone });
+        }, 500)
+        
     }
 
     // Navigation method to navigate to update email page
     navigateToUpdateEmail() {
-        this.navigateToPage(UPDATEEMAIL_PAGE, { 'email': this.metaInfo.email, 'phone': this.metaInfo.phone });
+        this.authenticationPopup.openModal = true
+        console.log('Modal Load');
+        setTimeout(() => {
+            this.authenticationPopup.openModal = false;
+            console.log('Modal unload');
+            this.navigateToPage(UPDATEEMAIL_PAGE, { 'email': this.metaInfo.email, 'phone': this.metaInfo.phone });
+        }, 500)
+        
     }
 
     // Navigation method to navigate to Online Activities

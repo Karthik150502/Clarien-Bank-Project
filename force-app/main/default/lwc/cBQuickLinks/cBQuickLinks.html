@@ -13,94 +13,6 @@
                 <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
             </div>
             <div class="quick-links">
-                <div class="icon-box" onclick={navigateToSendMoney}>
-                    <div class="icon-svg">
-                        <svg width="53" height="31" viewBox="0 0 53 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBSendMoney}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.SEND_MONEY}</p>
-                </div>
-                <div class="icon-box">
-                    <div class="icon-svg">
-                        <svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBQRCode}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.QR_CODE}</p>
-                </div>
-                <div class="icon-box" onclick={navigateToBillPayments}>
-                    <div class="icon-svg">
-                        <svg width="39" height="41" viewBox="0 0 39 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBBillPayments}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.BILL_PAYMENTS}</p>
-                </div>
-                <div class="icon-box">
-                    <div class="icon-svg">
-                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBApprovals}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.APPROVALS}</p>
-                </div>
-                <div class="icon-box">
-                    <div class="icon-svg">
-                        <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBCreditCards}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.CREDIT_CARDS}</p>
-                </div>
-                <div class="icon-box">
-                    <div class="icon-svg" onclick={navigateToInvestmentProfile}>
-                        <svg width="43" height="34" viewBox="0 0 43 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBInvestmentProfiles}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.INVESTMENT_PROFILES}</p>
-                </div>
-                <div class="icon-box" onclick={navigateToAccountStatements}>
-                    <div class="icon-svg">
-                        <svg width="31" height="41" viewBox="0 0 31 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBAccountStatements}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.ACCOUNT_STATEMENTS}</p>
-                </div>
-                <div class="icon-box" onclick={navigateToApplyForLoans}>
-                    <div class="icon-svg">
-                        <svg width="43" height="28" viewBox="0 0 43 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBApplyForLoans}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.APPLY_FOR_LOANS}</p>
-                </div>
-                <div class="icon-box" onclick={navigateToAdHocPayments}>
-                    <div class="icon-svg">
-                        <svg width="46" height="21" viewBox="0 0 46 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBAdHocPayment}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.ADHOC_PAYMENTS}</p>
-                </div>
-                <div class="icon-box"  onclick={navigateToOpenAnAccount}>
-                    <div class="icon-svg">
-                        <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBServiceRequest}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.OPEN_AN_ACCOUNT}</p>
-                </div>
-                <div class="icon-box" onclick={navigateToBankAccounts}>
-                    <div class="icon-svg">
-                        <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBBankAccounts}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.BANK_ACCOUNTS}</p>
-                </div>
                 <div class="icon-box">
                     <div class="icon-svg">
                         <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -111,12 +23,116 @@
                 </div>
                 <div class="icon-box">
                     <div class="icon-svg">
-                        <svg width="38" height="36" viewBox="0 0 38 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBOffers}></use>
+                        <svg width="36" height="37" viewBox="0 0 36 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBQRCode}></use>
                         </svg>
                     </div>
-                    <p class="icon-label">{label.OFFERS}</p>
+                    <p class="icon-label">{label.QR_CODE}</p>
                 </div>
+                <div class="icon-box" onclick={navigateToSendMoney}>
+                    <div class="icon-svg">
+                        <svg width="53" height="31" viewBox="0 0 53 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBSendMoney}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.SEND_MONEY}</p>
+                </div>
+                <div class="icon-box" onclick={navigateToBillPayments}>
+                    <div class="icon-svg">
+                        <svg width="39" height="41" viewBox="0 0 39 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBBillPayments}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.BILL_PAYMENTS}</p>
+                </div>
+                <div class="icon-box" onclick={navigateToApplyForLoans}>
+                    <div class="icon-svg">
+                        <svg width="43" height="28" viewBox="0 0 43 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBApplyForLoans}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.APPLY_FOR_LOANS}</p>
+                </div>
+                <div class="icon-box" onclick={navigateToAccountStatements}>
+                    <div class="icon-svg">
+                        <svg width="31" height="41" viewBox="0 0 31 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBAccountStatements}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.ACCOUNT_STATEMENTS}</p>
+                </div>
+                <div class="icon-box" onclick={navigateToAdHocPayments}>
+                    <div class="icon-svg">
+                        <svg width="46" height="21" viewBox="0 0 46 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBAdHocPayment}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.ADHOC_PAYMENTS}</p>
+                </div>
+                <div class="icon-box" onclick={navigateToOpenAnAccount}>
+                    <div class="icon-svg">
+                        <!-- <svg width="34" height="35" viewBox="0 0 34 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBServiceRequest}></use>
+                        </svg> -->
+                        <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M31.89 63.78C49.5024 63.78 63.78 49.5023 63.78 31.89C63.78 14.2776 49.5024 0 31.89 0C14.2776 0 0 14.2776 0 31.89C0 49.5023 14.2776 63.78 31.89 63.78Z"
+                                fill="#E3EFF8" />
+                            <g clip-path="url(#clip0_6319_9261)">
+                                <path
+                                    d="M31.9725 32.4003C34.5003 32.4003 36.5384 30.3469 36.5384 27.8002C36.5384 25.2535 34.5003 23.2001 31.9725 23.2001C29.4447 23.2001 27.4065 25.2535 27.4065 27.8002C27.4065 30.3469 29.4447 32.4003 31.9725 32.4003ZM31.9725 24.754C33.6373 24.754 34.9961 26.123 34.9961 27.8002C34.9961 29.4774 33.6373 30.8464 31.9725 30.8464C30.3077 30.8464 28.9489 29.4774 28.9489 27.8002C28.9489 26.123 30.3077 24.754 31.9725 24.754Z"
+                                    fill="#F68A33" />
+                                <path
+                                    d="M47.274 38.8688C45.1134 36.692 42.5856 35.0148 39.7456 33.8925L39.868 33.7692C40.1741 33.4609 40.1741 33.0231 39.9292 32.7148L38.5705 31.0375C38.6929 30.7292 38.8153 30.4147 38.9377 30.1064L41.0371 29.8598C41.4043 29.7981 41.7165 29.4898 41.7165 29.1136V26.3141C41.7165 25.9442 41.4104 25.568 41.0371 25.568L38.9377 25.3214C38.8153 25.013 38.6929 24.6986 38.5705 24.3902L39.9292 22.713C40.1741 22.4047 40.1741 21.9669 39.868 21.6586L37.8911 19.6668C37.585 19.3585 37.1505 19.3585 36.8444 19.6052L35.1796 20.9741C34.8736 20.8508 34.5615 20.7275 34.2554 20.6041L34.133 18.6124C34.0718 18.2363 33.7658 17.9279 33.3924 17.9279H30.6137C30.2403 17.9279 29.8731 18.2363 29.8731 18.6124L29.6282 20.7275C29.3222 20.8508 29.0101 20.9741 28.704 21.0974L27.0392 19.7285C26.7332 19.4819 26.2986 19.4819 25.9926 19.7902L24.0156 21.7819C23.7096 22.0902 23.7096 22.528 23.9544 22.8363L25.3132 24.5136C25.1908 24.8219 25.0684 25.1364 24.9399 25.4447L22.8405 25.6297C22.4733 25.6913 22.1611 25.9997 22.1611 26.3758V29.1753C22.1611 29.5453 22.4671 29.9214 22.8405 29.9214L24.9399 30.1681C25.0623 30.4764 25.1847 30.7909 25.3132 31.0992L23.9544 32.7764C23.7096 33.0847 23.7096 33.5226 24.0156 33.8309L24.2605 34.0775C20.6799 35.5081 17.5339 37.9315 15.1285 41.0393C15.0673 41.1626 15.0061 41.3476 15.0061 41.4771V48.1922C15.0061 48.63 15.3733 49 15.8079 49H48.2043C48.6389 49 49.0061 48.6239 49.0061 48.1922V41.4771C49.0061 41.2921 48.9449 41.1688 48.8225 40.9776C48.2655 40.3548 47.9595 39.6087 47.2801 38.8626L47.274 38.8688ZM23.7035 28.4847V27.1158L25.6131 26.9308C25.9192 26.8691 26.2313 26.6841 26.2925 26.3696C26.4149 25.8702 26.6597 25.3152 26.9107 24.8774C27.0943 24.5691 27.0331 24.2546 26.8495 24.0079L25.6131 22.454L26.5985 21.4612L28.1409 22.7068C28.3858 22.8918 28.7591 22.9535 29.0039 22.7685C29.4997 22.4602 29.9894 22.269 30.4851 22.1457C30.7912 22.084 31.0421 21.7757 31.0421 21.4612L31.2257 19.5312H32.5845L32.7681 21.4612C32.8293 21.7696 33.0129 22.084 33.3251 22.1457C33.8209 22.269 34.3717 22.454 34.8063 22.7685C35.1123 22.9535 35.4245 22.8918 35.6693 22.7068L37.2117 21.4612L38.1971 22.454L36.9607 24.0079C36.7771 24.2546 36.7159 24.6307 36.8995 24.8774C37.2056 25.3769 37.3953 25.8702 37.5177 26.3696C37.5789 26.6779 37.885 26.9308 38.1971 26.9308L40.1129 27.1158V28.4847L38.1971 28.6697C37.8911 28.7313 37.5789 28.9163 37.5177 29.2308C37.3953 29.7303 37.2117 30.2852 36.8995 30.7231C36.7159 31.0314 36.7771 31.3458 36.9607 31.5925L38.1971 33.1464L37.2117 34.1392L35.6693 32.8936C35.4245 32.7086 35.0511 32.6469 34.8063 32.8319C34.3105 33.1402 33.8209 33.3314 33.3251 33.4547C33.0191 33.5164 32.7681 33.8247 32.7681 34.1392L32.5845 36.0692H31.2257L31.0421 34.1392C30.9809 33.8309 30.7973 33.5164 30.4851 33.4547C29.9894 33.3314 29.4385 33.0786 29.0039 32.8319C28.6979 32.6469 28.3858 32.7086 28.1409 32.8936L26.5985 34.1392L25.6131 33.1464L26.8495 31.5925C27.0331 31.3458 27.0943 30.9697 26.9107 30.7231C26.6047 30.2236 26.4149 29.7303 26.2925 29.2308C26.2313 28.9225 25.9192 28.6697 25.6131 28.6697L23.7035 28.4847ZM47.3964 47.4461H42.7692V41.9766C42.7692 41.5388 42.402 41.1688 41.9674 41.1688C41.5328 41.1688 41.1656 41.5388 41.1656 41.9766V47.4461H22.6507V41.9766C22.6507 41.5388 22.2835 41.1688 21.8489 41.1688C21.4144 41.1688 21.1696 41.6066 21.1696 42.0382V47.5078H16.5424V41.7854C18.8254 38.8626 21.8489 36.5626 25.4907 35.2553L25.9865 35.7548C26.2925 36.0631 26.7271 36.0631 27.0331 35.8164L28.6979 34.4475C29.0039 34.5708 29.3161 34.6942 29.6221 34.8175L29.867 36.9325C29.9282 37.3025 30.2342 37.617 30.6075 37.617H33.3863C33.7597 37.617 34.1269 37.3087 34.1269 36.9325L34.3717 34.8175C34.6778 34.6942 34.9899 34.5708 35.2959 34.4475L36.9607 35.8164C37.2668 36.0631 37.7013 36.0631 38.0074 35.7548L38.6255 35.132C41.5267 36.1247 44.0545 37.7403 46.2763 39.9787C46.7721 40.4782 47.0169 41.101 47.5127 41.7176L47.3903 47.4399L47.3964 47.4461Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M48.1982 17.3545C47.274 17.3545 46.4722 16.5467 46.4722 15.6156C46.4722 15.1778 46.0988 14.8078 45.6704 14.8078H35.0572C34.6227 14.8078 34.2554 15.1839 34.2554 15.6156C34.2554 16.0472 34.6227 16.4234 35.0572 16.4234H44.991C45.297 17.6073 46.2274 18.5384 47.3964 18.8467V33.5164C47.3964 33.9542 47.7697 34.3242 48.1982 34.3242C48.6266 34.3242 49 33.9542 49 33.5164V18.1006C48.9388 17.6628 48.5654 17.3545 48.1982 17.3545Z"
+                                    fill="#0283E1" />
+                                <path
+                                    d="M44.3116 18.7234H40.425C39.9905 18.7234 39.6232 19.0934 39.6232 19.5312C39.6232 19.969 39.9905 20.339 40.425 20.339H44.3116C44.7462 20.339 45.1134 19.9628 45.1134 19.5312C45.1134 19.0317 44.7462 18.7234 44.3116 18.7234Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M42.0286 22.5773H43.571C44.0056 22.5773 44.3728 22.2074 44.3728 21.7695C44.3728 21.3317 44.0056 20.9618 43.571 20.9618H42.0286C41.594 20.9618 41.2268 21.3317 41.2268 21.7695C41.2268 22.269 41.6002 22.5773 42.0286 22.5773Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M45.1134 23.3851H42.0286C41.594 23.3851 41.2268 23.7613 41.2268 24.1929C41.2268 24.6246 41.6002 25.0007 42.0286 25.0007H45.1134C45.548 25.0007 45.9152 24.6307 45.9152 24.1929C45.854 23.6934 45.4806 23.3851 45.1134 23.3851Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M46.6558 26.4991C46.6558 26.0613 46.2886 25.6913 45.854 25.6913H43.5098C43.0752 25.6913 42.708 26.0613 42.708 26.4991C42.708 26.9369 43.0752 27.3069 43.5098 27.3069H45.854C46.2886 27.2452 46.6558 26.9369 46.6558 26.4991Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M15.7406 31.1608C15.7406 32.4681 16.7872 33.5225 18.0848 33.5225C19.3824 33.5225 20.429 32.4681 20.429 31.1608C20.429 29.8536 19.3824 28.7991 18.0848 28.7991C16.7872 28.7991 15.7406 29.8536 15.7406 31.1608ZM18.8254 31.1608C18.8254 31.5987 18.4582 31.9686 18.0236 31.9686C17.589 31.9686 17.2218 31.5925 17.2218 31.1608C17.2218 30.7292 17.5951 30.3531 18.0236 30.3531C18.452 30.3531 18.8254 30.7292 18.8254 31.1608Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M19.6272 18.7234C20.9247 18.7234 21.9101 17.669 21.9101 16.3617C21.9101 15.0544 20.8635 14 19.6272 14C18.3908 14 17.283 15.0544 17.283 16.3617C17.283 17.669 18.3296 18.7234 19.6272 18.7234ZM19.6272 15.6156C20.0617 15.6156 20.429 15.9856 20.429 16.4234C20.429 16.8612 20.0556 17.2311 19.6272 17.2311C19.1987 17.2311 18.8254 16.8612 18.8254 16.4234C18.8254 15.9239 19.1987 15.6156 19.6272 15.6156Z"
+                                    fill="#F58027" />
+                                <path
+                                    d="M43.571 31.1608C43.571 31.5987 43.9444 31.9686 44.3728 31.9686C44.8013 31.9686 45.1746 31.5925 45.1746 31.1608C45.1746 30.7292 44.8013 30.3531 44.3728 30.3531C43.9444 30.3531 43.571 30.7292 43.571 31.1608Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M20.3678 24.1313C20.3678 24.5691 20.735 24.939 21.1696 24.939C21.6042 24.939 21.9102 24.5629 21.9102 24.1313C21.9102 23.6996 21.5368 23.3235 21.1696 23.3235C20.735 23.3851 20.3678 23.6996 20.3678 24.1313Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M15.7406 21.8312C16.1752 21.8312 16.5424 21.4612 16.5424 21.0234C16.5424 20.5856 16.169 20.2156 15.7406 20.2156C15.3122 20.2156 15 20.5918 15 21.0234C15 21.4551 15.3672 21.8312 15.7406 21.8312Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M26.5373 16.3617C26.9719 16.3617 27.3391 15.9856 27.3391 15.5539C27.3391 15.1223 26.9658 14.7461 26.5373 14.7461C26.1089 14.7461 25.7355 15.1161 25.7355 15.5539C25.7967 16.0534 26.164 16.3617 26.5373 16.3617Z"
+                                    fill="#035B9B" />
+                                <path
+                                    d="M15.7406 36.5687C16.1752 36.5687 16.5424 36.1987 16.5424 35.7609C16.5424 35.3231 16.169 34.9531 15.7406 34.9531C15.3122 34.9531 15 35.3909 15 35.8226C15 36.2542 15.3672 36.5687 15.7406 36.5687Z"
+                                    fill="#035B9B" />
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6319_9261">
+                                    <rect width="34" height="35" fill="white" transform="translate(15 14)" />
+                                </clipPath>
+                            </defs>
+                        </svg>
+
+                    </div>
+                    <p class="icon-label">{label.OPEN_AN_ACCOUNT}</p>
+                </div>
+
                 <div class="icon-box">
                     <div class="icon-svg">
                         <svg width="31" height="33" viewBox="0 0 31 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,6 +141,50 @@
                     </div>
                     <p class="icon-label">{label.ACCOUNTS_AND_DEPOSITS}</p>
                 </div>
+
+                <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="38" height="36" viewBox="0 0 38 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBOffers}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.OFFERS}</p>
+                </div>
+
+                <div class="icon-box" onclick={navigateToApprovals}>
+                    <div class="icon-svg">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBApprovals}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.APPROVALS}</p>
+                </div>
+                <div class="icon-box">
+                    <div class="icon-svg" onclick={navigateToInvestmentProfile}>
+                        <svg width="43" height="34" viewBox="0 0 43 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBInvestmentProfiles}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.INVESTMENT_PROFILES}</p>
+                </div>
+
+                <!-- <div class="icon-box">
+                    <div class="icon-svg">
+                        <svg width="40" height="29" viewBox="0 0 40 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBCreditCards}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.CREDIT_CARDS}</p>
+                </div>
+                <div class="icon-box" onclick={navigateToBankAccounts}>
+                    <div class="icon-svg">
+                        <svg width="33" height="34" viewBox="0 0 33 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <use href={CBBankAccounts}></use>
+                        </svg>
+                    </div>
+                    <p class="icon-label">{label.BANK_ACCOUNTS}</p>
+                </div>
+
                 <div class="icon-box" onclick={navigateToChequebookServices}>
                     <div class="icon-svg">
                         <svg width="34" height="33" viewBox="0 0 34 33" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +200,7 @@
                         </svg>
                     </div>
                     <p class="icon-label">{label.ENABLE_DISABLE_BIOMETRIC}</p>
-                </div>
+                </div> -->
             </div>
         </div>
         <c-c-b-footer></c-c-b-footer>

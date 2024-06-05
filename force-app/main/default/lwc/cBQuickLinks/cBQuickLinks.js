@@ -156,8 +156,9 @@ export default class CBQuickLinks extends NavigationMixin(LightningElement) {
     navigateToAdHocPayments() {
         this.navigateTo('CBAdHocPayments__c')
     }
-
-
+    navigateToApprovals() {
+        this.navigateTo('CBApprovals__c')
+    }
     navigateToBankAccounts() {
         this.navigateTo('CBFavoriteAccounts__c')
     }

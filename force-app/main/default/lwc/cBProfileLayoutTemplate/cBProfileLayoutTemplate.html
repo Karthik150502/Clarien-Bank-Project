@@ -381,4 +381,10 @@
     <template if:true={modalOpen}>
         <c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
     </template>
+    <template if:true={authenticationPopup.openModal}>
+        <c-c-b-authentication-result status={authenticationPopup.authenticationStatus}
+            loading-gif={authenticationPopup.authenticationSpinnergif}
+            is-loading={authenticationPopup.showLoadingAnimation}>
+        </c-c-b-authentication-result>
+    </template>
 </template>

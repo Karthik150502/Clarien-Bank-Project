@@ -26,25 +26,25 @@ export default class CBIntraBankBeneficiary extends NavigationMixin(LightningEle
             name: 'Rohit',
             accountType : 'Current',
             status : true
-        // },
-        // {
-        //     accountNum : 604567899,
-        //     name: 'Robin',
-        //     accountType : 'Saving',
-        //     status : false
-        // },
-        // {
-        //     accountNum : 604567810,
-        //     name: 'Kartik',
-        //     accountType : 'Saving',
-        //     status : false
-        // }
-        // ,
-        // {
-        //     accountNum : 604567711,
-        //     name: 'Prateek',
-        //     accountType : 'Current',
-        //     status : true
+        },
+        {
+            accountNum : 604567899,
+            name: 'Robin',
+            accountType : 'Saving',
+            status : false
+        },
+        {
+            accountNum : 604567810,
+            name: 'Kartik',
+            accountType : 'Saving',
+            status : false
+        }
+        ,
+        {
+            accountNum : 604567711,
+            name: 'Prateek',
+            accountType : 'Current',
+            status : true
         }
     ]
 
