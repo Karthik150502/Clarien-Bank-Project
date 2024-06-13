@@ -8,44 +8,44 @@ export default class CBIntraBankBeneficiary extends NavigationMixin(LightningEle
     ]
 
     beneficiaryList = [
-        {
-            accountNum : 604567894,
-            name: 'Kumaran',
-            accountType : 'Saving',
-            status : true
-        },
-        {
-            accountNum : 604567885,
-            name: 'Raju',
-            accountType : 'Saving',
-            status : false
-        }
-        ,
+        // {
+        //     accountNum : 604567894,
+        //     name: 'Kumaran',
+        //     accountType : 'Saving',
+        //     status : true
+        // },
+        // {
+        //     accountNum : 604567885,
+        //     name: 'Raju',
+        //     accountType : 'Saving',
+        //     status : false
+        // }
+        // ,
         {
             accountNum : 604567796,
-            name: 'Rohit',
+            name: 'John',
             accountType : 'Current',
             status : true
         },
         {
             accountNum : 604567899,
-            name: 'Robin',
+            name: 'Walter',
             accountType : 'Saving',
             status : false
         },
         {
             accountNum : 604567810,
-            name: 'Kartik',
+            name: 'Qian',
             accountType : 'Saving',
             status : false
         }
-        ,
-        {
-            accountNum : 604567711,
-            name: 'Prateek',
-            accountType : 'Current',
-            status : true
-        }
+        // ,
+        // {
+        //     accountNum : 604567711,
+        //     name: 'Prateek',
+        //     accountType : 'Current',
+        //     status : true
+        // }
     ]
 
     navigateToDeleteBeneficiary(){

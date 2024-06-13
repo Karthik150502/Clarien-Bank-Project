@@ -8,6 +8,7 @@
 // Ṣalesforce Plugins and variables
 import { LightningElement, track, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { CurrentPageReference } from 'lightning/navigation';
 
 
 // Static Resources
@@ -17,6 +18,9 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 // Apex Classes
 import login from '@salesforce/apex/CBLoginController.login'
 import fetchExchangeRate from "@salesforce/apex/CBApiController.fetchExchangeRate";
+
+import doLoginStd from '@salesforce/apex/CBLoginController.doLoginStd'
+
 
 // JS Scripts
 import { getJsonData, dateToTimestamp, setMobileSessionStorage, getMobileSessionStorage, getLocalStorage, setLocalStorage, removeLocalStorage } from 'c/cBUtilities';
@@ -157,25 +161,19 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
         },
     }
 
-    /**
- * Wire apex methods
- *
- * @return {void}
- * @param {String} payload - The API payload
- * @param {String} metadataName - The API name for the API metadata object
-*/
-    @wire(fetchExchangeRate, { reqWrapper: { metadataName: 'CB_GET_Exchange_Rates' } })
-    exchangeRateHandler({ data, error }) {
-        if (data) {
-            this.exchangeRates = JSON.parse(data).fxRateList
-            setMobileSessionStorage('CBExchangeRates', JSON.parse(data).fxRateList)
-            console.log(data)
-            this.exchangeRatesLoaded = true
-        } else {
-            console.log(error);
-        }
-    }
 
+    getExchangeRates() {
+        fetchExchangeRate({ reqWrapper: { metadataName: 'CB_GET_Exchange_Rates' } })
+            .then((result) => {
+                this.exchangeRates = JSON.parse(result).fxRateList
+                setMobileSessionStorage('CBExchangeRates', JSON.parse(result).fxRateList)
+                console.log(result)
+                this.exchangeRatesLoaded = true
+            }).catch(error => {
+                this.exchangeRatesLoaded = false
+                console.log(error);
+            })
+    }
 
 
     /**
@@ -409,6 +407,9 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
     */
     openExchangeRates() {
         this.openPopOvers('exchangeRates')
+        if (!this.exchangeRatesLoaded) {
+            this.getExchangeRates()
+        }
     }
 
 
@@ -549,10 +550,19 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
         return (this.username === '' || this.password === '' || this.username.includes(' ') || this.password.includes(' '));
     }
 
+    startUrl = '';
+    @wire(CurrentPageReference) getPageRef(pagRef) {
+        if (pagRef != null) {
+            console.log('pagRef : ', pagRef);
+            this.startUrl = pagRef["state"]["startURL"];
+            console.log('startr url : ', this.startUrl);
+        }
+    }
+
     //The doLogin() should be called when pressed on 'SUBMIT' button.
     doLogin(event) {
         event.preventDefault();
-
+        event.stopPropagation();
         this.authenticationInProgress(AUTHENTICATION_INPROGRESS_MESSAGE)
 
         this.signInPayload = this.mapTheData(this.signInPayload, this.signInJsonPaths);
@@ -565,29 +575,34 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
             headers: ''  // Provide metadata name
         };
 
-        login({ wrapper: requestWrapper })
+        /* doLoginStd({un: this.username, pwd: this.password, startUrl:this.startUrl}).then(result=>{
+             window.location.href = result;
+ 
+         }).catch(error=>{
+             console.log(error);
+         })*/
+
+        login({ wrapper: requestWrapper,startURL: this.startURL })
             .then((result) => {
+                console.log('url : ', result.loginUrl);
+                //window.location.href = result.loginUrl;
                 this.isRememberMe();
+                setLocalStorage('CBFirstHomeLanding', true)
+
                 if (result?.customerName) {
                     setMobileSessionStorage('CustomerName', result?.customerName)
-                    console.log(getMobileSessionStorage('CustomerName'));
                 }
 
                 if (result?.lastLogin) {
                     setMobileSessionStorage('LastLogin', result?.lastLogin)
-                    console.log(getMobileSessionStorage('LastLogin'));
                 }
 
-                if (result?.segmentRets) {
-                    setMobileSessionStorage('SegmentRets', result?.segmentRets)
-                    console.log(getMobileSessionStorage('SegmentRets'));
-                }
+                setMobileSessionStorage('isIronKidsAccount', result?.segmentRets)
+                console.log('Segment Rets = ' + setMobileSessionStorage('isIronKidsAccount', result?.segmentRets))
 
 
                 setMobileSessionStorage('CBUsername', this.username)
-                console.log(getMobileSessionStorage('CBUsername'));
                 setMobileSessionStorage('CBPassword', this.password)
-                console.log(getMobileSessionStorage('CBPassword'));
 
                 this.handleAuthenticationSuccess(result.loginUrl, result.forcePwdChangeFlag);
                 console.log('OUTPUT : ', result);

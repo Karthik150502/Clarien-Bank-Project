@@ -7,15 +7,15 @@ export default class CBDeleteBeneficiaries extends NavigationMixin(LightningElem
 
     @wire(CurrentPageReference) pageRef;
 
-    connectedCallback(){
-        console.log('Page Ref',this.pageRef);
-        console.log('Page Ref State',this.pageRef.state.benefList);
+    connectedCallback() {
+        console.log('Page Ref', this.pageRef);
+        console.log('Page Ref State', this.pageRef.state.benefList);
         this.beneficiaryList = JSON.parse(this.pageRef.state.benefList);
         console.log(JSON.stringify(this.beneficiaryList));
     }
 
     confirmModal = false
-    
+
     configuration = {
         previousPageUrl: '',
         heading: 'Delete Beneficiaries',
@@ -28,31 +28,65 @@ export default class CBDeleteBeneficiaries extends NavigationMixin(LightningElem
         }
     }
 
-    @track confirmModalConfiguration={
-        logo : true,
-        message : ' Are you sure do you want to delete beneficiaries?',
-        navigateTo : this.navigateTo()
+    @track confirmModalConfiguration = {
+        logo: true,
+        message: ' Are you sure do you want to delete beneficiaries?'
     }
 
-    beneficiaryAction ={
-        delete:true,
-        detailView:false
+    successfullyDeleted(){
+        this.confirmModal = false
+        this.modalOpen = true;
     }
+
+    modalOpen = false;
+    /**
+    * Metadata for the Phone Update modal.
+    */
+    @track modal = {
+        title: '',
+        message: 'Beneficiaries deleted succesfully.',
+        yesButton: {
+            exposed: true,
+            label: "OK",
+            // Implementation for the "OK" button click action.
+            implementation: () => {
+                this.modalOpen = false;
+                this.navigateBack()
+            }
+        },
+        noButton: {
+            exposed: false,
+            label: "Not",
+            //Implementation for the "Not" button click action.
+            implementation: () => {
+                console.log('no');
+                this.modalOpen = false;
+            }
+        }
+    };
     
-    beneficiaryList = [ ]
+    navigateBack(){
+        history.back();
+    }
+    beneficiaryAction = {
+        delete: true,
+        detailView: false
+    }
+
+    beneficiaryList = []
 
     beneficiarySelected = []
-    get disableButton(){
-        this.beneficiarySelected.length<1
+    get disableButton() {
+        this.beneficiarySelected.length < 1
     }
-    selectedBeneficiary(event){
-        if(this.beneficiarySelected.includes(event.detail.accountNum)){
+    selectedBeneficiary(event) {
+        if (this.beneficiarySelected.includes(event.detail.accountNum)) {
             this.beneficiarySelected.pop(event.detail.accountNum)
         }
-        else{
+        else {
             this.beneficiarySelected.push(event.detail.accountNum)
         }
-        console.log(this.beneficiarySelected.length,this.beneficiarySelected.length<1);
+        console.log(this.beneficiarySelected.length, this.beneficiarySelected.length < 1);
         console.log(JSON.stringify(this.beneficiarySelected));
     }
 
@@ -60,7 +94,7 @@ export default class CBDeleteBeneficiaries extends NavigationMixin(LightningElem
     //     console.log('Intra called');
     //     this.navigateTo('CBIntraBankBeneficiary__c')
     // }
-    
+
     // navigateToDomesticBeneficiary(){
     //     console.log('Domestic Called');
     //     this.navigateTo('CBDomesticBeneficiary__c')
@@ -79,14 +113,14 @@ export default class CBDeleteBeneficiaries extends NavigationMixin(LightningElem
             }
         });
     }
-    
-    handleDelete(event){
+
+    handleDelete(event) {
         event.preventDefault()
         console.log("Delete Called");
         this.confirmModal = true
     }
 
-    closeConfirmModal(){
+    closeConfirmModal() {
         this.confirmModal = false
     }
 }

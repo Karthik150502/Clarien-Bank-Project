@@ -48,12 +48,12 @@
                 </div>
             </div>
         </div>
+        <template if:false={isDataLoading}>
+            <c-c-b-loading-spinner-2>
+            </c-c-b-loading-spinner-2>
+        </template>
     </section>
-    <!-- 
-    <template if:true={isPageLoading}>
-		<c-c-b-loading-spinner>
-		</c-c-b-loading-spinner>
-	</template> -->
+
 
 
 </template>

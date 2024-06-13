@@ -15,7 +15,7 @@ import LOGOUT_CONFIRM_MESSAGE from '@salesforce/label/c.CB_Logout_Confirm_Messag
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
 // JS Scripts
-import { logout } from 'c/cBUtilities';
+import { logout, getMobileSessionStorage } from 'c/cBUtilities';
 
 
 import ALERT_PAGE from '@salesforce/label/c.CB_Page_Alert';
@@ -24,7 +24,7 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
 
     // Exposed properties to be passed from parent components
     @api imageSrc = '';
-    @api imageName = '';
+    imageName = '';
     init = '';
     //flag to hide the logout modal
     modalOpen = false;
@@ -65,7 +65,8 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
     * @returns {void}
     */
     connectedCallback() {
-
+        this.imageName = getMobileSessionStorage('CustomerName');
+        this.loadNameInit();
     }
 
 
@@ -75,6 +76,9 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
      * @returns {void}
      */
     loadNameInit() {
+        if(!this.imageName) {
+            return;
+        }
         let wrds = this.imageName.split(/\s+/);
         wrds.forEach(element => {
             this.init += element.charAt(0).toUpperCase();

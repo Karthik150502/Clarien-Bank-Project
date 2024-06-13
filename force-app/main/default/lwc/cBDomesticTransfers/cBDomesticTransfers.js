@@ -2,13 +2,14 @@ import { LightningElement } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';
 import CONTINUE from '@salesforce/label/c.CB_Continue';
-import CANCEL from '@salesforce/label/c.CB_Cancel';
+
+import { setPagePath } from 'c/cBUtilities';
+
 export default class CBDomesticTransfers extends NavigationMixin(LightningElement) {
 
     // Object to hold imported labels
     label = {
         CONTINUE: CONTINUE.toUpperCase(), // Converting "Submit" label to uppercase
-        CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
     };
 
 
@@ -26,6 +27,11 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
             selected: false
         }
     }
+
+    connectedCallback() {
+        this.headerConfguration.previousPageUrl = setPagePath('CBInbox__c')
+    }
+
     recurringTransfer = false
     amount = ''
     toAccount = ''
@@ -71,6 +77,47 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
         },
     ]
 
+    toAccountsList = [
+        {
+            accountNum: 604567894,
+            name: 'Kumaran',
+            accountType: 'Saving',
+            status: true
+        },
+        {
+            accountNum: 604567885,
+            name: 'Raju',
+            accountType: 'Saving',
+            status: false
+        }
+        ,
+        {
+            accountNum: 604567796,
+            name: 'Rohit',
+            accountType: 'Current',
+            status: true
+        },
+        {
+            accountNum: 604567899,
+            name: 'Robin',
+            accountType: 'Saving',
+            status: false
+        },
+        {
+            accountNum: 604567810,
+            name: 'Kartik',
+            accountType: 'Saving',
+            status: false
+        }
+        ,
+        {
+            accountNum: 604567711,
+            name: 'Prateek',
+            accountType: 'Current',
+            status: true
+        }
+    ]
+
     banks = [
         {
             "id": '51561',
@@ -82,20 +129,23 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
         },
     ]
 
-    recurringTransferHandler() {
-        this.recurringTransfer = !this.recurringTransfer
-    }
-
     handleAmount(event) {
         this.amount = event.target.value
     }
 
-    handleName(event) {
-        this.name = event.target.value
-    }
+
 
     handleToAccount(event) {
         this.toAccount = event.target.value
+        console.log(this.toAccount);
+        for (let i = 0; i < this.toAccountsList.length; i++) {
+            console.log(this.toAccountsList[i].accountNum)
+            if (this.toAccountsList[i].accountNum == this.toAccount) {
+                console.log(this.toAccountsList[i].name);
+                this.name = this.toAccountsList[i].name;
+                break;
+            }
+        }
     }
 
     handleFromAccount(event) {
@@ -119,15 +169,24 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
 
 
     get disableSubmit() {
-        return this.selectedAccount === 'Select Account' || this.toAccount === '' || this.selectedBank === 'Select Bank' || this.amount === '' || this.date === 'YYYY-MM-DD' || this.name === '' || this.currency === 'Select Currency'
+
+        return this.selectedAccount === 'Select Account' || this.toAccount === 'Select Account' || this.selectedBank === 'Select Bank' || this.amount === '' || this.date === 'YYYY-MM-DD' || this.name === '' || this.currency === 'Select Currency'
     }
 
+    recurringTransferView = false
     handleTransDate(event) {
         this.showTransDatePicker = false
         this.date = event.detail.transDate
-        this.untilDate = event.detail.untilDate
-        this.frequencySelected = event.detail.frequencySelected
-        this.recurringTransfer = event.detail.recurring
+
+        if(event.detail.recurring){
+            this.untilDate = event.detail.untilDate
+            this.frequencySelected = event.detail.frequencySelected != 'End of every month' ? `Every ${event.detail.repeat} ${event.detail.frequencySelected} `: 'End of every month';
+            this.recurringTransfer = event.detail.recurring
+            this.recurringTransferView = true
+        }
+        else{
+            this.recurringTransferView = false
+        }
     }
 
     closeTransDatInput() {
@@ -154,9 +213,6 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
     }
 
 
-    handleCancel() {
-        console.log("Cancel Handled...!")
-    }
     handleSubmit() {
         let comments = this.template.querySelector(".text-area-inp").value
         let data = {

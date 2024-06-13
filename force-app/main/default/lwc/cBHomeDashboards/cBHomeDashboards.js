@@ -22,11 +22,17 @@ import APPLY_FOR_LOANS from '@salesforce/label/c.CB_ApplyForLoans';
 import PAY_BILLS from '@salesforce/label/c.CB_PayBills';
 import SERVICE_REQUEST from '@salesforce/label/c.CB_ServiceRequest';
 import BANK_ACCOUNTS from '@salesforce/label/c.CB_BankAccounts';
+import OPEN_AN_ACCOUNT from '@salesforce/label/c.CB_Open_An_Account';
+import MAKE_A_REQUEST from '@salesforce/label/c.MAKE_A_REQUEST';
+
 import SCAN_AND_PAY from '@salesforce/label/c.CB_ScanAndPay';
 import OFFERS from '@salesforce/label/c.CB_Offers';
 import ACCOUNTS_AND_DEPOSITS from '@salesforce/label/c.CB_AccountsAndDeposits';
 import CHEQUEBOOK_SERVICES from '@salesforce/label/c.CB_ChequebookServices';
 import ENABLE_DISABLE_BIOMETRIC from '@salesforce/label/c.CB_EnableDisableBiometric';
+import ACCOUNTS from '@salesforce/label/c.CB_ACCOUNTS';
+import PROMOTIONS from '@salesforce/label/c.CB_Promotions';
+import StartAGoal from '@salesforce/label/c.CB_StartAGoal';
 
 import QUICKLINKS_PAGE from '@salesforce/label/c.CB_Page_Quicklinks';
 import INVESTMENTPROFILE_PAGE from '@salesforce/label/c.CB_Page_Investmentprofile';
@@ -35,12 +41,22 @@ import ACCOUNTSTATEMENTSEARCH_PAGE from '@salesforce/label/c.CB_Page_AccountStat
 import PromImage from "@salesforce/resourceUrl/PromImage";
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
-import { getMobileSessionStorage, getJsonData, dateToTimestamp, setAllSessData, removeMobileSessionStorage, setLocalStorage, getLocalStorage, getAllSessData } from 'c/cBUtilities';
+import getFavSBAAcctNo from '@salesforce/apex/CBRetCustInqHandler.getFavoriteSBAAccount'
+import getFavSBAAccDetails from '@salesforce/apex/CBGeneralAcctInquiryHandler.getSBAAccount'
+
+
+import { getMobileSessionStorage, dateToTimestamp, getJsonData, setAllSessData, removeMobileSessionStorage, setLocalStorage, getLocalStorage, setPagePath, removeLocalStorage, checkLocalkey, checkSessionkey } from 'c/cBUtilities';
+
+import { getBiometricsService } from 'lightning/mobileCapabilities';
+
 
 export default class CBHomeDashboards extends NavigationMixin(LightningElement) {
     // Labels for dashboard icons
     label = {
+        ACCOUNTS,
         PREDEFINED,
+        PROMOTIONS,
+        StartAGoal,
         OWN_ACC_PAYMENTS,
         INTRABANK_PAYMENTS,
         DOMESTIC_PAYMENTS,
@@ -64,6 +80,8 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
         ACCOUNTS_AND_DEPOSITS,
         CHEQUEBOOK_SERVICES,
         ENABLE_DISABLE_BIOMETRIC,
+        OPEN_AN_ACCOUNT,
+        MAKE_A_REQUEST
     };
 
 
@@ -72,6 +90,12 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
     balance = 1452.45;
     holdBalance = 784.145;
     showViewALl = true
+    isIronKidsAccount = false
+    showConfirmModal1 = false
+    showConfirmModal2 = false
+
+    //variables for RetCustInq
+    CustomerId = '4100000032'
 
     //SVG's from static resource
     CBSendMoney = `${CBSVG}/CBSVGs/CBSendMoney.svg#CBSendMoney`;
@@ -82,6 +106,71 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
     CBInvestmentProfiles = `${CBSVG}/CBSVGs/CBInvestmentProfiles.svg#CBInvestmentProfiles`;
     CBAccountStatements = `${CBSVG}/CBSVGs/CBAccountStatements.svg#CBAccountStatements`;
     CBApplyForLoans = `${CBSVG}/CBSVGs/CBApplyForLoans.svg#CBApplyForLoans`;
+    CBOffers = `${CBSVG}/CBSVGs/CBOffers.svg#CBOffers`;
+    CBAccountsDeposits = `${CBSVG}/CBSVGs/CBAccountsDeposits.svg#CBAccountsDeposits`;
+    CBScanPay = `${CBSVG}/CBSVGs/CBScanPay.svg#CBScanPay`;
+    CBAdHocPayment = `${CBSVG}/CBSVGs/CBAdHocPayment.svg#CBAdHocPayment`;
+
+
+
+
+    confirmModal1 = {
+        title: 'Activate biometric authentication?',
+        message: '',
+        yesButton: {
+            exposed: true,
+            label: 'OK',
+            implementation: () => {
+                this.showConfirmModal1 = false
+                this.showConfirmModal2 = true
+            }
+        },
+        noButton: {
+            exposed: true,
+            label: 'LATER',
+            implementation: () => {
+                this.showConfirmModal1 = false
+            }
+        }
+    }
+    confirmModal2 = {
+        title: 'Biometric authentication has been successfully activated',
+        message: '',
+        yesButton: {
+            exposed: true,
+            label: 'OK',
+            implementation: () => {
+                this.showConfirmModal2 = false
+            }
+        },
+        noButton: {
+            exposed: false,
+            label: 'TRY AGAIN',
+            implementation: () => {
+                this.showConfirmModal2 = false
+            }
+        }
+    }
+
+
+    activateBiometric() {
+        this.showConfirmModal2 = false
+        this.showConfirmModal3 = true
+
+        const biometricsService = getBiometricsService();
+        console.log('biometricsService', biometricsService);
+        if (biometricsService.isAvailable()) {
+            setLocalStorage('CBIsBiometricEnabled', true)
+            this.confirmModal3.title = 'Biometric authentication has been successfully activated'
+            this.showConfirmModal1 = false
+            this.showConfirmModal2 = true
+        }
+        else {
+            this.confirmModal3.title = 'There was some error while enabling the biometric authentication'
+            this.showConfirmModal1 = false
+            this.showConfirmModal2 = true
+        }
+    }
 
 
 
@@ -122,15 +211,22 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
     * @returns {void}
     */
     connectedCallback() {
+        if ((getLocalStorage('CBIsBiometricEnabled') === 'false' || !checkLocalkey('CBIsBiometricEnabled')) && getLocalStorage('CBFirstHomeLanding') === 'true') {
+            removeLocalStorage('CBFirstHomeLanding')
+            this.showConfirmModal1 = true
+        }
+
+        if (checkSessionkey("isIronKidsAccount")) {
+            this.isIronKidsAccount = getMobileSessionStorage("isIronKidsAccount") === 'true'
+        }
+        this.requestUUID = dateToTimestamp()
+        this.fetchRetCustInqJsonData();
         this.getUserDetails()
-        this.setPagePath()
+
+        setPagePath('Home')
     }
 
 
-    setPagePath() {
-        setLocalStorage('pagePath', 'Home')
-        console.log('Home Path',getLocalStorage('pagePath'))
-    }
 
     getUserDetails() {
         this.username = getMobileSessionStorage("CBUsername")
@@ -152,73 +248,130 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
         }
     }
 
+    RetCustInqReqBody = ''
+    RetCustInqjsonPathData = ''
+    RetCustInqAPiName = 'CB_Retail_Customer_Inquiry'
+
     
+    //Variables for saving account details
+    branchId=''
+    AccountNumber=this.accountNo;
+    RetGenAccInqReqBody = ''
+    RetGenAccInqjsonPathData = ''
+    RetGenAccInqAPiName = 'CB_Gen_Acc_Inq'
 
     /**
     * This function uses a method from the cBJsonDataHandler package that calls an Apex method that returns the API's request body and JSON paths for substitution.
     * @param {String} apiName - The API details's metadata name.
     * @returns {void}
     */
-    fetchJsonData() {
-        getJsonData(this.apiName)
+    fetchRetCustInqJsonData() {
+        getJsonData(this.RetCustInqAPiName)
             .then(result => {
-                console.log('Profile Search : ', result);
-                this.reqBody = JSON.parse(result[0]);
-                this.jsonPathData = result[1];
-                console.log('reqBody: ', JSON.stringify(this.reqBody));
-                console.log('jsonPathData: ', this.jsonPathData);
+                this.RetCustInqReqBody = JSON.parse(result[0]);
+                this.RetCustInqjsonPathData = result[1];
+                this.getFavoriteSBAAccountNo();
             }).catch((error) => {
                 console.log('Some error occured: ' + error)
             })
     }
 
-    /**
-    * This function takes in the request body and ther path and uses eval() to substitute the  values in the request body.
-    * @param {Object} jsonReq - The request body, as a JSON.
-    * @param {Array} JsonPath - The Json path data to be used for substitution.
-    * @returns {Object} The request body after the values have been substituted.
-    */
-    dataMap(jsonReq, JsonPath) {
-        JsonPath.forEach((record) => {
-            if (!record.Is_Active__c) {
-                return
-            }
-            if (record.Is_Constant__c) {
-                console.log(`jsonReq${record.JSON_Path__c}=${record.Value__c}`)
-                eval(`jsonReq${record.JSON_Path__c}=${record.Value__c}`);
-            } else {
-                console.log(`jsonReq${record.JSON_Path__c}=this.${record.Field_Name__c}`);
-                eval(`jsonReq${record.JSON_Path__c}=this.${record.Field_Name__c}`);
-            }
-        });
-        return jsonReq
+    getFavoriteSBAAccountNo() {
+        this.RetCustInqReqBody = this.mapTheData(this.RetCustInqReqBody, this.RetCustInqjsonPathData);
+
+        let requestWrapper = {
+            payload: JSON.stringify(this.RetCustInqReqBody), // Ensure payload is a string
+            metadataName: this.RetCustInqAPiName,
+            headers: ''  // Provide metadata name
+        };
+
+        getFavSBAAcctNo({ wrapper: requestWrapper })
+            .then((result) => {
+                if (result.length > 0) {
+                    console.log('Fav Account No and branchId',JSON.stringify(result))
+                    this.accountNo = JSON.stringify(result).acctId;
+                    this.AccountNumber=JSON.stringify(result).acctId;
+                    this.branchId=JSON.stringify(result).acctBranchCode;
+                    this.fetchRetGenAccInqJsonData();
+                }
+            }).catch((error) => {
+                console.log('Error whil logging : ', JSON.stringify(error));
+            })
     }
 
+
+    /**
+    * This function uses a method from the cBJsonDataHandler package that calls an Apex method that returns the API's request body and JSON paths for substitution.
+    * @param {String} apiName - The API details's metadata name.
+    * @returns {void}
+    */
+    fetchRetGenAccInqJsonData() {
+        getJsonData(this.RetGenAccInqAPiName)
+            .then(result => {
+                this.RetGenAccInqReqBody = JSON.parse(result[0]);
+                this.RetGenAccInqjsonPathData = result[1];
+                this.doGenAccInquiry();
+            }).catch((error) => {
+                console.log('Some error occured: ' + error)
+            })
+    }
+
+    doGenAccInquiry() {
+        this.RetGenAccInqReqBody = this.mapTheData(this.RetGenAccInqReqBody, this.RetGenAccInqjsonPathData);
+
+        let requestWrapper = {
+            payload: JSON.stringify(this.RetGenAccInqReqBody), // Ensure payload is a string
+            metadataName: this.RetGenAccInqAPiName,
+            headers: ''  // Provide metadata name
+        };
+
+        getFavSBAAccDetails({ wrapper: requestWrapper })
+            .then((result) => {
+                console.log('OUTPUT : ', JSON.stringify(result));
+            }).catch((error) => {
+                console.log('Error whil logging : ', JSON.stringify(error));
+            })
+    }
+
+    navigateToORCode() {
+        this.navigateTo('CBQrCodeGeneration__c')
+    }
+    navigateToSendMoney() {
+        this.navigateTo('CBTransfers__c')
+    }
+    navigateToBillPayments() {
+        this.navigateTo('CBBillPayments__c')
+    }
+    navigateToApplyNow() {
+        this.navigateTo('CBApplyNow__c')
+    }
+    navigateToAccountStatements() {
+        this.navigateTo(ACCOUNTSTATEMENTSEARCH_PAGE)
+    }
+    navigateToManageBeneficiaries() {
+        this.navigateTo('CBManageBeneficiaries__c')
+    }
+    navigateToAdHocPayments() {
+        this.navigateTo('CBAdHocPayments__c')
+    }
+    navigateToOpenAnAccount() {
+        this.navigateTo('CBServiceRequest__c')
+    }
+
+    navigateToScanPay() {
+        this.navigateTo('CBScanAndPay__c')
+    }
 
     navigateToAllQuickLinks() {
         this.navigateTo(QUICKLINKS_PAGE)
     }
-    navigateToInvestmentProfile() {
-        this.navigateTo(INVESTMENTPROFILE_PAGE)
-    }
 
-    navigateToAccountStatements() {
-        this.navigateTo(ACCOUNTSTATEMENTSEARCH_PAGE)
-    }
-
-    navigateToSendMoney() {
-        this.navigateTo('CBTransfers__c')
-    }
-
-    navigateToBillPayments() {
-        this.navigateTo('CBBillPayments__c')
-    }
-    navigateToApplyForLoans() {
-        this.navigateTo('CBApplyNowLoans__c')
-    }
-    navigateToApprovals() {
-        this.navigateTo('CBApprovals__c')
-    }
+    // navigateToInvestmentProfile() {
+    //     this.navigateTo(INVESTMENTPROFILE_PAGE)
+    // }
+    // navigateToApprovals() {
+    //     this.navigateTo('CBApprovals__c')
+    // }
 
     // Helper function for navigation
     navigateTo(pageApiName) {
@@ -228,6 +381,23 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
                 name: pageApiName
             }
         });
+    }
+    /**
+    * Method to map JSON data with specified paths
+    * 
+    * @param {Object} jsonReq - The JSON request object
+    * @param {Array} JsonPath - The array of JSON paths to map
+    * @returns {Object} - The mapped JSON request object
+    */
+    mapTheData(jsonReq, JsonPath) {
+        console.log(jsonReq)
+        console.log(JsonPath)
+        JsonPath.forEach((record) => {
+            // Dynamically set values in JSON request object
+            eval(`jsonReq${record.JSON_Path__c}=this.${record.Field_Name__c};`);
+        });
+        console.log('jsonReq : ', JSON.stringify(jsonReq));
+        return jsonReq;
     }
 
 }

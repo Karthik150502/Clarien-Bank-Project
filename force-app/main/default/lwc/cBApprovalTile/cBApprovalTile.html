@@ -1,0 +1,54 @@
+<!--
+  @description       : 
+  @author            : Prateek Deshmukh
+  @group             : 
+  @last modified on  : 06-12-2024
+  @last modified by  : Prateek Deshmukh
+-->
+<template>
+    <div class={wrapperClass}>
+        <div class="container">
+            <div class="details">
+                <div class="accs">
+                    <div class="slds-grid slds-wrap text-container">
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+                            <span>From</span>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+                            <span>{info.fromAcc}</span>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap text-container">
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+                            <span>To</span>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+                            <span>{info.toAcc}</span>
+                        </div>
+                    </div>
+                    <div class="slds-grid slds-wrap text-container">
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+                            <span>Amount</span>
+                        </div>
+                        <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+                            <span>{info.amt}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <template if:true={statusPending}>
+                <div class="slds-grid slds-wrap text-container btns">
+                    <button class="appr-btn" onclick={approveApproval}>Approve</button>
+                    <button class="rej-btn " onclick={rejectApproval}>Reject</button>
+                </div>
+            </template>
+
+            <template if:true={confirmModal}>
+                <c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+            </template>
+
+
+        </div>
+    </div>
+</template>

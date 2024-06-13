@@ -10,6 +10,7 @@
 
 .wrapper {
     width: 100vw;
+    height: 100vh;
     margin: 10px 0;
     overflow-y: scroll;
 }
@@ -203,4 +204,11 @@
     margin: 0 0 0 5px;
     font-size: 12px;
     font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
 }

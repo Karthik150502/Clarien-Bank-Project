@@ -6,66 +6,72 @@
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
-	<c-c-b-header icon-details={header_icons}></c-c-b-header>
-	<div class="secondary-header">
-		<c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
-	</div>
-	<div class="card">
-		<!-- <c-c-b-time-deposit-account-card></c-c-b-time-deposit-account-card> -->
-        <c-c-b-card card-type={cardType}></c-c-b-card>
-	</div>
-	<div class="transaction-heading">
-		<div class="slds-grid slds-wrap">
-			<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
-				<span onclick={handleTransactionsClick} class={transactionStyle}><strong>Transactions</strong></span>
-			</div>
-			<div
-				class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 slds-text-align_right">
-				<span onclick={handleOverviewClick} class={overViewStyle}><strong>Overview</strong></span>
+	<div class="wrapper">
+		<c-c-b-header icon-details={header_icons}></c-c-b-header>
+		<div class="secondary-header">
+			<c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+		</div>
+		<div class="card">
+			<!-- <c-c-b-time-deposit-account-card></c-c-b-time-deposit-account-card> -->
+			<c-c-b-card card-type={cardType}></c-c-b-card>
+		</div>
+		<div class="transaction-heading">
+			<div class="slds-grid slds-wrap">
+				<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+					<span onclick={handleTransactionsClick}
+						class={transactionStyle}><strong>Transactions</strong></span>
+				</div>
+				<div
+					class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 slds-text-align_right">
+					<span onclick={handleOverviewClick} class={overViewStyle}><strong>Overview</strong></span>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="wrapper">
-		<template if:true={transaction}>
-			<div class="icons-container">
-				<div>
-					<p>Showing last 10 transactions</p>
-					<!-- <p class="transactionDate">{fromDate} - {toDate}</p> -->
-				</div>
-				<div class="icons">
-					<!-- <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg" onclick={generatePdf}>
+		<div class="wrapper-2">
+			<template if:true={transaction}>
+				<div class="icons-container">
+					<div>
+						<p>Showing last 10 transactions</p>
+						<!-- <p class="transactionDate">{fromDate} - {toDate}</p> -->
+					</div>
+					<div class="icons">
+						<!-- <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg" onclick={generatePdf}>
 						<use href={CBPdf}></use>
 					</svg> -->
-					<svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg" onclick={sortDetails}>
-						<use href={CBSortOrder}></use>
-					</svg>
-					<svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg" onclick={openFilterPopup}>
-						<use href={CBFilter}></use>
-					</svg>
+						<svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+							onclick={sortDetails}>
+							<use href={CBSortOrder}></use>
+						</svg>
+						<svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+							onclick={openFilterPopup}>
+							<use href={CBFilter}></use>
+						</svg>
+					</div>
 				</div>
-			</div>
-			<div class="transactions">
-				<template for:each={transactionData} for:item="transaction">
-					<div key={transaction.id} class="transaction-container">
-						<c-c-b-transaction transaction-data={transaction}></c-c-b-transaction>
-					</div>
-				</template>
-			</div>
-		</template>
-		<template if:false={transaction}>
-			<div class="overview-container">
-				<template for:each={overviewData} for:item="data">
-					<div key={data.id} class="slds-grid slds-wrap column">
-						<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 slds-text-align_left">
-							<span><strong>{data.label}</strong></span>
+				<div class="transactions">
+					<template for:each={transactionData} for:item="transaction">
+						<div key={transaction.id} class="transaction-container">
+							<c-c-b-transaction transaction-data={transaction}></c-c-b-transaction>
 						</div>
-						<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 ">
-							<span class="overviewValue">{data.value}</span>
+					</template>
+				</div>
+			</template>
+			<template if:false={transaction}>
+				<div class="overview-container">
+					<template for:each={overviewData} for:item="data">
+						<div key={data.id} class="slds-grid slds-wrap column">
+							<div
+								class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 slds-text-align_left">
+								<span><strong>{data.label}</strong></span>
+							</div>
+							<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 ">
+								<span class="overviewValue">{data.value}</span>
+							</div>
 						</div>
-					</div>
-				</template>
-			</div>
-		</template>
+					</template>
+				</div>
+			</template>
+		</div>
 	</div>
 	<template if:true={modalFilter}>
 		<c-c-b-filter-transaction-modal onfilter={openFilterPopup}>

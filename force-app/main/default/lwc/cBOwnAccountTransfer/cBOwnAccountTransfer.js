@@ -2,7 +2,8 @@ import { LightningElement } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';
 import CONTINUE from '@salesforce/label/c.CB_Continue';
-import CANCEL from '@salesforce/label/c.CB_Cancel';
+
+import { setPagePath } from 'c/cBUtilities';
 
 export default class CBOwnAccountTransfer extends NavigationMixin(LightningElement) {
 
@@ -10,7 +11,6 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
     // Object to hold imported labels
     label = {
         CONTINUE: CONTINUE.toUpperCase(), // Converting "Submit" label to uppercase
-        CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
     };
 
 
@@ -29,6 +29,10 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         }
     }
 
+    connectedCallback(){
+        this.headerConfguration.previousPageUrl = setPagePath('CBOwnAccountTransfer__c')
+    }
+
     recurringTransfer = false
     amount = ''
     toAccount = ''
@@ -44,23 +48,23 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
             accBal: 'BMD 1,5601.55'
         },
         {
-            accountNo: '659855541254',
+            accountNo: '659855541255',
             accountType: 'Savings Account',
             accBal: 'BMD 1,5601.55'
         },
         {
-            accountNo: '659855541254',
-            accountType: 'Savings Account',
+            accountNo: '659855000054',
+            accountType: 'Joint Account',
             accBal: 'BMD 1,5601.55'
         },
         {
-            accountNo: '659855541254',
-            accountType: 'Savings Account',
+            accountNo: '651235641254',
+            accountType: 'Time Deposit Account',
             accBal: 'BMD 1,5601.55'
         },
         {
-            accountNo: '659855541254',
-            accountType: 'Savings Account',
+            accountNo: '709945651354',
+            accountType: 'Current Account',
             accBal: 'BMD 1,5601.55'
         },
         {
@@ -70,9 +74,39 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         },
     ]
 
-    recurringTransferHandler() {
-        this.recurringTransfer = !this.recurringTransfer
-    }
+
+    toAccountsList = [
+        {
+            accountNo: '659855541254',
+            accountType: 'Savings Account',
+            accBal: 'BMD 1,5601.55'
+        },
+        {
+            accountNo: '659855541255',
+            accountType: 'Savings Account',
+            accBal: 'BMD 1,5601.55'
+        },
+        {
+            accountNo: '659855000054',
+            accountType: 'Joint Account',
+            accBal: 'BMD 1,5601.55'
+        },
+        {
+            accountNo: '651235641254',
+            accountType: 'Time Deposit Account',
+            accBal: 'BMD 1,5601.55'
+        },
+        {
+            accountNo: '709945651354',
+            accountType: 'Current Account',
+            accBal: 'BMD 1,5601.55'
+        },
+        {
+            accountNo: '659855541254',
+            accountType: 'Savings Account',
+            accBal: 'BMD 1,5601.55'
+        },
+    ]
 
     handleAmount(event) {
         this.amount = event.target.value
@@ -80,18 +114,29 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
 
     handleToAccount(event) {
         this.toAccount = event.target.value
+        console.log(this.toAccount);
     }
 
     handleFromAccount(event) {
         this.selectedAccount = event.target.value
+
+        this.toAccountsList = this.accounts.filter(account => account.accountNo !== this.selectedAccount)
     }
 
+    recurringTransferView = false
     handleTransDate(event) {
         this.showTransDatePicker = false
         this.date = event.detail.transDate
-        this.untilDate = event.detail.untilDate
-        this.frequencySelected = event.detail.frequencySelected
 
+        if(event.detail.recurring){
+            this.untilDate = event.detail.untilDate
+            this.frequencySelected = event.detail.frequencySelected != 'End of every month' ? `Every ${event.detail.repeat} ${event.detail.frequencySelected} `: 'End of every month';
+            this.recurringTransfer = event.detail.recurring
+            this.recurringTransferView = true
+        }
+        else{
+            this.recurringTransferView = false
+        }
     }
 
     closeTransDatInput() {
@@ -107,10 +152,8 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
 
 
     verifyValues() {
-        return this.date === 'YYYY-MM-DD' || this.selectedAccount === 'Select Account' || this.toAccount === '' || this.amount === '' || this.untilDate === '' || this.frequencySelected === ''
+        return this.date === 'YYYY-MM-DD' || this.selectedAccount === 'Select Account' || this.toAccount === 'Select Account' || this.amount === ''
     }
-
-
 
     // Helper function for navigation
     navigateTo(pageApiName, data = {}) {
@@ -124,9 +167,7 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
     }
 
 
-    handleCancel() {
-        console.log("Cancel Handled...!")
-    }
+
     handleSubmit() {
         let comment = this.template.querySelector(".text-area-inp").value
         let data = {

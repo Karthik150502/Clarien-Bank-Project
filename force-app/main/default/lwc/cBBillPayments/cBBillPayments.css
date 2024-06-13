@@ -10,6 +10,7 @@
 
 .wrapper {
     width: 100vw;
+    height: 100vh;
     margin: 10px 0;
 }
 
@@ -20,12 +21,12 @@
 
 .wrapper .container {
     width: 90%;
-    height: auto;
     margin: 0 auto;
     border-radius: 7px;
-    height: 90vh;
     padding: 0 10px;
     overflow-y: scroll;
+    height: auto;
+
 }
 
 
@@ -77,6 +78,13 @@
     height: auto;
     margin: 4% 0 0 0;
     position: relative;
+}
+
+
+.wrapper .container .inp-box .date-svg {
+    position: absolute;
+    right: 8px;
+    bottom: 6px;
 }
 
 .wrapper .container .inp {
@@ -138,19 +146,7 @@
 }
 
 
-.wrapper .container .inp-box-3 {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: auto;
-    margin: 4% 0 0 0;
-    position: relative;
-    padding: 0 0 4% 0;
-    border-radius: 12px;
-    border: 1px solid var(--border-blue);
-}
+
 
 .wrapper .container .inp-box-4 {
     width: 90%;
@@ -202,4 +198,109 @@
 .wrapper .container .btns .sub:disabled,
 .wrapper .container .btns .sub[disabled] {
     background-color: var(--light-grey);
+}
+
+
+.wrapper .container .inp-box-3 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    margin: 4% 0 0 0;
+    position: relative;
+    padding: 0 0 10px 0;
+    border-radius: 12px;
+    border: 1px solid var(--border-blue);
+}
+
+.wrapper .container .inp-box-3 .inp-box {
+    width: 90%;
+    border-radius: 8px;
+    padding: 2% 2% 2% 2%;
+    font-size: 16px;
+    max-height: 100px;
+}
+
+.wrapper .container .inp-box-3 .inp-box-hor {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    height: auto;
+}
+
+.wrapper .container .inp-box-hor .inp-box-5 {
+    width: 45%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    height: auto;
+    margin: 4% 0 0 0;
+    position: relative;
+}
+
+.wrapper .container .inp-box-hor .inp {
+    border-radius: 8px;
+}
+
+.wrapper .container .inp-box .text-area-inp {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-blue);
+    padding: 2% 2% 2% 2%;
+    font-size: 16px;
+    height: 100px;
+}
+
+.slds-checkbox_toggle {
+    pointer-events: none;
+}
+
+.wrapper .container .inp-box-name .title {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+.read {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-grey);
+
+}
+
+.wrapper .container .inp .read {
+    font-size: 16px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+
+
+.inp-box-hor input:read-only {
+    background-color: var(--transp-light-grey);
+}
+
+.recurring-transfer {
+    pointer-events: none;
 }

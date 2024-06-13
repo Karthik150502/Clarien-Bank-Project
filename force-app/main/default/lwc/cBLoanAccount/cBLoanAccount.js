@@ -98,16 +98,16 @@ export default class CBLoanAccount extends LightningElement {
     transaction = true;
 
     @api transactionData = [
-        { id: '1', CHQSId: 'CHQS2374904890', EMIId: 'EMI 233749082665', date: '01/09/23', amount: '236' },
-        { id: '2', CHQSId: 'CHQS2374904891', EMIId: 'EMI 233749082666', date: '01/10/23', amount: '455' },
-        { id: '3', CHQSId: 'CHQS2374904892', EMIId: 'EMI 233749082667', date: '01/11/23', amount: '676' },
-        { id: '4', CHQSId: 'CHQS2374904893', EMIId: 'EMI 233749082668', date: '01/12/23', amount: '898' },
-        { id: '5', CHQSId: 'CHQS2374904894', EMIId: 'EMI 233749082669', date: '01/13/23', amount: '988' },
-        { id: '6', CHQSId: 'CHQS2374904895', EMIId: 'EMI 233749082670', date: '01/14/23', amount: '9999' },
-        { id: '7', CHQSId: 'CHQS2374904896', EMIId: 'EMI 233749082671', date: '01/15/23', amount: '236' },
-        { id: '8', CHQSId: 'CHQS2374904897', EMIId: 'EMI 233749082672', date: '01/16/23', amount: '2000' },
-        { id: '9', CHQSId: 'CHQS2374904898', EMIId: 'EMI 233749082673', date: '01/17/23', amount: '2738' },
-        { id: '10', CHQSId: 'CHQS2374904899', EMIId: 'EMI 233749082674', date: '01/18/23', amount: '267' }
+        { id: '1', CHQSId: 'CHQS2374904890', EMIId: 'EMI 233749082665', date: '01/09/23', amount: '236', type:"debit" },
+        { id: '2', CHQSId: 'CHQS2374904891', EMIId: 'EMI 233749082666', date: '01/10/23', amount: '455', type:"debit" },
+        { id: '3', CHQSId: 'CHQS2374904892', EMIId: 'EMI 233749082667', date: '01/11/23', amount: '676', type:"credit" },
+        { id: '4', CHQSId: 'CHQS2374904893', EMIId: 'EMI 233749082668', date: '01/12/23', amount: '898', type:"credit" },
+        { id: '5', CHQSId: 'CHQS2374904894', EMIId: 'EMI 233749082669', date: '01/13/23', amount: '988', type:"debit" },
+        { id: '6', CHQSId: 'CHQS2374904895', EMIId: 'EMI 233749082670', date: '01/14/23', amount: '9999', type:"credit" },
+        { id: '7', CHQSId: 'CHQS2374904896', EMIId: 'EMI 233749082671', date: '01/15/23', amount: '236', type:"credit" },
+        { id: '8', CHQSId: 'CHQS2374904897', EMIId: 'EMI 233749082672', date: '01/16/23', amount: '2000', type:"debit" },
+        { id: '9', CHQSId: 'CHQS2374904898', EMIId: 'EMI 233749082673', date: '01/17/23', amount: '2738', type:"credit" },
+        { id: '10', CHQSId: 'CHQS2374904899', EMIId: 'EMI 233749082674', date: '01/18/23', amount: '267', type:"credit" }
 
     ];
 

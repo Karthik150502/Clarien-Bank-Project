@@ -1,12 +1,14 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import CONTINUE from '@salesforce/label/c.CB_Continue';
+import { NavigationMixin } from 'lightning/navigation';
+
 import CANCEL from '@salesforce/label/c.CB_Cancel';
 import {
     removeMobileSessionStorage,
     getAllMobileSessionStorage,
     getMobileSessionStorage,
 } from 'c/cBUtilities';
-export default class CBBillPaymentsConfirmTrans extends LightningElement {
+export default class CBBillPaymentsConfirmTrans extends NavigationMixin(LightningElement) {
 
     label = {
         CONTINUE: CONTINUE.toUpperCase(), // Converting "Submit" label to uppercase
@@ -18,26 +20,57 @@ export default class CBBillPaymentsConfirmTrans extends LightningElement {
         iconsExposed: false,
     }
     showModal = false
-    modalconf = {
-        title: 'Transfer Successful',
-        message: '',
+    showModal1 = false
+    showModal2 = false
+
+    @track modalConf = {
+        title: '',
+        message: 'The transaction has been successfully completed',
+        loadingStatusMsg: 'Processing, kindly wait....',
+        isLoading: true,
+        yesButton: {
+            exposed: true,
+            label: 'OK',
+            implementation: () => {
+                this.showModal = false
+                this.showModal1 = true
+            }
+        },
+        notOkButton: {
+            exposed: false,
+        }
+    }
+    @track modalConf1 = {
+        title: 'Save as Template',
+        message: 'The transaction has been successfully completed',
+        okButton: {
+            exposed: false,
+            label: 'OK',
+            function: () => {
+                this.showModal1 = false
+                this.showModal2 = true
+            }
+        },
+    }
+
+
+
+    @track modalConf2 = {
+        title: 'Template created successfully.',
         okButton: {
             exposed: true,
-            label: 'SAVE',
+            label: 'OK',
             function: () => {
-                this.showModal = false
+                this.showModal2 = false
                 this.removeAllSessionStorageData()
+                this.navigateTo("CBTransfers__c")
             }
         },
         noButton: {
-            exposed: true,
-            label: 'CLOSE',
-            function: () => {
-                this.showModal = false
-            }
+            exposed: false,
         },
-        alertMsg: ''
     }
+
 
 
     fcpt = 'N/A'
@@ -58,18 +91,40 @@ export default class CBBillPaymentsConfirmTrans extends LightningElement {
 
     }
 
+    navigateTo(pageApiName) {
+        const pageReference = {
+            type: 'comm__namedPage',
+            attributes: {
+                name: pageApiName
+            }
+        };
+        this[NavigationMixin.Navigate](pageReference);
+    }
+
+
     populateValues() {
         let result = getAllMobileSessionStorage('billPmts_amount', 'billPmts_recurringTransfer', 'billPmts_accRefNumber', 'billPmts_name', 'billPmts_selectedBiller', 'billPmts_selectedFromAccount',
-            'transDate', 'recurring', 'frequencySelected', 'untilDate')
+            'billPmts_transDate', 'recurring', 'frequencySelected', 'untilDate')
         this.amount = result['billPmts_amount']
-        this.date = result['transDate']
+        this.date = result['billPmts_transDate']
         this.accRefNo = result['billPmts_accRefNumber']
         this.customerName = result['billPmts_name']
         this.fromAccount = result['billPmts_selectedFromAccount']
         this.biller = result['billPmts_selectedBiller']
     }
 
+    closeSavesAsTempModal() {
+        this.showModal1 = false
+        this.removeAllSessionStorageData()
+        this.navigateTo("CBTransfers__c")
+    }
 
+    fetchCommentsFromModal(event) {
+        console.log(event.detail.comments)
+        this.showModal1 = false
+        this.showModal2 = true
+        this.removeAllSessionStorageData()
+    }
 
     handleCancel() {
         this.removeAllSessionStorageData()
@@ -78,7 +133,17 @@ export default class CBBillPaymentsConfirmTrans extends LightningElement {
 
     handleSubmit() {
         console.log("Submitted...!")
+        this.apiCallout()
+    }
+
+    apiCallout() {
         this.showModal = true
+        this.modalConf.isLoading = true
+        setTimeout(() => {
+            // this.modalConf.isLoading = false
+            this.showModal = false
+                this.showModal1 = true
+        }, 2500)
     }
 
     get disableSubmit() {

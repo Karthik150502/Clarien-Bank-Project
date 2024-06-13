@@ -124,7 +124,8 @@
 .atm-name {
     font-weight: 800;
     font-family: var(--dxp-g-root-gotham-medium-font-family);
-    font-size: 12px;
+    font-size: 20px;
+
 }
 
 
@@ -237,6 +238,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    width: 90%;
+    padding: 15px 0 0 0;
 }
 
 .wrapper .header .prof p {

@@ -70,6 +70,7 @@ export default class CBOtpHandler extends NavigationMixin(LightningElement) {
             this.verifyOTP()
             this.Otp = '';
             this.validTokenType = true;
+            this.otpconf.implementation()
         }
     }
 
@@ -158,7 +159,7 @@ export default class CBOtpHandler extends NavigationMixin(LightningElement) {
         if (this.Otp === this.otpconf.tokenValue) {
             this.tokenValidClass = 'token-status validToken';
             this.tokenErrorMessage = 'Token validated Successfully';
-            this.otpconf.implementation()
+            // this.otpconf.implementation()
         } else {
             this.tokenValidClass = 'token-status invalidToken';
             this.tokenErrorMessage = 'Wrong or Expired token';

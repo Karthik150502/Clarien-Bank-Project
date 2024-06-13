@@ -9,6 +9,8 @@
 
 import { LightningElement } from 'lwc';
 import SECURITY_SETTINGS from '@salesforce/label/c.CB_SecuritySettings'; // Importing label for security settings
+import SECURITYSETTINGS_PAGE from '@salesforce/label/c.CB_Page_Securitysettings';
+import { setPagePath } from 'c/cBUtilities';
 
 export default class CBSecuritySettings extends LightningElement {
     // Label for security settings
@@ -65,4 +67,8 @@ export default class CBSecuritySettings extends LightningElement {
             exposed: false
         }
     };
+
+    connectedCallback(){
+        setPagePath(SECURITYSETTINGS_PAGE)
+    }
 }

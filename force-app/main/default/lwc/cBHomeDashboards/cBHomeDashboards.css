@@ -51,7 +51,7 @@
     border-radius: 12px;
     display: flex;
     align-items: normal;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     padding: 2% 1% 2% 1%;
 }
@@ -114,11 +114,11 @@
 
 
 
-.wrapper .container .promotions .promotion-content .text-content p {
+.wrapper .container .promotions .promotion-content .text-content a {
     color: var(--primary-orange);
     font-size: 14px;
     font-family: var(--dxp-g-root-gotham-medium-font-family);
-
+    text-decoration: none;
 }
 
 .wrapper .container .promotions .promotion-content .image {

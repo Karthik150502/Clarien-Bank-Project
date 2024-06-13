@@ -70,3 +70,18 @@
     color: var(--primary-black);
     margin: 0% 0% 2% 0%;
 }
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}

@@ -164,7 +164,7 @@ form {
 
 .forgot-password p {
     font-family: var(--dxp-g-root-gotham-medium-font-family);
-    color: var(--primary-white);
+    color: var(--primary-orange);
 }
 
 .wrapper .maincontainer .bottom-container-1 {
@@ -186,7 +186,9 @@ form {
 .wrapper .maincontainer .bottom-container-1 .bio-metric {
     width: 70px;
     aspect-ratio: 1/1;
-    background-color: #89bcde8c;
+    background-color:var(--primary-blue);
+    /* background-color: #89bcde8c; */
+    /* background-color: #ffffffe3;  */
     /* var(--translucent-blue) */
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     display: flex;

@@ -98,22 +98,22 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
 
     @api
     transactionData = [
-        { id: '1', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988901', date: '01/09/23', amount: '3.00', transactionType: 'Transfer' },
-        { id: '2', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988902', date: '01/10/23', amount: '4.00', transactionType: 'Fuel' },
-        { id: '3', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988903', date: '01/11/23', amount: '6.00', transactionType: 'Transfer Bill Payment' },
-        { id: '4', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988904', date: '01/12/23', amount: '8.00', transactionType: 'Fuel' },
-        { id: '5', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988905', date: '01/13/23', amount: '9.88', transactionType: 'Fuel' },
-        { id: '6', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988906', date: '01/14/23', amount: '9.00', transactionType: 'Lorem' },
-        { id: '7', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988907', date: '01/15/23', amount: '6.00', transactionType: 'Fuel' },
-        { id: '8', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988908', date: '01/16/23', amount: '2.00', transactionType: 'Transfer Bill Payment' },
-        { id: '9', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988909', date: '01/17/23', amount: '2.20', transactionType: 'Transfer' },
-        { id: '10', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988910', date: '01/18/23', amount: '5.00', transactionType: 'Transfer' }
+        { id: '1', CHQSId: 'Recieved money from Elon - saving debit account', EMIId: 'IBM0010200988901', date: '01/09/23', amount: '3.00', transactionType: 'Transfer', type: 'credit' },
+        { id: '2', CHQSId: 'Sent money to Indian Oil - saving debit account', EMIId: 'IBM0010200988902', date: '01/10/23', amount: '4.00', transactionType: 'Fuel', type: 'debit' },
+        { id: '3', CHQSId: 'Bill Payment for Dec Electricity  - saving debit account', EMIId: 'IBM0010200988903', date: '01/11/23', amount: '6.00', transactionType: 'Transfer Bill Payment', type: 'debit' },
+        { id: '4', CHQSId: 'Sent money to Indian Oil - saving debit account', EMIId: 'IBM0010200988904', date: '01/12/23', amount: '8.00', transactionType: 'Fuel', type: 'debit' },
+        { id: '5', CHQSId: 'Sent money to Indian Oil - saving debit account', EMIId: 'IBM0010200988905', date: '01/13/23', amount: '9.88', transactionType: 'Fuel', type: 'debit' },
+        { id: '6', CHQSId: 'Loan Interest Payment for Jan - loan account', EMIId: 'IBM0010200988906', date: '01/01/24', amount: '9.00', transactionType: 'Loan', type: 'debit' },
+        { id: '7', CHQSId: 'Sent money to Indian Oil - saving debit account', EMIId: 'IBM0010200988907', date: '01/02/24', amount: '6.00', transactionType: 'Fuel', type: 'debit' },
+        { id: '8', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988908', date: '05/08/24', amount: '2.00', transactionType: 'Transfer Bill Payment', type: 'debit' },
+        { id: '9', CHQSId: 'Recieved money from Jeff - saving debit account', EMIId: 'IBM0010200988909', date: '07/10/24', amount: '2.20', transactionType: 'Transfer', type: 'credit' },
+        { id: '10', CHQSId: 'Recieved money from Bill - saving debit account', EMIId: 'IBM0010200988910', date: '15/12/24', amount: '5.00', transactionType: 'Transfer', type: 'credit' }
     ];
 
     @api activeTransactionData = [
-        { id: '1', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988901', date: '01/09/23', amount: '3.00', transactionType: 'Transfer' },
-        { id: '2', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988902', date: '01/10/23', amount: '4.00', transactionType: 'Fuel' },
-        { id: '3', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988903', date: '01/11/23', amount: '6.00', transactionType: 'Transfer Bill Payment' }
+        { id: '1', CHQSId: 'Recieved money from david - saving debit account', EMIId: 'IBM0010200988901', date: '01/09/24', amount: '3.00', transactionType: 'Transfer', type: 'credit' },
+        { id: '2', CHQSId: 'Sent money to Indian Oil - saving debit account', EMIId: 'IBM0010200988902', date: '01/10/24', amount: '4.00', transactionType: 'Fuel', type: 'debit' },
+        { id: '3', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988903', date: '01/11/24', amount: '6.00', transactionType: 'Transfer Bill Payment', type: 'debit' }
     ];
 
     handleTransactionsClick() {

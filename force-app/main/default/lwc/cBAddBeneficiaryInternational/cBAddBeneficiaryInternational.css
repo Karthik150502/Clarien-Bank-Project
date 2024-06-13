@@ -10,9 +10,17 @@
     height: 100vh;
     width: 100vw;
 }
+.wrapper .heading{
+    padding: 0% 0 0 5%;
+}
 .container {
     width: 90%;
     margin: 20px auto;
+    height: calc(90vh - 60px);
+    overflow-y: scroll;
+}
+::-webkit-scrollbar {
+    display: none;
 }
 
 .container .casing {
@@ -50,7 +58,7 @@
 
 .title{
     font-family: var(--dxp-g-root-gotham-bold-font-family);
-    color: var(--primary-black);
+    color: var(--primary-grey);
     margin:5% 0% 2% 0%;
 }
 
@@ -78,4 +86,19 @@
 .container .btn .submit-btn:disabled,
 .container .btn .submit-btn[disabled] {
     background-color: var(--light-grey);
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
 }

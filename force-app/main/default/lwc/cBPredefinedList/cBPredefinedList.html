@@ -1,0 +1,45 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-12-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <div class="wrapper">
+        <div class="heading">
+            <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+            <div class="head">
+                <p>{heading}</p>
+            </div>
+            <template for:each={templates} for:item="template">
+                <div class="template-container" key={template.id} onclick={naviagteTo}>
+                    <div class="template-text">
+                        <p class="name">{template.name}</p>
+                        <p class="template">From Account : {template.fromAcc}</p>
+                        <p class="template">To Account : {template.toAcc}</p>
+                    </div>
+                    <div class="template-amount">
+                        <p>{template.amount}</p>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <!-- <div class="button">
+            <button onclick={handleAddTemplate}>Add Template</button>
+        </div> -->
+    </div>
+    <c-c-b-footer></c-c-b-footer>
+
+
+    <!-- <template if:true={showModal1}>
+        <c-c-b-save-as-template-modal configuration={modalConf1} onclosemodal={closeSavesAsTempModal}></c-c-b-save-as-template-modal>
+    </template>
+
+
+    <template if:true={showModal2}>
+        <c-c-b-reusable-success-modal-cmp-logo configuration={modalConf2}> </c-c-b-reusable-success-modal-cmp-logo>
+    </template> -->
+</template>

@@ -22,11 +22,10 @@
         </div>
         <c-c-b-footer></c-c-b-footer>
     </div>
-    <template if:true={favAccModalOpened}>
-        <c-c-b-favorite-account-add onclosemodal={closeFavAccountModal}></c-c-b-favorite-account-add>
+    <template if:true={isDataLoading}>
+        <c-c-b-loading-spinner>
+        </c-c-b-loading-spinner>
     </template>
-
-
     <!-- for ending session -->
     <c-c-b-session-end></c-c-b-session-end>
 </template>

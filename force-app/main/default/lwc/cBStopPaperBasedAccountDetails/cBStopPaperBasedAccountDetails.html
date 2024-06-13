@@ -4,30 +4,32 @@
             <div class="heading">
                 <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
             </div>
+            <div class="sub-container">
+                <template for:each={accounts} for:item="account">
+                    <div class="casing" key={account.accNumber}>
 
-            <template for:each={accounts} for:item="account">
-                <div class="casing" key={account.accNumber}>
+                        <p class="title">Saving Account</p>
+                        <p class="value">{account.accNumber}</p>
 
-                    <p class="title">Saving Account</p>
-                    <p class="value">{account.accNumber}</p>
+                        <p class="title">{label.CURRENCY}</p>
+                        <p class="value">{account.currency}</p>
 
-                    <p class="title">{label.CURRENCY}</p>
-                    <p class="value">{account.currency}</p>
+                        <p class="title">Account Type</p>
+                        <p class="value">{account.accStatus}</p>
 
-                    <p class="title">Account Type</p>
-                    <p class="value">{account.accStatus}</p>
+                        <p class="title">Transaction Status</p>
+                        <p class="value">{account.TransStatus}</p>
 
-                    <p class="title">Transaction Status</p>
-                    <p class="value">{account.TransStatus}</p>
-
-                    <!-- <p class="title">{label.REMARKS}</p>
-                    <p></p> -->
-    
+                        <!-- <p class="title">{label.REMARKS}</p>
+            <p></p> -->
+                    </div>
+                </template>
+                <div class="submit-btn">
+                    <button class="btn" onclick={submitForm}>SUBMIT</button>
                 </div>
-            </template>
-            
-            <button class="btn" onclick={submitForm}>SUBMIT</button>
+            </div>
         </div>
+        <c-c-b-footer></c-c-b-footer>
     </div>
     <template if:true={successModalOpen}>
         <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>

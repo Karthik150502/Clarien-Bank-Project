@@ -13,12 +13,12 @@ import { CurrentPageReference } from 'lightning/navigation';
 
 // Custom labels
 import USERNAME from '@salesforce/label/c.CB_Username';
-import NEW_PASSWORD from '@salesforce/label/c.CB_NewPassword';
+import NEW_PASSWORD from '@salesforce/label/c.CBChangePassword_newPassword';
 import CONFIRM_PASSWORD from '@salesforce/label/c.CB_ConfirmPassword';
 import PASSWORD_MUST_CONTAIN from '@salesforce/label/c.CB_PasswordMustContain10';
-import MIN_10_CHARS from '@salesforce/label/c.CB_Min10Chars';
-import ATLEAST_ONE_UPPER from '@salesforce/label/c.CB_AtLeastOneUpperCase';
-import ATLEAST_SPEC_CHAR from '@salesforce/label/c.CB_AtLeastOneSpecChar';
+import MIN_10_CHARS from '@salesforce/label/c.CBChangePassword_min10chars';
+import ATLEAST_ONE_UPPER from '@salesforce/label/c.CBChangePassword_atleastOneUpper';
+import ATLEAST_SPEC_CHAR from '@salesforce/label/c.CBChangePassword_atleastSpecChar';
 import SUBMIT from '@salesforce/label/c.CB_Submit';
 import CREATE_USER_CREDS from '@salesforce/label/c.CB_CreateUserCred';
 import MARKETING_CONSENT from '@salesforce/label/c.CB_MarketingConsent';
@@ -31,6 +31,7 @@ import ERROR_PASS_MISMATCH from '@salesforce/label/c.CB_ErrorPassMismatch';
 import ERROR_ENTER_THE_PASS from '@salesforce/label/c.CB_ErrorEnterThePass';
 import CANCEL from '@salesforce/label/c.CB_Cancel';
 import USER_CREATED_MESSAGE from '@salesforce/label/c.CB_User_Created_Message';
+
 
 //page
 import LOGIN_PAGE from '@salesforce/label/c.CB_Page_Login';

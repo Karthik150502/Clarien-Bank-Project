@@ -111,11 +111,12 @@ c-c-b-secondary-header {
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
+    margin: 25px 0 0 0;
 }
 
 .container .btns .share,
 .container .btns .download {
-    width: 80px;
+    /* width: 80px; */
     display: flex;
     align-items: center;
     justify-content: space-evenly;

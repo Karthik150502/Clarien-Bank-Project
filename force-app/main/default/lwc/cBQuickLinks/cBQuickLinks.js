@@ -33,11 +33,15 @@ import OFFERS from '@salesforce/label/c.CB_Offers';
 import ACCOUNTS_AND_DEPOSITS from '@salesforce/label/c.CB_AccountsAndDeposits';
 import CHEQUEBOOK_SERVICES from '@salesforce/label/c.CB_ChequebookServices';
 import ENABLE_DISABLE_BIOMETRIC from '@salesforce/label/c.CB_EnableDisableBiometric';
-
+import QUICKLINKS_PAGE from '@salesforce/label/c.CB_Page_Quicklinks';
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
 import INVESTMENTPROFILE_PAGE from '@salesforce/label/c.CB_Page_Investmentprofile';
 import ACCOUNTSTATEMENTSEARCH_PAGE from '@salesforce/label/c.CB_Page_AccountStatementSearch';
+
+
+import { getMobileSessionStorage, setPagePath } from 'c/cBUtilities';
+
 
 export default class CBQuickLinks extends NavigationMixin(LightningElement) {
 
@@ -87,6 +91,8 @@ export default class CBQuickLinks extends NavigationMixin(LightningElement) {
     CBChequebookServices = `${CBSVG}/CBSVGs/CBChequebookServices.svg#CBChequebookServices`;
     CBEnableDisableBiometric = `${CBSVG}/CBSVGs/CBEnableDisableBiometric.svg#CBEnableDisableBiometric`;
 
+
+
     configuration = {
         previousPageUrl: 'Home',
         heading: 'Quick Links',
@@ -124,44 +130,78 @@ export default class CBQuickLinks extends NavigationMixin(LightningElement) {
 
     };
 
-    navigateToInvestmentProfile() {
-        this.navigateTo(INVESTMENTPROFILE_PAGE)
-    }
-    navigateToAccountStatements() {
-        this.navigateTo(ACCOUNTSTATEMENTSEARCH_PAGE)
-    }
-    
-    navigateToOpenAnAccount() {
-        this.navigateTo('CBServiceRequest__c')
+    /**
+    * Lifecycle hook invoked when the component is inserted into the DOM
+    * Loads the username, password from local session storage when the component is connected to the DOM.
+    * @returns {void}
+    */
+    connectedCallback() {
+        setPagePath(QUICKLINKS_PAGE)
     }
 
-    
-    navigateToSecuritySetting() {
-        this.navigateTo('CBSecuritySettings__c')
+    navigateToScanPay() {
+        console.log('Navigate to Scan and Pay');
+        // this.navigateTo()
+    }
+
+    navigateToORCode() {
+        this.navigateTo('CBQrCodeGeneration__c')
     }
 
     navigateToSendMoney() {
         this.navigateTo('CBTransfers__c')
     }
-    navigateToChequebookServices() {
-        this.navigateTo('CBApplyNowChequebook__c')
-    }
 
     navigateToBillPayments() {
         this.navigateTo('CBBillPayments__c')
     }
+
     navigateToApplyForLoans() {
-        this.navigateTo('CBApplyNowLoans__c')
+        this.navigateTo('CBApplyNow__c')
     }
+
+    navigateToAccountStatements() {
+        this.navigateTo(ACCOUNTSTATEMENTSEARCH_PAGE)
+    }
+
+    navigateToOpenAnAccount() {
+        this.navigateTo('CBServiceRequest__c')
+    }
+
     navigateToAdHocPayments() {
         this.navigateTo('CBAdHocPayments__c')
     }
+
+    navigateToAccountsDeposits() {
+        this.navigateTo('CBFavoriteAccounts__c')
+    }
+
+    navigateToOffers() {
+        this.navigateTo('CBOffers__c')
+    }
+
     navigateToApprovals() {
         this.navigateTo('CBApprovals__c')
     }
-    navigateToBankAccounts() {
-        this.navigateTo('CBFavoriteAccounts__c')
+
+    navigateToInvestmentProfile() {
+        this.navigateTo(INVESTMENTPROFILE_PAGE)
     }
+
+
+
+    // navigateToSecuritySetting() {
+    //     this.navigateTo('CBSecuritySettings__c')
+    // }
+
+    // navigateToChequebookServices() {
+    //     this.navigateTo('CBApplyNowChequebook__c')
+    // }
+
+    // navigateToBankAccounts() {
+    //     this.navigateTo('CBFavoriteAccounts__c')
+    // }
+
     // Helper function for navigation
     navigateTo(pageApiName) {
         this[NavigationMixin.Navigate]({

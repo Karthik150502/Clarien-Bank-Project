@@ -19,7 +19,7 @@
 
 .wrapper {
     width: 100vw;
-    height: auto;
+    height: 100vh;
     margin: 0 auto;
     overflow: hidden;
     overflow-x: hidden;
@@ -49,12 +49,28 @@
     height: auto;
     margin: 0 auto;
     padding: 5% 2% 5% 2%;
-    margin: 2% auto 0 auto;
     border: 1px solid var(--border-blue);
     border-radius: 12px;
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.wrapper .container .types {
+    border: 1px solid var(--border-blue);
+    border-radius: 12px;
+    width: 90%;
+}
+
+
+.wrapper .container .filter-inp {
+    width: 90%;
+    display: flex;
+    margin: 10px 0px 5px 10px;
+}
+
+.wrapper .container .filter-inp p {
+    margin-left: 10px;
 }
 
 
@@ -96,16 +112,6 @@
 }
 
 
-.wrapper .container .desc-box {
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    height: auto;
-    margin: 4% 0 0 0;
-}
-
 .wrapper .container .t-type-box {
     width: 100%;
     display: flex;
@@ -118,25 +124,25 @@
 
 .wrapper .container .from-acc-inp {
     margin: 0 auto;
-    font-size: 13px;
     width: 90%;
     height: 35px;
     border-radius: 12px;
     border: 1px solid var(--border-blue);
     padding: 0 2% 0 2%;
-
+    font-size: 16px;
+    max-height: 100px;
 }
 
 
 .wrapper .container .to-acc-inp {
-    margin: 0 auto;
-    font-size: 13px;
+    margin: 0 auto 25px auto;
     width: 90%;
     height: 35px;
     border-radius: 12px;
     border: 1px solid var(--border-blue);
     padding: 0 2% 0 2%;
-
+    font-size: 16px;
+    max-height: 100px;
 }
 
 .wrapper .container .desc-inp {
@@ -147,7 +153,8 @@
     border-radius: 12px;
     border: 1px solid var(--border-blue);
     padding: 2% 2% 2% 2%;
-
+    font-size: 16px;
+    max-height: 100px;
 }
 
 .wrapper .container .btns {
@@ -175,9 +182,11 @@
 .wrapper .container .btns .done-btn:disabled,
 .wrapper .container .btns .done-btn:disabled[disabled] {
     background-color: var(--light-grey);
-
 }
 
+input:disabled, input:disabled[disabled] {
+    background-color: var(--light-grey);
+}
 
 
 .wrapper .container .btns .cancel-btn {
@@ -192,6 +201,8 @@
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     margin: 8% auto 0 auto;
 }
+
+
 
 .wrapper .container .t-type-box>p {
     font-size: 12px;
@@ -209,14 +220,6 @@
 
 
 
-.wrapper .container .desc-box>p {
-    font-size: 12px;
-    margin: 0 0 1% 5%;
-    font-family: var(--dxp-g-root-gotham-bold-font-family);
-    color: var(--primary-grey);
-}
-
-
 .wrapper .container .to-acc-box>p {
     font-size: 12px;
     margin: 0 0 1% 5%;
@@ -227,12 +230,13 @@
 
 .wrapper .container .t-type-box .t-type {
     margin: 0 auto;
-    font-size: 13px;
     width: 90%;
     height: 35px;
     border-radius: 12px;
     border: 1px solid var(--border-blue);
     padding: 0 2% 0 2%;
+    font-size: 16px;
+    max-height: 100px;
 }
 
 /* .wrapper .container>.t-type-p {
@@ -254,6 +258,8 @@
     right: 0;
     z-index: 10;
     opacity: 0;
+    font-size: 16px;
+    max-height: 100px;
 }
 
 
@@ -261,7 +267,6 @@
 .wrapper .container .dates .to-date>svg {
     position: absolute;
     right: 0;
-    z-index: -10;
 }
 
 .wrapper .container .dates .from-date .from-date-display,
@@ -271,7 +276,10 @@
 }
 
 
-
+input {
+    font-size: 16px;
+    max-height: 100px;
+}
 
 c-c-b-footer {
     position: fixed;

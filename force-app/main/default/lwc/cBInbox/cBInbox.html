@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-30-2024
+  @last modified on  : 06-07-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -10,31 +10,34 @@
         <div class="heading">
             <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
         </div>
-        <div class="container">
-            <div class="head">
-                <p>Recent Messages</p>
-            </div>
-            <template for:each={messages} for:item="message">
-                <div class="message-container" key={message.id}>
-                    <div class="message-icon">
-                        <div class="circle">
-                            <p>AJ</p>
+        <div class="casing">
+            <div class="container">
+                <div class="head">
+                    <p>Recent Messages</p>
+                </div>
+                <template for:each={messages} for:item="message">
+                    <div class="message-container" key={message.id}>
+                        <div class="message-icon">
+                            <div class="circle">
+                                <p>{message.shortcut}</p>
+                            </div>
+                        </div>
+                        <div class="message-text">
+                            <p class="name">{message.name}</p>
+                            <p class="message">{message.message}</p>
+                        </div>
+                        <div class="message-time">
+                            <p>{message.time}</p>
                         </div>
                     </div>
-                    <div class="message-text">
-                        <p class="name">{message.name}</p>
-                        <p class="message">{message.message}</p>
-                    </div>
-                    <div class="message-time">
-                        <p>Yestarday</p>
-                    </div>
+                </template>
+                <div class="new-message-icon" onclick={naviagteToCreateMessage}>
+                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use href={CBNewMessage}></use>
+                    </svg>
                 </div>
-            </template>
-            <div class="new-message-icon" onclick={naviagteToCreateMessage}>
-                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href={CBNewMessage}></use>
-                </svg>                   
             </div>
         </div>
     </div>
+    <c-c-b-footer></c-c-b-footer>
 </template>

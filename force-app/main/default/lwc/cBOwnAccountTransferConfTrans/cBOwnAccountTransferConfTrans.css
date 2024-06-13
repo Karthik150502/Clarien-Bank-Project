@@ -5,11 +5,11 @@
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     font-family: var(--dxp-g-root-gotham-medium-font-family);
     font-family: var(--dxp-g-root-gotham-book-font-family);
-
 }
 
 .wrapper {
     width: 100vw;
+    height: 100vh;
     margin: 10px 0;
     overflow-y: scroll;
 }
@@ -25,15 +25,22 @@
 
 .wrapper .container {
     width: 90%;
-    height: auto;
     margin: 0 auto;
     border-radius: 7px;
-    height: fit-content;
     padding: 10px 10px 10px 10px;
     overflow-y: scroll;
     border-radius: 12px;
     border: 1px solid var(--border-blue);
+    height: auto;
+
 }
+
+
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+
 
 
 .wrapper .error-div {
@@ -209,4 +216,11 @@
     margin: 0 0 0 5px;
     font-size: 12px;
     font-family: var(--dxp-g-root-gotham-book-font-family);
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
 }

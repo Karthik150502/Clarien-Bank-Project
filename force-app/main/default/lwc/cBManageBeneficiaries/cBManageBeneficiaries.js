@@ -1,12 +1,18 @@
 import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
+import { setPagePath } from 'c/cBUtilities';
+
 import CBSVG from "@salesforce/resourceUrl/CBSVG";
 
 export default class CBManageBeneficiaries extends NavigationMixin(LightningElement)  {
    
     label = {
 
+    }
+
+    connectedCallback(){
+        this.configuration.previousPageUrl = setPagePath('CBManageBeneficiaries__c')
     }
 
     configuration = {

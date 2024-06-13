@@ -1,0 +1,64 @@
+<!--
+	Author - Prateek Deshmukh
+	Created Date - 18/03/2024
+	Modified Date - 21/03/2024
+	Description - Refactored Confirmation Modal Popup for Reusability
+-->
+
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open wrapper">
+         <!-- <div class="slds-modal__content main-container slds-align_absolute-center"> -->
+                <div class="container">
+                    <template if:false={modalInfo.isLoading}>
+                        <div class="content">
+                            <template if:false={modalInfo.title}>
+                                <p class="title">{modalInfo.title}</p>
+                            </template>
+                            <template if:true={modalInfo.message}>
+                                <p class="message">{modalInfo.message}</p>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:true={modalInfo.isLoading}>
+                        <div class="misallaneous">
+                            <div class="loading-anim-con">
+                                <div class="lds-roller">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                            <div class="progress-status">
+                                <p>{modalInfo.loadingStatusMsg}</p>
+                            </div>
+                        </div>
+                    </template>
+                    <template if:false={modalInfo.isLoading}>
+                        <div class="footer">
+                            <template if:true={modalInfo.yesButton}>
+                                <template if:true={modalInfo.yesButton.exposed}>
+                                    <button class="yes-btn" onclick={modalInfo.yesButton.implementation}>
+                                        {modalInfo.yesButton.label}
+                                    </button>
+                                </template>
+                            </template>
+                            <template if:true={modalInfo.noButton}>
+                                <template if:true={modalInfo.noButton.exposed}>
+                                    <button class="no-btn" onclick={modalInfo.noButton.implementation}>
+                                        {modalInfo.noButton.label}
+                                    </button>
+                                </template>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+             <!-- </div> -->
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

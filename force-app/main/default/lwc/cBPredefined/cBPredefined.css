@@ -18,7 +18,7 @@
 
 .wrapper {
     width: 90vw;
-    height: calc(100vh - 30px);
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,8 +55,12 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    height: calc(90vh - 60px);
+    overflow-y: scroll;
 }
-
+::-webkit-scrollbar {
+    display: none;
+}
 
 
 

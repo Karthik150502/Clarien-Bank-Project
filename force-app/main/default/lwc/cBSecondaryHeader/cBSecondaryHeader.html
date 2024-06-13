@@ -9,8 +9,8 @@
                 </div>
                 <p>{configuration.heading}</p>
             </div>
-            <div class="right">
-                <template if:true={configuration.iconsExposed}>
+            <template if:true={configuration.iconsExposed}>
+                <div class="right">
                     <div class="icons">
                         <template if:true={configuration.search.exposed}>
                             <div class="icon search-svg">
@@ -21,7 +21,7 @@
                             </div>
                         </template>
                         <template if:true={configuration.logout.exposed}>
-                            <div class="icon logout-svg">
+                            <div class="icon logout-svg" onclick={logoutUser}>
                                 <svg width="14" height="15" viewBox="0 0 14 15" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <use href={CBHeaderLogOut}></use>
@@ -73,10 +73,13 @@
                             </template>
                         </template>
                     </div>
-                </template>
-
-
-            </div>
+                </div>
+            </template>
         </div>
     </div>
+
+    <template if:true={modalOpen}>
+		<c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+	</template>
+
 </template>

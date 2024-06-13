@@ -1,9 +1,9 @@
-import { LightningElement } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
+import { LightningElement, wire } from 'lwc';
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
 import CB_Page_Applynow from '@salesforce/label/c.CB_Page_Applynow';
 
-export default class CBRequestDraftConfirmation extends NavigationMixin(LightningElement)  {
+export default class CBRequestDraftConfirmation extends NavigationMixin(LightningElement) {
 
     configuration = {
         previousPageUrl: '',
@@ -17,16 +17,34 @@ export default class CBRequestDraftConfirmation extends NavigationMixin(Lightnin
         }
     }
 
-    accountNum = 6000316231;
-    accountType = 'Personal Saving USD';
-    amount = '2000';
-    currency = 'BMD';
-    payeeName = 'John';
+    @wire(CurrentPageReference) pageRef;
+
+    get accountNum() {
+        return this.pageRef?.state?.accountNum;
+    }
+    get accountType(){
+        return this.pageRef?.state?.accountType;
+    }
+    get amount() {
+        return this.pageRef?.state?.amount;
+    }
+    get currency() {
+        return this.pageRef?.state?.currency;
+    }
+    get payeeName() {
+        return this.pageRef?.state?.payeeName;
+    }
+
+    // accountNum = 6000316231;
+    // accountType = 'Personal Saving USD';
+    // amount = '2000';
+    // currency = 'BMD';
+    // payeeName = 'John';
     // remark = 'No Remark';
 
     successModalOpen = false;
 
-    successModalconfig={
+    successModalconfig = {
         title: `Your request is submitted sucessfully`,
         message: '',
         okButton: {
@@ -55,8 +73,8 @@ export default class CBRequestDraftConfirmation extends NavigationMixin(Lightnin
         });
     }
 
-    submitForm(){
+    submitForm() {
         this.successModalOpen = true;
     }
-    
+
 }

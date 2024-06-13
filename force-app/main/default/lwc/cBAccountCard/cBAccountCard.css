@@ -114,3 +114,7 @@
     padding: 2% 4% 2% 4%;
     font-family: var(--dxp-g-root-gotham-book-font-family);
 }
+
+.view-all-p {
+    color: orange;
+}

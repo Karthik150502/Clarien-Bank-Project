@@ -121,3 +121,17 @@ option p{
 option, p{
     font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}

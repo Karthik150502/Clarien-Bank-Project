@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 06-04-2024
+  @last modified on  : 06-05-2024
   @last modified by  : Prateek Deshmukh
 -->
 <template>
@@ -30,4 +30,10 @@
             </template>
         </div>
     </div>
+    <template if:true={authenticationPopup.openModal}>
+        <c-c-b-authentication-result status={authenticationPopup.authenticationStatus}
+            loading-gif={authenticationPopup.authenticationSpinnergif}
+            is-loading={authenticationPopup.showLoadingAnimation}>
+        </c-c-b-authentication-result>
+    </template>
 </template>

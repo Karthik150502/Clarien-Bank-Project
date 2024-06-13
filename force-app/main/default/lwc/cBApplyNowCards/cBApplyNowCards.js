@@ -8,6 +8,9 @@ import BMD from '@salesforce/label/c.CB_Bmd';
 import USD from '@salesforce/label/c.CB_Usd';
 import SUBMIT from '@salesforce/label/c.CB_Submit';
 import APPLYNOW_PAGE from '@salesforce/label/c.CB_Page_Applynow';
+import APPLYNOWCARDS_PAGE from '@salesforce/label/c.CB_Page_Applynowcards';
+
+import { setPagePath } from 'c/cBUtilities';
 
 export default class CBApplyNowCards extends NavigationMixin(LightningElement) {
 
@@ -19,6 +22,10 @@ export default class CBApplyNowCards extends NavigationMixin(LightningElement) {
         BMD,
         USD,
         SUBMIT: SUBMIT.toUpperCase()
+    }
+
+    connectedCallback(){
+        setPagePath(APPLYNOWCARDS_PAGE)
     }
 
     cardSelected = 'Credit Card'

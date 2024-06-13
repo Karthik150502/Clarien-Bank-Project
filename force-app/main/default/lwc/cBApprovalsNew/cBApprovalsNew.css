@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+.wrapper {
+    width: 100vw;
+    margin: 10px 0;
+    height: 100vh;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.wrapper .header {
+    width: 90%;
+    margin: 70px auto 5% auto;
+}
+
+
+.wrapper .container {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow-y: scroll;
+    height: calc(90vh - 140px);
+    border: 1px solid var(--border-blue);
+    padding: 5px 5px 5px 5px;
+    overflow-y: scroll;
+}
+
+.wrapper .container::-webkit-scrollbar {
+    display: none;
+}
+
+
+.approved,
+.rejected,
+.pending {
+    width: 100%;
+    position: relative;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-bottom: 0.25px solid var(--light-grey);
+}
+
+.details {
+    width: 90%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.icon {
+    margin: 0 0px 0 0px;
+}
+
+.approved>p,
+.rejected>p,
+.pending>p {
+    left: 45px;
+    position: absolute;
+    top: 12px;
+}
+
+.approval-tiles {
+    width: 90%;
+    min-height: 150px;
+    max-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin: 0 auto;
+    padding: 10px 10px 0 0;
+}
+
+
+
+
+
+c-c-b-approval-tile {
+    width: 90%;
+    margin: 0px 0 8px 0;
+}
+
+
+c-c-b-header {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}

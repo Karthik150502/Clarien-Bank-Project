@@ -24,8 +24,8 @@ export default class CBFilterTransactionModal extends LightningElement {
 
     // Get current date
     currentDate = new Date();
-    transFromDate = ''
-    transToDate = ''
+    transFromDate = 'YYYY-MM'
+    transToDate = 'YYYY-MM'
 
     get MinMonth() {
         // Get the minimum month (7 months ago from the current date)
@@ -40,12 +40,14 @@ export default class CBFilterTransactionModal extends LightningElement {
     }
 
     fromDate(event) {
-        this.transFromDate = event.target.value
+        this.transFromDate = event.target.value?event.target.value:'YYYY-MM';
         console.log('From Date',this.transFromDate);
+        event.target.value='';
+         console.log('From Date', event.target.value);
     }
 
     toDate(event) {
-        this.transToDate = event.target.value
+        this.transToDate = event.target.value?event.target.value:'YYYY-MM';
         console.log('To Date',this.transToDate );
     }
 
@@ -54,7 +56,7 @@ export default class CBFilterTransactionModal extends LightningElement {
     }
 
     get validateDate(){
-        return this.transFromDate >= this.transToDate
+        return this.transFromDate == 'YYYY-MM' || this.transToDate == 'YYYY-MM'
     }
 
     submitHandler(){

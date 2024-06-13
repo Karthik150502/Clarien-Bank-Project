@@ -1,5 +1,10 @@
 import { LightningElement } from 'lwc';
 
+import QUICKLINKS_PAGE from '@salesforce/label/c.CB_Page_Quicklinks';
+import APPLYNOW_PAGE from '@salesforce/label/c.CB_Page_Applynow';
+
+import { setPagePath } from 'c/cBUtilities';
+
 export default class CBApplyNow extends LightningElement {
     // Initial Header Item Configuration
     header_icons = {
@@ -51,4 +56,8 @@ export default class CBApplyNow extends LightningElement {
             exposed: false
         }
     };
+
+    connectedCallback(){
+        this.profileItems.previousPageUrl = setPagePath(APPLYNOW_PAGE)== QUICKLINKS_PAGE ? QUICKLINKS_PAGE : 'Home' ;
+    }
 }

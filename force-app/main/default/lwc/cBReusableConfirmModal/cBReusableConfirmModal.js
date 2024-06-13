@@ -13,7 +13,6 @@ export default class CBReusableConfirmModal extends LightningElement {
     }
 
     handleDelete(){
-        // this.configuration.navigateTo()
-        history.back();
+        this.dispatchEvent(new CustomEvent('deleteselcted'))
     }
 }

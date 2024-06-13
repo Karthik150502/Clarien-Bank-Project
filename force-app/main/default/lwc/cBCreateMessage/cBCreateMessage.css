@@ -2,6 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
 }
 
 .wrapper {
@@ -12,7 +15,7 @@
 .container {
     width: 90%;
     margin: 0 auto;
-    border: 1px solid var(--primary-blue);
+    border: 1px solid var(--border-blue);
     border-radius: 5%;
     padding: 6% 6%;
 }
@@ -29,6 +32,8 @@
     width: 100%;
     border: 1px solid var(--primary-blue);
     padding: 0 0px 0px 7px;
+    font-size: 16px;
+    max-height: 100%;
 }
 
 .container label .subject {
@@ -36,7 +41,9 @@
     border: 1px solid var(--primary-blue);
     border-radius: 10px;
     height: 50px;
-    padding: 0 0 0 10px;
+    padding: 9px 9px;
+    font-size: 16px;
+    max-height: 100%;
 }
 
 .container label .message-body {
@@ -44,7 +51,9 @@
     border: 1px solid var(--primary-blue);
     border-radius: 10px;
     height: 100px;
-    padding: 0 0 0 10px;
+    padding: 9px 9px;
+    font-size: 16px;
+    max-height: 100%;
 }
 
 .container .attachment {
@@ -56,14 +65,30 @@
     border-radius: 10px;
 }
 
-.container .attachment button {
-    height: 30px;
+.container .attachment .browse-btn {
+    height: 35px;
     width: 30%;
     background: var(--primary-blue);
-    color: white;
+    color:var(--primary-white);
     border: none;
     margin-right: 10px;
-    border-radius: 8px;
+    border-radius: 20px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.container .attachment .browse-inp {
+    position: absolute;
+    position: absolute;
+    left: 4px;
+    opacity: 0;
+    font-size: 16px;
+    font-weight: 700;
+    max-height: 100%;
 }
 
 .submit {
@@ -72,16 +97,31 @@
     margin: 9% 0;
 }
 
-.submit button {
+.submit .submit-btn {
     width: 120px;
-    background: var(--primary-blue);
-    height: 40px;
+    height: 35px;
     border: none;
-    color: white;
-    border-radius: 9px;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color:var(--primary-white);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.submit .submit-btn:disabled,
+.submit  .submit-btn[disabled] {
+    background-color: var(--light-grey);
 }
 
 .header {
     width: 90%;
     margin: 4% auto;
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
 }

@@ -31,7 +31,7 @@
     justify-content: space-between;
     padding: 2%;
     width: 100%;
-    border-radius: 5px;
+    border-radius: 12px;
     border: 1px solid var(--primary-blue);
     /* margin-left: 10px; */
     /* margin: 0 0 2% 10px; */
@@ -42,7 +42,9 @@
     font-family: var(--dxp-g-root-gotham-medium-font-family);
     color: var(--primary-black)
 }
-
+.date{
+    margin: 1% 0 0 0;
+}
 .wrapper .icons-container .icons svg {
     margin: 0 0 0 10px;
 }
@@ -54,7 +56,7 @@
 .wrapper .container .activities {
     width: 100%;
     height: calc(100vh - 200px);
-    border-radius: 5px;
+    border-radius: 12px;
     border: 1px solid var(--primary-blue);
     padding: 2%;
     margin: 5% 0 0 0;
@@ -68,12 +70,13 @@
 .activityDetail {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     margin: 3% 0;
 }
 
 .activityDetail .logo {
     width: 8%;
+    margin: 1% 0 0 0;
 }
 
 .activityDetail .details {
@@ -89,7 +92,8 @@
 .activityDetail .process {
     width: 22%;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
+    margin: 1% 0 0 0;
 }
 
 .activityDetail .process p {

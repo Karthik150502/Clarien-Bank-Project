@@ -6,36 +6,45 @@
   @last modified by  : Prateek Deshmukh
 -->
 <template>
-	<div class="wrapper">
+    <div class="wrapper">
         <div class="header">
             <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
         </div>
-            <div class="container">
-                <div class="from-acc-box">
-                    <p class="from-acc">{inputLabel.fromAccount}</p>
-                    <select name="" id="from_acc" class="from-acc-inp" onchange={handleFromAccountInput}>
-                        <option value="Select from Account">Select from Account</option>
-                        <template if:true={accounts} for:each={accounts} for:item="acc">
-                            <option key={acc.accountNo} value={acc.accountNo}>
-                                {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accBal}
-                            </option>
-                        </template>
-                    </select>
-                </div>
-                <div class="inp-box">
-                    <p>{inputLabel.toAccount}</p>
-                    <input type="number" class="inp" onchange={handletoAccountInput} value={toAccount}>
-                </div>
-                <hr class="hr">
-                <div class="inp-box">
-                    <p>{inputLabel.name}</p>
-                    <input type="text" class="inp" onchange={handleNameInput} value={name}>
-                </div>
-                <div class="inp-box">
-                    <p>{inputLabel.amount}</p>
-                    <input type="number" class="inp" onchange={handleAmountInput} value={amount}>
-                </div>
-                <div class="inp-box">
+        <div class="container">
+            <div class="from-acc-box">
+                <p class="from-acc">{inputLabel.fromAccount}</p>
+                <select name="" id="from_acc" class="from-acc-inp" onchange={handleFromAccountInput}>
+                    <option value="Select from Account">Select from Account</option>
+                    <template if:true={accounts} for:each={accounts} for:item="acc">
+                        <option key={acc.accountNo} value={acc.accountNo}>
+                            {acc.accountNo}
+                        </option>
+                    </template>
+                </select>
+            </div>
+            <div class="inp-box">
+                <p>To Account</p>
+                <!-- <select name="" class="from-acc-inp" onchange={handletoAccountInput}>
+                    <option value="Select Account">Select Account</option>
+                    <template if:true={toAccountsList} for:each={toAccountsList} for:item="toAccount">
+                        <option key={toAccount.accountNum} value={toAccount.accountNum}>
+                            {toAccount.accountNum}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{toAccount.name}
+                        </option>
+                    </template>
+                </select> -->
+                <input type="text" class="inp" onkeyup={handleToAccount} value={toAccount}>
+            </div>
+            <hr class="hr">
+            <div class="inp-box-name">
+                <p class="title">Name</p>
+                <!-- <input type="text" class="inp" onkeyup={handleNameInput} value={name}> -->
+                <p class="inp read">{name}</p>
+            </div>
+            <div class="inp-box">
+                <p>{inputLabel.amount}</p>
+                <input type="number" class="inp" onchange={handleAmountInput} value={amount}>
+            </div>
+            <!-- <div class="inp-box">
                     <p>{inputLabel.date}</p>
                     <input type="date" onchange={handleDate} value={dateSelected} placeholder="" class="inp date-field">
                     <svg class="date-pick" width="19" height="19" viewBox="0 0 19 19" fill="none"
@@ -44,31 +53,93 @@
                         d="M18.3596 18.39H1.17961C1.04961 18.39 0.93961 18.2799 0.93961 18.1499V3.11995C0.93961 2.98995 1.04961 2.87996 1.17961 2.87996H18.3596C18.4896 2.87996 18.5996 2.98995 18.5996 3.11995V18.1499C18.5996 18.2799 18.4896 18.39 18.3596 18.39ZM18.1196 3.35995H1.41961V17.91H18.1196V3.35995ZM18.3596 18.4799H1.17961C0.999611 18.4799 0.849609 18.3299 0.849609 18.1499V3.11995C0.849609 2.93995 0.999611 2.78995 1.17961 2.78995H18.3596C18.5396 2.78995 18.6896 2.93995 18.6896 3.11995V18.1499C18.6896 18.3299 18.5396 18.4799 18.3596 18.4799ZM18.5096 3.11995C18.5096 3.03995 18.4396 2.96996 18.3596 2.96996H1.17961C1.09961 2.96996 1.02961 3.03995 1.02961 3.11995V18.1499C1.02961 18.2299 1.09961 18.3 1.17961 18.3H18.3596C18.4396 18.3 18.5096 18.2299 18.5096 18.1499V3.11995ZM18.1196 18H1.41961C1.36961 18 1.32961 17.96 1.32961 17.91V3.35995C1.32961 3.30995 1.36961 3.26996 1.41961 3.26996H18.1196C18.1696 3.26996 18.2096 3.30995 18.2096 3.35995V17.91C18.2096 17.96 18.1696 18 18.1196 18ZM18.0296 3.44995H1.50961V17.82H18.0296V3.44995ZM14.1196 4.63995C13.9896 4.63995 13.8796 4.52995 13.8796 4.39995V1.28995C13.8796 1.15995 13.9896 1.04996 14.1196 1.04996C14.2496 1.04996 14.3596 1.15995 14.3596 1.28995V4.39995C14.3596 4.53995 14.2496 4.63995 14.1196 4.63995ZM14.1196 4.72995C13.9396 4.72995 13.7896 4.57995 13.7896 4.39995V1.28995C13.7896 1.10995 13.9396 0.959961 14.1196 0.959961C14.2996 0.959961 14.4496 1.10995 14.4496 1.28995V4.39995C14.4496 4.58995 14.2996 4.72995 14.1196 4.72995ZM14.2696 1.29996C14.2696 1.21996 14.1996 1.14995 14.1196 1.14995C14.0396 1.14995 13.9696 1.21996 13.9696 1.29996V4.40996C13.9696 4.48996 14.0396 4.55995 14.1196 4.55995C14.1996 4.55995 14.2696 4.48996 14.2696 4.40996V1.29996ZM5.29961 4.63995C5.16961 4.63995 5.05961 4.52995 5.05961 4.39995V1.28995C5.05961 1.15995 5.16961 1.04996 5.29961 1.04996C5.42961 1.04996 5.53961 1.15995 5.53961 1.28995V4.39995C5.53961 4.53995 5.42961 4.63995 5.29961 4.63995ZM5.29961 4.72995C5.11961 4.72995 4.96961 4.57995 4.96961 4.39995V1.28995C4.96961 1.10995 5.11961 0.959961 5.29961 0.959961C5.47961 0.959961 5.62961 1.10995 5.62961 1.28995V4.39995C5.62961 4.58995 5.47961 4.72995 5.29961 4.72995ZM5.44961 1.29996C5.44961 1.21996 5.37961 1.14995 5.29961 1.14995C5.21961 1.14995 5.14961 1.21996 5.14961 1.29996V4.40996C5.14961 4.48996 5.21961 4.55995 5.29961 4.55995C5.37961 4.55995 5.44961 4.48996 5.44961 4.40996V1.29996ZM9.70961 4.75995C9.57961 4.75995 9.46961 4.64996 9.46961 4.51996V1.40996C9.46961 1.27996 9.57961 1.16995 9.70961 1.16995C9.83961 1.16995 9.94961 1.27996 9.94961 1.40996V4.51996C9.94961 4.65996 9.83961 4.75995 9.70961 4.75995ZM9.70961 4.84996C9.52961 4.84996 9.37961 4.69996 9.37961 4.51996V1.40996C9.37961 1.22996 9.52961 1.07996 9.70961 1.07996C9.88961 1.07996 10.0396 1.22996 10.0396 1.40996V4.51996C10.0396 4.70996 9.88961 4.84996 9.70961 4.84996ZM9.85961 1.41995C9.85961 1.33995 9.78961 1.26996 9.70961 1.26996C9.62961 1.26996 9.55961 1.33995 9.55961 1.41995V4.52995C9.55961 4.60995 9.62961 4.67995 9.70961 4.67995C9.78961 4.67995 9.85961 4.60995 9.85961 4.52995V1.41995ZM4.36961 8.98996V7.36995H6.81961V8.98996H4.36961ZM8.54961 8.99995V7.37996H10.9996V8.99995H8.54961ZM12.7296 8.99995V7.37996H15.1796V8.99995H12.7296ZM4.36961 11.6799V10.06H6.81961V11.6799H4.36961ZM8.54961 11.69V10.07H10.9996V11.69H8.54961ZM12.7296 11.69V10.07H15.1796V11.69H12.7296ZM4.36961 14.3699V12.75H6.81961V14.3699H4.36961ZM8.54961 14.38V12.7599H10.9996V14.38H8.54961ZM12.7296 14.38V12.7599H15.1796V14.38H12.7296Z"
                         fill="#0062A7" />
                 </svg>
-                </div>
-                <hr class="hr">
-    
-    
-                <div class="inp-box-3">
-                    <div class="inp-box-4">
-                        <p>{inputLabel.comments}</p>
-                        <textarea class="inp-comments" onchange={handleCommentsInput} placeholder="Any user comments written here"  name="story" rows="5" cols="33">
-                            
-                        </textarea>
+                </div> -->
+            <!-- <div class="trans-date">
+                    <p class="title">{inputLabel.date}</p>
+                    <div class="date">
+                        <input type="date" class="trans-date-inp" onchange={handleDate} value={dateSelected}>
+                        <p>{dateSelected}</p>
+                        <svg class="date-pick" width="23" height="23" viewBox="0 0 23 23" fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M1.4375 2.1517L7.19253 2.15172V0.718918C7.19253 0.321716 7.51417 0 7.91128 0C8.30839 0 8.63003 0.321716 8.63003 0.718918V2.15136H14.38V0.718918C14.38 0.321716 14.7017 0 15.0988 0C15.4959 0 15.8175 0.321716 15.8175 0.718918V2.15136H21.5625C22.3564 2.15136 23 2.79516 23 3.5892V21.5622C23 22.3562 22.3564 23 21.5625 23H1.4375C0.643641 23 0 22.3562 0 21.5622V3.5892C0 2.79549 0.643641 2.1517 1.4375 2.1517ZM1.4375 21.5622H21.5625V3.5892H15.8175V4.31351C15.8175 4.71069 15.4959 5.03243 15.0988 5.03243C14.7017 5.03243 14.38 4.71069 14.38 4.31351V3.58956H8.63003V4.31387C8.63003 4.71107 8.30839 5.03279 7.91128 5.03279C7.51417 5.03279 7.19253 4.71107 7.19253 4.31387V3.58956H1.4375V21.5622ZM6.46875 11.4976H5.03125C4.6345 11.4976 4.3125 11.1756 4.3125 10.7787V9.34089C4.3125 8.94404 4.6345 8.62197 5.03125 8.62197H6.46875C6.8655 8.62197 7.1875 8.94404 7.1875 9.34089V10.7787C7.1875 11.1756 6.8655 11.4976 6.46875 11.4976ZM6.46875 17.2486H5.03125C4.6345 17.2486 4.3125 16.9269 4.3125 16.5297V15.0919C4.3125 14.695 4.6345 14.373 5.03125 14.373H6.46875C6.8655 14.373 7.1875 14.695 7.1875 15.0919V16.5297C7.1875 16.9273 6.8655 17.2486 6.46875 17.2486ZM10.7812 14.373H12.2188C12.6155 14.373 12.9375 14.695 12.9375 15.0919V16.5297C12.9375 16.9269 12.6155 17.2486 12.2188 17.2486H10.7812C10.3845 17.2486 10.0625 16.9269 10.0625 16.5297V15.0919C10.0625 14.6954 10.3845 14.373 10.7812 14.373ZM10.7812 8.62197H12.2188C12.6155 8.62197 12.9375 8.94404 12.9375 9.34089V10.7787C12.9375 11.1756 12.6155 11.4976 12.2188 11.4976H10.7812C10.3845 11.4976 10.0625 11.1756 10.0625 10.7787V9.34089C10.0625 8.94368 10.3845 8.62197 10.7812 8.62197ZM16.5312 8.62197H17.9688C18.3655 8.62197 18.6875 8.94404 18.6875 9.34089V10.7787C18.6875 11.1756 18.3655 11.4976 17.9688 11.4976H16.5312C16.1345 11.4976 15.8125 11.1756 15.8125 10.7787V9.34089C15.8125 8.94368 16.1345 8.62197 16.5312 8.62197ZM16.5312 14.373H17.9688C18.3655 14.373 18.6875 14.695 18.6875 15.0919V16.5297C18.6875 16.9269 18.3655 17.2486 17.9688 17.2486H16.5312C16.1345 17.2486 15.8125 16.9269 15.8125 16.5297V15.0919C15.8125 14.6954 16.1345 14.373 16.5312 14.373Z"
+									fill="#0487C8" />
+						</svg>
                     </div>
+                </div> -->
+            <div class="inp-box-date">
+                <p>Date</p>
+                <div class="inp">
+                    <p>{date}</p>
+                    <svg onclick={openTransDateSelect} width="27" height="25" viewBox="0 0 27 25" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M25.86 24.78H1.42996C1.23996 24.78 1.08997 24.63 1.08997 24.44V3.06C1.08997 2.87 1.23996 2.72 1.42996 2.72H25.86C26.05 2.72 26.2 2.87 26.2 3.06V24.44C26.2 24.63 26.05 24.78 25.86 24.78ZM25.52 3.41H1.76996V24.11H25.52V3.41ZM25.86 24.91H1.42996C1.16996 24.91 0.959961 24.7 0.959961 24.44V3.06C0.959961 2.8 1.16996 2.59 1.42996 2.59H25.86C26.12 2.59 26.33 2.8 26.33 3.06V24.44C26.33 24.7 26.12 24.91 25.86 24.91ZM26.07 3.07001C26.07 2.95001 25.97 2.85999 25.86 2.85999H1.42996C1.30996 2.85999 1.21997 2.95001 1.21997 3.07001V24.45C1.21997 24.57 1.31996 24.66 1.42996 24.66H25.86C25.98 24.66 26.07 24.56 26.07 24.45V3.07001ZM25.52 24.23H1.76996C1.69996 24.23 1.63998 24.17 1.63998 24.1V3.39999C1.63998 3.32999 1.69996 3.26999 1.76996 3.26999H25.52C25.59 3.26999 25.65 3.32999 25.65 3.39999V24.1C25.64 24.17 25.59 24.23 25.52 24.23ZM25.39 3.54001H1.89996V23.98H25.39V3.54001ZM19.83 5.23001C19.64 5.23001 19.49 5.08001 19.49 4.89001V0.470001C19.49 0.280001 19.64 0.130005 19.83 0.130005C20.02 0.130005 20.17 0.280001 20.17 0.470001V4.89001C20.17 5.08001 20.02 5.23001 19.83 5.23001ZM19.83 5.35999C19.57 5.35999 19.36 5.15001 19.36 4.89001V0.470001C19.36 0.210001 19.57 0 19.83 0C20.09 0 20.3 0.210001 20.3 0.470001V4.89001C20.3 5.15001 20.09 5.35999 19.83 5.35999ZM20.04 0.470001C20.04 0.350001 19.94 0.26001 19.83 0.26001C19.72 0.26001 19.62 0.360001 19.62 0.470001V4.89001C19.62 5.01001 19.72 5.10001 19.83 5.10001C19.94 5.10001 20.04 5.00001 20.04 4.89001V0.470001ZM7.27997 5.23001C7.08997 5.23001 6.93997 5.08001 6.93997 4.89001V0.470001C6.93997 0.280001 7.08997 0.130005 7.27997 0.130005C7.46997 0.130005 7.61996 0.280001 7.61996 0.470001V4.89001C7.61996 5.08001 7.46997 5.23001 7.27997 5.23001ZM7.27997 5.35999C7.01997 5.35999 6.80997 5.15001 6.80997 4.89001V0.470001C6.80997 0.210001 7.01997 0 7.27997 0C7.53997 0 7.74997 0.210001 7.74997 0.470001V4.89001C7.74997 5.15001 7.53997 5.35999 7.27997 5.35999ZM7.48996 0.470001C7.48996 0.350001 7.38997 0.26001 7.27997 0.26001C7.15997 0.26001 7.06998 0.360001 7.06998 0.470001V4.89001C7.06998 5.01001 7.16997 5.10001 7.27997 5.10001C7.39997 5.10001 7.48996 5.00001 7.48996 4.89001V0.470001ZM13.55 5.39999C13.36 5.39999 13.21 5.25 13.21 5.06V0.640015C13.21 0.450015 13.36 0.299988 13.55 0.299988C13.74 0.299988 13.89 0.450015 13.89 0.640015V5.06C13.9 5.25 13.74 5.39999 13.55 5.39999ZM13.55 5.53C13.29 5.53 13.08 5.32 13.08 5.06V0.640015C13.08 0.380015 13.29 0.170013 13.55 0.170013C13.81 0.170013 14.02 0.380015 14.02 0.640015V5.06C14.02 5.32 13.81 5.53 13.55 5.53ZM13.77 0.640015C13.77 0.520015 13.67 0.429993 13.56 0.429993C13.44 0.429993 13.35 0.530015 13.35 0.640015V5.06C13.35 5.18 13.44 5.26999 13.56 5.26999C13.68 5.26999 13.77 5.17 13.77 5.06V0.640015ZM5.95996 11.42V9.12H9.43997V11.42H5.95996ZM11.9 11.44V9.14001H15.38V11.44H11.9ZM17.85 11.44V9.14001H21.33V11.44H17.85ZM5.95996 15.24V12.94H9.43997V15.24H5.95996ZM11.9 15.26V12.96H15.38V15.26H11.9ZM17.85 15.26V12.96H21.33V15.26H17.85ZM5.95996 19.07V16.77H9.43997V19.07H5.95996ZM11.9 19.08V16.78H15.38V19.08H11.9ZM17.85 19.08V16.78H21.33V19.08H17.85Z"
+                            fill="#0062A7" />
+                    </svg>
                 </div>
-    
-    
-                <div class="btns">
-                    <button class="sub" onclick={handleSubmit} disabled={disableSubmit}>
-                        {label.SUBMIT}
-                    </button>
-                    <button class="cancel" onclick={handleCancel}>
-                        {label.CANCEL}
-                    </button>
+                <!-- <input type="text" value={dateSelected} readonly placeholder="" class="inp date-field"
+                        onclick={openDateEntry}> -->
+            </div>
+
+            <hr class="hr">
+
+            <template if:true={recurringTransferView}>
+                <div class="inp-box-2">
+                    <p>Recurring Transfer</p>
+                    <label class="slds-checkbox_toggle slds-grid">
+                        <template if:true={recurringTransfer}>
+                            <input type="checkbox" name="checkbox-toggle-16" checked
+                                aria-describedby="checkbox-toggle-16" />
+                            <span id="checkbox-toggle-16" class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                            </span>
+                        </template>
+                        <template if:false={recurringTransfer}>
+                            <input type="checkbox" name="checkbox-toggle-16" aria-describedby="checkbox-toggle-16" />
+                            <span id="checkbox-toggle-19" class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                            </span>
+                        </template>
+                    </label>
                 </div>
-            </div>	
-	</div>
-	<template if:true={successModalOpen}>
-		<c-c-b-resuable-success-modal configuration={successModalConfiguration}></c-c-b-resuable-success-modal>
-	</template>
+                <div class="inp-box-3">
+                    <div class="inp-box-hor">
+                        <div class="inp-box-5">
+                            <p>Occurance</p>
+                            <p class="inp read">{frequencySelected}</p>
+                        </div>
+
+                        <div class="inp-box-5">
+                            <p>Until</p>
+                            <p class="inp read">{untilDate}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </template>
+
+            <div>
+                <div class="inp-box">
+                    <p>Comments(Optional)</p>
+                    <textarea name="" id="" class="text-area-inp"></textarea>
+                </div>
+            </div>
+
+
+            <div class="btns">
+                <button class="sub" onclick={handleSubmit} disabled={disableSubmit}>
+                    {label.SUBMIT}
+                </button>
+            </div>
+        </div>
+        <c-c-b-footer></c-c-b-footer>
+    </div>
+    <!-- <template if:true={successModalOpen}>
+        <c-c-b-resuable-success-modal configuration={successModalConfiguration}></c-c-b-resuable-success-modal>
+    </template> -->
+    <template if:true={showTransDatePicker}>
+        <c-c-b-select-transaction-date-modal ontransdateinput={handleTransDate} onmodalclose={closeTransDatInput}>
+        </c-c-b-select-transaction-date-modal>
+    </template>
 </template>

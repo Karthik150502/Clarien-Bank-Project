@@ -27,6 +27,7 @@
     border-radius: 12px;
     padding:5% 0% 5% 4%;
     overflow: scroll;
+    margin: 4% 0% 0% 0%;
 }
 .wrapper .container .casing::-webkit-scrollbar {
     width: 0px;
@@ -34,7 +35,7 @@
 
 .btns{
     display: flex;
-    justify-content: center;
+    justify-content:space-evenly;
     margin: 4% 0% 0% 0%;
 }
 
@@ -56,8 +57,8 @@
     flex-direction:row-reverse
 }
 
-.rest-form .rest-btn{
-    width: 130px;
+.btns .rest-btn{
+    width: 105px;
     height: 35px;
     border: none;
     border-radius: 20px;
@@ -110,8 +111,25 @@
   color: #28a745; 
   font-size: 14px; 
 }
-
+.btns .rest-btn:disabled,
+.btns .rest-btn[disabled] {
+    background-color: var(--light-grey);
+}
 .btns .submit-btn:disabled,
 .btns .submit-btn[disabled] {
     background-color: var(--light-grey);
+}
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
 }

@@ -20,12 +20,12 @@ import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentica
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 //page
 import PROFILESETTINGS_PAGE from '@salesforce/label/c.CB_Page_Profilesettings';
-
+import UPDATEPHONE_PAGE from '@salesforce/label/c.CB_Page_Updatephone';
 
 //apex class to handle the api callout
 import profileUpdate from "@salesforce/apex/CBApiController.profileUpdate";
 
-import { getJsonData, dateToTimestamp, getUserCreds } from 'c/cBUtilities';
+import { getJsonData, dateToTimestamp, getUserCreds, setPagePath } from 'c/cBUtilities';
 
 export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
 
@@ -95,6 +95,7 @@ export default class CBUpdatePhone extends NavigationMixin(LightningElement) {
         this.requestUUID = dateToTimestamp();
         console.log(this.requestUUID);
         this.fetchJsonData();
+        setPagePath(UPDATEPHONE_PAGE)
     }
 
     getUsernamePasswordHandler() {

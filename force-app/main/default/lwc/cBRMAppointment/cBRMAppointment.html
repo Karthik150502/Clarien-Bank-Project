@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : Prateek Deshmukh
+  @group             : 
+  @last modified on  : 06-13-2024
+  @last modified by  : Prateek Deshmukh
+-->
 <template>
     <div class="wrapper">
         <div class="container">
@@ -21,7 +28,7 @@
 
                 <label for="Comments">
                     <p class="title">Comments<span>(Optional)</span></p>
-                    <textarea id="comments" onkeyup={commentHandler} placeholder="Any comment write here">
+                    <textarea id="comments" onkeyup={commentHandler} placeholder="Any Comments, Write here">
                 </textarea>
                 </label>
             </div>
@@ -29,6 +36,7 @@
                 <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>{label.SUBMIT}</button>
             </div>
         </div>
+        <c-c-b-footer></c-c-b-footer>
     </div>
     <template if:true={successModalOpen}>
         <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>

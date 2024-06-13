@@ -17,11 +17,12 @@
 
 .wrapper {
     width: 100vw;
-    height: auto;
+    height: 100vh;
     margin: 0 auto;
     overflow: hidden;
     overflow-x: hidden;
     overflow-y: hidden;
+    background-color: white;
 }
 
 .container {

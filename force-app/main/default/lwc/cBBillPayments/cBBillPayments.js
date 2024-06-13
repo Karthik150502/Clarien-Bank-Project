@@ -1,23 +1,54 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import SUBMIT from '@salesforce/label/c.CB_Submit';
-import CANCEL from '@salesforce/label/c.CB_Cancel';
 
 import {
-    removeMobileSessionStorage,
     getAllMobileSessionStorage,
     getMobileSessionStorage,
-    setAllMobileSessionStorage
+    setAllMobileSessionStorage,
+    checkSessionkey,
+    setPagePath
 } from 'c/cBUtilities';
+
+import TRANSFERS_LINK from '@salesforce/label/c.CB_Page_Transfers'
+import BILLPAYMENTS_LINK from '@salesforce/label/c.CB_Page_BillPayments'
+import BILL_PAYMENTS from '@salesforce/label/c.CB_BillPayments'
+import COMMENTS_OPTIONAL from '@salesforce/label/c.CB_CommentsOptional'
+import UNTIL from '@salesforce/label/c.CB_Until'
+import OCCURANCE from '@salesforce/label/c.CB_Occurance'
+import RECURRING_TRANSFER from '@salesforce/label/c.CB_RecurringTransfer'
+import DATE from '@salesforce/label/c.CB_Date'
+import AMOUNT from '@salesforce/label/c.CB_Amount'
+import SELECT_BILLER from '@salesforce/label/c.CB_SelectBiller'
+import FROM_ACCOUNT from '@salesforce/label/c.CB_FromAccount'
+import SELECT_ACCOUNT from '@salesforce/label/c.CB_SelectAccount'
+import BILLER from '@salesforce/label/c.CB_Biller'
+
 export default class CBBillPayments extends NavigationMixin(LightningElement) {
     // Object to hold imported labels
     label = {
         SUBMIT: SUBMIT.toUpperCase(), // Converting "Submit" label to uppercase
-        CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
+        TRANSFERS_LINK,
+        BILLPAYMENTS_LINK,
+        BILL_PAYMENTS,
+        COMMENTS_OPTIONAL,
+        UNTIL,
+        OCCURANCE,
+        RECURRING_TRANSFER,
+        DATE,
+        AMOUNT,
+        SELECT_BILLER,
+        FROM_ACCOUNT,
+        SELECT_ACCOUNT,
+        BILLER
     };
+
+
+
+
     headerConfguration = {
-        previousPageUrl: 'CBTransfers__c',
-        heading: 'Bill Payments',
+        previousPageUrl: this.label.TRANSFERS_LINK,
+        heading: this.label.BILL_PAYMENTS,
         iconsExposed: true,
         logout: {
             exposed: false
@@ -35,10 +66,11 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
         if (this.checkSessionStorage('billPmts_valuesRetained')) {
             this.populateValues()
         }
+        this.headerConfguration.previousPageUrl = setPagePath(this.label.BILLPAYMENTS_LINK)
     }
 
     checkSessionStorage(param) {
-        return getMobileSessionStorage(param) !== "null" && getMobileSessionStorage(param)
+        return checkSessionkey(param) && getMobileSessionStorage(param) !== 'false'
     }
 
 
@@ -92,6 +124,7 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
     selectedFromAccount = ''
     selectedBiller = ''
     showTransDatePicker = false
+
     recurringTransferHandler() {
         this.recurringTransfer = !this.recurringTransfer
     }
@@ -116,8 +149,6 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
     }
 
 
-    handleCancel() {
-    }
 
 
     handleSubmit() {
@@ -145,6 +176,7 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
 
 
     openDateEntry() {
+        this.dateSelected = 'YYYY-MM-DD'
         this.showTransDatePicker = true
     }
 
@@ -174,26 +206,39 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
     }
 
     amount = ''
-    dateSelected = ''
+    dateSelected = 'YYYY-MM-DD'
     recurringTransfer = false
     accRefNumber = ''
     name = ''
     selectedFromAccount = 'Select Account'
     selectedBiller = 'Select biller'
+    untilDate = ''
+    frequencySelected = ''
 
     get disableSubmit() {
         return this.verifyValues()
     }
 
+
     verifyValues() {
-        return this.amount === '' || this.dateSelected === '' || this.selectedBiller === 'Select biller' || this.selectedFromAccount === 'Select Account' || this.recurringTransfer && (this.accRefNumber === '' || this.name === '')
+        return this.amount === '' || this.dateSelected === 'YYYY-MM-DD' || this.selectedBiller === this.label.SELECT_BILLER || this.selectedFromAccount === this.label.SELECT_ACCOUNT
     }
 
-
-
+    recurringTransferView = false
     handleTransDate(event) {
+
         this.showTransDatePicker = false
         this.dateSelected = event.detail.transDate
+
+        if (event.detail.recurring) {
+            this.untilDate = event.detail.untilDate
+            this.frequencySelected = event.detail.frequencySelected != 'End of every month' ? `Every ${event.detail.repeat} ${event.detail.frequencySelected} ` : 'End of every month';
+            this.recurringTransfer = event.detail.recurring
+            this.recurringTransferView = true
+        }
+        else {
+            this.recurringTransferView = false
+        }
     }
 
     closeTransDatInput() {

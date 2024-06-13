@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-12-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
     <div class="wrapper">
         <div class="header">
@@ -5,12 +12,12 @@
         </div>
         <div class="container">
             <div class="from-acc-box">
-                <p class="from-acc">From Amount</p>
+                <p class="from-acc">From Account</p>
                 <select name="" id="from_acc" class="from-acc-inp" onchange={handleFromAccount}>
                     <option value="Select Account">Select Account</option>
                     <template if:true={accounts} for:each={accounts} for:item="acc">
                         <option key={acc.accountNo} value={acc.accountNo}>
-                            {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accBal}
+                            {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accountType}
                         </option>
                     </template>
                 </select>
@@ -19,8 +26,17 @@
 
             <div class="inp-box">
                 <p>To Account</p>
-                <input type="text" class="inp" onkeyup={handleToAccount} value={toAccount}>
+                <select name="" class="from-acc-inp" onchange={handleToAccount}>
+                    <option value="Select Account">Select Account</option>
+                    <template if:true={toAccountsList} for:each={toAccountsList} for:item="acc">
+                        <option key={acc.accountNo} value={acc.accountNo}>
+                            {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accountType}
+                        </option>
+                    </template>
+                </select>
+                <!-- <input type="text" class="inp" onkeyup={handleToAccount} value={toAccount}> -->
             </div>
+
             <hr class="hr">
             <div class="inp-box">
                 <p>Amount</p>
@@ -42,42 +58,44 @@
             </div>
             <hr class="hr">
 
-            <div class="inp-box-2">
-                <p>Recurring Transfer</p>
-                <label class="slds-checkbox_toggle slds-grid">
-                    <template if:true={recurringTransfer}>
-                        <input type="checkbox" name="checkbox-toggle-16" value={recurringTransfer}
-                            onclick={recurringTransferHandler} checked aria-describedby="checkbox-toggle-16" />
-                        <span id="checkbox-toggle-16" class="slds-checkbox_faux_container">
-                            <span class="slds-checkbox_faux"></span>
-                        </span>
-                    </template>
-                    <template if:false={recurringTransfer}>
-                        <input type="checkbox" name="checkbox-toggle-16" value={recurringTransfer}
-                            onclick={recurringTransferHandler} aria-describedby="checkbox-toggle-16" />
-                        <span id="checkbox-toggle-19" class="slds-checkbox_faux_container">
-                            <span class="slds-checkbox_faux"></span>
-                        </span>
-                    </template>
-                </label>
-            </div>
-
-
-            <div class="inp-box-3">
-                <div class="inp-box-hor">
-                    <div class="inp-box-5">
-                        <p>Date</p>
-                        <input type="text" readonly class="inp" value={frequencySelected}>
-                    </div>
-
-                    <div class="inp-box-5">
-                        <p>Until</p>
-                        <input type="text" readonly class="inp" value={untilDate}>
-                    </div>
+            <template if:true={recurringTransferView}>
+                <div class="inp-box-2">
+                    <p>Recurring Transfer</p>
+                    <label class="slds-checkbox_toggle slds-grid">
+                        <template if:true={recurringTransfer}>
+                            <input type="checkbox" name="checkbox-toggle-16" checked
+                                aria-describedby="checkbox-toggle-16" />
+                            <span id="checkbox-toggle-16" class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                            </span>
+                        </template>
+                        <template if:false={recurringTransfer}>
+                            <input type="checkbox" name="checkbox-toggle-16" aria-describedby="checkbox-toggle-16" />
+                            <span id="checkbox-toggle-19" class="slds-checkbox_faux_container">
+                                <span class="slds-checkbox_faux"></span>
+                            </span>
+                        </template>
+                    </label>
                 </div>
+                <div class="inp-box-3">
+                    <div class="inp-box-hor">
+                        <div class="inp-box-5">
+                            <p>Occurance</p>
+                            <p class="inp read">{frequencySelected}</p>
+                        </div>
 
+                        <div class="inp-box-5">
+                            <p>Until</p>
+                            <p class="inp read">{untilDate}</p>
+                        </div>
+                    </div>
+
+                </div>
+            </template>
+
+            <div>
                 <div class="inp-box">
-                    <p>Comments (Optional)</p>
+                    <p>Comments(Optional)</p>
                     <textarea name="" id="" class="text-area-inp"></textarea>
                 </div>
             </div>
@@ -87,11 +105,10 @@
                 <button class="sub" onclick={handleSubmit} disabled={disableSubmit}>
                     {label.CONTINUE}
                 </button>
-                <button class="cancel" onclick={handleCancel}>
-                    {label.CANCEL}
-                </button>
             </div>
         </div>
+        <c-c-b-footer></c-c-b-footer>
+
     </div>
     <template if:true={showTransDatePicker}>
         <c-c-b-select-transaction-date-modal ontransdateinput={handleTransDate} onmodalclose={closeTransDatInput}>

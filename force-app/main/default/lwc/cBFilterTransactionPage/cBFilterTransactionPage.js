@@ -11,6 +11,8 @@ export default class CBFilterTransactionPage extends NavigationMixin(LightningEl
     fromAmount = ''
     toAmount = ''
 
+    filterDate = false;
+    filterType = false;
 
     headerConfguration = {
         previousPageUrl: this.previousPageUrl,
@@ -47,16 +49,23 @@ export default class CBFilterTransactionPage extends NavigationMixin(LightningEl
         this.toAmount = event.target.value
     }
 
-    handleDescription(event) {
-        this.description = event.target.value
+
+    handleFilterDate() {
+        this.filterDate = !this.filterDate;
+        this.filterType = false;
+        this.fromAmount = ''
+        this.toAmount = ''
+        this.selectedTransactionType = ''
     }
 
+    handleFilterType() {
+        this.filterType = !this.filterType;
+        this.filterDate = false;
+        this.fromDate = 'YYYY-MM-DD';
+        this.toDate = 'YYYY-MM-DD';
+    }
 
     handleSubmit() {
-        let description = this.template.querySelector(".desc-inp")
-        if (description) {
-            console.log(description.value)
-        }
         console.log(this.fromAmount)
         console.log(this.toAmount)
         console.log(this.fromDate)
@@ -83,7 +92,13 @@ export default class CBFilterTransactionPage extends NavigationMixin(LightningEl
     }
 
     get disableDoneButton() {
-        return this.fromDate === 'YYYY-MM-DD' || this.toDate === 'YYYY-MM-DD' || this.selectedTransactionType === 'None' || this.fromAmount === '' || this.toAmount === '' || (Number(this.toAmount) < Number(this.fromAmount))
+        if(this.filterDate) {
+            return this.fromDate === 'YYYY-MM-DD' || this.toDate === 'YYYY-MM-DD'
+        }
+        if(this.filterType) {
+            return  this.selectedTransactionType === '' || this.fromAmount === '' || this.toAmount === '' 
+        }
+        return false;
     }
 
 

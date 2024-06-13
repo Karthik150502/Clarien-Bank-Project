@@ -1,0 +1,14 @@
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+            <lightning-button variant="brand" class="slds-var-m-left_x-small" disabled={scanButtonDisabled}
+                icon-name="utility:cases" label="Scan Barcode" title="Open a camera view and look for a barcode to scan"
+                onclick={handleBeginScanClick}>
+            </lightning-button>
+        </div>
+    </div>
+
+</template>

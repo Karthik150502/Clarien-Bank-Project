@@ -1,6 +1,7 @@
-import { LightningElement,api } from 'lwc';
+import { LightningElement, api,track } from 'lwc';
 
 export default class CBAddBeneficiary extends LightningElement {
+
     configuration = {
         previousPageUrl: '',
         heading: 'Add Beneficiaries',
@@ -13,6 +14,32 @@ export default class CBAddBeneficiary extends LightningElement {
         }
     }
 
+    modalOpen = false;
+    /**
+    * Metadata for the Phone Update modal.
+    */
+    @track modal = {
+        title: '',
+        message: 'Beneficiary added succesfully.',
+        yesButton: {
+            exposed: true,
+            label: "OK",
+            // Implementation for the "OK" button click action.
+            implementation: () => {
+                this.modalOpen = false;
+                this.dispatchEvent(new CustomEvent("createbeneficiary"));
+            }
+        },
+        noButton: {
+            exposed: false,
+            label: "Not",
+            //Implementation for the "Not" button click action.
+            implementation: () => {
+                console.log('no');
+                this.modalOpen = false;
+            }
+        }
+    };
     @api bankName=false
     status = true
     statusHandler(){
@@ -41,6 +68,6 @@ export default class CBAddBeneficiary extends LightningElement {
     }
 
     handleSubmit(){
-        this.dispatchEvent(new CustomEvent("createbeneficiary"));
+        this.modalOpen = true;
     }
 }

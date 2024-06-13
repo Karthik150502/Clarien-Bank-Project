@@ -40,17 +40,27 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
             accountType: 'Personal Saving Accounts'
         }
     ]
-    currencyList = ['Select','BMD','USD']
+    currencyList = ['Select', 'BMD', 'USD']
 
     accountNum = '';
+    accountType = '';
     amount = ''
     currency = ''
     subCurrency = 'USD Local'
     payeeName = ''
     // remark = ''
+
     accountNumHandler(event) {
         this.accountNum = event.target.value;
         console.log('accountNum', this.accountNum);
+
+        for (let i=0;i<this.accountList.length;i++) {
+            if (this.accountList[i].accountNo == this.accountNum) {
+                this.accountType =  this.accountList[i].accountType;
+                console.log(this.accountType);
+                break;
+            }
+        }
     }
     amountHandler(event) {
         this.amount = event.target.value;
@@ -73,7 +83,7 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
         return this.currency == 'USD'
     }
     get submitBtnDisable() {
-        return this.accountNum === '' || this.amount === '' || this.currency === '' || this.payeeName === ''|| this.accountNum === 'Select' || this.currency === 'Select';
+        return this.accountNum === '' || this.amount === '' || this.currency === '' || this.payeeName === '' || this.accountNum === 'Select' || this.currency === 'Select';
     }
     submitForm(event) {
         event.preventDefault();
@@ -91,16 +101,17 @@ export default class CBRequestDraft extends NavigationMixin(LightningElement) {
         console.log('Payee Name', this.payeeName);
         // console.log('Remark', this.remark)
 
-        this.navigateBack()
+        this.navigateTo('CBRequestDraftConfirmation__c', { accountNum: this.accountNum, accountType:this.accountType, amount: this.amount, currency: this.currency, payeeName: this.payeeName })
     }
 
-    navigateBack() {
+    navigateTo(pageApiName, data) {
         console.log('navigate called');
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'CBRequestDraftConfirmation__c'
-            }
+                name: pageApiName
+            },
+            state: data
         });
     }
 

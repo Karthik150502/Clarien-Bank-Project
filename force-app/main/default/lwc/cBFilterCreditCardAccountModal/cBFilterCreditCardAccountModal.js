@@ -17,15 +17,15 @@ export default class CBFilterCreditCardAccountModal extends LightningElement {
     CBBackIcon = `${CBSVG}/CBSVGs/CBBackIcon.svg#CBBackIcon`;
 
     closeFilter(data) {
-        this.dispatchEvent(new CustomEvent('filter',{
-            detail : data
+        this.dispatchEvent(new CustomEvent('filter', {
+            detail: data
         }))
     }
 
     // Get current date
     currentDate = new Date();
-    transFromDate = ''
-    transToDate = ''
+    transFromDate = 'YYYY-MM'
+    transToDate = 'YYYY-MM'
 
     get MinMonth() {
         // Get the minimum month (7 months ago from the current date)
@@ -40,26 +40,30 @@ export default class CBFilterCreditCardAccountModal extends LightningElement {
     }
 
     fromDate(event) {
-        this.transFromDate = event.target.value
-        console.log('From Date',this.transFromDate);
+        this.transFromDate = event.target.value ? event.target.value : 'YYYY-MM';
+        // this.transDate = `${event.target.value.substring(5, 7)},${event.target.value.substring(0, 4)}`
+        // let monthName = event.target.value.substring(0,3)
+        console.log('month', event.target.value);
+        // console.log('number month', new Date(`${monthName} 1, 2022`).getMonth() + 1 );
+        // console.log('From Date', this.transFromDate);
     }
 
     toDate(event) {
-        this.transToDate = event.target.value
-        console.log('To Date',this.transToDate );
+        this.transToDate = event.target.value? event.target.value : 'YYYY-MM';
+        console.log('To Date', this.transToDate);
     }
 
     get transactionMaxDownload() {
         return 'You can download the credit card statement until previous 7 months'
     }
 
-    get validateDate(){
-        return this.transFromDate >= this.transToDate
+    get validateDate() {
+        return this.transFromDate == 'YYYY-MM' || this.transToDate == 'YYYY-MM'
     }
 
-    submitHandler(){
+    submitHandler() {
         this.closeFilter({
-            fromDate : this.transFromDate,
+            fromDate: this.transFromDate,
             toDate: this.transToDate
         })
     }

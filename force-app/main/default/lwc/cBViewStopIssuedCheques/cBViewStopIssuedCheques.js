@@ -207,11 +207,11 @@ export default class CBViewStopIssuedCheques extends NavigationMixin(LightningEl
 
 
     fromDateHandler(event) {
-        this.fromDate = event.target.value
+        this.fromDate = event.target.value ? event.target.value : 'YYYY-MM-DD'
     }
 
     toDateHandler(event) {
-        this.toDate = event.target.value
+        this.toDate = event.target.value ? event.target.value : 'YYYY-MM-DD'
     }
 
 

@@ -1,13 +1,16 @@
 import { LightningElement, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import LOGOUT_CONFIRM_MESSAGE from '@salesforce/label/c.CB_Logout_Confirm_Message';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
+import { logout } from 'c/cBUtilities';
 
 export default class CBSecondaryHeader extends NavigationMixin(LightningElement) {
 
     CBBackIcon = `${CBSVG}/CBSVGs/CBBackIcon.svg#CBBackIcon`;
     CBSearchIcon = `${CBSVG}/CBSVGs/CBSearchIcon.svg#CBSearchIcon`;
     CBHeaderLogOut = `${CBSVG}/CBSVGs/CBHeaderLogOut.svg#CBHeaderLogOut`;
+    modalOpen = false;
 
     @api configuration = {
         // previousPageUrl: '',
@@ -22,6 +25,36 @@ export default class CBSecondaryHeader extends NavigationMixin(LightningElement)
         // selected:false
         // }
     }
+
+    modal = {
+        // Title of the logout confirmation modal
+        title: LOGOUT_CONFIRM_MESSAGE,
+        // Message in the logout confirmation modal (empty for now)
+        message: '',
+        // Metadata for the "Yes" button in the logout confirmation modal
+        yesButton: {
+            // Exposed property indicating visibility of the button
+            exposed: true,
+            // Label for the "Yes" button
+            label: "Yes",
+            // Implementation of the action performed when the "Yes" button is clicked
+            implementation: () => {
+                logout();
+            }
+        },
+        // Metadata for the "Cancel" button in the logout confirmation modal
+        noButton: {
+            // Exposed property indicating visibility of the button
+            exposed: true,
+            // Label for the "Cancel" button
+            label: "Cancel",
+            // Implementation of the action performed when the "Cancel" button is clicked
+            implementation: () => {
+                // Close the modal by setting modalOpen property to false
+                this.modalOpen = false;
+            }
+        },
+    };
 
 
 
@@ -44,6 +77,10 @@ export default class CBSecondaryHeader extends NavigationMixin(LightningElement)
             }
 
         }
+    }
+
+    logoutUser() {
+        this.modalOpen = true
     }
 
 }

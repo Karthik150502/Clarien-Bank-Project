@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : Prateek Deshmukh
+  @group             : 
+  @last modified on  : 06-13-2024
+  @last modified by  : Prateek Deshmukh
+-->
 <template>
     <div class="wrapper">
         <div class="container">
@@ -7,7 +14,7 @@
             <div class="casing">
                 <label for="accountNum">
                     <p class="heading">Account No</p>
-                    <select class="fields" id="accountNum" onclick={accountNumHandler} value={accountNum}>
+                    <select class="fields" id="accountNum" onchange={accountNumHandler} value={accountNum}>
                         <option value={Select}>Select</option>
                         <template for:each={accountList} for:item="account">
                             <option key={account.accountNo} value={account.accountNo}>
@@ -23,7 +30,7 @@
                 </label>
                 <label for="currency">
                     <p class="heading">{label.CURRENCY}</p>
-                    <select class="fields" id="currency" onclick={currencyHandler} value={currency}>
+                    <select class="fields" id="currency" onchange={currencyHandler} value={currency}>
                         <template for:each={currencyList} for:item="currency">
                             <option key={currency} value={currency}>{currency}</option>
                         </template>
@@ -50,13 +57,14 @@
                     <textarea id="Remarks" onkeyup={remarkHandler} placeholder="Any comment write here">
                     </textarea>
                 </label> -->
-                <p class="fee">"Refer <a href="www.google.com"> Fee schedule </a>for applicable fees."</p>
+                <p class="fee">"Refer <a href="https://www.clarienbank.com"> Fee Schedule </a>For Applicable Fees."</p>
                 <div class="btns">
                     <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>{label.NEXT}</button>
                     <!-- <button class="cancel">CANCEL</button> -->
                 </div>
             </div>
         </div>
+        <c-c-b-footer></c-c-b-footer>
     </div>
     <!-- for ending session -->
     <c-c-b-session-end></c-c-b-session-end>

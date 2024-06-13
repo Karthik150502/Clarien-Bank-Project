@@ -23,10 +23,11 @@
 .wrapper .container {
     width: 90%;
     margin: 0 auto;
+    height: auto;
     border-radius: 7px;
-    height: 90vh;
     padding: 0 10px;
     overflow-y: scroll;
+    height: calc(90vh - 70px);
 }
 
 
@@ -121,6 +122,8 @@
     border-radius: 12px;
     border: 1px solid var(--border-blue);
     padding: 0 2% 0 2%;
+    font-size: 16px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
 }
 
 
@@ -181,7 +184,7 @@
     height: auto;
     margin: 4% 0 0 0;
     position: relative;
-    padding: 0 0 1% 0;
+    padding: 0 0 10px 0;
     border-radius: 12px;
     border: 1px solid var(--border-blue);
 }
@@ -195,7 +198,7 @@
 }
 
 .wrapper .container .inp-box-3 .inp-box-hor {
-    width: 90%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -277,4 +280,52 @@
 .wrapper .container .btns .sub:disabled,
 .wrapper .container .btns .sub[disabled] {
     background-color: var(--light-grey);
+}
+
+.inp-box-hor input:read-only {
+    background-color: var(--transp-light-grey);
+}
+
+
+.slds-checkbox_toggle {
+    pointer-events: none;
+}
+
+.wrapper .container .inp-box .text-area-inp {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border-blue);
+    padding: 2% 2% 2% 2%;
+    font-size: 16px;
+    height: 100px;
+}
+
+.wrapper .container .inp-box-name .title {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+.read {
+    display: flex;
+    align-items: center;
+    background-color: var(--light-grey);
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
 }

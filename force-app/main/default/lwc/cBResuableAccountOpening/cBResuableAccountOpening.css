@@ -1,27 +1,40 @@
-*{
+* {
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     font-family: var(--dxp-g-root-gotham-medium-font-family);
-    /* font-family: var(--dxp-g-root-gotham-book-font-family); */
+    font-family: var(--dxp-g-root-gotham-book-font-family);
 }
 
 .container {
     width: 100%;
     height: auto;
+    height: calc(90vh - 70px);
+    overflow-y: scroll;
 }
-
-.account-open-form{
+::-webkit-scrollbar {
+    display: none;
+}
+.account-open-form {
     width: 100%;
     height: auto;
     overflow-y: scroll;
 }
+.account-type{
+    display: flex;
+    align-items: center;
+}
 .account-open-form::-webkit-scrollbar {
     width: 0px;
 }
-.sub-fields{
+
+.sub-fields {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
-.sub-fields  .fields{
+.sub-input{
+    width: 45%;
+}
+.sub-fields .fields {
     width: 100%;
     /* height: auto;
     border-radius: 8px; */
@@ -32,48 +45,57 @@
     padding: 2% 2% 2% 3%;
 }
 
-.fields{
+.fields {
     width: 100%;
     height: 40px;
     border-radius: 12px;
     border: 1px solid var(--border-blue);
     /* padding-left: 5px; */
     padding: 2% 2% 2% 3%;
+    font-size: 16px;
 }
 
-.container .heading{
+.read{
+    display: flex;
+    align-items: center;
+    background-color: var(--light-grey);
+}
+
+.container .heading {
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     color: var(--primary-grey);
     margin: 5% 0% 1% 0%;
 }
-.container .duration{
+
+.container .duration {
     margin: 5% 0% 5% 0%;
 }
-.container .min-heading{
+
+.container .min-heading {
     color: var(--primary-black);
     font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
 
-.terms-Conditions{
+.terms-Conditions {
     display: flex;
     margin: 3% 0% 0% 0%;
 }
 
-.terms-Conditions a{
+.terms-Conditions a {
     color: var(--primary-blue);
     font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
 
-.check-box{
-    width:7%;
+.check-box {
+    width: 7%;
     display: flex;
     align-items: center;
 }
 
 .checkBox {
-    appearance: none; 
+    appearance: none;
     width: 15px;
-    height: 15px; 
+    height: 15px;
     background-color: FFFFFF;
     border: 1px solid var(--border-blue);
     border-radius: 0;
@@ -82,24 +104,24 @@
 }
 
 .checkBox:checked::before {
-  content: '\2713';
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #28a745; 
-  font-size: 14px; 
+    content: '\2713';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #28a745;
+    font-size: 14px;
 }
 
 
-.btns{
+.btns {
     display: flex;
     justify-content: space-evenly;
-    margin-top: 5%;
+    margin: 5% 0;
 }
 
-.btns .submit-btn{
+.btns .submit-btn {
     width: 120px;
     height: 35px;
     border: none;
@@ -115,6 +137,7 @@
 .btns .submit-btn[disabled] {
     background-color: var(--light-grey);
 }
+
 .btns .cancel {
     width: 120px;
     height: 35px;
@@ -125,4 +148,12 @@
     text-align: center;
     font-size: 14px;
     font-weight: 700;
+}
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
 }

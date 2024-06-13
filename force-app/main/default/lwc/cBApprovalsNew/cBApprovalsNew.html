@@ -1,0 +1,142 @@
+<template>
+    <div class="wrapper">
+        <c-c-b-header icon-details={header_icons}></c-c-b-header>
+
+        <div class="header">
+            <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+
+            <div class="pending">
+                <div class="details" onclick={openClosePending}>
+
+                    <p>Pending</p>
+                    <div class="icon">
+                        <template if:false={pendingOpen}>
+                            <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
+                                focusable="false" data-key="chevronright" aria-hidden="true" viewBox="0 0 520 520"
+                                part="icon">
+                                <g>
+                                    <path
+                                        d="M179 44l207 205c6 6 6 16 0 22L179 476c-6 6-16 6-22 0l-22-22c-6-6-6-16 0-22l163-161c6-6 6-16 0-22L136 88c-6-6-6-16 0-22l22-22c6-5 15-5 21 0z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </template>
+                        <template if:true={pendingOpen}>
+                            <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
+                                focusable="false" data-key="switch" aria-hidden="true" viewBox="0 0 520 520"
+                                part="icon">
+                                <g>
+                                    <path
+                                        d="M476 178L271 385c-6 6-16 6-22 0L44 178c-6-6-6-16 0-22l22-22c6-6 16-6 22 0l161 163c6 6 16 6 22 0l161-163c6-6 16-6 22 0l22 22c5 7 5 16 0 22z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </template>
+                    </div>
+                </div>
+                <template if:true={pendingOpen}>
+                    <div class="approval-tiles">
+                        <template if:true={pending} for:each={pending} for:item="item">
+                            <c-c-b-approval-tile key={item.id} info={item} onapprovalapproved={handleApprovalApprove}
+                                onapprovalrejected={handleApprovalReject}></c-c-b-approval-tile>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+
+
+            <div class="approved">
+                <div class="details" onclick={openCloseApproval}>
+                    <p>Approved</p>
+                    <div class="icon">
+                        <template if:false={approvedOpen}>
+                            <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
+                                focusable="false" data-key="chevronright" aria-hidden="true" viewBox="0 0 520 520"
+                                part="icon">
+                                <g>
+                                    <path
+                                        d="M179 44l207 205c6 6 6 16 0 22L179 476c-6 6-16 6-22 0l-22-22c-6-6-6-16 0-22l163-161c6-6 6-16 0-22L136 88c-6-6-6-16 0-22l22-22c6-5 15-5 21 0z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </template>
+                        <template if:true={approvedOpen}>
+                            <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
+                                focusable="false" data-key="switch" aria-hidden="true" viewBox="0 0 520 520"
+                                part="icon">
+                                <g>
+                                    <path
+                                        d="M476 178L271 385c-6 6-16 6-22 0L44 178c-6-6-6-16 0-22l22-22c6-6 16-6 22 0l161 163c6 6 16 6 22 0l161-163c6-6 16-6 22 0l22 22c5 7 5 16 0 22z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </template>
+                    </div>
+                </div>
+                <template if:true={approvedOpen}>
+
+                    <div class="approval-tiles">
+                        <template if:true={approved} for:each={approved} for:item="item">
+                            <c-c-b-approval-tile key={item.id} info={item}></c-c-b-approval-tile>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+
+            <div class="rejected">
+                <div class="details" onclick={openCloseRejected}>
+                    <p>Rejected</p>
+                    <div class="icon">
+                        <template if:false={rejectedOpen}>
+                            <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
+                                focusable="false" data-key="chevronright" aria-hidden="true" viewBox="0 0 520 520"
+                                part="icon">
+                                <g>
+                                    <path
+                                        d="M179 44l207 205c6 6 6 16 0 22L179 476c-6 6-16 6-22 0l-22-22c-6-6-6-16 0-22l163-161c6-6 6-16 0-22L136 88c-6-6-6-16 0-22l22-22c6-5 15-5 21 0z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </template>
+                        <template if:true={rejectedOpen}>
+                            <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
+                                focusable="false" data-key="switch" aria-hidden="true" viewBox="0 0 520 520"
+                                part="icon">
+                                <g>
+                                    <path
+                                        d="M476 178L271 385c-6 6-16 6-22 0L44 178c-6-6-6-16 0-22l22-22c6-6 16-6 22 0l161 163c6 6 16 6 22 0l161-163c6-6 16-6 22 0l22 22c5 7 5 16 0 22z">
+                                    </path>
+                                </g>
+                            </svg>
+                        </template>
+                    </div>
+                </div>
+                <template if:true={rejectedOpen}>
+                    <div class="approval-tiles">
+                        <template if:true={rejected} for:each={rejected} for:item="item">
+                            <c-c-b-approval-tile key={item.id} info={item}></c-c-b-approval-tile>
+                        </template>
+                    </div>
+                </template>
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <c-c-b-footer></c-c-b-footer>
+
+    </div>
+
+
+</template>

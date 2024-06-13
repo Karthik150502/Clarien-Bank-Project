@@ -1,7 +1,8 @@
 import { LightningElement, wire } from 'lwc';
 
-import { CurrentPageReference } from 'lightning/navigation';
-import { NavigationMixin } from 'lightning/navigation';
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
+
+import { setPagePath } from 'c/cBUtilities';
 
 export default class CBQrCodeDisplay extends NavigationMixin(LightningElement) {
 
@@ -63,6 +64,7 @@ export default class CBQrCodeDisplay extends NavigationMixin(LightningElement) {
 
 
     connectedCallback() {
+        setPagePath('CBQrCodeDisplay__c')
     }
 
     get maskedAccountNo() {
