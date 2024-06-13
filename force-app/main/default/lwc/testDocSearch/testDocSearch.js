@@ -8,184 +8,251 @@ import { getJsonData } from 'c/cBUtilities';
 import { docSearchh } from 'c/cBDocSearch';
 
 export default class TestDocSearch extends LightningElement {
-    accountList = [
-        {
-            accountNo: '6000149418',
-            accountType: 'Cheque Accounts',
-            type: '1937',
-            sDate: '2017-12-01',
-            eDate: '2018-08-01'
-        },
-        {
-            accountNo: '6000149129',
-            accountType: 'Checking Accounts',
-            type: '1937',
-            sDate: '2016-07-01',
-            eDate: '2018-12-31'
-        },
-        {
-            accountNo: '477166200012753',
-            accountType: 'Credit Card',
-            type: '388'
-        },
-        {
-            accountNo: '3310916047',
-            accountType: 'Loan Account',
-            type: '2026',
-            sDate: '2014-01-01',
-            eDate: '2018-08-31'
-        },
-        {
-            accountNo: '6000071447',
-            accountType: 'Desposit Account',
-            type: '1984',
-            sDate: '2014-01-01',
-            eDate: '2018-08-31'
-        }
-    ]
 
-    @track
-    selectedAcc = ''
+    apiName = ['CB_Ret_Cust', 'CB_Do_General_Acct_Inq', 'CB_Acct_Inq']
+    retCustBody = ''
+    retCustJsonPathData = []
+    generalAcctInqBody = ''
+    generalAcctInqJsonPathData = []
+    acctInqBody = ''
+    acctInqJsonPathData = []
 
-    startDate = ''
-    startDateHandler(event) {
-        this.startDate = event.target.value;
+    custDetail = {
+        acctId: "3100000023",
+        productCategory: "SBA",
+        acctBranchCode: "100"
     }
-
-    endDate = ''
-    endDateHandler(event) {
-        this.endDate = event.target.value;
-    }
-
-    accountNumber = this.accountList[0].accountNo;
-    accountNumHandler(event) {
-        this.accountNumber = event.target.value;
-        this.selectedAcc = this.fetchAccountByNo(this.accountNumber)
-    }
-
-    fetchAccountByNo(accountNo) {
-        for (let i = 0; i < this.accountList.length; i++) {
-            if (this.accountList[i].accountNo == accountNo) {
-                return this.accountList[i];
-            }
-        }
-        return null; // Return null if accountNo is not found
-    }
-
-    apiName = ['CB_Doc_Search', 'CB_Doc_Download']
-    docSearchReqBody = ''
-    docSearchXmlPathData = []
-
-    docDownloadReqBody = ''
-    docDownloadXmlPathData = []
 
     connectedCallback() {
-        this.fetchDocSearchXmlData(this.apiName[0])
-        this.fetchDocDownloadXmlData(this.apiName[1])
+        // Example API calls (uncomment and implement these if needed)
+        // this.fetchRetCustJsonData(this.apiName[0])
+        // this.fetchGeneralAcctInqJsonData(this.apiName[1])
+        // this.fetchAcctInqJsonData(this.apiName[2])
+    
+        console.log('Called CC');
+        console.log(JSON.stringify(this.getAccountDetails(this.custDetail)));
+        console.log('Ended CC');
     }
-    documentIdList
-    docSearch() {
-        this.docSearchReqBody = this.mapData(this.docSearchReqBody, this.docSearchXmlPathData);
-                        console.log("Doc Search doc Search Request Body " + this.docSearchReqBody);
-        let reqWrapper = {
-            payload: this.docSearchReqBody,
-            metadataName: this.apiName[0]
+    
+    getAccountDetails(retCust) {
+        let accountType = retCust.productCategory;
+        console.log('Acc Type', accountType);
+    
+        switch (accountType) {
+            case 'SBA': {
+                let accountDetails = JSON.parse(this.callGeneral(retCust.acctId, retCust.acctBranchCode));
+                console.log('callGeneral Ended');
+                return {
+                    accountNo: retCust.acctId,
+                    accBal: this.checkBalType(accountDetails.acctInqRs.acctBal, 'AVAIL'),
+                    currentBal: this.checkBalType(accountDetails.acctInqRs.acctBal, 'ACCBAL'),
+                    totalHolds: this.checkBalType(accountDetails.acctInqRs.acctBal, 'LEDGER'),
+                    productName: 'PERSONAL SAVINGS USD',
+                    beneficiary: accountDetails.acctInqRs.custId.custId.personName.custName,
+                    date: accountDetails.acctInqRs.acctOpenDt,
+                };
+            }
+            // case 'TUA': {
+            //     let accountDetails = JSON.parse(this.callGeneral(retCust.acctId, retCust.acctBranchCode));
+            //     console.log('callGeneral Ended');
+            //     return  {
+            //         accountNo: retCust.acctId,
+            //         accBal: this.checkBalType(accountDetails.acctInqRs.acctBal, 'AVAIL'),
+            //         currentBal: this.checkBalType(accountDetails.acctInqRs.acctBal, 'ACCBAL'),
+            //         totalHolds: this.checkBalType(accountDetails.acctInqRs.acctBal, 'LEDGER'),
+            //         principalAmount: 'BMD 10,000.0',
+            //         depositStartDate: '12/12/2023',
+            //         maturityDate: '13/12/2025'
+            //     }
+            // }
+            // case 'LAA': {
+            //     return {
+            //         accountNo: retCust.acctId,
+            //         accBal: ,
+            //         interestAmount: ,
+            //         interestDate: '11/12/24',
+            //         productName: 'Cash Secured BMD-Regular',
+            //         beneficiary: accountDetails.acctInqRs.custId.custId.personName.custName,
+            //         date: '11/12/2024',
+            //     }
+            // }
+            // case 'CAA': {
+            //     return {
+            //         accountNo: retCust.acctId,
+            //         accBal: this.checkBalType(accountDetails.acctInqRs.acctBal, 'AVAIL'),
+            //         currentBal: this.checkBalType(accountDetails.acctInqRs.acctBal, 'ACCBAL'),
+            //         totalHolds: this.checkBalType(accountDetails.acctInqRs.acctBal, 'LEDGER'),
+            //         holderName: 'John Due',
+            //         productName: 'CURRENT ACCOUNT',
+            //         beneficiary: accountDetails.acctInqRs.custId.custId.personName.custName,
+            //         date: '7/05/2024',
+            //     }
+            // }
+            default: {
+                console.log(`Unsupported account type: ${accountType}`);
+                return null;
+            }
         }
-        docSearch({ reqWrapper: reqWrapper })
-            .then((result) => {
-                console.log("Doc Search Result " + result);
-                const parser = new DOMParser();
-                const resultXmlDoc = parser.parseFromString(result, "text/xml");
-                this.documentIdList = Array.from(resultXmlDoc.querySelectorAll("DocumentInquiryRs > Document > ID")).map(id => id.textContent);
-                console.log('documentIdList : ',this.documentIdList); 
-                if(this.documentIdList!=null){
-                    this.isdownloadClicked=true;
-                    this.isDocumentsAvailable=true;
+    }
+    
+    checkBalType(data, balType) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i].balType == balType) {
+                return data[i].balAmt.amountValue;
+            }
+        }
+        return 'N/A';
+    }
+    
+    callGeneral(acctId, acctBranchCode) {
+        // Simulating a callout for general account inquiry. This should ideally be an asynchronous function with actual API call.
+        console.log('callGeneral Called');
+        return JSON.stringify({
+            "requestUUID": "Req_12345667890",
+            "acctInqRs": {
+                "acctId": {
+                    "acctType": {
+                        "schmCode": "SVREG",
+                        "schmType": "SBA"
+                    },
+                    "acctCurr": "BMD",
+                    "bankInfo": {
+                        "bankId": null,
+                        "name": null,
+                        "branchId": "100",
+                        "branchName": "RETAIL BANKING",
+                        "postAddr": {
+                            "addr1": null,
+                            "addr2": null,
+                            "addr3": null,
+                            "city": null,
+                            "stateProv": null,
+                            "postalCode": null,
+                            "country": null,
+                            "addrType": null
+                        }
+                    }
+                },
+                "custId": {
+                    "custId": {
+                        "personName": {
+                            "custName": "AJSHJS"
+                        }
+                    }
+                },
+                "acctOpenDt": "2023-06-22T00:00:00.000",
+                "bankAcctStatusCode": "A",
+                "acctBal": [
+                    {
+                        "balType": "LEDGER",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": ""
+                        }
+                    },
+                    {
+                        "balType": "AVAIL",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": ""
+                        }
+                    },
+                    {
+                        "balType": "EFFAVL",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": ""
+                        }
+                    },
+                    {
+                        "balType": "FLOAT",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": ""
+                        }
+                    },
+                    {
+                        "balType": "LIEN",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": ""
+                        }
+                    },
+                    {
+                        "balType": "DRWPWR",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": ""
+                        }
+                    },
+                    {
+                        "balType": "ACCBAL",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": "BMD"
+                        }
+                    },
+                    {
+                        "balType": "SHADOW",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": "BMD"
+                        }
+                    },
+                    {
+                        "balType": "FUTBAL",
+                        "balAmt": {
+                            "amountValue": "0.00",
+                            "currencyCode": "BMD"
+                        }
+                    }
+                ],
+                "custStat": {
+                    "refCode": null,
+                    "refRecType": "25",
+                    "refDesc": null
                 }
-            })
-            .catch((error) => {
-                this.isdownloadClicked=true;
-                console.error(error);
-            });
+            }
+        });
     }
-    isDocumentsAvailable=false;
-    isdownloadClicked=false;
-    documentId = ''
-    downloadhandler(){
-        console.log('call js doc search');
-        docSearchh(this.startDate, this.endDate,this.accountNumber ,this.apiName[0],)
-        // this.docSearch();
-    }
-    docDownload(event) {
-        this.documentId = event.target.dataset.id
-        this.docDownloadReqBody = this.mapData(this.docDownloadReqBody, this.docDownloadXmlPathData);
-        let reqWrapper = {
-            payload: this.docDownloadReqBody,
-            metadataName: this.apiName[1]
-        }
-        docDownload({ reqWrapper: reqWrapper })
-            .then((result) => {
-                // console.log("Doc Download Result " + result);
-                const parser = new DOMParser();
-                const resultXmlDoc = parser.parseFromString(result, "text/xml");
-                let base65 = resultXmlDoc.querySelector("DocumentInquiryRs > Document > Page > Value").textContent;
-                let fileName = resultXmlDoc.querySelector("DocumentInquiryRs > Document > Name").textContent;
-                this.generatePDF(base65,fileName);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
+    
 
-    generatePDF(base64String, FileName) {
-
-        const binaryString = atob(base64String);
-        const byteArray = new Uint8Array(binaryString.length);
-
-        for (let i = 0; i < binaryString.length; i++) {
-            byteArray[i] = binaryString.charCodeAt(i);
-        }
-
-        const blob = new Blob([byteArray], { type: 'application/pdf' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `${FileName}.pdf`;
-        link.click();
-
+    callAcct() {
+        //making call out accountInq
     }
 
     mapData(xmlBody, xmlPath) {
-        const parser = new DOMParser();
-        const xmlDoc = parser.parseFromString(xmlBody, "text/xml");
-        xmlPath.forEach((record) => {
-            if (!record.Is_Active__c) {
-                return
-            } else {
-                xmlDoc.querySelector(record.XML_Path__c).textContent = this[record.Field_Name__c]
-            }
-        });
-        return new XMLSerializer().serializeToString(xmlDoc);
     }
 
-    fetchDocSearchXmlData(apiName) {
+    fetchRetCustJsonData(apiName) {
         getJsonData(apiName)
             .then(result => {
-                this.docSearchReqBody = result[0];
-                this.docSearchXmlPathData = result[1];
-                // console.log('docSearchReqBody: ', this.docSearchReqBody);
-                // console.log('docSearchXmlPathData: ', this.docSearchXmlPathData);
+                this.retCustBody = result[0];
+                this.retCustJsonPathData = result[1];
+                // console.log('retCustBody: ', this.retCustBody);
+                // console.log('retCustJsonPathData: ', this.retCustJsonPathData);
             }).catch((error) => {
                 console.error('Some error occured in Fetch: ' + error)
             })
     }
-
-    fetchDocDownloadXmlData(apiName) {
+    fetchGeneralAcctInqJsonData(apiName) {
         getJsonData(apiName)
             .then(result => {
-                this.docDownloadReqBody = result[0];
-                this.docDownloadXmlPathData = result[1];
-                // console.log('docDownloadReqBody: ', this.docDownloadReqBody);
-                // console.log('docDownloadXmlPathData: ', this.docDownloadXmlPathData);
+                this.generalAcctInqBody = result[0];
+                this.generalAcctInqJsonPathData = result[1];
+                // console.log('generalAcctInqBody: ', this.generalAcctInqBody);
+                // console.log('generalAcctInqJsonPathData: ', this.generalAcctInqJsonPathData);
+            }).catch((error) => {
+                console.error('Some error occured in Fetch: ' + error)
+            })
+    }
+    fetchAcctInqJsonData(apiName) {
+        getJsonData(apiName)
+            .then(result => {
+                this.acctInqBody = result[0];
+                this.acctInqJsonPathData = result[1];
+                // console.log('acctInqBody: ', this.acctInqBody);
+                // console.log('acctInqJsonPathData: ', this.acctInqJsonPathData);
             }).catch((error) => {
                 console.error('Some error occured in Fetch: ' + error)
             })

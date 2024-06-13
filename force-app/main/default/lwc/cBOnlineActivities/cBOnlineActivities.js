@@ -15,7 +15,7 @@ export default class CBOnlineActivities extends NavigationMixin(LightningElement
             exposed: true
         },
         search: {
-            exposed: true
+            exposed: false
         }
     }
 
@@ -23,48 +23,48 @@ export default class CBOnlineActivities extends NavigationMixin(LightningElement
         {
             action: 'My Portfolio',
             desc: 'Transaction description from account 6000031632',
-            dateTime: '15/12/12 - 11:20:24'
+            dateTime: '10/06/24 - 11:20:24'
         },
         {
             action: 'My Portfolio',
-            dateTime: '15/12/12 - 11:20:24'
+            dateTime: '11/06/24  - 11:20:24'
         },
         {
             action: 'My Portfolio',
-            dateTime: '15/12/12 - 11:20:24'
-        },
-        {
-            action: 'My Portfolio',
-            desc: 'Transaction description from account 6000031632',
-            dateTime: '15/12/12 - 11:20:24'
+            dateTime: '11/06/24  - 11:20:24'
         },
         {
             action: 'My Portfolio',
             desc: 'Transaction description from account 6000031632',
-            dateTime: '15/12/12 - 11:20:24'
+            dateTime: '11/06/12 - 11:20:24'
         },
         {
             action: 'My Portfolio',
             desc: 'Transaction description from account 6000031632',
-            dateTime: '15/12/12 - 11:20:24'
-        },
-        {
-            action: 'My Portfolio',
-            dateTime: '15/12/12 - 11:20:24'
-        },
-        {
-            action: 'My Portfolio',
-            dateTime: '15/12/12 - 11:20:24'
+            dateTime: '11/06/12 - 11:20:24'
         },
         {
             action: 'My Portfolio',
             desc: 'Transaction description from account 6000031632',
-            dateTime: '15/12/12 - 11:20:24'
+            dateTime: '10/06/12 - 11:20:24'
+        },
+        {
+            action: 'My Portfolio',
+            dateTime: '10/06/12 - 11:20:24'
+        },
+        {
+            action: 'My Portfolio',
+            dateTime: '10/06/12 - 11:20:24'
         },
         {
             action: 'My Portfolio',
             desc: 'Transaction description from account 6000031632',
-            dateTime: '15/12/12 - 11:20:24'
+            dateTime: '10/06/12 - 11:20:24'
+        },
+        {
+            action: 'My Portfolio',
+            desc: 'Transaction description from account 6000031632',
+            dateTime: '10/06/12 - 11:20:24'
         }
     ]
 
@@ -73,11 +73,14 @@ export default class CBOnlineActivities extends NavigationMixin(LightningElement
         this.filterModal = true
     }
 
+    current = 'June'
+    
     fromData = ''
     toData = ''
 
     filterData(event){
         console.log(event.detail.data);
+        console.log(event.detail.fromData+' '+event.detail.toDate);
         console.log(JSON.stringify(event.detail));
         this.filterModal = false
     }

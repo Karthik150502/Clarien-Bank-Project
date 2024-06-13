@@ -28,4 +28,8 @@ export default class CBTransaction extends LightningElement {
         console.log(event.detail.openSections);
         console.log('showDetails : ', this.showDetails);
     }
+
+    get checkCreditDebit() {
+        return this.transactionData.type === 'credit' ? 'credit':'debit';
+    }
 }

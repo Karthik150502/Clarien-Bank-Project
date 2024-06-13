@@ -10,31 +10,30 @@ import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSu
 import CB_AUTHENTICATION_FAILED from '@salesforce/resourceUrl/CBAutenticationFailed';
 
 import CONFIRM from '@salesforce/label/c.CB_Confirm';
-import CANCEL from '@salesforce/label/c.CB_Cancel';
 export default class CBInternationalTransfersConfirmation extends NavigationMixin(LightningElement) {
 
 
 
     @wire(CurrentPageReference)
     pageRefHandler({ state }) {
-        if (state) {
-            this.fromAccountNo = state.fromAccount ? state.fromAccount : ''
-            this.date = state.dateSelected ? state.dateSelected : ''
-            this.amount = state.amount ? state.amount : ''
-            this.benefAccountNo = state.toAccount ? state.toAccount : ''
-            this.comments = state.comment ? state.comment : ''
-
-        }
+        console.log('state : ', JSON.stringify(state))
+        this.fromAccountNo = state.fromAccount ? state.fromAccount : ''
+        this.date = state.date ? state.date : ''
+        this.amount = state.amount ? state.amount : ''
+        this.benefAccountNo = state.beneficiaryAccount ? state.beneficiaryAccount : ''
+        this.benefBankName = state.beneficiaryBankName ? state.beneficiaryBankName : ''
+        this.benefCity = state.beneficiaryCity ? state.beneficiaryCity : ''
+        this.comments = state.purpose ? state.purpose : ''
+        this.benefCode = state.bankCode ? state.bankCode : ''
     }
 
 
 
     label = {
         CONFIRM, // Converting "Submit" label to uppercase
-        CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
     };
     headerConfguration = {
-        previousPageUrl: 'CBDomesticTransfers__c',
+        previousPageUrl: 'CBInternationalTransfers__c',
         heading: 'Confirm Transaction',
         iconsExposed: false,
     }
@@ -42,11 +41,13 @@ export default class CBInternationalTransfersConfirmation extends NavigationMixi
 
 
     fromAccountNo = 'N/A'
-    fromAccountDesc = 'N/A'
-    fromAccountCurrency = 'N/A'
+    fromAccountDesc = 'Non Personal Checking USD'
+    fromAccountCurrency = 'USD'
     benefAccountNo = 'N/A'
     fees = 'N/A'
     benefBankName = 'N/A'
+    benefCity = 'N/A'
+    benefCode = 'N/A'
     fcc = 'N/A'
     benefName = 'N/A'
     fcpt = 'N/A'
@@ -55,68 +56,9 @@ export default class CBInternationalTransfersConfirmation extends NavigationMixi
     comments = 'N/A'
     charges = 'N/A'
     disclaimer = 'Please be advised that payments that are not scheduled within the bank\'s normal business hours will not be processed until the next business date.'
-    showReusableSuccessModal = false
-    showReusableSuccessModal2 = false
-    showReusableSuccessModal3 = false
-    saveAsTemplateDesc = ''
-    successGif = CB_AUTHENTICATION_SUCCESS
-    failureGif = CB_AUTHENTICATION_FAILED
-
-    modalconf = {
-        title: 'Transfer Successful',
-        okButton: {
-            exposed: true,
-            label: 'SAVE',
-            function: () => {
-                this.getTheSaveAsTempDesc()
-                this.showReusableSuccessModal = false
-                this.showReusableSuccessModal2 = true
-            }
-        },
-        noButton: {
-            exposed: true,
-            label: 'CLOSE',
-            function: () => {
-                this.showReusableSuccessModal = false
-            }
-        },
-    }
-
-
-    modalconf2 = {
-        title: 'Create new transaction template?',
-        okButton: {
-            exposed: true,
-            label: 'CONFIRM',
-            function: () => {
-                this.showReusableSuccessModal2 = false
-                this.showReusableSuccessModal3 = true
-            }
-        },
-        noButton: {
-            exposed: true,
-            label: 'CLOSE',
-            function: () => {
-                this.showReusableSuccessModal2 = false
-            }
-        },
-    }
 
 
 
-    modalconf3 = {
-        title: 'Template created successfully',
-        okButton: {
-            exposed: true,
-            label: 'OK',
-            function: () => {
-                this.showReusableSuccessModal3 = false
-            }
-        },
-        noButton: {
-            exposed: false,
-        },
-    }
 
 
 
@@ -147,23 +89,7 @@ export default class CBInternationalTransfersConfirmation extends NavigationMixi
 
     }
 
-    authenticationInProgress() {
-        this.authenticationPopup.showLoadingAnimation = true
-        this.authenticationPopup.openModal = true
-        this.authenticationPopup.authenticationStatus = AUTHENTICATION_INPROGRESS_MESSAGE
-    }
 
-    authenticationSuccess() {
-        this.authenticationPopup.showLoadingAnimation = false
-        this.authenticationPopup.openModal = true
-        this.authenticationPopup.authenticationSpinnergif = this.successGif
-        this.authenticationPopup.authenticationStatus = AUTHENTICATION_SUCCESSFUL_MESSAGE
-        setTimeout(() => {
-            this.authenticationPopup.openModal = false
-            this.showReusableSuccessModal = true
-        }, 1000)
-
-    }
 
 
     handleCancel() {
@@ -172,14 +98,6 @@ export default class CBInternationalTransfersConfirmation extends NavigationMixi
 
     handleSubmit() {
         this.apiCallout()
-    }
-
-
-    apiCallout() {
-        this.authenticationInProgress()
-        setTimeout(() => {
-            this.authenticationSuccess()
-        }, 2000)
     }
 
     // Helper function for navigation
@@ -192,5 +110,86 @@ export default class CBInternationalTransfersConfirmation extends NavigationMixi
             state: data
         });
     }
+
+
+    fetchCommentsFromModal(event) {
+        console.log(event.detail.comments)
+        this.showModal = false
+        this.showModal2 = true
+    }
+
+
+    showModal = false
+    showModal1 = false
+    showModal2 = false
+
+    @track modalConf = {
+        title: '',
+        message: 'The transaction has been successfully completed',
+        loadingStatusMsg: 'Processing, kindly wait....',
+        isLoading: true,
+        yesButton: {
+            exposed: true,
+            label: 'OK',
+            implementation: () => {
+                this.showModal = false
+                this.showModal1 = true
+            }
+        },
+        notOkButton: {
+            exposed: false,
+        }
+    }
+    @track modalConf1 = {
+        title: 'Save as Template',
+        message: 'The transaction has been successfully completed',
+        okButton: {
+            exposed: false,
+            label: 'OK',
+            function: () => {
+                this.showModal1 = false
+                this.showModal2 = true
+            }
+        },
+    }
+
+
+
+    @track modalConf2 = {
+        title: 'Template created successfully.',
+        okButton: {
+            exposed: true,
+            label: 'OK',
+            function: () => {
+                this.showModal2 = false
+                this.navigateTo("CBTransfers__c")
+            }
+        },
+        noButton: {
+            exposed: false,
+        },
+    }
+
+
+    apiCallout() {
+        this.showModal = true
+        setTimeout(() => {
+            // this.modalConf.isLoading = false
+            this.showModal = false
+            this.showModal1 = true
+        }, 2500)
+    }
+
+    closeSavesAsTempModal() {
+        this.showModal1 = false
+        this.navigateTo("CBTransfers__c")
+    }
+
+    fetchCommentsFromModal(event) {
+        console.log(event.detail.comments)
+        this.showModal1 = false
+        this.showModal2 = true
+    }
+
 
 }

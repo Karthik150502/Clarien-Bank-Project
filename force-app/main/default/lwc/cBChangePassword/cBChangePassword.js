@@ -25,6 +25,8 @@ import ERROR_PASS_MISMATCH from '@salesforce/label/c.CB_ErrorPassMismatch';
 import ERROR_ENTER_THE_PASS from '@salesforce/label/c.CB_ErrorEnterThePass';
 import ENTER_A_VALID_OLD from '@salesforce/label/c.CB_EnterValidOldPass';
 import PASSWORD_CHANGED_MESSAGE from '@salesforce/label/c.CB_Password_Changed_Message';
+import CHANGEPASSWORD_PAGE from '@salesforce/label/c.CB_Page_Changepassword';
+
 import AUTHENTICATION_FAILED_MESSAGE from '@salesforce/label/c.CB_Authentication_Failed';
 import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentication_InProgress';
 import AUTHENTICATION_SUCCESSFUL_MESSAGE from '@salesforce/label/c.CB_Authentication_Successful';
@@ -35,7 +37,7 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 //resources for Ad-hauthentication process
 import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSuccess';
 import changePassword from '@salesforce/apex/CBApiController.changePassword';
-import { getJsonData, getSessData, dateToTimestamp, logout,getUserCreds } from 'c/cBUtilities';
+import { getJsonData, getSessData, dateToTimestamp, logout,getUserCreds, setPagePath } from 'c/cBUtilities';
 export default class CBChangePassword extends NavigationMixin(LightningElement) {
 
     CBBackIcon = `${CBSVG}/CBSVGs/CBBackIcon.svg#CBBackIcon`;
@@ -161,6 +163,7 @@ export default class CBChangePassword extends NavigationMixin(LightningElement) 
         // Getting the JSON request body and JSON paths
         this.fetchJsonData(this.CB_POST_CHANGE_PASSWORD)
         this.getUsernamePasswordHandler();
+        setPagePath(CHANGEPASSWORD_PAGE)
     }
 
     // Event handler for old password input changes

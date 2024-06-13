@@ -83,7 +83,8 @@
     font-family: var(--dxp-g-root-gotham-medium-font-family);
     width: 100%;
     padding: 4% 14% 4% 14%;
-    border: 0.15px solid var(--light-grey);;
+    border: 0.15px solid var(--light-grey);
+    ;
 }
 
 
@@ -94,4 +95,14 @@
 
 .container .footer .no-btn {
     color: var(--primary-black);
+}
+
+.wrapper .container .misallaneous {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    margin: 8px 0 8px 0;
 }

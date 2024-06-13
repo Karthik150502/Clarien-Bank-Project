@@ -9,6 +9,7 @@
 
 .wrapper {
     width: 100vw;
+    height:100vh;
 }
 
 .container {
@@ -41,7 +42,11 @@
     font-size: 16px;
     max-height: 100px;
 }
-
+.read{
+    display: flex;
+    align-items: center;
+    background-color: var(--light-grey);
+}
 .container .chequebook-count {
     margin: 5% 0;
 }
@@ -120,4 +125,11 @@
     font-size: 16px;
     margin-bottom: 5px;
     font-weight: 600;
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
 }

@@ -73,3 +73,17 @@
 .wrapper .container .btn .submit-btn[disabled] {
     background-color: var(--light-grey);
 }
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}

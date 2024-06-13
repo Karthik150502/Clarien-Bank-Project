@@ -8,6 +8,11 @@ import HOME from '@salesforce/label/c.CB_HomeLoan';
 import REMARKS from '@salesforce/label/c.CB_Remarks';
 import SUBMIT from '@salesforce/label/c.CB_Submit';
 
+import APPLYNOWLOANS_PAGE from '@salesforce/label/c.CB_Page_CBApplynowloans';
+import APPLYNOW_PAGE from '@salesforce/label/c.CB_Page_Applynow';
+
+import { setPagePath } from 'c/cBUtilities';
+
 export default class CBApplyNowLoans extends NavigationMixin(LightningElement) {
 
     label = {
@@ -16,11 +21,14 @@ export default class CBApplyNowLoans extends NavigationMixin(LightningElement) {
         CAR,
         HOME,
         REMARKS,
-        SUBMIT:SUBMIT.toUpperCase()
-}
+        SUBMIT: SUBMIT.toUpperCase()
+    }
 
+    connectedCallback() {
+        setPagePath(APPLYNOWLOANS_PAGE)
+    }
     configuration = {
-        previousPageUrl: '',
+        previousPageUrl: APPLYNOW_PAGE,
         heading: 'Loans',
         iconsExposed: false,
         logout: {

@@ -59,7 +59,7 @@ import VIEW_ISSUED_CHEQUES from '@salesforce/label/c.CB_ViewIssuedCheques';
 
 // import uploadFile from '@salesforce/apex/CBProfileUploadHandler.uploadFile'
 // import getProfileDocId from '@salesforce/apex/CBProfileUploadHandler.getProfileDocId'
-import { getJsonData, dateToTimestamp, setMobileSessionStorage, getMobileSessionStorage } from 'c/cBUtilities';
+import { getJsonData, dateToTimestamp, setMobileSessionStorage, getMobileSessionStorage, setLocalStorage, getLocalStorage, removeLocalStorage } from 'c/cBUtilities';
 
 
 
@@ -118,8 +118,8 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
     // Properties for file upload functionality
     uploadResult;
     fileData;
-
-
+    imageSrc = false;
+    init = ''
 
     // Labels for UI elements
     label = {
@@ -204,6 +204,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
 
     username = '';
     lastLoginTime = '';
+    isBiometricEnabled = false
 
     /**
      * Lifecycle hook invoked when the component is inserted into the DOM
@@ -215,8 +216,9 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
         this.loadProfileImage();
         // this.biometricsService = getBiometricsService();
         //console.log('biometricsService ---' + this.biometricsService.isAvailable());
+        this.updateBiomtericStatus()
         console.log('MetaInfo----' + this.metaInfo.securitySettings.exposed);
-
+        this.loadNameInit();
     }
     hasRendered = false
     renderedCallback() {
@@ -262,6 +264,16 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
                 this.modalOpen = false
             }
         },
+    }
+
+    loadNameInit() {
+        if(!this.username) {
+            return;
+        }
+        let wrds = this.username.split(/\s+/);
+        wrds.forEach(element => {
+            this.init += element.charAt(0).toUpperCase();
+        });
     }
 
     /**
@@ -339,7 +351,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
             console.log('Modal unload');
             this.navigateToPage(UPDATEPHONE_PAGE, { 'email': this.metaInfo.email, 'phone': this.metaInfo.phone });
         }, 500)
-        
+
     }
 
     // Navigation method to navigate to update email page
@@ -351,7 +363,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
             console.log('Modal unload');
             this.navigateToPage(UPDATEEMAIL_PAGE, { 'email': this.metaInfo.email, 'phone': this.metaInfo.phone });
         }, 500)
-        
+
     }
 
     // Navigation method to navigate to Online Activities
@@ -521,7 +533,21 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
         this.dispatchEvent(toastEvent);
     }
 
+
+    isBiometricEnabled = false
+    updateBiomtericStatus() {
+        if (getLocalStorage('CBIsBiometricEnabled')) {
+            this.isBiometricEnabled = getLocalStorage('CBIsBiometricEnabled') === 'true'
+            console.log('this.isBiometricEnabled = ' + getLocalStorage('CBIsBiometricEnabled'))
+        }
+    }
+
     handleVerifyClick() {
+        this.isBiometricEnabled = !this.isBiometricEnabled
+        setLocalStorage('CBIsBiometricEnabled', this.isBiometricEnabled)
+        console.log('this.isBiometricEnabled = ' + getLocalStorage('CBIsBiometricEnabled'))
+
+
 
         const biometricsService = getBiometricsService();
         console.log('biometricsService', biometricsService);

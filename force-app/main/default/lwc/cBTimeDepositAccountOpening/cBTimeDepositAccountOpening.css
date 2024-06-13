@@ -5,8 +5,16 @@
 }
 .wrapper {
     width: 100vw;
+    height: 100vh;
 }
 .container {
     width: 90%;
     margin: 20px auto;
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
 }

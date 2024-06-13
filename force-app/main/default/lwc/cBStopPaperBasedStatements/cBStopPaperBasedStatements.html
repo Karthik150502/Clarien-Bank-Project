@@ -4,9 +4,9 @@
             <div class="heading">
                 <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
             </div>
-            <div class="rest-form">
+            <!-- <div class="rest-form">
                 <button class="rest-btn" disabled={buttonDisabled} onclick={resetForm}>REST FORM</button>
-            </div>
+            </div> -->
             <div class="casing">
                 <div>
                     <p class="highlight">Saving Accounts</p>
@@ -24,8 +24,10 @@
                 </template>
             </div>
             <div class="btns">
+                <button class="rest-btn" disabled={buttonEnable} onclick={resetForm}>RESET</button>
                 <button class="submit-btn" disabled={buttonEnable} onclick={submitForm}>NEXT</button>
             </div>
         </div>
+        <c-c-b-footer></c-c-b-footer>
     </div>
 </template>

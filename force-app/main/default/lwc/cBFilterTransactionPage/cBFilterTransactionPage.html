@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-29-2024
+  @last modified on  : 06-11-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -11,10 +11,14 @@
             <div class="header">
                 <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
             </div>
+            <div class="filter-inp">
+                <input type="radio" name="date-or-type" value={filterDate} onclick={handleFilterDate}>
+                <p>Filter By Transaction Date</p>
+            </div>
             <div class="dates">
                 <div class="from-date">
                     <p class="from-date-p">FROM DATE</p>
-                    <input type="date" value={fromDate} onchange={fromDateHandler} max={fromDateMax}>
+                    <input type="date" value={fromDate} onchange={fromDateHandler} max={fromDateMax} disabled={filterType}>
                     <p class="from-date-display">{fromDate}</p>
                     <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -24,7 +28,7 @@
                 </div>
                 <div class="to-date">
                     <p class="to-date-p">TO DATE</p>
-                    <input type="date" value={toDate} onchange={toDateHandler} min={fromDate} max={toDateMax}>
+                    <input type="date" value={toDate} onchange={toDateHandler} min={fromDate} max={toDateMax} disabled={filterType}>
                     <p class="to-date-display">{toDate}</p>
                     <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -34,34 +38,34 @@
                 </div>
             </div>
 
-            <div class="t-type-box">
-                <p class="t-type-p">Transaction Type</p>
-                <select name="" class="t-type" onchange={handleTransactionType}>
-                    <option value={None} label="None" selected></option>
-                    <template if:true={transactionTypes} for:each={transactionTypes} for:item="t_type">
-                        <option key={t_type} value={t_type} label={t_type}></option>
-                    </template>
-                </select>
+            <div class="filter-inp">
+                <input type="radio" name="date-or-type" value={filterType} onclick={handleFilterType}>
+                <p>Filter By Transaction Detail</p>
             </div>
-
-
-            <div class="from-acc-box">
-                <p class="from-acc">From Amount</p>
-                <input type="text" class="from-acc-inp" value={fromAmount} onkeyup={handleFromAmount}>
-            </div>
-
-
-            <div class="to-acc-box">
-                <p class="to-acc">To Amount</p>
-                <input type="text" class="to-acc-inp" value={toAmount} onkeyup={handleToAmount}>
-            </div>
-
-
-
-            <div class="desc-box">
-                <p class="desc-acc">Remarks</p>
-                <textarea class="desc-inp"></textarea>
-            </div>
+            <div class="types">
+                <div class="t-type-box">
+                    <p class="t-type-p">Transaction Type</p>
+                    <select name="" class="t-type" onchange={handleTransactionType} disabled={filterDate}>
+                        <option value={None} label="None" selected></option>
+                        <template if:true={transactionTypes} for:each={transactionTypes} for:item="t_type">
+                            <option key={t_type} value={t_type} label={t_type}></option>
+                        </template>
+                    </select>
+                </div>
+    
+    
+                <div class="from-acc-box">
+                    <p class="from-acc">From Amount</p>
+                    <input type="number" class="from-acc-inp" value={fromAmount} onkeyup={handleFromAmount} disabled={filterDate}>
+                </div>
+    
+    
+                <div class="to-acc-box">
+                    <p class="to-acc">To Amount</p>
+                    <input type="number" class="to-acc-inp" value={toAmount} onkeyup={handleToAmount} disabled={filterDate}>
+                </div>
+            </div>            
+            
 
 
             <div class="btns">

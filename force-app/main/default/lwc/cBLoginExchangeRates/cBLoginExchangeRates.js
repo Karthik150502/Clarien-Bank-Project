@@ -21,7 +21,7 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
 export default class CBLoginExchangeRates extends NavigationMixin(LightningElement) {
 
-CBExpand = `${CBSVG}/CBSVGs/CBExpand.svg#CBExpand`;
+    CBExpand = `${CBSVG}/CBSVGs/CBExpand.svg#CBExpand`;
 
     // Custom Labels
     label = {
@@ -35,7 +35,7 @@ CBExpand = `${CBSVG}/CBSVGs/CBExpand.svg#CBExpand`;
 
     // Current day's Exchange Rates 
     @api exchangeRates = []
-
+    @api isDataLoading = false
 
     /**
      * Method to fire a custom event notifying to close the popover from the child 

@@ -12,9 +12,20 @@ import { NavigationMixin } from 'lightning/navigation';
 // Importing background image resource
 import AccountCardBg from "@salesforce/resourceUrl/AccountCardBg";
 
+import CurrentBalance from '@salesforce/label/c.CB_CurrentBalance';
+import TotalHolds from '@salesforce/label/c.CB_TotalHolds';
+import Next_Interest_Payment_Amount from '@salesforce/label/c.CB_Next_Interest_Payment_Amount';
+import Next_Interest_Payment_Date from '@salesforce/label/c.CB_Next_Interest_Payment_Date';
+
 export default class CBAccountDetailCard extends NavigationMixin(LightningElement) {
 
-
+    label = {
+        CurrentBalance,
+        TotalHolds,
+        Next_Interest_Payment_Amount,
+        Next_Interest_Payment_Date
+    }
+    
     // Property for background image
     AccountCardBg = AccountCardBg;
 

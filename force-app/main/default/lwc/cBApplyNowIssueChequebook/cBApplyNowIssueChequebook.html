@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-07-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
     <div class="wrapper">
         <div class="container">
@@ -16,7 +23,7 @@
             <div class="account-type">
                 <label for="account-type">
                     <p class="input-heading">{label.ACCOUNT_NAME}</p>
-                    <input type="text" name="acoount-type" value={selectedAccountType} readonly>
+                    <input type="text" name="acoount-type" value={selectedAccountType} readonly class="read">
                 </label>
             </div>
             <div class="chequebook-count">
@@ -62,6 +69,7 @@
             </div>
         </div>
     </div>
+    <c-c-b-footer></c-c-b-footer>
     <template if:true={successModalOpen}>
         <c-c-b-resuable-success-modal configuration={successModalConfiguration}></c-c-b-resuable-success-modal>
     </template>

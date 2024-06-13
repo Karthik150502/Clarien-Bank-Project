@@ -8,6 +8,7 @@
 }
 .wrapper {
     width: 100vw;
+    height: 100vh;
 }
 .heading {
     width: 90%;

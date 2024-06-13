@@ -20,14 +20,17 @@ import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentica
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 //page
 import PROFILESETTINGS_PAGE from '@salesforce/label/c.CB_Page_Profilesettings';
+import UPDATEEMAIL_PAGE from '@salesforce/label/c.CB_Page_Updateemail';
+
 
 import ERROR_INVALID_EMAIL from '@salesforce/label/c.CB_ErrorInvalidEmail';
+
 
 //apex class to handle the api callout
 import profileUpdate from "@salesforce/apex/CBApiController.profileUpdate";
 
 
-import { getJsonData, dateToTimestamp, getUserCreds } from 'c/cBUtilities';
+import { getJsonData, dateToTimestamp, getUserCreds, setPagePath } from 'c/cBUtilities';
 
 export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
 
@@ -147,6 +150,7 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
         this.requestUUID = dateToTimestamp();
         console.log(this.requestUUID);
         this.fetchJsonData();
+        setPagePath(UPDATEEMAIL_PAGE)
     }
 
 
@@ -237,6 +241,8 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
         console.log("Updated with OTP authentication...!")
         // this.updateEmailHandler();
         this.showOtphandler = true
+        this.reqBody = this.dataMap(this.reqBody, this.jsonPathData);
+        console.log('reqbody ', JSON.stringify(this.reqBody));
         // this.authenticate(this.successGif, 'Authentication Successful');
     }
 
@@ -246,7 +252,7 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
      * @returns {Boolean} - True if the button should be disabled, otherwise false.
     */
     get buttonDisabled() {
-        return this.email === '' || !this.emailRegex.test(this.email) || this.email === this.initialEmail;
+        return !this.emailRegex.test(this.email) || this.email === this.initialEmail || this.email === '';
     }
 
 
@@ -273,24 +279,6 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
         return this.errors[0] ? 'error-input-label' : '';
     }
 
-    /**
-    * Authenticate Status Modal helper function
-    *
-    * @param {String} icon - The static recource url for GIF
-    * @param {String} message - The Authentication status message
-    * @param {Boolean} failure - The failure parameter, defualt value set to false
-    * @return {void} 
-   */
-    authenticate(icon, message, openModal = false) {
-        this.authenticationPopup.showLoadingAnimation = false
-        this.authenticationPopup.openModal = true
-        this.authenticationPopup.authenticationSpinnergif = icon;
-        this.authenticationPopup.authenticationStatus = message;
-        setTimeout(() => {
-            this.authenticationPopup.openModal = false;
-            this.modalOpen = openModal
-        }, 1000)
-    }
 
 
     authenticationInProgress() {
@@ -339,8 +327,8 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
 
     updateEmailHandler() {
         this.authenticationInProgress()
-        this.reqBody = this.dataMap(this.reqBody, this.jsonPathData);
-        console.log('reqbody ', JSON.stringify(this.reqBody));
+        // this.reqBody = this.dataMap(this.reqBody, this.jsonPathData);
+        // console.log('reqbody ', JSON.stringify(this.reqBody));
         let reqWrapper = {
             payload: JSON.stringify(this.reqBody),
             metadataName: this.apiName,

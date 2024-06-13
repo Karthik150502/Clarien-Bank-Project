@@ -40,18 +40,14 @@
     font-weight: 700;
 }
 
-.container textarea {
-    height: auto;
-    min-height: 7rem;
-    font-family: var(--dxp-g-root-gotham-book-font-family);
-}
-
 .container textarea{
+    border: 1px solid var(--border-blue);
+    border-radius: 12px;
+    margin: 4% 0 2% 0;
     width: 100%;
     height: auto;
-    padding: 2% 2% 2% 3%;
-    border: 1px solid var(--border-blue);
-    border-radius: 7px;
+    padding: 2% 2% 2% 2%;
+    min-height: 7rem;
 }
 
 .btns .submit-btn:disabled,
@@ -114,4 +110,22 @@ p span{
     right: 8px;
     bottom: 8px;
     /* z-index: -10; */
+}
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+select{
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+textarea {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
 }

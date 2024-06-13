@@ -4,8 +4,8 @@ import { NavigationMixin } from 'lightning/navigation';
 export default class CBStopPaperBasedStatements extends NavigationMixin(LightningElement) {
 
     configuration = {
-        previousPageUrl: 'CBServiceRequest__c',
-        heading: 'Stop Paper Based',
+        previousPageUrl: 'CBApplyNow__c',
+        heading: 'Stop Paper-Based Statements',
         iconsExposed: true,
         logout: {
             exposed: false
@@ -70,16 +70,19 @@ export default class CBStopPaperBasedStatements extends NavigationMixin(Lightnin
     //     return this.checkSelected()
     // }
 
-    buttonEnable = true
+    get buttonEnable(){
+        return this.buttonDisabled
+    }
+    buttonDisabled = true
     checkSelected(){
         const selectedAccount = this.template.querySelectorAll(".checkBox");
         for(let i=0;i<selectedAccount.length;i++){
             if (selectedAccount[i].checked) {
                 console.log('one true');
-                this.buttonEnable = false;
+                this.buttonDisabled = false;
                 break;
             }
-            this.buttonEnable = true
+            this.buttonDisabled = true
         }
         // selectedAccount.forEach(checkbox => {
         //     if (checkbox.checked) {
@@ -111,6 +114,7 @@ export default class CBStopPaperBasedStatements extends NavigationMixin(Lightnin
 
                 } else if (action === 'reset') {
                     checkbox.checked = false;
+                    this.buttonDisabled = true;
                 }
             }
         });

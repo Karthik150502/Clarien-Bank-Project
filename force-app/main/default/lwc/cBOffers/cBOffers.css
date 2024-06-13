@@ -7,6 +7,7 @@
 .wrapper {
     width: 100vw;
     height: 100vh;
+    margin: 10px 0;
 }
 
 .header {
@@ -22,13 +23,23 @@
 .container .search-bar {
     width: 100%;
     margin: 6% 0;
+    position: relative;
+}
+
+.container .search-bar svg {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .container .search-bar input {
+    margin: 0 auto;
+    font-size: 13px;
     width: 100%;
-    border: 1px solid blue;
+    height: 35px;
     border-radius: 8px;
-    height: 33px;
+    border: 1px solid var(--border-blue);
+    padding: 0 2% 0 2%;
 }
 
 .container .image {
@@ -36,23 +47,43 @@
     /* background-color: bisque; */
     height: 150px;
     width: 100%;
-    padding: 10% 15%;
+    padding: 17% 9%;
+}
+
+.offers-main-container {
+    width: 100%;
+    margin: 0 auto;
+    align-items: center;
+    justify-self: center;
+    flex-direction: column;
+    height: 60vh;
+}
+
+
+.offers-main-container .offers-container {
+    margin: 12px auto 12px auto;
+    width: 100%;
+    padding: 12px 20px 12px 12px;
+    background-color: var(--powder-blue);
+    display: flex;
+    overflow: hidden;
+    border-radius: 8px;
+    height: auto;
+}
+
+.offers-main-container .offers-container:hover {
+    background-color: var(--light-blue);
+}
+
+.offers-main-container .offers-container:hover .message>p {
+    color: var(--primary-blue);
 }
 
 .container .image p {
     font-weight: 600;
 }
 
-.offers-container {
-    margin: 10px auto;
-    width: 95%;
-    height: 100px;
-    padding: 5px 5px;
-    background-color: var(--light-blue);
-    display: flex;
-    overflow: hidden;
-    border-radius: 7px;
-}
+
 .offers-container:hover {
     background-color: var(--light-grey);
 }
@@ -63,6 +94,7 @@
     align-items: center;
     padding: 0 5px;
 }
+
 .offers-container .message-time {
     width: 30%;
     display: flex;
@@ -71,7 +103,7 @@
     color: var(--primary-grey);
 }
 
-c-c-b-footer{
-	position: fixed;
-	bottom: 0;
+c-c-b-footer {
+    position: fixed;
+    bottom: 0;
 }

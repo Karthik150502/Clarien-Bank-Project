@@ -98,12 +98,14 @@
     font-family: var(--dxp-g-root-gotham-bold-font-family);
 }
 
-.wrapper .container .casing .travel-date .from-date .date-entry>p,
-.wrapper .container .casing .travel-date .to-date .date-entry>p {
+.wrapper .container .casing .travel-date .from-date .date-entry .date-con>p,
+.wrapper .container .casing .travel-date .to-date .date-entry .date-con>p {
     color: var(--primary-black);
     font-size: 15px;
     font-family: var(--dxp-g-root-gotham-bold-font-family);
     margin: 0 4% 0 0;
+    position: absolute;
+    left: 0;
 }
 
 
@@ -111,10 +113,64 @@
 .wrapper .container .casing .travel-date .to-date .date-entry {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.wrapper .container .casing .travel-date .from-date .date-entry .date-con,
+.wrapper .container .casing .travel-date .to-date .date-entry .date-con {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: flex-end;
-    width: 55%;
+    flex-direction: row;
+}
+
+.dates .from-date-invis,
+.dates .to-date-invis {
+    font-size: 15px;
+    max-height: 100px;
+}
+
+.wrapper .from-date .date-entry .date-con input,
+.wrapper .to-date .date-entry .date-con input {
+    opacity: 0;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    background: transparent;
+    z-index: 10;
+    padding: 0 0 0 2%;
+    color: transparent;
+}
+
+.wrapper .date-con input::-webkit-inner-spin-button,
+.wrapper .date-con input::-webkit-calendar-picker-indicator {
+    color: transparent;
+    background-color: transparent;
+    background: transparent;
+}
+.wrapper .date-entry .date-con svg {
+    position: absolute;
+    right: 3px;
 }
 
 .dates{
 display: none;
+}
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+select {
+    font-size: 16px !important;
+    max-height: 100px !important;
+}
+input {
+    font-size: 16px !important;
+    max-height: 100px !important;
 }

@@ -23,7 +23,13 @@
                 <!-- <button class="cancel-btn" onclick={handleCancel}>CANCEL</button> -->
             </div>
         </div>
+        <c-c-b-footer></c-c-b-footer>
     </div>
     <!-- for ending session -->
     <c-c-b-session-end></c-c-b-session-end>
+
+    <template if:true={modalOpen}>
+        <c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+    </template>
+    
 </template>

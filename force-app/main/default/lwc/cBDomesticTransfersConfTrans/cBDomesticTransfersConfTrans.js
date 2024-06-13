@@ -10,7 +10,6 @@ import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSu
 import CB_AUTHENTICATION_FAILED from '@salesforce/resourceUrl/CBAutenticationFailed';
 
 import CONFIRM from '@salesforce/label/c.CB_Confirm';
-import CANCEL from '@salesforce/label/c.CB_Cancel';
 export default class CBDomesticTransfersConfTrans extends NavigationMixin(LightningElement) {
 
 
@@ -31,7 +30,6 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
 
     label = {
         CONFIRM, // Converting "Submit" label to uppercase
-        CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
     };
     headerConfguration = {
         previousPageUrl: 'CBDomesticTransfers__c',
@@ -55,61 +53,55 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
     comments = 'N/A'
     charges = 'N/A'
     disclaimer = 'Please be advised that payments that are not scheduled within the bank\'s normal business hours will not be processed until the next business date.'
-    showReusableSuccessModal = false
-    showReusableSuccessModal2 = false
-    showReusableSuccessModal3 = false
+
     saveAsTemplateDesc = ''
     successGif = CB_AUTHENTICATION_SUCCESS
     failureGif = CB_AUTHENTICATION_FAILED
 
-    modalconf = {
-        title: 'Transfer Successful',
-        okButton: {
+    showModal = false
+    showModal1 = false
+    showModal2 = false
+
+    @track modalConf = {
+        title: '',
+        message: 'The transaction has been successfully completed',
+        loadingStatusMsg: 'Processing, kindly wait....',
+        isLoading: true,
+        yesButton: {
             exposed: true,
-            label: 'SAVE',
-            function: () => {
-                this.getTheSaveAsTempDesc()
-                this.showReusableSuccessModal = false
+            label: 'OK',
+            implementation: () => {
+                this.showModal = false
+                this.showModal1 = true
             }
         },
-        noButton: {
-            exposed: true,
-            label: 'CLOSE',
-            function: () => {
-                this.showReusableSuccessModal = false
-            }
-        },
+        notOkButton: {
+            exposed: false,
+        }
     }
-
-
-    modalconf2 = {
-        title: 'Create new transaction template?',
+    @track modalConf1 = {
+        title: 'Save as Template',
+        message: 'The transaction has been successfully completed',
         okButton: {
-            exposed: true,
-            label: 'CONFIRM',
+            exposed: false,
+            label: 'OK',
             function: () => {
-                this.showReusableSuccessModal2 = false
-                this.showReusableSuccessModal3 = true
-            }
-        },
-        noButton: {
-            exposed: true,
-            label: 'CLOSE',
-            function: () => {
-                this.showReusableSuccessModal2 = false
+                this.showModal1 = false
+                this.showModal2 = true
             }
         },
     }
 
 
 
-    modalconf3 = {
-        title: 'Template created successfully',
+    @track modalConf2 = {
+        title: 'Template created successfully.',
         okButton: {
             exposed: true,
             label: 'OK',
             function: () => {
-                this.showReusableSuccessModal3 = false
+                this.showModal2 = false
+                this.navigateTo("CBTransfers__c")
             }
         },
         noButton: {
@@ -165,6 +157,17 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
     }
 
 
+    closeSavesAsTempModal() {
+        this.showModal1 = false
+        this.navigateTo("CBTransfers__c")
+    }
+
+    fetchCommentsFromModal(event) {
+        console.log(event.detail.comments)
+        this.showModal1 = false
+        this.showModal2 = true
+    }
+
     handleCancel() {
     }
 
@@ -173,12 +176,14 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
         this.apiCallout()
     }
 
-
     apiCallout() {
-        this.authenticationInProgress()
+        this.showModal = true
+        this.modalConf.isLoading = true
         setTimeout(() => {
-            this.authenticationSuccess()
-        }, 2000)
+            // this.modalConf.isLoading = false
+            this.showModal = false
+            this.showModal1 = true
+        }, 2500)
     }
 
     // Helper function for navigation
@@ -193,13 +198,5 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
     }
 
 
-    handleSaveAsTemplate() {
-        this.showReusableSuccessModal2 = true
-    }
-
-
-    handleEReceipt() {
-        console.log("E - Receipt generated...!")
-    }
 
 }

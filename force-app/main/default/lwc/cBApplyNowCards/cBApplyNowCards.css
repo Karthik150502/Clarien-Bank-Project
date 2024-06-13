@@ -19,7 +19,7 @@
 
 .wrapper {
     width: 100vw;
-    height: auto;
+    height: 100vh;
     margin: 0 auto;
     overflow: hidden;
     overflow-x: hidden;
@@ -142,4 +142,9 @@ c-c-b-header {
 c-c-b-footer {
     position: fixed;
     bottom: 0;
+}
+
+input, .remarks {
+    font-size: 16px !important;
+    max-height: 100px !important;
 }

@@ -17,7 +17,7 @@
                             <use href={CBModifyDebitCardLimit}></use>
                         </svg>
                     </div>
-                    <p>Modify Debit card limit</p>
+                    <p>Modify Debit Card Limit</p>
                 </div>
                 <div class="menu-item travel" onclick={navigateToTravelNotification}>
                     <div class="menu-item-svg">
@@ -32,7 +32,7 @@
         <template if:true={modifyDebitCardLimit}>
             <div class="containerTwo">
                 <label for="cardLimit">
-                    <p class="heading">Enter limit for Debit Card Limit</p>
+                    <p class="heading">Enter limit For Debit Card Limit</p>
                     <select class="options" id="cardLimit" onclick={cardLimitHandler} value={cardLimit}>
                         <template for:each={debitCardLimit} for:item="cardLimits">
                             <option key={cardLimits.limit} value={cardLimits.limit}>{cardLimits.limit}</option>

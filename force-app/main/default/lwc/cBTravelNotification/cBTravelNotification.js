@@ -27,8 +27,8 @@ export default class CBTravelNotification extends NavigationMixin(LightningEleme
     }
 
     cardTypeList = ['Select','Credit Card','Debit card']
-    countryList = ['Select','USA','BERMUDA']
-    stateList = ['Select','France','Los Angles','Texas','California']
+    countryList = ['Select','United States','International']
+    stateList = ['Select','San Francisco','Los Angles','Texas','California']
 
     cardType = '';
     country = '';

@@ -1,9 +1,9 @@
 import { LightningElement, wire, api, track } from 'lwc';
-import { CurrentPageReference } from 'lightning/navigation';
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
-export default class CBJointAccount extends LightningElement {
+export default class CBJointAccount extends NavigationMixin(LightningElement) {
 
     cardType = {
         JointAccount: {
@@ -12,7 +12,8 @@ export default class CBJointAccount extends LightningElement {
             currentBal: 'BMD 9000.00',
             totalHolds: 'BMD 0.00',
             holderName: 'John Due',
-            secHolderName: 'Abhraram'
+            secHolderName: 'Abhraram',
+            productName: 'Joint Platinum Account'
         }
     }
 
@@ -112,12 +113,9 @@ export default class CBJointAccount extends LightningElement {
     ];
 
     @api overviewData = [
-        { id: 0, label: "CIF ID Primary Account holder Name", value: "1000011111" },
-        { id: 1, label: "CIF ID Secondary Account holder Name", value: "1111123455" },
-        { id: 2, label: "Primary Account holder Name", value: "John due" },
-        { id: 3, label: "Secondary Account holder Name", value: "Abhraham" },
-        { id: 4, label: "Account Number", value: "6000876590564" },
-        { id: 5, label: "Available Balance", value: "BMD 9000" }
+        { id: 0, label: "CIF ID", value: "1000011111" },
+        { id: 1, label: "Primary Account holder Name", value: "John due" },
+        { id: 2, label: "Secondary Account holder Name", value: "Abhraham" }
     ];
 
     handleTransactionsClick() {
@@ -217,5 +215,15 @@ export default class CBJointAccount extends LightningElement {
                 k++
             }
         }
+    }
+
+    navigateToFilter() {
+        console.log('filter called');
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'CBFilterJointAccount__c'
+            }
+        });
     }
 }

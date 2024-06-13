@@ -6,7 +6,7 @@ export default class CBOffers extends LightningElement {
 
     configuration = {
         previousPageUrl: 'Home',
-        heading: 'Offers & Announcement',
+        heading: 'Offers & Promotions',
         iconsExposed: false,
         logout: {
             exposed: true
@@ -21,27 +21,27 @@ export default class CBOffers extends LightningElement {
     offers = [
         {
             id:1,
-            message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ullam!',
+            message: '0% interest for 12 months on credit card balance transfers. Save now!',
             time: '15 min ago'
         },
         {
             id:2,
-            message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, beatae? Quisquam iusto cumque magnam sint!',
+            message: ' Open a new checking account, get a $200 bonus with direct deposit',
             time: '24 min ago'
         },
         {
             id:3,
-            message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ullam!',
+            message: 'Auto loans at 2.99% APR. Quick approval. Apply now!',
             time: '5 day ago'
         },
         {
             id:4,
-            message: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore, beatae? Quisquam iusto cumque magnam sint!',
+            message: 'Home Equity Line of Credit at 1.99% APR for 6 months. Apply today!',
             time: '6 day ago'
         },
         {
             id:5,
-            message: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, ullam!',
+            message: 'New Online Banking! Enhanced features and security. Log in to explore.',
             time: '12 day ago'
         }
     ]

@@ -10,8 +10,9 @@
 
 
 .wrapper {
-    max-height: 60%;
-    min-height: fit-content;
+    height:200px;
+    /* max-height: 30%;
+    min-height: fit-content; */
     width: 80%;
     background-color:var(--primary-white);
     margin: auto auto;

@@ -12,6 +12,8 @@ import ADHOC_PAYMENTS from '@salesforce/label/c.CB_AdHocPayments';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
+import { setPagePath } from 'c/cBUtilities';
+
 export default class CBTransfers extends NavigationMixin(LightningElement) {
     // Labels for dashboard icons
     label = {
@@ -102,24 +104,25 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
     };
 
     @track transactionData = [
-        { id: '1', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988901', date: '01/09/23', amount: '3.00', transactionType: 'Transfer' },
-        { id: '2', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988902', date: '01/10/23', amount: '4.00', transactionType: 'Loan' },
-        { id: '3', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988903', date: '01/11/23', amount: '6.00', transactionType: 'Transfer' },
-        { id: '4', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988904', date: '01/12/23', amount: '8.00', transactionType: 'Fee' },
-        { id: '5', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988905', date: '01/13/23', amount: '9.88', transactionType: 'Transfer' },
-        { id: '6', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988906', date: '01/14/23', amount: '9.00', transactionType: 'Lorem' },
-        { id: '7', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988907', date: '01/15/23', amount: '6.00', transactionType: 'Transfer' },
-        { id: '8', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988908', date: '01/16/23', amount: '2.00', transactionType: 'Transfer' },
-        { id: '9', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988909', date: '01/17/23', amount: '2.20', transactionType: 'Transfer' },
-        { id: '10', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988910', date: '01/18/23', amount: '5.00', transactionType: 'Transfer' }
+        { id: '1', CHQSId: 'recieved money from david - saving account', EMIId: 'CRED0010200988901', date: '01/09/23', amount: '304.00', transactionType: 'Transfer', type: 'credit' },
+        { id: '2', CHQSId: 'credit money to loan - loan account', EMIId: 'LN0010200988902', date: '01/10/23', amount: '400.00', transactionType: 'Loan', type: 'debit' },
+        { id: '3', CHQSId: 'Sent money to david - saving account', EMIId: 'DEB0010200988903', date: '01/11/23', amount: '62.00', transactionType: 'Transfer', type: 'debit' },
+        { id: '4', CHQSId: 'Sent money to JIO Recharge - saving account', EMIId: 'DEB0010200988904', date: '01/12/23', amount: '80.00', transactionType: 'Fee', type: 'debit' },
+        { id: '5', CHQSId: 'recieved money from John - saving debit account', EMIId: 'CRED0010200988905', date: '01/13/23', amount: '945.88', transactionType: 'Transfer', type: 'credit' },
+        { id: '6', CHQSId: 'Sent money to John - saving account', EMIId: 'DEB0010200988906', date: '01/14/23', amount: '400.00', transactionType: 'Loan', type: 'debit' },
+        { id: '7', CHQSId: 'recieved interset for dec - saving account', EMIId: 'CRED0010200988907', date: '01/15/23', amount: '633.00', transactionType: 'Transfer', type: 'credit' },
+        { id: '8', CHQSId: 'Sent money to Electricity Bill - saving account', EMIId: 'DEB0010200988908', date: '01/16/23', amount: '165.00', transactionType: 'Fee', type: 'debit' },
+        { id: '9', CHQSId: 'Sent money to DMart - saving account', EMIId: 'DEB0010200988909', date: '01/17/23', amount: '50.00', transactionType: 'Fee', type: 'debit' },
+        { id: '10', CHQSId: 'recieved money from elton - saving account', EMIId: 'CRED0010200988910', date: '01/18/23', amount: '51.00', transactionType: 'Transfer', type: 'credit' }
     ];
 
     connectedCallback() {
+        setPagePath('CBTransfers__c')
         let currentDate = new Date();
         let month = currentDate.getMonth() + 1;
         let year = currentDate.getFullYear();
         this.toDate = new Date(`${year}-${month}`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-        currentDate.setMonth(currentDate.getMonth() - 7)
+        currentDate.setMonth(currentDate.getMonth() - 1)
         month = currentDate.getMonth() + 1;
         year = currentDate.getFullYear();
         this.fromDate = new Date(`${year}-${month}`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
@@ -198,7 +201,7 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
         this.navigateTo('CBInternationalTransfers__c')
     }
     navigateToDomesticPayments() {
-        this.navigateTo('CBPredefinedDomesticTransfer__c')
+        this.navigateTo('CBDomesticTransfers__c')
     }
 
     navigateTo(pageName) {

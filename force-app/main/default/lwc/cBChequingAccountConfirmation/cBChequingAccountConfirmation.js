@@ -1,7 +1,7 @@
-import { LightningElement,wire } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import ACCOUNT_NAME from '@salesforce/label/c.CB_AccountName';
 import PRODUCT from '@salesforce/label/c.CB_Product';
-import { NavigationMixin,CurrentPageReference } from 'lightning/navigation';
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
 export default class CBChequingAccountConfirmation extends NavigationMixin(LightningElement) {
 
@@ -10,7 +10,7 @@ export default class CBChequingAccountConfirmation extends NavigationMixin(Light
         PRODUCT
     }
 
-       configuration = {
+    configuration = {
         previousPageUrl: 'CBChequingAccountOpening__c',
         heading: 'Confirmation',
         iconsExposed: false,
@@ -21,21 +21,21 @@ export default class CBChequingAccountConfirmation extends NavigationMixin(Light
             exposed: false
         }
     }
-  @wire(CurrentPageReference) pageRef;
+    @wire(CurrentPageReference) pageRef;
 
     get selectedAccountType() {
-        return this.pageRef && this.pageRef.state.accountType;
+        return this.pageRef?.state?.accountType?this.pageRef?.state?.accountType:'N/A';
     }
-     get selectedProduct() {
-        return this.pageRef && this.pageRef.state.product;
+    get selectedProduct() {
+        return this.pageRef?.state?.product?this.pageRef?.state?.product:'N/A';
     }
-     get selectedCurrency() {
-        return this.pageRef && this.pageRef.state.currency;
+    get selectedCurrency() {
+        return this.pageRef?.state?.currency?this.pageRef?.state?.currency:'N/A';
     }
 
     successModalOpen = false;
 
-    successModalconfig={
+    successModalconfig = {
         title: `Your account has been opened successfully`,
         message: '',
         okButton: {
@@ -54,7 +54,7 @@ export default class CBChequingAccountConfirmation extends NavigationMixin(Light
         alertMsg: ''
     }
 
-    submitForm(){
+    submitForm() {
         console.log('Submit');
         this.successModalOpen = true
     }

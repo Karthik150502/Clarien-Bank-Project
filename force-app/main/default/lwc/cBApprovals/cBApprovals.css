@@ -60,6 +60,10 @@
 .container .button .reject {
     background-color: var(--light-grey);
 }
+.container .button button:disabled,
+.container .button button[disabled] {
+    background-color: var(--light-grey);
+}
 
 c-c-b-footer{
     position: fixed;

@@ -18,6 +18,16 @@ const getLocalStorage = (param) => {
     return localStorage.getItem(param)
 }
 
+const checkLocalkey = (key) => {
+    let localKeys = new Set(Array.from(Object.keys(localStorage)))
+    return localKeys.has(key)
+}
+
+const checkSessionkey = (key) => {
+    let localKeys = new Set(Array.from(Object.keys(sessionStorage)))
+    return localKeys.has(key)
+}
+
 const setMobileSessionStorage = (param, value) => {
     sessionStorage.setItem(param, value);
     return value;
@@ -181,6 +191,34 @@ const apiLogout = (domain) => {
         })
 }
 
+const setPagePath = (currentPage) => {
+
+    if (getLocalStorage('pagePath')) {
+        let path = getLocalStorage('pagePath')
+        console.log('path', path);
+        let previousPage = 'Home'
+        if (path.indexOf(currentPage) !== -1) {
+            setLocalStorage('pagePath', path.substring(0, path.indexOf(currentPage) + (currentPage).length))
+            path = getLocalStorage('pagePath')
+            // console.log('inbox path -1',getLocalStorage('pagePath'))
+            previousPage = path.split('.')[path.split('.').length - 2]
+            console.log('if', previousPage);
+            console.log('update path', getLocalStorage('pagePath'));
+        }
+        else {
+            previousPage = path.split('.')[path.split('.').length - 1]
+            setLocalStorage('pagePath', `${path}.${currentPage}`)
+            // console.log('inbox path',getLocalStorage('pagePath'))
+            console.log('else', previousPage);
+            console.log('update path', getLocalStorage('pagePath'));
+        }
+        return previousPage
+    }
+    else {
+        // console.log('default');
+        setLocalStorage('pagePath', 'Home')
+    }
+}
 
 export {
     setLocalStorage,
@@ -202,5 +240,8 @@ export {
     getAllMobileSessionStorage,
     clearAllMobileSessionStorage,
     getUserCreds,
-    logout
+    logout,
+    setPagePath,
+    checkSessionkey,
+    checkLocalkey
 };

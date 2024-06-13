@@ -52,3 +52,10 @@
     margin: 1% 0 0 2%;
     cursor: pointer;
 }
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}

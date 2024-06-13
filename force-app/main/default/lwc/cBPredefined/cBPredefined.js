@@ -11,19 +11,17 @@ import { LightningElement, api, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 
-
 import CBSVG from "@salesforce/resourceUrl/CBSVG";
+
+import { setPagePath } from 'c/cBUtilities';
 
 
 // import uploadFile from '@salesforce/apex/CBProfileUploadHandler.uploadFile'
 // import getProfileDocId from '@salesforce/apex/CBProfileUploadHandler.getProfileDocId'
-import { getJsonData, dateToTimestamp, setMobileSessionStorage, getMobileSessionStorage } from 'c/cBUtilities';
-
 
 
 
 export default class CBPredefined extends NavigationMixin(LightningElement) {
-
 
 
     // Labels for UI elements
@@ -41,8 +39,7 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
 
 
     connectedCallback() {
-
-
+        setPagePath('CBPredefined__c')
     }
     hasRendered = false
     renderedCallback() {
@@ -51,8 +48,9 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
         }
     }
 
+
     navigateToOwnAccTransfer() {
-        this.navigateToPage('CBPredefinedOwnAccTransfer__c')
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBOwnAccountTransfer__c', heading: 'OwnAccount Transfers Template' })
     }
 
     navigateToPreviousPage() {
@@ -60,11 +58,15 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
     }
 
     navigateToIntrabankTransfer() {
-        this.navigateToPage('CBPredefinedIntrabankTransfer__c')
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBIntraBankTransfers__c', heading: 'IntraBank Transfers Template' })
     }
 
     navigateToDomesticPayments() {
-        this.navigateToPage('CBPredefinedDomesticTransfer__c')
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBDomesticTransfers__c', heading: 'Domestic Transfers Template' })
+    }
+
+    navigateToInternationalTransfer() {
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBInternationalTransfers__c', heading: 'International Transfers Template' })
     }
     // Method to navigate to a named page
     // @param {string} pageName - The name of the page to navigate to

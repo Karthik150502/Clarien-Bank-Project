@@ -24,7 +24,8 @@ export default class CBAtmMapParent extends NavigationMixin(LightningElement) {
     deviceType = ''; // Represents the type of device.
     openMapIcon = PNGS + '/Images/OpenMapLogo.png'; // URL for the open map icon image.
     mapOptions = {
-        disableDefaultUI: true
+        disableDefaultUI: true,
+        mapTypeId: 'satellite'
     }; // Configuration options for the map.
     @track mapMarkers = []; // Array of map markers representing locations.
     @track center = {}

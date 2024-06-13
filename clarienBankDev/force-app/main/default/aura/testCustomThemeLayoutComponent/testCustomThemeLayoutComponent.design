@@ -1,3 +1,0 @@
-<design:component label="Test Custom Theme Layout">
-    <design:attribute name="blueBackground" label="Blue Background"/>
-</design:component>

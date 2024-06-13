@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-11-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
 	<div class="wrapper">
 		<div class="main-container">
@@ -13,7 +20,7 @@
 				<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
 					<div class="toggle">
 						<div class="amount-text">
-							<span>BMD {transactionData.amount}</span>
+							<span class={transactionData.type}>BMD {transactionData.amount}</span>
 						</div>
 						<div class="accordian">
 							<lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}>

@@ -23,6 +23,7 @@
 .container {
     width: 90%;
     margin: 20px auto;
+    height: calc(90vh - 70px);
 }
 
 .wrapper .container .casing {
@@ -60,3 +61,16 @@
     margin: 1% 0 0 2%;
     cursor: pointer;
 }
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}
+
+/* .wrapper .header c-c-b-header {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+} */

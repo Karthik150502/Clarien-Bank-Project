@@ -52,7 +52,7 @@
     border-radius: 12px;
     display: flex;
     align-items: normal;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     padding: 2% 1% 2% 1%;
     overflow: scroll;
@@ -94,7 +94,7 @@
 
 .wrapper .container .quick-links .icon-label {
     text-align: center;
-     font-size: 3vw;
+    font-size: 3vw;
     font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
 

@@ -2,8 +2,8 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-30-2024
-  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  @last modified on  : 06-11-2024
+  @last modified by  : Prateek Deshmukh
 -->
 <template>
     <div class="wrapper">
@@ -12,14 +12,14 @@
         </div>
         <div class="container">
             <div class="icons-container">
-                <div>
-                    <p class="transactionDate">DECEMBER</p>
+                <div class="date">
+                    <p class="transactionDate">{current}</p>
                 </div>
                 <div class="icons">
-                    <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    <!-- <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg"
                         onclick={sortAmount}>
                         <use href={CBSortOrder}></use>
-                    </svg>
+                    </svg> -->
                     <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg"
                         onclick={openFilterPopup}>
                         <use href={CBFilter}></use>
@@ -31,12 +31,15 @@
                 <template for:each={activityList} for:item="activity">
                     <div key={activity} class="activityDetail">
                         <div class="logo">
-                            <svg width="16" height="15" viewBox="0 0 16 15" fill="none"
+                            <!-- <svg width="16" height="15" viewBox="0 0 16 15" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M1.60004 10.2632H14.4V1.57895H1.60004V10.2632ZM8.80002 11.8421V13.4211H12V15H4.00003V13.4211H7.20002V11.8421H0.793638C0.688519 11.8415 0.584559 11.8204 0.487723 11.78C0.390887 11.7397 0.303082 11.6808 0.229347 11.6069C0.155612 11.5329 0.0973994 11.4454 0.0580489 11.3492C0.0186983 11.253 -0.00101496 11.15 4.02267e-05 11.0463V0.795789C4.02267e-05 0.356053 0.364039 0 0.793638 0H15.2064C15.6448 0 16 0.354474 16 0.795V11.0463C16 11.4861 15.636 11.8421 15.2064 11.8421H8.80002Z"
                                     fill="black" />
-                            </svg>
+                            </svg> -->
+                            <div class="svg-logo">
+                                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><path d="M85.81 120H34.19a8.39 8.39 0 0 1-8.38-8.39V8.39A8.39 8.39 0 0 1 34.19 0h51.62a8.39 8.39 0 0 1 8.38 8.39v103.22a8.39 8.39 0 0 1-8.38 8.39zM34.19 3.87a4.52 4.52 0 0 0-4.51 4.52v103.22a4.52 4.52 0 0 0 4.51 4.52h51.62a4.52 4.52 0 0 0 4.51-4.52V8.39a4.52 4.52 0 0 0-4.51-4.52z"/><path d="M73.7 10.32H46.3L39.28 3.3 42.01.57l5.89 5.88h24.2L77.99.57l2.73 2.73-7.02 7.02zM47.1 103.23h25.81v3.87H47.1z"/></svg>
+                            </div>
                         </div>
                         <div class="details">
                             <p class="action">{activity.action}</p>

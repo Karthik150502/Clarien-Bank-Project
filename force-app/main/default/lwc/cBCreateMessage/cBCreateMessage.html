@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-30-2024
+  @last modified on  : 06-07-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -25,19 +25,26 @@
             </label>
             <label for="">
                 <p>Subject</p>
-                <textarea name="" class="subject"></textarea>
+                <textarea name="" class="subject" onchange={subjectHandler}></textarea>
             </label>
             <label for="">
                 <p>Message Body</p>
-                <textarea name="" class="message-body"></textarea>
+                <textarea name="" class="message-body" onchange={messageHandler}></textarea>
             </label>
             <label for="" class="attachment">
-                <p>Add Attachment</p>
-                <button>BROWSE</button>
+                <p>{file}</p>
+                <div class="browse-btn">
+                    BROWSE
+                    <input type="file" class="browse-inp" placeholder="BROWSE" onchange={fileHandler}>
+                </div>
             </label>
         </div>
         <div class="submit">
-            <button onclick={submitHandler}>DONE</button>
+            <button class="submit-btn" onclick={submitHandler} disabled={isDisabled}>DONE</button>
         </div>
     </div>
+    <c-c-b-footer></c-c-b-footer>
+    <template if:true={modalOpen}>
+        <c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+    </template>
 </template>

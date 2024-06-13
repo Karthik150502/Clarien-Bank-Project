@@ -1,7 +1,9 @@
-import { LightningElement } from 'lwc';
+import { LightningElement ,wire,track} from 'lwc';
 import PDF_ICON from '@salesforce/resourceUrl/CBPng'
 import { getJsonData ,dateToTimestamp} from 'c/cBUtilities';
 import docDownload from '@salesforce/apex/CBApiController.docDownload';
+import getDocumentid from '@salesforce/apex/CBDocDownloadHandler.getDocumentid';
+import { NavigationMixin, CurrentPageReference } from'lightning/navigation';
 export default class CBAccountStatementView extends LightningElement {
 
     headerConfguration = {
@@ -17,28 +19,39 @@ export default class CBAccountStatementView extends LightningElement {
     }
 
     icon = PDF_ICON + '/image/pdfIcon.png'
+       //Authentication Status Modal initial configuration
+       @track authenticationPopup = {
 
+        // Initial Authentication Status message
+        authenticationStatus: '',
+        // Authentication Status GIF
+        authenticationSpinnergif: null,
+        // Authentication Status open or close status
+        openModal: false,
+        // Authentication loading animation visibility
+        showLoadingAnimation: true
+    }
     statements = [
-        {
-            id: '13200509',
-            fileName: '4010050124 - 12-16-2017',
-        },
-        {
-            id: '13200509',
-            fileName: '4010050124 - 09-18-2017',
-        },
-        {
-            id: '13200509',
-            fileName: '4010050124 - 10-07-2017',
-        },
-        {
-            id: '13200509',
-            fileName: '4010050124 - 02-05-2017',
-        },
-        {
-            id: '13200509',
-            fileName: '4010050124 - 01-29-2017',
-        }
+        // {
+        //     id: '13200509',
+        //     fileName: '4010050124 - 12-16-2017',
+        // },
+        // {
+        //     id: '13200509',
+        //     fileName: '4010050124 - 09-18-2017',
+        // },
+        // {
+        //     id: '13200509',
+        //     fileName: '4010050124 - 10-07-2017',
+        // },
+        // {
+        //     id: '13200509',
+        //     fileName: '4010050124 - 02-05-2017',
+        // },
+        // {
+        //     id: '13200509',
+        //     fileName: '4010050124 - 01-29-2017',
+        // }
     ]
 
     navigateToAccountStatementsResult() {
@@ -58,12 +71,18 @@ export default class CBAccountStatementView extends LightningElement {
     docDownloadXmlPathData=''
     documentId=''
     requestUUID=''
+    @wire(CurrentPageReference) pageRef;
     connectedCallback() {
         this.fetchDocDownloadXmlData(this.downloadAPIName)
         this.requestUUID = dateToTimestamp()
-
+        this.statements = JSON.parse(this.pageRef?.state?.documentId);
+        console.log(JSON.stringify(this.statements));
     }
     downloadPdf(event) {
+        event.preventDefault();
+        event.stopPropagation(); 
+        event.stopImmediatePropagation();
+        this.authenticationInProgress()
         let fileName = event.currentTarget.dataset.filename;
         this.documentId = event.currentTarget.dataset.docid
         console.log('newfilename ',fileName);
@@ -89,20 +108,27 @@ export default class CBAccountStatementView extends LightningElement {
             });
     }
 
-    generatePDF(base64String, FileName) {
-
-        const binaryString = atob(base64String);
-        const byteArray = new Uint8Array(binaryString.length);
-
-        for (let i = 0; i < binaryString.length; i++) {
-            byteArray[i] = binaryString.charCodeAt(i);
-        }
-
-        const blob = new Blob([byteArray], { type: 'application/pdf' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = `${FileName}.pdf`;
-        link.click();
+    generatePDF(base64String, fileName) {
+        console.log('base64String value ',base64String)
+        getDocumentid({ base64: base64String, fileName :fileName})
+            .then((result) => {
+                console.log('Document id ',result)
+                let domain = window.location.href;
+                // Find the index of "/s"
+                let index = domain.indexOf("/s");
+                if (index !== -1) {
+                    // Remove everything till "/s"
+                    domain = domain.substring(0, index);
+                }
+                let documentId=result;
+                let documentUrl = domain+'/sfc/servlet.shepherd/document/download/' + documentId + '?operationContext=S1';
+                alert('Document URL'+documentUrl)
+                this.authenticationPopup.openModal = false;
+                window.open(documentUrl, "_Self");
+            })
+            .catch((error) => {
+                console.error(error);
+            });
 
     }
     mapData(xmlBody, xmlPath) {
@@ -128,5 +154,10 @@ export default class CBAccountStatementView extends LightningElement {
             }).catch((error) => {
                 console.error('Some error occured in Fetch: ' + error)
             })
+    }
+    authenticationInProgress() {
+        this.authenticationPopup.openModal = true
+        this.authenticationPopup.authenticationStatus = '' //AUTHENTICATION_INPROGRESS_MESSAGE
+        this.authenticationPopup.showLoadingAnimation = true
     }
 }

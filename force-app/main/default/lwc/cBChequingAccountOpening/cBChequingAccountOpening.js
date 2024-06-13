@@ -1,5 +1,6 @@
 import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import CHEQUING_ACCOUNT_OPENING from '@salesforce/label/c.CB_ChequingAccountOpening';
 
 export default class CBChequingAccountOpening extends NavigationMixin(LightningElement) {
 
@@ -9,7 +10,7 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
     @track accountType = ' ';
     configuration = {
         previousPageUrl: 'CBServiceRequest__c',
-        heading: 'Chequing Account Opening',
+        heading: CHEQUING_ACCOUNT_OPENING,
         iconsExposed: false,
         logout: {
             exposed: false
@@ -24,9 +25,9 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
     @track products = [];
     @track currencies = [];
     @track notes = [
-        { id: 1, number: '1.', content: 'Account must be funded within 30 Days to avoid closure' },
-        { id: 2, number: '2.', content: 'Refer <a href="#">Fee Schedule</a> for minimum balance on deposit requirements' },
-        { id: 3, number: '3.', content: 'For Debit Card or cheque book request, please contact bank.' }
+        { id: 1, number: '1.', content: 'Account Must Be Funded Within 30 Days To Avoid Closure' },
+        { id: 2, number: '2.', content: 'Refer <a href="#">Fee Schedule</a> For Minimum Balance On Deposit Requirements' },
+        { id: 3, number: '3.', content: 'For Debit Card Or Cheque Book Request, Please Contact Bank.' }
     ];
 
 
@@ -36,18 +37,14 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
         this.fetchProducts();
         this.fetchCurrencies();
         this.product = this.products[0].value
-        this.accountType = this.accountTypes[0].value
+        // this.accountType = this.accountTypes[0].value
         this.currency = this.currencies[0].value
     }
 
     fetchAccountTypes() {
         // Simulated data fetching, replace it with actual data fetching logic
         // Example data
-        this.accountTypes = [
-            { label: 'Select', value: 'Select' },
-            { label: 'Savings', value: 'Savings' },
-            { label: 'Chequing', value: 'Chequing' }
-        ];
+        this.accountType = 'Chequing';
     }
 
     fetchProducts() {
@@ -55,8 +52,16 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
         // Example data
         this.products = [
             { label: 'Select', value: 'Select' },
-            { label: 'product1', value: 'product1' },
-            { label: 'product2', value: 'product2' }
+            { label: 'Chequing Account Graduate', value: 'Chequing Account Graduate' },
+            { label: 'Chequing Account (Regular)', value: 'Chequing Account (Regular)' },
+            { label: 'Chequing Account Mass', value: 'Chequing Account Mass' },
+            { label: 'Chequing Account Seniors', value: 'Chequing Account Seniors' },
+            { label: 'Chequing Account Staff', value: 'Chequing Account Staff' },
+            { label: 'Chequing Account Business', value: 'Chequing Account Business' },
+            { label: 'Chequing Account Corporate', value: 'Chequing Account (Regular)' },
+            { label: 'Chequing Account Elite', value: 'Chequing Account Elite' },
+            { label: 'Chequing Account Seniors', value: 'Chequing Account Seniors' },
+            { label: 'Chequing Account Commerical Call', value: 'Chequing Account Commerical Call' }
         ];
     }
 
@@ -107,7 +112,7 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
     }
 
     submitHandler(event) {
-        this.navigateToCommunityPage('CBSavingaccountconfirmation__c');
+        this.navigateToCommunityPage('CBChequingAccountOpening_1__c');
     }
      navigateToCommunityPage(pageApiName) {
         // Define the pageReference object with the community page's name and any parameters

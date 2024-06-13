@@ -2,8 +2,8 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 05-29-2024
-  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  @last modified on  : 06-13-2024
+  @last modified by  : Prateek Deshmukh
 -->
 <template>
     <template if:true={cardType.CreditAccount}>
@@ -14,12 +14,12 @@
                         <p class="p1">{cardNumber}</p>
                         <div class="avl-bal">
                             <p class="p2">{cardType.CreditAccount.accBal}</p>
-                            <p class="p3">AVAILABLE BALANCE</p>
+                            <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
     
                         <div class="others">
-                            <p class="p4">Current Balance: {cardType.CreditAccount.currentBal}</p>
-                            <p class="p4">Pending Balance: {cardType.CreditAccount.pendingBal}</p>
+                            <p class="p4">{label.CB_CurrentBalance}: {cardType.CreditAccount.currentBal}</p>
+                            <p class="p4">{label.CB_Pending_Balance}: {cardType.CreditAccount.pendingBal}</p>
                         </div>
     
                     </div>
@@ -38,7 +38,7 @@
                         </div>
     
                         <div class="b2">
-                            <p class="p1">Product Name</p>
+                            <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.CreditAccount.productName}</p>
                         </div>
     
@@ -50,7 +50,7 @@
                         <div class="b4">
                             <p class="p1">Card No</p>
                             <div class="card-num">{cardNumber}
-                                <div onclick={showCardNumber} class="eye-icon">
+                                <!-- <div onclick={showCardNumber} class="eye-icon">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <use href={CBHideCardNumber}></use>
@@ -60,7 +60,7 @@
                                                 fill="white" />
                                         </template>
                                     </svg>
-                                </div>
+                                </div> -->
                             </div>
     
                         </div>
@@ -94,8 +94,8 @@
                         </div>
     
                         <div class="others">
-                            <p class="p4">Next Interest Payment Amount: {cardType.LoanAccount.interestAmount}</p>
-                            <p class="p5">Next Interest Payment Date: {cardType.LoanAccount.interestDate}</p>
+                            <p class="p4">{lable.CB_Next_Interest_Payment_Amount}: {cardType.LoanAccount.interestAmount}</p>
+                            <p class="p5">{lable.CB_Next_Interest_Payment_Date}: {cardType.LoanAccount.interestDate}</p>
                         </div>
     
                     </div>
@@ -109,17 +109,17 @@
                 <div class="back-face">
                     <div class="details-bf">
                         <div class="b1">
-                            <p class="p1">Account Number</p>
+                            <p class="p1">{lable.CB_Account_Number}</p>
                             <p class="p2">{cardType.LoanAccount.accountNo}</p>
                         </div>
     
                         <div class="b2">
-                            <p class="p1">Product Name</p>
+                            <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.LoanAccount.productName}</p>
                         </div>
     
                         <div class="b3">
-                            <p class="p1">Beneficiary</p>
+                            <p class="p1">{label.CB_Beneficiary}</p>
                             <p class="p2">{cardType.LoanAccount.beneficiary}</p>
                         </div>
     
@@ -153,12 +153,12 @@
                         <p class="p1">{cardType.JointAccount.accountNo}</p>
                         <div class="avl-bal">
                             <p class="p2">{cardType.JointAccount.accBal}</p>
-                            <p class="p3">AVAILABLE BALANCE</p>
+                            <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
     
                         <div class="others">
-                            <p class="p4">Curent balancce: {cardType.JointAccount.currentBal}</p>
-                            <p class="p5">Total Holds: {cardType.JointAccount.totalHolds}</p>
+                            <p class="p4">{label.CB_CurrentBalance}: {cardType.JointAccount.currentBal}</p>
+                            <p class="p5">{label.CB_TotalHolds}: {cardType.JointAccount.totalHolds}</p>
                         </div>
     
                     </div>
@@ -172,17 +172,22 @@
                 <div class="back-face">
                     <div class="details-bf">
                         <div class="b1">
-                            <p class="p1">Account Number</p>
+                            <p class="p1">{lable.CB_Account_Number}</p>
                             <p class="p2">{cardType.JointAccount.accountNo}</p>
                         </div>
-    
+                        
                         <div class="b2">
+                            <p class="p1">{label.CB_Product_Name}</p>
+                            <p class="p2">{cardType.JointAccount.productName}</p>
+                        </div>
+
+                        <div class="b3">
                             <p class="p1">Account Holder Name(joint)</p>
                             <p class="p2">{cardType.JointAccount.holderName} & {cardType.JointAccount.secHolderName}</p>
                         </div>
     
-                        <div class="b3">
-                            <p class="p1">Available Balance</p>
+                        <div class="b4">
+                            <p class="p1">{label.CB_AvailableBalance}</p>
                             <p class="p2">{cardType.JointAccount.accBal}</p>
                         </div>
     
@@ -212,12 +217,12 @@
                         <p class="p1">{cardType.SavingsAccount.accountNo}</p>
                         <div class="avl-bal">
                             <p class="p2">{cardType.SavingsAccount.accBal}</p>
-                            <p class="p3">AVAILABLE BALANCE</p>
+                            <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
     
                         <div class="others">
-                            <p class="p4">Curent balancce: {cardType.SavingsAccount.currentBal}</p>
-                            <p class="p5">Total Holds: {cardType.SavingsAccount.totalHolds}</p>
+                            <p class="p4">{label.CB_CurrentBalance}: {cardType.SavingsAccount.currentBal}</p>
+                            <p class="p5">{label.CB_TotalHolds}: {cardType.SavingsAccount.totalHolds}</p>
                         </div>
     
                     </div>
@@ -231,17 +236,17 @@
                 <div class="back-face">
                     <div class="details-bf">
                         <div class="b1">
-                            <p class="p1">Account Number</p>
+                            <p class="p1">{label.CB_Account_Number}</p>
                             <p class="p2">{cardType.SavingsAccount.accountNo}</p>
                         </div>
     
                         <div class="b2">
-                            <p class="p1">Product Name</p>
+                            <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.SavingsAccount.productName}</p>
                         </div>
     
                         <div class="b3">
-                            <p class="p1">Beneficiary</p>
+                            <p class="p1">{label.CB_Beneficiary}</p>
                             <p class="p2">{cardType.SavingsAccount.beneficiary}</p>
                         </div>
     
@@ -275,12 +280,15 @@
                         <p class="p1">{cardType.TimeDepositAccount.accountNo}</p>
                         <div class="avl-bal">
                             <p class="p2">{cardType.TimeDepositAccount.accBal}</p>
-                            <p class="p3">AVAILABLE BALANCE</p>
+                            <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
     
                         <div class="others">
-                            <p class="p4">Curent balancce: {cardType.TimeDepositAccount.currentBal}</p>
-                            <p class="p5">Total Holds: {cardType.TimeDepositAccount.totalHolds}</p>
+                            <p class="p4">{label.CB_CurrentBalance}: {cardType.JointAccount.currentBal}</p>
+                            <p class="p5">{label.CB_TotalHolds}: {cardType.JointAccount.totalHolds}</p>
+
+                            <p class="p4">{label.CB_CurrentBalance}: {cardType.TimeDepositAccount.currentBal}</p>
+                            <p class="p5">{label.CB_TotalHolds}: {cardType.TimeDepositAccount.totalHolds}</p>
                         </div>
     
                     </div>
@@ -304,8 +312,8 @@
                         </div>
     
                         <div class="others">
-                            <p class="p1">Deposit StartDate : {cardType.TimeDepositAccount.depositStartDate}</p>
-                            <p class="p1">Maturity Date : {cardType.TimeDepositAccount.maturityDate}</p>
+                            <p class="p1">{label.CB_Deposit_StartDate} : {cardType.TimeDepositAccount.depositStartDate}</p>
+                            <p class="p1">{label.CB_Maturity_Date} : {cardType.TimeDepositAccount.maturityDate}</p>
                         </div>
                     </div>
                     <div class="card-flip-icon-back" onclick={rotateToFront}>
@@ -333,12 +341,12 @@
                         <p class="p1">{cardType.CurrentAccount.accountNo}</p>
                         <div class="avl-bal">
                             <p class="p2">{cardType.CurrentAccount.accBal}</p>
-                            <p class="p3">AVAILABLE BALANCE</p>
+                            <p class="p3">{label.ava}</p>
                         </div>
     
                         <div class="others">
-                            <p class="p4">Curent balancce: {cardType.CurrentAccount.currentBal}</p>
-                            <p class="p5">Total Holds: {cardType.CurrentAccount.totalHolds}</p>
+                            <p class="p4">{label.CB_CurrentBalance}: {cardType.CurrentAccount.currentBal}</p>
+                            <p class="p5">{label.CB_TotalHolds}: {cardType.CurrentAccount.totalHolds}</p>
                         </div>
     
                     </div>
@@ -352,17 +360,17 @@
                 <div class="back-face">
                     <div class="details-bf">
                         <div class="b1">
-                            <p class="p1">Account Number</p>
+                            <p class="p1">{lbale.CB_Account_Number}</p>
                             <p class="p2">{cardType.CurrentAccount.accountNo}</p>
                         </div>
     
                         <div class="b2">
-                            <p class="p1">Product Name</p>
+                            <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.CurrentAccount.productName}</p>
                         </div>
     
                         <div class="b3">
-                            <p class="p1">Beneficiary</p>
+                            <p class="p1">{label.CB_Beneficiary}</p>
                             <p class="p2">{cardType.CurrentAccount.beneficiary}</p>
                         </div>
     

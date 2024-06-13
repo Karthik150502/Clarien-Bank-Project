@@ -1,7 +1,7 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation'; // Importing NavigationMixin for navigation functionality
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
-import { setLocalStorage, getLocalStorage } from 'c/cBUtilities';
+import { setPagePath } from 'c/cBUtilities';
 
 
 export default class CBInbox extends NavigationMixin(LightningElement) {
@@ -14,56 +14,45 @@ export default class CBInbox extends NavigationMixin(LightningElement) {
 * @returns {void}
 */
     connectedCallback() {
-        this.setPagePath()
-    }
-
-    setPagePath() {
-        if (getLocalStorage('pagePath')) {
-
-            let path = getLocalStorage('pagePath')
-
-            if(path.indexOf('CBInbox__c') !== -1){
-                setLocalStorage('pagePath', path.substring(0, path.indexOf('CBInbox__c') + ('CBInbox__c').length))
-                path = getLocalStorage('pagePath')
-                this.configuration.previousPageUrl = path.split('.')[path.split('.').length-2]
-            }
-            else{
-                this.configuration.previousPageUrl = path.split('.')[path.split('.').length-1]
-                setLocalStorage('pagePath', `${path}.CBInbox__c`)
-                console.log('inbox path',getLocalStorage('pagePath'))
-            }
-        }
-        else {
-            setLocalStorage('pagePath', 'Home')
-        }
-        console.log('previousPageUrl',this.configuration.previousPageUrl);
+        this.configuration.previousPageUrl = setPagePath('CBInbox__c')
+        console.log(this.configuration.previousPageUrl);
     }
 
     messages = [
         {
             id: 1,
-            name: 'Ajay Lorem',
-            message: 'Bank detail please'
+            shortcut: 'AI',
+            name: 'Account Info',
+            message: 'Cannot access the newly opened account',
+            time: 'yesterday'
         },
         {
             id: 2,
-            name: 'Anish Joseph',
-            message: 'Gold Loan Interest'
+            shortcut: 'AI',
+            name: 'Account Info',
+            message: 'Can we convert the account type',
+            time: '2 days ago'
         },
         {
             id: 3,
-            name: 'Subri Joseph',
-            message: 'How to open FD account'
+            shortcut: 'TI',
+            name: 'Technical Issue',
+            message: 'Unaable to acc the biometric',
+            time: '3 days ago'
         },
         {
             id: 4,
-            name: 'John',
-            message: 'How to open RD account'
+            shortcut: 'AR',
+            name: 'Appointment Request',
+            message: 'Need to open an Saving Account',
+            time: '7 days ago'
         },
         {
             id: 5,
-            name: 'Alex',
-            message: 'How to withdraw cash from account'
+            shortcut: 'AR',
+            name: 'Appointment Request',
+            message: 'Need to open an Saving Account',
+            time: '8 days ago'
         },
     ]
 
@@ -87,7 +76,7 @@ export default class CBInbox extends NavigationMixin(LightningElement) {
             exposed: true
         },
         search: {
-            exposed: true
+            exposed: false
         }
     }
 

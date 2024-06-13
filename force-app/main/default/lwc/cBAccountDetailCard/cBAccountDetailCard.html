@@ -35,10 +35,7 @@
                         </svg>
                     </template>
                 </div>
-
-
             </div>
-
             <div class="content">
                 <div class="cont-details">
                     <p class="acc-type">{account.accountType}</p>
@@ -60,17 +57,15 @@
             <div class="footer">
                 <template if:false={isALoanAccount}>
                     <div class="footer-cont">
-                        <p>Current Balance: <br>{account.currentBal}</p>
-                        <p>Total Holds: <br>{account.totalHolds}</p>
+                        <p>{label.CurrentBalance}: <br>{account.currentBal}</p>
+                        <p>{label.TotalHolds}: <br>{account.totalHolds}</p>
                     </div>
                 </template>
 
-
-
                 <template if:true={isALoanAccount}>
                     <div class="footer-cont">
-                        <p>Next interest Payment Amount: <br>{account.nextInterestAmt}</p>
-                        <p>Next interest Payment Date: <br>{account.nextInterestDate}</p>
+                        <p>{label.Next_Interest_Payment_Amount}: <br>{account.nextInterestAmt}</p>
+                        <p>{label.Next_Interest_Payment_Date}: <br>{account.nextInterestDate}</p>
                     </div>
                 </template>
             </div>

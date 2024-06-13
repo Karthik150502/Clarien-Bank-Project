@@ -1,4 +1,7 @@
 import { LightningElement } from 'lwc';
+import APPLYNOWCHEQUEBOOK_PAGE from '@salesforce/label/c.CB_Page_Applynowchequebook';
+
+import { setPagePath } from 'c/cBUtilities';
 
 export default class CBApplyNowChequebook extends LightningElement {
     // Initial Header Item Configuration
@@ -24,6 +27,10 @@ export default class CBApplyNowChequebook extends LightningElement {
             haveItems: false    // Whether the Scan Code icon has items to display
         },
     };
+
+    connectedCallback(){
+        setPagePath(APPLYNOWCHEQUEBOOK_PAGE)
+    }
 
     // Initial Profile Item Configuration
     profileItems = {

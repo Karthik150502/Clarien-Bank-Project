@@ -8,13 +8,17 @@
                 <c-c-b-resuable-account-opening
                 type = {accountOpenType}
                 oncustomerdetail={createCase}
+                account-types={accountType}
+                product-list = {topUpProduct}
                 ></c-c-b-resuable-account-opening>
             </div>
         </div>
+        <c-c-b-footer></c-c-b-footer>
     </div>
     <template if:true={successModalOpen}>
         <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
     </template>
     <!-- for ending session -->
     <c-c-b-session-end></c-c-b-session-end>
+    
 </template>

@@ -10,6 +10,33 @@ export default class CBAddBeneficiaryInternational extends NavigationMixin(Light
         SUBMIT
     }
 
+    modalOpen = false;
+    /**
+    * Metadata for the Phone Update modal.
+    */
+    @track modal = {
+        title: '',
+        message: 'Beneficiary added succesfully.',
+        yesButton: {
+            exposed: true,
+            label: "OK",
+            // Implementation for the "OK" button click action.
+            implementation: () => {
+                this.modalOpen = false;
+                this.navigateTo('CBInternationalBeneficiary__c')
+            }
+        },
+        noButton: {
+            exposed: false,
+            label: "Not",
+            //Implementation for the "Not" button click action.
+            implementation: () => {
+                console.log('no');
+                this.modalOpen = false;
+            }
+        }
+    };
+
     configuration = {
         previousPageUrl: '',
         heading: 'Add Beneficiaries',
@@ -21,6 +48,7 @@ export default class CBAddBeneficiaryInternational extends NavigationMixin(Light
             exposed: false
         }
     }
+
     accountNumber = ''
     beneficiaryName = ''
     beneficiaryBank = ''
@@ -57,7 +85,7 @@ export default class CBAddBeneficiaryInternational extends NavigationMixin(Light
     }
 
     submitForm(){
-        this.navigateTo('CBInternationalBeneficiary__c')
+        this.modalOpen = true;
     }
 
     navigateTo(pageName) {

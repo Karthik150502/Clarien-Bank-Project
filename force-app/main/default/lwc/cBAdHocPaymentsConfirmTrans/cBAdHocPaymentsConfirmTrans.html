@@ -2,8 +2,8 @@
   @description       : 
   @author            : Prateek Deshmukh
   @group             : 
-  @last modified on  : 05-30-2024
-  @last modified by  : Prateek Deshmukh
+  @last modified on  : 06-10-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
     <div class="wrapper">
@@ -65,13 +65,10 @@
             <button class="sub" onclick={handleSubmit} disabled={disableSubmit}>
                 {label.CONTINUE}
             </button>
-            <button class="cancel" onclick={handleCancel}>
-                {label.CANCEL}
-            </button>
         </div>
     </div>
 
-    <template if:true={showModal}>
+    <!-- <template if:true={showModal}>
         <c-c-b-resuable-success-modal configuration={modalconf}>
             <div class="add-ons" slot="add-ons">
                 <div class="e-receipt" onclick={handleEReceipt}>
@@ -116,5 +113,22 @@
                 </div>
             </div>
         </c-c-b-resuable-success-modal>
+    </template> -->
+
+    
+    <template if:true={showModal}>
+        <c-c-b-operation-confirm-w-loading modal-info={modalConf}> </c-c-b-operation-confirm-w-loading>
     </template>
+
+    <template if:true={showModal1}>
+        <c-c-b-save-as-template-modal configuration={modalConf1} onclosemodal={closeSavesAsTempModal}
+            onclosemodalwithcomments={fetchCommentsFromModal}></c-c-b-save-as-template-modal>
+    </template>
+
+
+    <template if:true={showModal2}>
+        <c-c-b-reusable-success-modal-cmp-logo configuration={modalConf2}> </c-c-b-reusable-success-modal-cmp-logo>
+    </template>
+
+
 </template>

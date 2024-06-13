@@ -1,8 +1,28 @@
 import { LightningElement, api } from 'lwc';
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
+import CB_CurrentBalance from '@salesforce/label/c.CB_CurrentBalance';
+import CB_TotalHolds from '@salesforce/label/c.CB_TotalHolds';
+import CB_AvailableBalance from '@salesforce/label/c.CB_AvailableBalance';
+import CB_Account_Number from '@salesforce/label/c.CB_Account_Number';
+import CB_Beneficiary from '@salesforce/label/c.CB_Beneficiary';
+import CB_Product_Name from '@salesforce/label/c.CB_Product_Name';
+import CB_Maturity_Date from '@salesforce/label/c.CB_Maturity_Date';
+import CB_Deposit_StartDate from '@salesforce/label/c.CB_Deposit_StartDate';
+import CB_Pending_Balance from '@salesforce/label/c.CB_Pending_Balance';
+
 
 export default class CBCard extends LightningElement {
-
+    label = {
+        CB_CurrentBalance,
+        CB_TotalHolds ,
+        CB_AvailableBalance,
+        CB_Account_Number,
+        CB_Beneficiary,
+        CB_Product_Name,
+        CB_Maturity_Date,
+        CB_Deposit_StartDate,
+        CB_Pending_Balance
+    }
     @api cardType = {
         // CreditAccount: {
         //     cardNum: 600015474586,
@@ -77,7 +97,7 @@ export default class CBCard extends LightningElement {
 
     get cardNumber() {
         if (this.hideCardNo && this.cardType.CreditAccount.cardNum) {
-            return '****  ****  ' + (this.cardType.CreditAccount.cardNum).toString().slice(-4)
+            return '****  ****  ****' + (this.cardType.CreditAccount.cardNum).toString().slice(-4)
         } else {
             return this.cardType.CreditAccount.cardNum
         }

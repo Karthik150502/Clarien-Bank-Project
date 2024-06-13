@@ -1,12 +1,22 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import TOP_UP_ACCOUNT_OPENING from '@salesforce/label/c.CB_Top_UpAccountOpening';
 
 export default class CBTopUpAccountOpening extends NavigationMixin(LightningElement) {
     
     accountOpenType = 'topUpAccount'
+    accountType = 'Top Up Account'
+    topUpProduct = [
+        "PERSONAL 5 YR SAVER",
+        "COMMERCIAL 5 YR SAVER",
+        "PERSONAL ACCUMULATOR",
+        "COMMERCIAL ACCUMULATOR",
+        "EMPLOYEE SAVER"
+      ]
+      
     configuration = {
         previousPageUrl: '',//should Navigate to Service Request after creating page for that
-        heading: 'Top Up Account Opening',
+        heading: TOP_UP_ACCOUNT_OPENING,
         iconsExposed: true,
         logout: {
             exposed: false

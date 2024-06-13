@@ -11,17 +11,17 @@ import { NavigationMixin } from 'lightning/navigation';
 
 import HOME_PAGE from '@salesforce/label/c.CB_Page_Home';
 import PROFILESETTINGS_PAGE from '@salesforce/label/c.CB_Page_Profilesettings';
-import { setMobileSessionStorage, getMobileSessionStorage } from 'c/cBUtilities';
+import { setMobileSessionStorage, getMobileSessionStorage, checkSessionkey } from 'c/cBUtilities';
 
 export default class CBFooter extends NavigationMixin(LightningElement) {
 
     // Variable to hold the current page reference
     currPageReference = null;
-    segmentRets = ''
+    isIronKidsAccount = false
 
     connectedCallback() {
-        if (getMobileSessionStorage("SegmentRets")) {
-            this.segmentRets = getMobileSessionStorage("SegmentRets") === 'false'
+        if (checkSessionkey("isIronKidsAccount")) {
+            this.isIronKidsAccount = getMobileSessionStorage("isIronKidsAccount") === 'true'
         }
     }
 
@@ -41,12 +41,12 @@ export default class CBFooter extends NavigationMixin(LightningElement) {
         services: {
             pageApiName: '', // Page API name for services
             url: '', //Page url
-            iconClass: "logo services in_active", // Icon class for services
+            iconClass: String(window.location.href).includes("/s/profile/apply-now") ? "logo is_active" : "logo in_active", // Icon class for services
         },
         profile: {
             pageApiName: 'CBProfile__c', // Page API name for profile
             url: '/profile', //Page url
-            iconClass: String(window.location.href).includes("/s/profile") ? "logo profile is_active" : "logo profile in_active" // Icon class for profile
+            iconClass: String(window.location.href).includes("/s/profile/profile-settings") ? "logo profile is_active" : "logo profile in_active" // Icon class for profile
         },
     }
 
@@ -80,8 +80,7 @@ export default class CBFooter extends NavigationMixin(LightningElement) {
 
     // Method to navigate to home page
     navigateToServices() {
-        // this.navigateToPage('CBApplyNow__c');
-        this.navigateToPage('testpage__c');
+        this.navigateToPage('CBApplyNow__c');
     }
 
     /**

@@ -14,29 +14,30 @@
 
             <label for="debit-amount">
                 <p class="heading">{label.DEBIT_ACCOUNT}*</p>
-                <select class="fields" id="debit-amount" onchange={depositAccountHandler}>
+                <!-- <select class="fields" id="debit-amount" onchange={depositAccountHandler}>
                     <template for:each={accountTypes} for:item="accountType">
                         <option key={accountType} value={accountType}>{accountType}</option>
                     </template>
-
-                </select>
+                </select> -->
+                <p class="fields account-type read">{accountTypes}</p>
             </label>
             <label for="product">
                 <p class="heading">{label.PRODUCT}*</p>
                 <select id="product" class="fields" onchange={productHandler} value={product}>
+                    <option value="Select">Select</option>
                     <template for:each={productList} for:item="product">
                         <option key={product} value={product}>{product}</option>
                     </template>
                 </select>
             </label>
             <div class="sub-fields">
-                <label for="deposit-amount">
+                <label for="deposit-amount" class="sub-input">
                     <p class="heading">{label.DEPOSIT_AMOUNT}</p>
                     <input id="deposit-amount" type="number" onkeyup={debitAmountHandler} class="fields">
                 </label>
-                <label for="currency">
-                    <p class="heading">Curreny</p>
-                    <input id="currency" type="text" value={currencyHandler} readonly class="fields">
+                <label for="currency" class="sub-input">
+                    <p class="heading">{label.CURRENCY}</p>
+                    <input id="currency" type="text" value={currencyHandler} readonly class="fields read">
                 </label>
             </div>
             <!-- <div class="deposit-duration">
@@ -75,7 +76,7 @@
                     <input class="checkBox" type="checkbox" onchange={termsConditions}>
                 </div>
                 <div>
-                    <p>I agree to the company <a>Terms & Conditions & privacy policy</a></p>
+                    <p>I Agree To The Company <a>Terms & Conditions & Privacy Policy</a></p>
                 </div>
             </label>
             <label class="terms-Conditions">
@@ -83,7 +84,7 @@
                     <input class="checkBox" type="checkbox" onchange={conduct}>
                 </div>
                 <div>
-                    <a>I agree for company code of conduct</a>
+                    <a>I Agree For Company Code Of Conduct</a>
                 </div>
             </label>
             <label class="terms-Conditions">
@@ -91,7 +92,7 @@
                     <input class="checkBox" type="checkbox" onchange={marketingConsent}>
                 </div>
                 <div>
-                    <a>I accept Marketing consent</a>
+                    <a>I Accept Marketing Consent</a>
                 </div>
             </label>
 

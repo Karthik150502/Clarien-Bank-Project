@@ -9,16 +9,16 @@ export default class CBDomesticBeneficiary extends LightningElement{
     beneficiaryList = [
         {
             accountNum : 604567894,
-            name: 'Kumaran',
+            name: 'Walter',
             accountType : 'Saving',
-            beneficiaryBank: 'SBI',
+            beneficiaryBank: 'Clarien Bank Limited',
             status : true
         },
         {
             accountNum : 604567885,
-            name: 'Raju',
+            name: 'John',
             accountType : 'Saving',
-            beneficiaryBank: 'Citi',
+            beneficiaryBank: 'Clarien Bank Limited',
             status : false
         }
         ,
@@ -26,7 +26,7 @@ export default class CBDomesticBeneficiary extends LightningElement{
             accountNum : 604567796,
             name: 'Rohit',
             accountType : 'Saving',
-            beneficiaryBank: 'ICIC',
+            beneficiaryBank: 'Bermuda Commercial Bank Limited',
             status : true
         }
     ]

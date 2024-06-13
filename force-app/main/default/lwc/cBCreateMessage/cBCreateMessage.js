@@ -1,7 +1,7 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
-import { setLocalStorage, getLocalStorage } from 'c/cBUtilities';
+import { setPagePath } from 'c/cBUtilities';
 
 export default class CBCreateMessage extends NavigationMixin(LightningElement) {
 
@@ -19,35 +19,62 @@ export default class CBCreateMessage extends NavigationMixin(LightningElement) {
         }
     }
 
-    connectedCallback() {
-        this.setPagePath()
+    modalOpen = false;
+    modal = {
+        title: '',
+        message: 'Message sent successfully',
+        yesButton: {
+            exposed: true,
+            label: "OK",
+            // Implementation for the "OK" button click action.
+            implementation: () => {
+                this.modalOpen = false;
+                this.navigateTo();
+            }
+        },
+        noButton: {
+            exposed: false,
+            label: "Not",
+            //Implementation for the "Not" button click action.
+            implementation: () => {
+                console.log('no');
+                this.modalOpen = false;
+            }
+        }
+    };
+
+    file = 'Add Attachment'
+    subject = ''
+    message = ''
+
+    subjectHandler(event) {
+        this.subject = event.target.value;
     }
 
-    setPagePath() {
-        if (getLocalStorage('pagePath')) {
+    messageHandler(event) {
+        this.message = event.target.value;
+    }
 
-            let path = getLocalStorage('pagePath')
+    fileHandler(event) {
+        let str = event.target.value;
+        this.file = str.substring(str.lastIndexOf("\\")+1, str.length);
+        console.log('file: ', this.file);
+    }
 
-            if(path.indexOf('CBCreateMessage__c') !== -1){
-                setLocalStorage('pagePath', path.substring(0, path.indexOf('CBCreateMessage__c') + ('CBCreateMessage__c').length))
-                console.log('Message path -1',getLocalStorage('pagePath'))
-                this.configuration.previousPageUrl = path.split('.')[path.split('.').length-2]
-            }
-            else{
-                this.configuration.previousPageUrl = path.split('.')[path.split('.').length-1]
-                setLocalStorage('pagePath', `${path}.CBCreateMessage__c`)
-                console.log('Message path',getLocalStorage('pagePath'))
-            }
-        }
-        else {
-            setLocalStorage('pagePath', 'Home')
-        }
-        console.log('previousPageUrl',this.configuration.previousPageUrl);
+    connectedCallback() {
+        this.configuration.previousPageUrl = setPagePath('CBCreateMessage__c')
+        console.log(this.configuration.previousPageUrl);
     }
 
     submitHandler(){
-        this.navigateTo();
+        this.modalOpen = true;
     }
+
+    get isDisabled() {
+        return this.subject === '' && this.message === ''
+    }
+
+
 
     navigateTo() {
         console.log('navigate called');

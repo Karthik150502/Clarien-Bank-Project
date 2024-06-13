@@ -12,15 +12,15 @@ export default class CBInternationalBeneficiary extends LightningElement {
             accountNum : 604567897,
             name: 'Robin',
             accountType : 'Saving',
-            beneficiaryBank: 'SBI',
+            beneficiaryBank: 'The Bank of N.T. Butterfield & Son Limited',
             beneficiaryAddress: '5W main street',
             status : true
         },
         {
             accountNum : 604567888,
-            name: 'Devil',
+            name: 'Michael',
             accountType : 'Saving',
-            beneficiaryBank: 'HDFC',
+            beneficiaryBank: 'Clarien Bank Limited',
             beneficiaryAddress: '4W main street',
             status : false
         }

@@ -8,11 +8,7 @@
 			<div class="form">
 				<div class="input">
 					<p class="heading">Account Type</p>
-					<select class="options" id="AccountType" onchange={acccountTypeHandler} value={accountType}>
-                        <template for:each={accountTypes} for:item="type">
-                            <option key={type.value} value={type.value}>{type.label}</option>
-                        </template>
-                    </select>
+					<p class="options account-type read">{accountType}</p>
 				</div>
 				<div class="input">
 					<p class="heading">Product</p>
@@ -37,7 +33,7 @@
 						<input class="checkBox" type="checkbox" onchange={termsConditions}>
 					</div>
 					<div>
-						<p>I agree to the company <a>Terms & Conditions & privacy policy</a></p>
+						<p>I Agree To The Company <a>Terms & Conditions & privacy Policy</a></p>
 					</div>
 				</label>
 				<label class="terms-Conditions">
@@ -45,7 +41,7 @@
 						<input class="checkBox" type="checkbox" onchange={conduct}>
 					</div>
 					<div>
-						<a>I agree for company code of conduct</a>
+						<a>I Agree For Company Code Of Conduct</a>
 					</div>
 				</label>
 				<label class="terms-Conditions">
@@ -53,7 +49,7 @@
 						<input class="checkBox" type="checkbox" onchange={marketingConsent}>
 					</div>
 					<div>
-						<a>I accept Marketing consent</a>
+						<a>I Accept Marketing Consent</a>
 					</div>
 				</label>
 
@@ -71,8 +67,8 @@
 					</div>
 				</template>
 			</div>
-
 		</div>
+		<c-c-b-footer></c-c-b-footer>
 	</div>
 	<template if:true={successModalOpen}>
 		<c-c-b-resuable-success-modal configuration={successModalConfiguration}></c-c-b-resuable-success-modal>

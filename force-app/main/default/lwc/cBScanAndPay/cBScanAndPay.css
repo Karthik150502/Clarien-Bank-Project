@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+.wrapper {
+    width: 100vw;
+    margin: 10px 0;
+    height: 100vh;
+}
+
+.wrapper .header {
+    width: 90%;
+    margin: 5% auto;
+}
+
+
+.wrapper .container {
+    width: 90%;
+    margin: 25px auto;
+    border-radius: 7px;
+    height: 90vh;
+    padding: 0 10px;
+    overflow-y: scroll;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}

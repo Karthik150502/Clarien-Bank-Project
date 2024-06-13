@@ -6,13 +6,14 @@
 */
 
 import { LightningElement, track } from 'lwc';
+import getFavoriteStatus from '@salesforce/apex/CBFavAccountController.getFavoriteStatus';
+import addFavorite from '@salesforce/apex/CBFavAccountController.addFavorite';
+import removeFavorite from '@salesforce/apex/CBFavAccountController.removeFavorite';
 
 export default class CBFavoriteAccounts extends LightningElement {
 
     expandDetails = true;
-    favAccModalOpened = false
-
-
+    isDataLoading=true;
     configuration = {
         previousPageUrl: 'Home',
         heading: 'Accounts',
@@ -29,70 +30,39 @@ export default class CBFavoriteAccounts extends LightningElement {
 
 
     // Sample data for account number, balance, and hold balance
-    accountsData = [
-        {
-            accountNo: '600017725563',
-            accountBal: 'BMD 5556.54',
-            currentBal:'BMD 6857.42',
-            totalHolds: 'BMD 0.0',
-            accountType: 'SAVINGS ACCOUNT',
-            favorite: true
-        },
-        {
-            accountNo: '698547452632',
-            accountBal: 'BMD 5556.54',  
-            currentBal:'BMD 6857.42',
-            totalHolds: 'BMD 0.0',
-            accountType: 'CURRENT ACCOUNT',
-            favorite: true
-        },
-        {
-            accountNo: '658596541425',
-            accountBal: 'BMD 5556.54',
-            totalHolds: 'BMD 0.0',
-            currentBal:'BMD 6857.42',
-            accountType: 'SAVINGS ACCOUNT',
-            favorite: false
-        },
-        {
-            accountNo: '652547896541',
-            accountBal: 'BMD 5556.54',
-            totalHolds: 'BMD 0.0',
-            currentBal:'BMD 6857.42',
-            accountType: 'JOINT ACCOUNT',
-            favorite: true
-        },
-        {
-            accountNo: '365474859654',
-            accountBal: 'BMD 55874.65',
-            totalHolds: 'BMD 112.65',
-            currentBal:'BMD 6857.42',
-            accountType: 'CREDIT CARD ACCOUNT',
-            favorite: true
-        },
-        {
-            accountNo: '645187941316',
-            accountBal: 'BMD 87845.33',
-            totalHolds: 'BMD 45.65',
-            currentBal:'BMD 6857.42',
-            accountType: 'TIME DEPOSIT ACCOUNT',
-            favorite: true
-        },
-        {
-            accountNo: '654125698745',
-            accountBal: 'BMD 99874.66',
-            accountType: 'LOAN ACCOUNT',
-            favorite: true,
-            nextInterestDate: '22/05/2024',
-            nextInterestAmt: 'BMD 2564.00'
-        }
-    ]
+   @track accountsData = [
+        { accountNo: '600017725563', accountBal: 'BMD 5556.54', currentBal:'BMD 6857.42', totalHolds: 'BMD 0.0', accountType: 'SAVINGS ACCOUNT', favorite: false },
+        { accountNo: '698547452632', accountBal: 'BMD 5556.54', currentBal:'BMD 6857.42', totalHolds: 'BMD 0.0', accountType: 'CURRENT ACCOUNT', favorite: false },
+        { accountNo: '658596541425', accountBal: 'BMD 5556.54', totalHolds: 'BMD 0.0', currentBal:'BMD 6857.42', accountType: 'SAVINGS ACCOUNT', favorite: false },
+        { accountNo: '652547896541', accountBal: 'BMD 5556.54', totalHolds: 'BMD 0.0', currentBal:'BMD 6857.42', accountType: 'JOINT ACCOUNT', favorite: false },
+        { accountNo: '365474859654', accountBal: 'BMD 55874.65', totalHolds: 'BMD 112.65', currentBal:'BMD 6857.42', accountType: 'CREDIT CARD ACCOUNT', favorite: false },
+        { accountNo: '645187941316', accountBal: 'BMD 87845.33', totalHolds: 'BMD 45.65', currentBal:'BMD 6857.42', accountType: 'TIME DEPOSIT ACCOUNT', favorite: false },
+        { accountNo: '654125698745', accountBal: 'BMD 99874.66', accountType: 'LOAN ACCOUNT', favorite: false, nextInterestDate: '22/05/2024', nextInterestAmt: 'BMD 2564.00' }
+    ];
 
 
     connectedCallback() {
-        this.formatAccData()
+        this.updateFavoriteStatus();
     }
 
+    updateFavoriteStatus() {
+        let accountNumbers = this.accountsData.map(account => account.accountNo);
+
+        getFavoriteStatus({ accountNumbers })
+            .then(result => {
+                console.log('Result --->'+JSON.stringify(result))
+
+                this.accountsData = this.accountsData.map(account => {
+                    console.log(account.accountNo+'--->'+result[account.accountNo])
+                    return { ...account, favorite: result[account.accountNo] };
+                });
+                this.formatAccData()
+            })
+            .catch(error => {
+                console.log('Error:', error);
+                console.log('Error:', error.body.message);
+            });
+    }
 
     formatAccData() {
         this.accountsData = this.sort0sAnd1s(this.accountsData)
@@ -116,7 +86,7 @@ export default class CBFavoriteAccounts extends LightningElement {
         if (arr[i].favorite && !arr[j].favorite) {
             [arr[i], arr[j]] = [arr[j], arr[i]]
         }
-
+        this.isDataLoading=false;
         return [...arr]
     }
 
@@ -145,63 +115,42 @@ export default class CBFavoriteAccounts extends LightningElement {
         }
     };
 
-    favAccountIdsAdd = new Set();
-    favAccountIdsDelete = new Set();
-
-
-    disconnectedCallback() {
-        // Update the favorite accounts on component disconnect!!!
-    }
 
     removefavacc(event) {
+        this.isDataLoading=true;
         if (event.detail && event.detail.accountNo) {
-            if (this.favAccountIdsAdd.has(event.detail.accountNo)) {
-                this.favAccountIdsAdd.delete(event.detail.accountNo)
-            } else {
-                this.favAccountIdsDelete.add(event.detail.accountNo);
-            }
+            const accountNo =event.detail.accountNo;
+            const account = this.accountsData.find(acc => acc.accountNo === accountNo);
+            if (account.favorite) {
+                removeFavorite({ accountNumber: accountNo })
+                .then(() => {
+                    this.updateFavoriteStatus();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });            }
         }
-        let updatedAccounts = this.accountsData.map((acc, index) => {
-            return {
-                ...acc,
-                favorite: acc.accountNo === event.detail.accountNo ? false : acc.favorite
-            }
-
-        })
-        this.accountsData = this.sort0sAnd1s(updatedAccounts)
-        console.log('Favorite Accounts needed to be added -->' + Array.from(this.favAccountIdsAdd))
-        console.log('Favorite Accounts needed to be removed -->' + Array.from(this.favAccountIdsDelete))
-
     }
 
 
     addfavacc(event) {
+        this.isDataLoading=true;
         if (event.detail && event.detail.accountNo) {
-            if (this.favAccountIdsDelete.has(event.detail.accountNo)) {
-                this.favAccountIdsDelete.delete(event.detail.accountNo)
-            } else {
-                this.favAccountIdsAdd.add(event.detail.accountNo)
+            const accountNo =event.detail.accountNo;
+            const account = this.accountsData.find(acc => acc.accountNo === accountNo);
+            if (!account.favorite) {
+                addFavorite({ accountNumber: accountNo })
+                .then(() => {
+                    this.updateFavoriteStatus();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
             }
         }
 
-        let updatedAccounts = this.accountsData.map((acc, index) => {
-            return {
-                ...acc,
-                favorite: acc.accountNo === event.detail.accountNo ? true : acc.favorite
-            }
-
-        })
-        this.accountsData = this.sort0sAnd1s(updatedAccounts)
-        console.log('Favorite Accounts needed to be added -->' + Array.from(this.favAccountIdsAdd))
-        console.log('Favorite Accounts needed to be removed -->' + Array.from(this.favAccountIdsDelete))
+       
     }
 
-
-    openFavAccountModal() {
-        this.favAccModalOpened = true
-    }
-    closeFavAccountModal() {
-        this.favAccModalOpened = false
-    }
 
 }
