@@ -1,11 +1,24 @@
 import { LightningElement, track } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 import QUICKLINKS_PAGE from '@salesforce/label/c.CB_Page_Quicklinks';
+import CB_Pending from '@salesforce/label/c.CB_Pending';
+import CB_Approved from '@salesforce/label/c.CB_Approved';
+import CB_Rejected from '@salesforce/label/c.CB_Rejected';
 
-export default class CBApprovalsNew extends LightningElement {
+export default class CBApprovalsNew extends NavigationMixin(LightningElement) {
 
     approvedOpen = false
     rejectedOpen = false
-    pendingOpen = false
+    pendingOpen = true
+    modalOpen = false
+
+    label = {
+        CB_Pending,
+        CB_Approved,
+        CB_Rejected
+    }
+
+
 
     @track accordion = {
         approved: {
@@ -50,6 +63,25 @@ export default class CBApprovalsNew extends LightningElement {
         }
     };
 
+
+    /**
+   * Method to open the logout confirmation modal
+   * Sets the modalOpen property to true to open the logout confirmation modal.
+   * @returns {void}
+  */
+    modal = {
+        title: '',
+        yesButton: {
+            exposed: true,
+            label: "Ok",
+            implementation: () => {
+                this.navigateTo(QUICKLINKS_PAGE)
+            }
+        },
+        noButton: {
+            exposed: false,
+        }
+    };
 
     approvals = [
         {
@@ -136,12 +168,14 @@ export default class CBApprovalsNew extends LightningElement {
     @track rejected = []
     @track pending = []
 
-
+    // Lifecycle hook that gets called when the component is inserted into the DOM
+    // Calls segregateApprovals method to classify approvals into approved, rejected, and pending lists
     connectedCallback() {
         this.segregateApprovals()
     }
 
-
+    // Segregates approvals into approved, rejected, and pending categories
+    // Iterates over the approvals list and pushes each approval into the respective array based on its status
     segregateApprovals() {
         this.approvals.forEach((approval) => {
             if (approval.status === 'approved') {
@@ -166,17 +200,21 @@ export default class CBApprovalsNew extends LightningElement {
         })
     }
 
-
+    // Toggles the state of approvedOpen and closes other sections
     openCloseApproval() {
         this.approvedOpen = !this.approvedOpen
         this.pendingOpen = false
         this.rejectedOpen = false
     }
+
+    // Toggles the state of rejectedOpen and closes other sections
     openCloseRejected() {
         this.rejectedOpen = !this.rejectedOpen
         this.approvedOpen = false
         this.pendingOpen = false
     }
+
+    // Toggles the state of pendingOpen and closes other sections
     openClosePending() {
         this.pendingOpen = !this.pendingOpen
         this.approvedOpen = false
@@ -185,13 +223,32 @@ export default class CBApprovalsNew extends LightningElement {
 
 
 
-
+    // Handles the approval of an approval request
+    // Logs the approval ID and opens a modal with a success message
     handleApprovalApprove(event) {
         console.log('Approval Approved = ' + event.detail.approvalId)
+        this.modal.title = 'The Approval Has Been Approved.'
+        this.modalOpen = true
     }
 
+
+    // Handles the rejection of an approval request
+    // Logs the approval ID and opens a modal with a rejection message
     handleApprovalReject(event) {
         console.log('Approval Rejected = ' + event.detail.approvalId)
+        this.modal.title = 'The Approval Has Been Rejected.'
+        this.modalOpen = true
+    }
+
+
+    // Helper function for navigation
+    navigateTo(pageApiName) {
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: pageApiName
+            }
+        });
     }
 
 

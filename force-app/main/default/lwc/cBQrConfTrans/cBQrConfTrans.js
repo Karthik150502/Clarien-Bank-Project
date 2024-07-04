@@ -5,16 +5,32 @@ import { NavigationMixin } from 'lightning/navigation';
 
 import AUTHENTICATION_SUCCESSFUL_MESSAGE from '@salesforce/label/c.CB_Authentication_Successful';
 import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentication_InProgress';
-import AUTHENTICATION_FAILURE_MESSAGE from '@salesforce/label/c.CB_Authentication_Failed';
 import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSuccess';
 import CB_AUTHENTICATION_FAILED from '@salesforce/resourceUrl/CBAutenticationFailed';
 
 import CONFIRM from '@salesforce/label/c.CB_Confirm';
 import CANCEL from '@salesforce/label/c.CB_Cancel';
+
+
+import CB_FromAccount from '@salesforce/label/c.CB_FromAccount';
+import CB_Date from '@salesforce/label/c.CB_Date';
+import CB_TO_ACCOUNT from '@salesforce/label/c.CB_TO_ACCOUNT';
+import CB_Amount from '@salesforce/label/c.CB_Amount';
+import CB_Fcpt from '@salesforce/label/c.CB_Fcpt';
+import CB_Fcc from '@salesforce/label/c.CB_Fcc';
+import CB_Fees from '@salesforce/label/c.CB_Fees';
+import CB_SaveAsTemplate from '@salesforce/label/c.CB_SaveAsTemplate';
+import CB_Name from '@salesforce/label/c.CB_Name';
+import CB_EReceipt from '@salesforce/label/c.CB_EReceipt';
+import CB_Disclaimer from '@salesforce/label/c.CB_Disclaimer';
+import CB_Close from '@salesforce/label/c.CB_Close';
+import CB_Save from '@salesforce/label/c.CB_Save';
+import CB_ConfirmTransaction from '@salesforce/label/c.CB_ConfirmTransaction';
+import CB_TransferSuccessful from '@salesforce/label/c.CB_TransferSuccessful';
 export default class CBQrConfTrans extends NavigationMixin(LightningElement) {
 
 
-
+    // Handler for changes in the page reference state
     @wire(CurrentPageReference)
     pageRefHandler({ state }) {
         if (state) {
@@ -30,11 +46,21 @@ export default class CBQrConfTrans extends NavigationMixin(LightningElement) {
 
     label = {
         CONFIRM, // Converting "Submit" label to uppercase
-        CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
+        CANCEL,
+        CB_FromAccount,
+        CB_Date,
+        CB_TO_ACCOUNT,
+        CB_Amount,
+        CB_Fcpt,
+        CB_Fcc,
+        CB_Fees,
+        CB_SaveAsTemplate,
+        CB_Name,
+        CB_EReceipt,
     };
     headerConfguration = {
         previousPageUrl: '',
-        heading: 'Confirm Transaction',
+        heading: CB_ConfirmTransaction,
         iconsExposed: false,
     }
 
@@ -47,16 +73,16 @@ export default class CBQrConfTrans extends NavigationMixin(LightningElement) {
     fromAccountNo = 'N/A'
     toAccountNo = 'N/A'
     amount = 'N/A'
-    disclaimer = 'Please be advised that payments that are not scheduled within the bank\'s normal business hours will not be processed untill the next business date.'
+    disclaimer = CB_Disclaimer
     showReusableSuccessModal = false
     successGif = CB_AUTHENTICATION_SUCCESS
     failureGif = CB_AUTHENTICATION_FAILED
 
     modalconf = {
-        title: 'Transfer Successful',
+        title: CB_TransferSuccessful,
         okButton: {
             exposed: true,
-            label: 'SAVE',
+            label: CB_Save,
             function: () => {
                 this.getTheSaveAsTempDesc()
                 this.showReusableSuccessModal = false
@@ -64,7 +90,7 @@ export default class CBQrConfTrans extends NavigationMixin(LightningElement) {
         },
         noButton: {
             exposed: true,
-            label: 'CLOSE',
+            label: CB_Close,
             function: () => {
                 this.showReusableSuccessModal = false
             }
@@ -90,16 +116,14 @@ export default class CBQrConfTrans extends NavigationMixin(LightningElement) {
 
 
 
-    connectedCallback() {
 
-    }
-
+    // Initiates the authentication process
     authenticationInProgress() {
         this.authenticationPopup.showLoadingAnimation = true
         this.authenticationPopup.openModal = true
         this.authenticationPopup.authenticationStatus = AUTHENTICATION_INPROGRESS_MESSAGE
     }
-
+    // Handles successful authentication
     authenticationSuccess() {
         this.authenticationPopup.showLoadingAnimation = false
         this.authenticationPopup.openModal = true
@@ -113,15 +137,13 @@ export default class CBQrConfTrans extends NavigationMixin(LightningElement) {
     }
 
 
-    handleCancel() {
-    }
 
-
+    // Handles form submission and initiates API callout
     handleSubmit() {
         this.apiCallout()
     }
 
-
+    // Simulates an API callout and handles authentication process
     apiCallout() {
         this.authenticationInProgress()
         setTimeout(() => {
@@ -140,12 +162,12 @@ export default class CBQrConfTrans extends NavigationMixin(LightningElement) {
         });
     }
 
-
+    // Handles the action to save the transaction as a template
     handleSaveAsTemplate() {
         console.log("Save as Template")
     }
 
-
+    // Handles the action to generate an e-receipt
     handleEReceipt() {
         console.log("E - Receipt generated...!")
     }

@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-25-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
     <div class="wrapper">
         <div class="container">
@@ -9,23 +16,23 @@
             </div> -->
             <div class="casing">
                 <div>
-                    <p class="highlight">Saving Accounts</p>
+                    <p class="highlight">{label.SAVING_ACCOUNT}</p>
                 </div>
                 <template for:each={accounts} for:item="account">
-                    <label for={account.accNumber} key={account} class="account-list">
+                    <label for={account.accountNo} key={account} class="account-list">
                         <div class="check-box">
-                            <input class="checkBox" type="checkbox" value={account.accNumber} id={account.accNumber} onchange={checkSelected}>
+                            <input class="checkBox" type="checkbox" value={account.accountNo} id={account.accountNo} onchange={checkSelected}>
                         </div>
                         <div>
-                            <p class="highlight">{account.accNumber}</p>
-                            <p class="accType">{account.accType}</p>
+                            <p class="highlight">{account.accountNo}</p>
+                            <p class="accountType">{account.accountType}</p>
                         </div>
                     </label>
                 </template>
             </div>
             <div class="btns">
-                <button class="rest-btn" disabled={buttonEnable} onclick={resetForm}>RESET</button>
-                <button class="submit-btn" disabled={buttonEnable} onclick={submitForm}>NEXT</button>
+                <button class="rest-btn" disabled={buttonEnable} onclick={resetForm}>{label.RESET}</button>
+                <button class="submit-btn" disabled={buttonEnable} onclick={submitForm}>{label.NEXT}</button>
             </div>
         </div>
         <c-c-b-footer></c-c-b-footer>

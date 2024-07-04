@@ -1,32 +1,29 @@
+<!--
+    Author - Prateek Deshmukh
+    Created Date - 04/15/2024
+    Modified Date - 06/21/2024
+    Description - This is child component is designed to collect customer details for requesting the opening of a Top-Up and Time deposit account.
+-->
 <template>
     <div class="container">
         <form class="account-open-form">
-            <!-- <div class="duration-range-slider">
-                <c-c-b-duration-range-slider onduration={durationHandler}></c-c-b-duration-range-slider>
-            </div> -->
-
-            <!-- <label for="account-opening-date">
-                <p class="heading">{label.ACCOUNT_OPENING_DATE}</p>
-                <input id="account-opening-date" type="date" onchange={dateHandler} value={createDate}
-                    placeholder={datePlaceHolder} class="fields">
-            </label> -->
-            <!-- <p class="min-heading">Note: Deposit Account will be opened next business day</p> -->
-
-            <label for="debit-amount">
-                <p class="heading">{label.DEBIT_ACCOUNT}*</p>
-                <!-- <select class="fields" id="debit-amount" onchange={depositAccountHandler}>
-                    <template for:each={accountTypes} for:item="accountType">
-                        <option key={accountType} value={accountType}>{accountType}</option>
+            <label for="Account">
+                <p class="heading">{label.ACCOUNT}</p>
+                <select id="Account" class="fields" onchange={AccountHandler}>
+                    <option value="Select">{label.SELECT}</option>
+                    <template if:true={accounts} for:each={accounts} for:item="acc">
+                        <option key={acc.accountNo} value={acc.accountNo}>
+                            {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accountType}
+                        </option>
                     </template>
-                </select> -->
-                <p class="fields account-type read">{accountTypes}</p>
+                </select>
             </label>
             <label for="product">
-                <p class="heading">{label.PRODUCT}*</p>
+                <p class="heading">{label.PRODUCT}</p>
                 <select id="product" class="fields" onchange={productHandler} value={product}>
-                    <option value="Select">Select</option>
+                    <option value="Select">{label.SELECT}</option>
                     <template for:each={productList} for:item="product">
-                        <option key={product} value={product}>{product}</option>
+                        <option key={product.value} value={product.value}>{product.label}</option>
                     </template>
                 </select>
             </label>
@@ -37,21 +34,23 @@
                 </label>
                 <label for="currency" class="sub-input">
                     <p class="heading">{label.CURRENCY}</p>
-                    <input id="currency" type="text" value={currencyHandler} readonly class="fields read">
+                    <!-- <input id="currency" type="text" value={currencyHandler} readonly class="fields read"> -->
+                    <select class="fields" id="Currency" onchange={currencyHandler}>
+						<option value="Select" selected>{label.SELECT}</option>
+						<template for:each={currencies} for:item="currency">
+							<option key={currency.value} value={currency.value}>{currency.label}</option>
+						</template>
+					</select>
                 </label>
             </div>
-            <!-- <div class="deposit-duration">
-                <p class="heading">Deposit Duration</p>
-                <c-c-b-deposit-duration-date-picker></c-c-b-deposit-duration-date-picker>
-            </div> -->
             <div>
-                <p class="heading duration">Deposit Duration</p>
-                <c-c-b-duration-range-slider></c-c-b-duration-range-slider>
+                <p class="heading duration">{label.DEPOSIT_DURATION}</p>
+                <c-c-b-duration-range-slider onduration={durationHandler}></c-c-b-duration-range-slider>
             </div>
             <template if:true={accountType}>
                 <label for="interest-payment">
                     <p class="heading">{label.INTEREST_INSTRUCTIONS}</p>
-                    <p class="min-heading">{label.INTEREST_PAYMENT}*</p>
+                    <p class="min-heading">{label.INTEREST_PAYMENT}</p>
                     <select id="interest-payment" class="fields" onchange={interestPaymentHandler}
                         value={interestPayment}>
                         <template for:each={interestPaymentList} for:item="interestPayment">
@@ -62,7 +61,7 @@
             </template>
             <label for="principal-maturity">
                 <p class="heading">{label.RENEWAL_INSTRUCTIONS}</p>
-                <p class="min-heading">{label.PRINCIPAL_MATURITY}*</p>
+                <p class="min-heading">{label.PRINCIPAL_MATURITY}</p>
                 <select id="principal-maturity" class="fields" onchange={principalMaturityHandler}
                     value={principalMaturity}>
                     <template for:each={principalMaturityList} for:item="principalMaturity">
@@ -76,15 +75,15 @@
                     <input class="checkBox" type="checkbox" onchange={termsConditions}>
                 </div>
                 <div>
-                    <p>I Agree To The Company <a>Terms & Conditions & Privacy Policy</a></p>
+                    <p>{label.I_AGREE_TO_COMPANY} <a href="https://clarienbank.com/">{label.TERMS_AND_CONDITIONS}</a></p>
                 </div>
             </label>
-            <label class="terms-Conditions">
+            <!-- <label class="terms-Conditions">
                 <div class="check-box">
                     <input class="checkBox" type="checkbox" onchange={conduct}>
                 </div>
                 <div>
-                    <a>I Agree For Company Code Of Conduct</a>
+                    <a href="https://clarienbank.com/">{label.I_AGREE_FOR_COMPANY_CODE_OF_CONDUCT}</a>
                 </div>
             </label>
             <label class="terms-Conditions">
@@ -92,15 +91,20 @@
                     <input class="checkBox" type="checkbox" onchange={marketingConsent}>
                 </div>
                 <div>
-                    <a>I Accept Marketing Consent</a>
+                    <a href="https://clarienbank.com/">{label.MARKETING_CONSENT}</a>
                 </div>
-            </label>
+            </label> -->
+
 
             <div class="btns">
                 <button class="submit-btn" disabled={buttonDisabled} onclick={submitForm}>{label.SUBMIT}</button>
                 <!-- <button class="cancel">CANCEL</button> -->
             </div>
 
+            <div class="notes-container">
+				<p> {label.CB_Refer} <a href="https://clarienbank.com/fees/">{label.CB_FeeSchedule}</a> {label.CB_Charges_For_All_Fees} {accType}</p>
+			</div>
+            
         </form>
     </div>
 </template>

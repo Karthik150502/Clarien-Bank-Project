@@ -24,7 +24,7 @@
     height: auto;
     margin: 0 auto;
     border-radius: 7px;
-    border: 1px solid var(--border-blue);
+    /* border: 1px solid var(--border-blue); */
     height: 90vh;
     padding: 0 10px;
     overflow-y: scroll;

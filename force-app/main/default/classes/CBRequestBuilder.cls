@@ -7,8 +7,7 @@
 **/
 public class CBRequestBuilder {
     // stores the domain or basepath of the Api Callouts
-    //String basePath = 'callout:Clarien_Named_Credential';
-   String basePath = 'callout:Clarien_Named_Credential';
+   String basePath = 'callout:MuleSoft_Integration_NC';
     /**
     * @description : Building the structure of the API request.
     * @param {CBHttpRequestWrapper} wrapper  
@@ -31,8 +30,14 @@ public class CBRequestBuilder {
                 logger.info('API payload: ' + reqWrapper.payload);
                 logger.info('API headers: ' + reqWrapper.headers);
                 logger.savelog();
-                request.setHeader('Content-type', 'application/json');
-                request.setHeader('Accept', 'application/json');
+                if(requestData?.isXml__c){
+                    request.setHeader('Content-type', 'application/xml');
+                    request.setHeader('Accept', 'application/xml');
+                }
+                else{
+                    request.setHeader('Content-type', 'application/json');
+                    request.setHeader('Accept', 'application/json');
+                }
                 request.setTimeout(60000); 
                 if(requestData.Headers__c != null){
                     request.setHeader(requestData.Headers__c.split(',')[0],requestData.Headers__c.split(',')[1]);    

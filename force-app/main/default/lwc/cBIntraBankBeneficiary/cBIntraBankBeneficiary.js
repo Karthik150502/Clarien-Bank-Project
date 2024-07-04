@@ -1,65 +1,48 @@
 import { LightningElement } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
 
-export default class CBIntraBankBeneficiary extends NavigationMixin(LightningElement) {
-    
-    beneficiaryType = [
-        'Intra Bank Beneficiary', 'Domestic Beneficiary', 'International Beneficiary'
-    ]
+// Importing labels for easy manipulation of the data in labels
+import PAGE_INTRABANKBENEFICIARY from '@salesforce/label/c.CB_Page_IntraBankBeneficiary';
+import PAGE_MANAGEBENEFICIARIES from '@salesforce/label/c.CB_Page_ManageBeneficiaries';
+import INTRABANK_BENEFICIARY from '@salesforce/label/c.CB_IntraBankBeneficiary';
 
-    beneficiaryList = [
-        // {
-        //     accountNum : 604567894,
-        //     name: 'Kumaran',
-        //     accountType : 'Saving',
-        //     status : true
-        // },
-        // {
-        //     accountNum : 604567885,
-        //     name: 'Raju',
-        //     accountType : 'Saving',
-        //     status : false
-        // }
-        // ,
-        {
-            accountNum : 604567796,
-            name: 'John',
-            accountType : 'Current',
-            status : true
+export default class CBIntraBankBeneficiary extends LightningElement {
+
+    // Configuration object for the component
+    configuration = {
+        previousPageUrl: PAGE_MANAGEBENEFICIARIES,
+        heading: INTRABANK_BENEFICIARY,
+        iconsExposed: true,
+        logout: {
+            exposed: false
         },
-        {
-            accountNum : 604567899,
-            name: 'Walter',
-            accountType : 'Saving',
-            status : false
-        },
-        {
-            accountNum : 604567810,
-            name: 'Qian',
-            accountType : 'Saving',
-            status : false
+        search: {
+            exposed: false
         }
-        // ,
-        // {
-        //     accountNum : 604567711,
-        //     name: 'Prateek',
-        //     accountType : 'Current',
-        //     status : true
-        // }
+    }
+
+    //Variable stores the type of Beneficiary 
+    beneficiaryType = 'Intrabank Beneficiary'
+
+    //Variable to store current page Api name
+    pageApiName = PAGE_INTRABANKBENEFICIARY
+
+    //List of Intrabank Beneficiary accounts
+    beneficiaryList = [
+        {
+            accountNum: 604567796,
+            name: 'John',
+            accountType: 'Current',
+        },
+        {
+            accountNum: 604567899,
+            name: 'Walter',
+            accountType: 'Saving',
+        },
+        {
+            accountNum: 604567810,
+            name: 'Qian',
+            accountType: 'Saving',
+        }
     ]
 
-    navigateToDeleteBeneficiary(){
-        this.navigateTo('CBDeleteBeneficiary__c')
-    }
-
-    navigateTo(pageName, data) {
-        console.log('navigate called');
-        this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: {
-                name: pageName
-            },
-            state:data
-        });
-    }
 }

@@ -1,9 +1,8 @@
 <!--
-  @description       : 
-  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
-  @group             : 
-  @last modified on  : 05-29-2024
-  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+    Author - Prateek Deshmukh
+    Created Date - 05/29/2024
+    Modified Date - 05/25/2024
+    Description - This component is used to display the current account transactions, active transfers, and account card details
 -->
 <template>
     <div class="wrapper">
@@ -17,19 +16,29 @@
         <div class="transaction-heading">
             <div class="slds-grid slds-wrap">
                 <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
-                    <span onclick={handleTransactionsClick} class={transactionStyle}><strong>Transactions</strong></span>
+                    <span onclick={handleTransactionsClick} class={transactionStyle}><strong>{label.TRANSACTIONS}</strong></span>
                 </div>
                 <div
                     class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 slds-text-align_right">
-                    <span onclick={handleOverviewClick} class={overViewStyle}><strong>Active Transfers</strong></span>
+                    <span onclick={handleOverviewClick} class={overViewStyle}><strong>{label.ACTIVETRANSFERS}</strong></span>
                 </div>
             </div>
         </div>
         <div class="wrapper-2">
             <div class="icons-container">
-                <div>
-                    <p>Showing Transactions from</p>
-                    <p class="transactionDate">{fromDate} - {toDate}</p>
+                <div class="filterData">
+                    <template if:true={hasTransactionData}>
+                        <template if:true={nTransactions}>
+                            <p>{label.SHOWING_LAST} {lastNTransactions} {label.TRANSACTIONS}</p>
+                        </template>
+                        <template if:false={nTransactions}>
+                            <p>{label.SHOWINGTRANSACTIONSFROM}</p>
+                            <p class="transactionDate">{fromDate} - {toDate}</p>
+                        </template>
+                    </template>
+                    <template if:false={hasTransactionData}>
+                            <p>{label.NORECENTTRANSACTIONFOUND}</p>
+                    </template>
                 </div>
                 <div class="icons">
                     <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -41,7 +50,7 @@
                         <use href={CBSortOrder}></use>
                     </svg>
                     <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg"
-                        onclick={navigateToFilter}>
+                        onclick={filterTransactions}>
                         <use href={CBFilter}></use>
                     </svg>
                 </div>
@@ -67,5 +76,17 @@
         </div>
         <c-c-b-footer></c-c-b-footer>
     </div>
-   
+    <template if:true={isLoading}>
+        <c-c-b-loading-spinner>
+        </c-c-b-loading-spinner>
+    </template>
+    <template if:true={modalOpen}>
+		<c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+	</template>
+    <template if:true={filterPage}>
+        <c-c-b-filter-current-account 
+            onfiltered = {filterTransactions}
+            active-transfers-filters={activetrans}
+        ></c-c-b-filter-current-account>
+    </template>
 </template>

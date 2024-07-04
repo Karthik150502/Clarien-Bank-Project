@@ -1,4 +1,4 @@
-/*
+/**  
      Author - Prateek Deshmukh
     Created Date - 2024-03-09
     Modified Date - 2024-03-10,2024-03-15,2024-03-21
@@ -47,18 +47,22 @@ import BIO_METRIC from '@salesforce/label/c.CB_BioMetric'
 import SOFT_TOKEN_HARD_TOKEN from '@salesforce/label/c.CB_SoftTokenHardToken'
 import EMAIL from '@salesforce/label/c.CB_Email';
 import PHONE from '@salesforce/label/c.CB_Phone';
+import HELLO from '@salesforce/label/c.CB_Hello';
+import LAST_LOGGED_ON from '@salesforce/label/c.CB_LastLoggedOn';
 import LOGOUT_CONFIRM_MESSAGE from '@salesforce/label/c.CB_Logout_Confirm_Message';
 import { getBiometricsService } from 'lightning/mobileCapabilities';
 
 import LOANS from '@salesforce/label/c.CB_Loans';
 import CARDS from '@salesforce/label/c.CB_Cards';
+import CANCEL from '@salesforce/label/c.CB_Cancel';
+import YES from '@salesforce/label/c.CB_Yes';
 import CHEQUEBOOK from '@salesforce/label/c.CB_Chequebook';
 import ISSUE_CHEQUE_BOOK from '@salesforce/label/c.CB_IssueChequeBook';
 import VIEW_ISSUED_CHEQUES from '@salesforce/label/c.CB_ViewIssuedCheques';
 
 
-// import uploadFile from '@salesforce/apex/CBProfileUploadHandler.uploadFile'
-// import getProfileDocId from '@salesforce/apex/CBProfileUploadHandler.getProfileDocId'
+import uploadFile from '@salesforce/apex/CBProfileUploadHandler.uploadFile'
+import getProfileDocId from '@salesforce/apex/CBProfileUploadHandler.getProfileDocId'
 import { getJsonData, dateToTimestamp, setMobileSessionStorage, getMobileSessionStorage, setLocalStorage, getLocalStorage, removeLocalStorage } from 'c/cBUtilities';
 
 
@@ -84,6 +88,7 @@ import STOPPAPERBASEDSTATEMENTS_PAGE from '@salesforce/label/c.CB_Page_Stoppaper
 import TIMEDEPOSITACCOUNTOPENING_PAGE from '@salesforce/label/c.CB_Page_Timedepositaccountopening';
 import TOPUPACCOUNTOPENING_PAGE from '@salesforce/label/c.CB_Page_Topupaccountopening';
 import VIEWSTOPISSUEDCHEQUES_PAGE from '@salesforce/label/c.CB_Page_Viewstopissuedcheques';
+import ONLINEACTIVITIES_PAGE from '@salesforce/label/c.CB_Page_OnlineActivities';
 import MAKE_A_REQUEST from '@salesforce/label/c.MAKE_A_REQUEST';
 import OPEN_AN_Account from '@salesforce/label/c.OPEN_AN_Account';
 
@@ -152,7 +157,9 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
         ISSUE_CHEQUE_BOOK,
         VIEW_ISSUED_CHEQUES,
         MAKE_A_REQUEST,
-        OPEN_AN_Account
+        OPEN_AN_Account,
+        HELLO, 
+        LAST_LOGGED_ON
     };
 
     // Authentication Status Modal initial configuration
@@ -226,9 +233,13 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
             this.hasRendered = true
         }
     }
+
+    // get the Customer Name and last login date from mobile session storage
     getCustomerData() {
-        this.username = getMobileSessionStorage('CustomerName');
-        this.lastLoginTime = getMobileSessionStorage('LastLogin');
+        this.username = getLocalStorage('CustomerName');
+        this.lastLoginTime = getLocalStorage('LastLogin');
+        console.log('customer name:', this.username);
+        console.log('lastlogin:', this.lastLoginTime);
     }
 
 
@@ -238,7 +249,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
         message: '',
         yesButton: {
             exposed: true,
-            label: "Yes",
+            label: YES,
             implementation: () => {
 
                 // Get the current domain
@@ -258,7 +269,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
         },
         noButton: {
             exposed: true,
-            label: "Cancel",
+            label: CANCEL,
             implementation: () => {
                 console.log('no');
                 this.modalOpen = false
@@ -266,6 +277,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
         },
     }
 
+    // show the initials of the name i profile pic is not present
     loadNameInit() {
         if(!this.username) {
             return;
@@ -283,18 +295,24 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
   */
     loadProfileImage() {
         // Call server to fetch profile image
-        // getProfileDocId()
-        //     .then(result => {
-        //         if (result.startsWith('Error:')) {
-        //             console.error('Error occurred while fetching profile image:', result);
-        //         } else {
-        //             this.profileImg = '/sfc/servlet.shepherd/version/download/' + result;
-        //             this.refs.profile.style.backgroundImage = `url(${this.profileImg})`;
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.error('Error occurred while fetching profile image:', error);
-        //     });
+        getProfileDocId()
+            .then(result => {
+                console.log('profile pic fetch result: ', result);
+                if (result.startsWith('Error:')) {
+                    console.error('Error occurred while fetching profile image:', result);
+                    this.imageSrc = false;
+                }else if(result === 'List has no rows for assignment to SObject') {
+                    this.imageSrc = false;
+                } else {
+                    this.profileImg = '/sfc/servlet.shepherd/version/download/' + result;
+                    this.refs.profile.style.backgroundImage = `url(${this.profileImg})`;
+                    this.imageSrc = true;
+                }
+            })
+            .catch(error => {
+                this.imageSrc = false;
+                console.error('Error occurred while fetching profile image:', error);
+            });
     }
 
     // Method to navigate to a named page
@@ -368,7 +386,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
 
     // Navigation method to navigate to Online Activities
     navigateToOnlineActivities() {
-        this.navigateToPage('CBOnlineActivities__c');
+        this.navigateToPage(ONLINEACTIVITIES_PAGE);
     }
 
     // Navigation method to navigate to All Accounts page
@@ -477,15 +495,13 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
             try {
                 var img = new Image();
                 img.onload = () => {
-                    if (img.width === img.height) {
-                        var base64 = reader.result.split(',')[1];
-                        this.fileData = {
-                            'filename': file.name,
-                            'base64': base64,
-                        };
-                        console.log('This is file Data', this.fileData);
-                        this.handleClick();
-                    }
+                    var base64 = reader.result.split(',')[1];
+                    this.fileData = {
+                        'filename': file.name,
+                        'base64': base64,
+                    };
+                    console.log('This is file Data', this.fileData);
+                    this.handleClick(); 
                 };
                 img.src = URL.createObjectURL(file);
             } catch (error) {
@@ -506,17 +522,18 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
             console.log("File data is not initialized.");
             return;
         }
-        // const { base64, filename } = this.fileData;
-        // uploadFile({ base64, filename }).then(result => {
-        //     this.fileData = null;
-        //     let title = `${filename} uploaded successfully!!`;
-        //     console.log('Title', title);
-        //     this.toast(title, 'success');
-        // }).catch(error => {
-        //     let title = `${filename} failed to upload!!`;
-        //     console.log('Error:', error.message);
-        //     this.toast(title, 'Error');
-        // });
+        const { base64, filename } = this.fileData;
+        uploadFile({ base64, filename }).then(result => {
+            this.fileData = null;
+            let title = `${filename} uploaded successfully!!`;
+            console.log('Title', title);
+            this.toast(title, 'success');
+            window.location.reload();
+        }).catch(error => {
+            let title = `${filename} failed to upload!!`;
+            console.log('Error:', error.message);
+            this.toast(title, 'Error');
+        });
     }
 
     /**
@@ -537,27 +554,50 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
     isBiometricEnabled = false
     updateBiomtericStatus() {
         if (getLocalStorage('CBIsBiometricEnabled')) {
-            this.isBiometricEnabled = getLocalStorage('CBIsBiometricEnabled') === 'true'
-            console.log('this.isBiometricEnabled = ' + getLocalStorage('CBIsBiometricEnabled'))
+            //this.isBiometricEnabled = getLocalStorage('CBIsBiometricEnabled') === 'true';
+             this.isBiometricEnabled = getLocalStorage('CBIsBiometricEnabled');
+            console.log('this.isBiometricEnabled  ' + getLocalStorage('CBIsBiometricEnabled'))
         }
     }
 
-    handleVerifyClick() {
-        this.isBiometricEnabled = !this.isBiometricEnabled
-        setLocalStorage('CBIsBiometricEnabled', this.isBiometricEnabled)
-        console.log('this.isBiometricEnabled = ' + getLocalStorage('CBIsBiometricEnabled'))
-
-
-
-        const biometricsService = getBiometricsService();
+    enableBiometricservice(event) {
+       // this.isBiometricEnabled = !this.isBiometricEnabled
+        
+        console.log('checkbox value ' ,event.target.value);
+        if( !this.isBiometricEnabled || event.target.checked === true){
+            event.target.checked = true;
+           console.log("biometric is already enabled");
+        }else{
+      const biometricsService = getBiometricsService();
         console.log('biometricsService', biometricsService);
         if (biometricsService.isAvailable()) {
-            console.log('inbiometric', biometricsService);
-            this.status = 'withinbiometric' + biometricsService;
+             this.status = "biometricsService is Available.";
+             const options = {
+          permissionRequestBody: "Required to confirm device ownership.",
+          additionalSupportedPolicies: ['PIN_CODE']
+        };
+        biometricsService.checkUserIsDeviceOwner(options)
+          .then((result) => {
+            // Do something with the result
+            if (result === true) {
+              this.status = "✔ Current user is device owner.";
+              setLocalStorage('CBIsBiometricEnabled', this.isBiometricEnabled);
+            } else {
+              this.status = "𐄂 Current user is NOT device owner."
+              setLocalStorage('CBIsBiometricEnabled', !this.isBiometricEnabled);
+            }
+          })
+          .catch((error) => {
+            // Handle errors
+            this.status = 'Error code: ' + error.code + '\nError message: ' + error.message;
+            setLocalStorage('CBIsBiometricEnabled', !this.isBiometricEnabled);
+          });
         }
         else {
             console.log('elsebiometric', biometricsService);
-            this.status = 'elsebiometric' + biometricsService;
+            this.status = 'Problem initiating Biometrics service. Are you using a mobile device?';
+            setLocalStorage('CBIsBiometricEnabled', !this.isBiometricEnabled);
+        }
         }
     }
 

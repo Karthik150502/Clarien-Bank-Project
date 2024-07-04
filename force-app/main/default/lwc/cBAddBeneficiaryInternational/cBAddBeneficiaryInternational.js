@@ -1,13 +1,36 @@
 import { LightningElement, track } from 'lwc';
+
+// Importing NavigationMixin for navigation functionality
 import { NavigationMixin } from 'lightning/navigation';
 
-import SUBMIT from '@salesforce/label/c.CB_Submit';
-// import SERVICEREQUEST_PAGE from '@salesforce/label/c.CB_Page_Servicerequest';
+// Importing labels for easy manipulation of the data in labels
+import INTERNATIONAL_BENEFICIARY_PAGE from '@salesforce/label/c.CB_Page_InternationalBeneficiary';// Importing label for Domestic Beneficiary Page API Name
+import BENEFICIARYADDEDSUCCESSFULLY from '@salesforce/label/c.CB_BeneficiaryAddedSuccessfully';
+import ADD_BENEFICIARIES from '@salesforce/label/c.CB_AddBeneficiaries';
+import BENEFICIARY_BANK from '@salesforce/label/c.CB_BeneficiaryBank';
+import INTERNATIONAL_BENEFICIARY_ACCOUNTNUMBER from '@salesforce/label/c.CB_International_Beneficiary_AccountNumber';
+import BENEFICIARY_NAME from '@salesforce/label/c.CB_BeneficiaryName';
+import BENEFICIARY_ADDRESS from '@salesforce/label/c.CB_BeneficiaryAddress';
+import BENEFICIARY_CITY from '@salesforce/label/c.CB_BeneficiaryCity';
+import BENEFICIARY_COUNTRY from '@salesforce/label/c.CB_BeneficiaryCountry';
+import BENEFICIARY_SWIFTCODE from '@salesforce/label/c.CB_Beneficiary_SwiftCode';
+import OK_BUTTON from '@salesforce/label/c.CB_Ok';
+import NOT_BUTTON from '@salesforce/label/c.CB_Not';
+import ADD from '@salesforce/label/c.CB_Add';
 
+// Extending the LightningElement class and applying the NavigationMixin for navigation capabilities
 export default class CBAddBeneficiaryInternational extends NavigationMixin(LightningElement) {
 
+    // Labels for UI elements
     label = {
-        SUBMIT
+        BENEFICIARY_BANK,
+        BENEFICIARY_NAME,
+        INTERNATIONAL_BENEFICIARY_ACCOUNTNUMBER,
+        BENEFICIARY_ADDRESS,
+        BENEFICIARY_CITY,
+        BENEFICIARY_COUNTRY,
+        BENEFICIARY_SWIFTCODE,
+        ADD
     }
 
     modalOpen = false;
@@ -16,22 +39,21 @@ export default class CBAddBeneficiaryInternational extends NavigationMixin(Light
     */
     @track modal = {
         title: '',
-        message: 'Beneficiary added succesfully.',
+        message: BENEFICIARYADDEDSUCCESSFULLY,
         yesButton: {
             exposed: true,
-            label: "OK",
+            label: OK_BUTTON,
             // Implementation for the "OK" button click action.
             implementation: () => {
                 this.modalOpen = false;
-                this.navigateTo('CBInternationalBeneficiary__c')
+                this.navigateTo(INTERNATIONAL_BENEFICIARY_PAGE)
             }
         },
         noButton: {
             exposed: false,
-            label: "Not",
+            label: NOT_BUTTON,
             //Implementation for the "Not" button click action.
             implementation: () => {
-                console.log('no');
                 this.modalOpen = false;
             }
         }
@@ -39,7 +61,7 @@ export default class CBAddBeneficiaryInternational extends NavigationMixin(Light
 
     configuration = {
         previousPageUrl: '',
-        heading: 'Add Beneficiaries',
+        heading: ADD_BENEFICIARIES,
         iconsExposed: false,
         logout: {
             exposed: false
@@ -49,47 +71,64 @@ export default class CBAddBeneficiaryInternational extends NavigationMixin(Light
         }
     }
 
-    accountNumber = ''
-    beneficiaryName = ''
-    beneficiaryBank = ''
-    beneficiaryAddress = ''
-    beneficiaryCity = ''
-    beneficiaryCountry = ''
-    beneficiarySwiftCode =''
+    // Properties to hold form input values
+    accountNumber = '';
+    beneficiaryName = '';
+    beneficiaryBank = '';
+    beneficiaryAddress = '';
+    beneficiaryCity = '';
+    beneficiaryCountry = '';
+    beneficiarySwiftCode = '';
 
-    accountNumberHandler(event){
+    // Handlers to update for account number input values
+    accountNumberHandler(event) {
         this.accountNumber = event.target.value;
     }
-    beneficiaryNameHandler(event){
+
+    // Handlers to update for beneficiaryName input values
+    beneficiaryNameHandler(event) {
         this.beneficiaryName = event.target.value;
     }
-    beneficiaryBankHandler(event){
+
+    // Handlers to update for beneficiaryBank input values
+    beneficiaryBankHandler(event) {
         this.beneficiaryBank = event.target.value;
     }
-    beneficiaryAddressHandler(event){
+
+    // Handlers to update for beneficiaryAddress input values
+    beneficiaryAddressHandler(event) {
         this.beneficiaryAddress = event.target.value;
     }
-    beneficiaryCityHandler(event){
+
+    // Handlers to update for beneficiaryCity input values
+    beneficiaryCityHandler(event) {
         this.beneficiaryCity = event.target.value;
     }
-    beneficiaryCountryHandler(event){
+
+    // Handlers to update for beneficiaryCountry input values
+    beneficiaryCountryHandler(event) {
         this.beneficiaryCountry = event.target.value;
     }
-    beneficiarySwiftCodeHandler(event){
+
+    // Handlers to update for beneficiarySwiftCode input values
+    beneficiarySwiftCodeHandler(event) {
         this.beneficiarySwiftCode = event.target.value;
     }
 
+    // Getter to determine if the submit button should be disabled
     get submitDisable() {
-        console.log(this.accountNumber === '' || this.beneficiaryName === '' || this.beneficiaryBank === '' || this.beneficiaryAddress === '' || this.beneficiaryCity === '' || this.beneficiaryCountry === '' || this.beneficiarySwiftCode ==='');
-        return this.accountNumber === '' || this.beneficiaryName === '' || this.beneficiaryBank === '' || this.beneficiaryAddress === '' || this.beneficiaryCity === '' || this.beneficiaryCountry === '' || this.beneficiarySwiftCode ==='';
+        // Return true to disable the submit button if any of the fields are empty
+        return this.accountNumber === '' || this.beneficiaryName === '' || this.beneficiaryBank === '' || this.beneficiaryAddress === '' || this.beneficiaryCity === '' || this.beneficiaryCountry === '' || this.beneficiarySwiftCode === '';
     }
 
-    submitForm(){
+    // Method to handle form submission
+    submitForm() {
+        // Set modalOpen to true to open the modal
         this.modalOpen = true;
     }
 
+    //Helper function to handle navigation to a specified page
     navigateTo(pageName) {
-        console.log('navigate called');
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {

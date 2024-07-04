@@ -4,8 +4,8 @@ export default class CBFilterTransactionPage extends NavigationMixin(LightningEl
 
     @api previousPageUrl = '';
 
-    fromDate = 'YYYY-MM-DD'
-    toDate = 'YYYY-MM-DD'
+    fromDate = 'DD-MM-YYYY'
+    toDate = 'DD-MM-YYYY'
     selectedTransactionType = ''
     transactionTypes = ["Credit", "Debit"]
     fromAmount = ''
@@ -34,11 +34,11 @@ export default class CBFilterTransactionPage extends NavigationMixin(LightningEl
     }
 
     fromDateHandler(event) {
-        this.fromDate = event.target.value
+        this.fromDate = this.formatDate(event.target.value)
     }
 
     toDateHandler(event) {
-        this.toDate = event.target.value
+        this.toDate = this.formatDate(event.target.value)
     }
     handleFromAmount(event) {
         this.fromAmount = event.target.value
@@ -49,6 +49,11 @@ export default class CBFilterTransactionPage extends NavigationMixin(LightningEl
         this.toAmount = event.target.value
     }
 
+    formatDate(date) {
+        let res = date.split("-")
+        return `${res[2]}-${res[1]}-${res[0]}`
+    }
+      
 
     handleFilterDate() {
         this.filterDate = !this.filterDate;
@@ -71,8 +76,12 @@ export default class CBFilterTransactionPage extends NavigationMixin(LightningEl
         console.log(this.fromDate)
         console.log(this.toDate)
         console.log(this.selectedTransactionType)
-        this.navigateTo(this.previousPageUrl,{fromDate:this.fromDate,toDate:this.toDate,fromAmount:this.fromAmount,toAmount:this.toAmount,selectedTransaction:this.selectedTransactionType})
-
+        if(this.filterDate) {
+            this.navigateTo(this.previousPageUrl,{fromDate:this.fromDate,toDate:this.toDate})
+        }
+        else if(this.filterType) {
+            this.navigateTo(this.previousPageUrl,{fromAmount:this.fromAmount,toAmount:this.toAmount,selectedTransaction:this.selectedTransactionType})
+        }
     }
 
     handleCancel() {

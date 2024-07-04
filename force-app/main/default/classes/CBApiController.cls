@@ -2,7 +2,7 @@
  * @description       : 
  * @author            : Prateek Deshmukh
  * @group             : Prateek Deshmukh,Aditya S,Mahalakshmi 
- * @last modified on  : 04-23-2024
+ * @last modified on  : 06-04-2024
  * @last modified by  : Prateek Deshmukh
 **/
 public class CBApiController {
@@ -25,8 +25,6 @@ public class CBApiController {
     	requestBuilder = new CBRequestBuilder();
         request = requestBuilder.buildHttpRequest(wrapper);
         response = new CBApiCallOut().makeHttpCallOut(request);
-        Logger.debug('Response status code: ' + response.getStatusCode());
-        Logger.debug('Response Body: ' + response.getBody());
         logger.savelog();
         if(response.getStatusCode()>=300 || response.getStatusCode()<200){
              throw new CBErrorHandler.CBCustomAPIException(string.valueof(response.getStatusCode()));
@@ -52,7 +50,8 @@ public class CBApiController {
     **/
     @AuraEnabled(cacheable=true)
     public static String forgetPassword(CBHttpRequestWrapper reqWrapper) {
-        return new CbApiController().makeHttpRequest(reqWrapper);
+         String response = new CbApiController().makeHttpRequest(reqWrapper);
+        return CBForgotPasswordHandler.handleForgotPassword(response,reqWrapper);
     }
     
 
@@ -125,7 +124,7 @@ public class CBApiController {
         return CBChangePasswordHandler.handleChangePassword(response,reqWrapper);
     }
     
-     /**
+    /**
     * @description : Performing the SearchProfile API callout.
     * @param {CBHttpRequestWrapper} wrapper  
     * @return {String} The API response, sent to LWC as a String
@@ -135,4 +134,74 @@ public class CBApiController {
         string response= new CbApiController().makeHttpRequest(reqWrapper);
         return CBProfileSearchHandler.handleProfileSearch(response, reqWrapper);
     }
+    
+    /**
+    * @description : Performing the Document Search API callout.
+    * @param {CBHttpRequestWrapper} wrapper  
+    * @return {String} The API response, sent to LWC as a String
+    **/
+    @AuraEnabled(cacheable=true)
+    public static String docSearch(CBHttpRequestWrapper reqWrapper) {
+        return new CbApiController().makeHttpRequest(reqWrapper);
+    }
+
+    /**
+    * @description : Performing the Document Download API callout.
+    * @param {CBHttpRequestWrapper} wrapper  
+    * @return {String} The API response, sent to LWC as a String
+    **/
+    @AuraEnabled(cacheable=true)
+    public static String docDownload(CBHttpRequestWrapper reqWrapper) {
+        return new CbApiController().makeHttpRequest(reqWrapper);
+    }
+
+
+
+
+    /**
+    * @description : API for creating TOP-Up Account.
+    * @param {CBHttpRequestWrapper} reqWrapper  
+    * @return {String} The API response, sent to LWC as a String
+    **/
+    @AuraEnabled(cacheable=true)
+    public static String createTopUpAccount(CBHttpRequestWrapper reqWrapper) {
+        string response= new CbApiController().makeHttpRequest(reqWrapper);
+        return response;
+    }
+	
+    /**
+    * @description : API for creating Time Deposit Account.
+    * @param {CBHttpRequestWrapper} reqWrapper  
+    * @return {String} The API response, sent to LWC as a String
+    **/
+    @AuraEnabled(cacheable=true)
+    public static String createTimeDepositAccount(CBHttpRequestWrapper reqWrapper) {
+        string response= new CbApiController().makeHttpRequest(reqWrapper);
+        return response;
+    }
+
+
+    
+    /**
+    * @description : API for creating Savings Account.
+    * @param {CBHttpRequestWrapper} reqWrapper  
+    * @return {String} The API response, sent to LWC as a String
+    **/
+    @AuraEnabled(cacheable=true)
+    public static String createSavingsAccount(CBHttpRequestWrapper reqWrapper) {
+        string response= new CbApiController().makeHttpRequest(reqWrapper);
+        return response;
+    }
+    
+    /**
+    * @description : API for creating Checking Account.
+    * @param {CBHttpRequestWrapper} reqWrapper  
+    * @return {String} The API response, sent to LWC as a String
+    **/
+    @AuraEnabled(cacheable=true)
+    public static String createCheckingAccount(CBHttpRequestWrapper reqWrapper) {
+        string response= new CbApiController().makeHttpRequest(reqWrapper);
+        return response;
+    }
+
 }

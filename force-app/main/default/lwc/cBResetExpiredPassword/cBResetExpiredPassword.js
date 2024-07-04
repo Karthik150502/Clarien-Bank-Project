@@ -47,7 +47,7 @@ export default class CBResetExpiredPassword extends NavigationMixin(LightningEle
         OLD_PASSWORD,
         NEW_PASSWORD,
         CONFIRM_PASSWORD,
-        SUBMIT: SUBMIT.toUpperCase(),
+        SUBMIT,
         PASSWORD_MUST_CONTAIN,
         MIN_10_CHARS,
         ATLEAST_ONE_UPPER,

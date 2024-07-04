@@ -1,0 +1,58 @@
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+
+            <div class="con-header">
+                <button class="add-biller" onclick={navigateToAddBiller}>
+                    <p>{label.CB_Add}</p>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        id="CBPlusIcon">
+                        <path
+                            d="M10 1.25C7.68807 1.27805 5.47873 2.20893 3.84383 3.84383C2.20893 5.47873 1.27805 7.68807 1.25 10C1.27805 12.3119 2.20893 14.5213 3.84383 16.1562C5.47873 17.7911 7.68807 18.7219 10 18.75C12.3119 18.7219 14.5213 17.7911 16.1562 16.1562C17.7911 14.5213 18.7219 12.3119 18.75 10C18.7219 7.68807 17.7911 5.47873 16.1562 3.84383C14.5213 2.20893 12.3119 1.27805 10 1.25ZM15 10.625H10.625V15H9.375V10.625H5V9.375H9.375V5H10.625V9.375H15V10.625Z"
+                            fill="white" />
+                    </svg>
+                </button>
+            </div>
+            <div class="con-content">
+                <template if:true={billers} for:each={billers} for:item="biller">
+                    <c-c-b-biller-detail-tile biller={biller} key={biller.id} oneditbiller={editBiller}
+                        ondeletebiller={confirmAndDeleteBiller}></c-c-b-biller-detail-tile>
+                </template>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <template if:true={openBillerEditModal}>
+                <c-c-b-biller-detail-edit-modal biller-details={billerToEdit}
+                    onclosemodal={closeEditModal}></c-c-b-biller-detail-edit-modal>
+            </template>
+
+            <template if:true={confirmDeleteModal}>
+                <c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+            </template>
+
+
+
+        </div>
+
+        <c-c-b-footer></c-c-b-footer>
+
+    </div>
+
+
+</template>

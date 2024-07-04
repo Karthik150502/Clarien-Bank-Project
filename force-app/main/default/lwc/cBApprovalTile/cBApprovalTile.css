@@ -13,8 +13,15 @@
     width: 100%;
     padding: 5px 5px 5px 5px;
     color: var(--primary-black);
-    background-color: var(--light-blue);
+    background-color: var(--primary-white);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    transition: all ease-in-out 0.15s;
+    
+    border-radius: 10px;
+}
+
+.wrapper:hover {
+    transform: scale(1.025);
 }
 
 
@@ -82,24 +89,25 @@
 
 .appr-btn {
     border: none;
-    background-color: rgba(153, 205, 50, 0.67);
+    background-color: var(--primary-blue);
     font-family: var(--dxp-g-root-gotham-book-font-family);
     padding: 5px;
-    border-radius: 6px;
+    border-radius: 3px;
     margin: 0 10px 0 0;
+    color:var(--primary-white);
 }
 
 .rej-btn {
     border: none;
-    background-color: rgba(208, 9, 9, 0.463);
+    background-color: var(--primary-orange);
     color: var(--primary-white);
     font-family: var(--dxp-g-root-gotham-book-font-family);
     padding: 5px;
-    border-radius: 6px;
+    border-radius: 3px;
     margin: 0 0 0 10px;
 }
 
 .text-container {
     width: 100%;
-    padding: 3px 0 0 10px;
+    padding: 3px 0 0 0;
 }

@@ -7,14 +7,12 @@ import SUBMIT from '@salesforce/label/c.CB_Submit';
 
 
 
-
-
 export default class CBOtpHandler extends NavigationMixin(LightningElement) {
 
     label = {
         YOUR_PASSWORD_EXPIRED,
         PLS_ENTER_SECURITY_TOKEN,
-        SUBMIT: SUBMIT.toUpperCase()
+        SUBMIT
     }
 
     @api title = ''

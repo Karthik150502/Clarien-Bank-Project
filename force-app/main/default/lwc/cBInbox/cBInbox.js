@@ -3,21 +3,31 @@ import { NavigationMixin } from 'lightning/navigation'; // Importing NavigationM
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 import { setPagePath } from 'c/cBUtilities';
 
+import RECENT_MESSAGES from '@salesforce/label/c.CB_RecentMessages';
+import INBOX_PAGE from '@salesforce/label/c.CB_Page_Inbox';
+import INBOX from '@salesforce/label/c.CB_Inbox';
+import CREATE_MESSAGE_PAGE from '@salesforce/label/c.CB_Page_CreateMessage';
 
 export default class CBInbox extends NavigationMixin(LightningElement) {
 
+    label = {
+        RECENT_MESSAGES
+    }
+
+    // url for new message icon
     CBNewMessage = `${CBSVG}/CBSVGs/CBNewMessage.svg#CBNewMessage`;
 
     /**
-* Lifecycle hook invoked when the component is inserted into the DOM
-* Loads the username, password from local session storage when the component is connected to the DOM.
-* @returns {void}
-*/
+    * Lifecycle hook invoked when the component is inserted into the DOM
+    * Loads the username, password from local session storage when the component is connected to the DOM.
+    * @returns {void}
+    */
     connectedCallback() {
-        this.configuration.previousPageUrl = setPagePath('CBInbox__c')
+        this.configuration.previousPageUrl = setPagePath(INBOX_PAGE)
         console.log(this.configuration.previousPageUrl);
     }
 
+    // array to hold sample message details
     messages = [
         {
             id: 1,
@@ -67,10 +77,10 @@ export default class CBInbox extends NavigationMixin(LightningElement) {
     //     });
     // }
 
-
+    // configuration for secondary header
     configuration = {
         previousPageUrl: '',
-        heading: 'Inbox',
+        heading: INBOX,
         iconsExposed: true,
         logout: {
             exposed: true
@@ -80,11 +90,12 @@ export default class CBInbox extends NavigationMixin(LightningElement) {
         }
     }
 
+    // navigate to create message page
     naviagteToCreateMessage() {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'CBCreateMessage__c'
+                name: CREATE_MESSAGE_PAGE
             }
         });
     }

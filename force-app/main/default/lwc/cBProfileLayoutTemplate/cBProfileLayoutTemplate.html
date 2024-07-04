@@ -22,7 +22,7 @@
         <div class="container">
             <template if:true={metaInfo.profileInfo}>
                 <div class="profile">
-                    <input id="fileInput" type="file" style="display: none;" accept=".png, .jpg"
+                    <input id="fileInput" type="file" style="display: none;" accept=".jpg, .jpeg, .png, .gif"
                         aria-label="Upload from Gallary" onchange={openfileUpload} />
                     <label for="fileInput">
                         <div class="prof" lwc:ref="profile" onclick={uploadProfileImage}>
@@ -30,7 +30,7 @@
                                 {init}
                             </template>
                             <template if:true={imageSrc}>
-                                <img class="profile-pic" data-cls="profile-pic" src={imageSrc} loading="lazy" />
+                                <img class="profile-pic" data-cls="profile-pic" />
                             </template>
                             <svg class="camera-svg" width="18" height="18" viewBox="0 0 18 18" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -39,9 +39,9 @@
                         </div>
                     </label>
                     <div class="prof-info">
-                        <p class="hello">Hello</p>
+                        <p class="hello">{label.HELLO}</p>
                         <p class="prof-name">{username}</p>
-                        <p class="last-login">Last Logged on {lastLoginTime}</p>
+                        <p class="last-login">{label.LAST_LOGGED_ON} {lastLoginTime}</p>
                     </div>
                 </div>
             </template>
@@ -79,14 +79,14 @@
                         </div>
                         <p>{label.MAKE_A_REQUEST}</p>
                     </div>
-                    <div class="menu-item" onclick={navigateToFeedbackRateUs}>
+                    <!-- <div class="menu-item" onclick={navigateToFeedbackRateUs}>
                         <div class="menu-item-svg">
                             <svg width="33" height="34" xmlns="http://www.w3.org/2000/svg">
                                 <use href={CBFeedbackRateUs}></use>
                             </svg>
                         </div>
                         <p>{label.FEEDBACK_RATE_US}</p>
-                    </div>
+                    </div> -->
                     <!-- <div class="menu-item">
                         <div class="menu-item-svg">
                             <svg width="33" height="34" xmlns="http://www.w3.org/2000/svg">
@@ -208,20 +208,20 @@
                         <div class="slds-form-element btn-custom">
                             <!--  <label class="slds-checkbox_toggle slds-grid"  >  -->
                             <label class="slds-checkbox_toggle slds-grid">
-                                <template if:true={isBiometricEnabled}>
+                                <!-- <template > -->
                                     <input type="checkbox" name="checkbox-toggle-16" value={isBiometricEnabled}
-                                        onclick={handleVerifyClick} checked aria-describedby="checkbox-toggle-16" />
+                                        onchange={enableBiometricservice} checked aria-describedby="checkbox-toggle-16" />
                                     <span id="checkbox-toggle-16" class="slds-checkbox_faux_container">
                                         <span class="slds-checkbox_faux"></span>
                                     </span>
-                                </template>
-                                <template if:false={isBiometricEnabled}>
+                                <!-- </template> -->
+                                <!-- <template if:false={isBiometricEnabled} >if:true={isBiometricEnabled}
                                     <input type="checkbox" name="checkbox-toggle-16" value={isBiometricEnabled}
-                                        onclick={handleVerifyClick} aria-describedby="checkbox-toggle-16" />
-                                    <span id="checkbox-toggle-19" class="slds-checkbox_faux_container">
+                                        onclick={enableBiometricservice} aria-describedby="checkbox-toggle-16" />
+                                    <span id="checkbox-toggle-16" class="slds-checkbox_faux_container">
                                         <span class="slds-checkbox_faux"></span>
                                     </span>
-                                </template>
+                                </template> -->
                             </label>
                             <!-- <span class="slds-form-element__label slds-m-bottom_none">Toggle Label</span> -->
                             <!--  <input type="checkbox" name="checkbox-toggle-16" value="checkbox-toggle-16"

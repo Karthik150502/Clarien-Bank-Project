@@ -13,9 +13,9 @@
             </div>
             <div class="casing">
                 <label for="accountNum">
-                    <p class="heading">Account No</p>
-                    <select class="fields" id="accountNum" onchange={accountNumHandler} value={accountNum}>
-                        <option value={Select}>Select</option>
+                    <p class="heading">{label.CB_AccountNo}</p>
+                    <select class="fields" id="accountNum" onchange={accountNumHandler}>
+                        <option value={label.CB_SelectAccount}>{label.CB_SelectAccount}</option>
                         <template for:each={accountList} for:item="account">
                             <option key={account.accountNo} value={account.accountNo}>
                                 <p>{account.accountNo}</p>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
@@ -25,12 +25,13 @@
                     </select>
                 </label>
                 <label for="amount">
-                    <p class="heading">Amount</p>
+                    <p class="heading">{label.CB_Amount}</p>
                     <input id="amount" type="number" onkeyup={amountHandler} class="fields">
                 </label>
                 <label for="currency">
                     <p class="heading">{label.CURRENCY}</p>
-                    <select class="fields" id="currency" onchange={currencyHandler} value={currency}>
+                    <select class="fields" id="currency" onchange={currencyHandler}>
+                        <option value={label.CB_SelectCurrency}>{label.CB_SelectCurrency}</option>
                         <template for:each={currencyList} for:item="currency">
                             <option key={currency} value={currency}>{currency}</option>
                         </template>
@@ -40,16 +41,16 @@
                     <template if:true={usdCurrencyType}>
                         <label for="usd-local">
                             <input class="subCurrency" type="radio" id="usd-local" name="sub-currency" value="USD Local"
-                                checked="checked"><span>USD Local</span>
+                                checked="checked"><span>{label.CB_USDLocal}</span>
                         </label>
                         <label for="usd-international">
                             <input class="subCurrency" type="radio" id="usd-international" name="sub-currency"
-                                value="USD International"><span>USD International</span>
+                                value="USD International"><span>{label.CB_USDInternational}</span>
                         </label>
                     </template>
                 </div>
                 <label for="payee-name">
-                    <p class="heading">Payee Name</p>
+                    <p class="heading">{label.CB_PayeeName}</p>
                     <input id="payee-nam" type="text" onkeyup={payeeNameHandler} class="fields">
                 </label>
                 <!-- <label for="Remarks">
@@ -57,10 +58,11 @@
                     <textarea id="Remarks" onkeyup={remarkHandler} placeholder="Any comment write here">
                     </textarea>
                 </label> -->
-                <p class="fee">"Refer <a href="https://www.clarienbank.com"> Fee Schedule </a>For Applicable Fees."</p>
+                <p class="fee">"{label.CB_Refer} <a href="https://www.clarienbank.com">{label.CB_FeeSchedule}
+                    </a>&nbsp;{label.CB_ForApplicableFees}."</p>
                 <div class="btns">
                     <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>{label.NEXT}</button>
-                    <!-- <button class="cancel">CANCEL</button> -->
+                    <!-- <button class="cancel" >CANCEL</button> -->
                 </div>
             </div>
         </div>

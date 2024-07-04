@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 06-06-2024
+  @last modified on  : 06-26-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -19,20 +19,30 @@
 			<div class="slds-grid slds-wrap">
 				<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
 					<span onclick={handleTransactionsClick}
-						class={transactionStyle}><strong>Transactions</strong></span>
+						class={transactionStyle}><strong>{label.TRANSACTIONS}</strong></span>
 				</div>
 				<div
 					class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 slds-text-align_right">
-					<span onclick={handleOverviewClick} class={overViewStyle}><strong>Overview</strong></span>
+					<span onclick={handleOverviewClick} class={overViewStyle}><strong>{label.DETAILS}</strong></span>
 				</div>
 			</div>
 		</div>
 		<div class="wrapper-2">
 			<template if:true={transaction}>
 				<div class="icons-container">
-					<div>
-						<p>Showing transactions</p>
-						<p class="transactionDate">2023-11-12 - 2024-06-12</p>
+					<div class="filterData">
+						<template if:true={hasTransactionData}>
+							<template if:true={nTransactions}>
+								<p>{label.SHOWING_LAST} {lastNTransactions} {label.TRANSACTIONS}</p>
+							</template>
+							<template if:false={nTransactions}>
+								<p>{label.SHOWING_TRANSACTION_FROM}</p>
+								<p class="transactionDate">{fromDate} - {toDate}</p>
+							</template>
+						</template>
+						<template if:false={hasTransactionData}>
+								<p>{label.NO_RECENT_TRANSACTION}</p>
+						</template>
 					</div>
 					<div class="icons">
 						<!-- <svg width="20" height="25" viewBox="0 0 20 25" fill="none" xmlns="http://www.w3.org/2000/svg" onclick={generatePdf}>
@@ -73,9 +83,12 @@
 			</template>
 		</div>
 	</div>
-	<template if:true={modalFilter}>
-		<c-c-b-filter-transaction-modal onfilter={openFilterPopup}>
-		</c-c-b-filter-transaction-modal>
-	</template>
 	<c-c-b-footer></c-c-b-footer>
+	<template if:true={isLoading}>
+		<c-c-b-loading-spinner>
+		</c-c-b-loading-spinner>
+	</template>
+	<template if:true={modalOpen}>
+		<c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+	</template>
 </template>

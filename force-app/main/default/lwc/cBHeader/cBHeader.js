@@ -9,21 +9,31 @@
 import { LightningElement, api, track } from 'lwc'; // Importing LightningElement, api decorator, and wire adapter
 import { NavigationMixin } from 'lightning/navigation'; // Importing NavigationMixin for navigation functionality
 
-// import getProfileDocId from '@salesforce/apex/CBProfileUploadHandler.getProfileDocId'; // Importing Apex method for fetching profile image ID
+import getProfileDocId from '@salesforce/apex/CBProfileUploadHandler.getProfileDocId'; // Importing Apex method for fetching profile image ID
 import LOGOUT_CONFIRM_MESSAGE from '@salesforce/label/c.CB_Logout_Confirm_Message';
+import CB_Logout from '@salesforce/label/c.CB_Logout';
+import CB_Page_Offers from '@salesforce/label/c.CB_Page_Offers';
+import CB_Page_Inbox from '@salesforce/label/c.CB_Page_Inbox';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
 // JS Scripts
-import { logout, getMobileSessionStorage } from 'c/cBUtilities';
+import { logout, getMobileSessionStorage, getLocalStorage } from 'c/cBUtilities';
 
 
 import ALERT_PAGE from '@salesforce/label/c.CB_Page_Alert';
 
 export default class CBHeader extends NavigationMixin(LightningElement) {
 
+
+
+    label = {
+        CB_Logout
+    }
+
+
     // Exposed properties to be passed from parent components
-    @api imageSrc = '';
+    imageSrc = false;
     imageName = '';
     init = '';
     //flag to hide the logout modal
@@ -65,7 +75,8 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
     * @returns {void}
     */
     connectedCallback() {
-        this.imageName = getMobileSessionStorage('CustomerName');
+        this.imageName = getLocalStorage('CustomerName');
+        this.loadProfileImage();
         this.loadNameInit();
     }
 
@@ -76,13 +87,40 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
      * @returns {void}
      */
     loadNameInit() {
-        if(!this.imageName) {
+        if (!this.imageName) {
             return;
         }
         let wrds = this.imageName.split(/\s+/);
         wrds.forEach(element => {
             this.init += element.charAt(0).toUpperCase();
         });
+    }
+
+      /**
+  * Method to load the profile image asynchronously
+  * Fetches the profile image document ID from the server and constructs the URL for the image.
+  * @returns {void}
+  */
+      loadProfileImage() {
+        // Call server to fetch profile image
+        getProfileDocId()
+            .then(result => {
+                console.log('profile pic fetch result: ', result);
+                if (result.startsWith('Error:')) {
+                    console.error('Error occurred while fetching profile image:', result);
+                    this.imageSrc = false;
+                }else if(result === 'List has no rows for assignment to SObject') {
+                    this.imageSrc = false;
+                } else {
+                    let profileImg = '/sfc/servlet.shepherd/version/download/' + result;
+                    this.refs.profile.style.backgroundImage = `url(${profileImg})`;
+                    this.imageSrc = true;
+                }
+            })
+            .catch(error => {
+                this.imageSrc = false;
+                console.error('Error occurred while fetching profile image:', error);
+            });
     }
 
     /**
@@ -119,15 +157,17 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
     }
 
     /**
-    * Method to navigate to profile page
-    * Navigates to the profile page using NavigationMixin.
+    * Method to open profile
     * @returns {void}
     */
     navigateToProfile() {
         this.openSliderMenu()
     }
+
+
+
     /**
-    * Method to navigate to profile page
+    * Method to navigate to alert page
     * Navigates to the alert page using NavigationMixin.
     * @returns {void}
     */
@@ -140,20 +180,31 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
         });
     }
 
+
+    /**
+    * Method to navigate to Offers page
+    * Navigates to the Offers page using NavigationMixin.
+    * @returns {void}
+    */
     navigateToOffers() {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'CBOffers__c'
+                name: CB_Page_Offers
             }
         });
     }
 
+    /**
+    * Method to navigate to Inbox page
+    * Navigates to the Inbox page using NavigationMixin.
+    * @returns {void}
+    */
     navigateToInbox() {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'CBInbox__c'
+                name: CB_Page_Inbox
             }
         });
     }
@@ -162,11 +213,16 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
     sliderClass = ''
     openSlider = false
     wrapperClass = 'wrapper'
+
+    // Method that actuates the slider open by manipulating the class name for the html element
     openSliderMenu() {
         console.log("Opened called!")
         this.openSlider = true
         this.sliderClass = 'slds-modal slds-fade-in-open slds-modal_full slider-menu-container slider-menu-show'
     }
+
+
+    // Method that actuates the slider close by manipulating the class name for the html element
     closeSlider() {
         console.log("Closed called!")
         this.sliderClass = 'slds-modal slds-fade-in-open slds-modal_full slider-menu-container slider-menu-hide'
@@ -207,24 +263,6 @@ export default class CBHeader extends NavigationMixin(LightningElement) {
 
 
 
-/**
- * Method to load profile image asynchronously
- * Fetches the profile image document ID from the server and updates the image source accordingly.
- * @returns {void}
- */    
-// loadProfileImage() {
-//         getProfileDocId()
-//             .then(result => {
-//                 if (result.startsWith('Error:')) {
-//                     console.error('Error occurred while fetching profile image:', result);
-//                 } else {
-//                     this.imageSrc = '/sfc/servlet.shepherd/version/download/' + result;
-//                 }
-//             })
-//             .catch(error => {
-//                 console.error('Error occurred while fetching profile image:', error);
-//             });
-//     }
 
     /**
      * Method to open the logout confirmation modal

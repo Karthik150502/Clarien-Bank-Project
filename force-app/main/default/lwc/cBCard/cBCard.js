@@ -1,5 +1,8 @@
 import { LightningElement, api } from 'lwc';
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
+
+import CB_Next_Interest_Payment_Amount from '@salesforce/label/c.CB_Next_Interest_Payment_Amount';
+import CB_Next_Interest_Payment_Date from '@salesforce/label/c.CB_Next_Interest_Payment_Date';
 import CB_CurrentBalance from '@salesforce/label/c.CB_CurrentBalance';
 import CB_TotalHolds from '@salesforce/label/c.CB_TotalHolds';
 import CB_AvailableBalance from '@salesforce/label/c.CB_AvailableBalance';
@@ -9,97 +12,116 @@ import CB_Product_Name from '@salesforce/label/c.CB_Product_Name';
 import CB_Maturity_Date from '@salesforce/label/c.CB_Maturity_Date';
 import CB_Deposit_StartDate from '@salesforce/label/c.CB_Deposit_StartDate';
 import CB_Pending_Balance from '@salesforce/label/c.CB_Pending_Balance';
+import CB_Date from '@salesforce/label/c.CB_Date';
+
+import CB_CardExpiryDate from '@salesforce/label/c.CB_CardExpiryDate';
+import CB_CardNo from '@salesforce/label/c.CB_CardNo';
+import CB_CardStatus from '@salesforce/label/c.CB_CardStatus';
 
 
 export default class CBCard extends LightningElement {
+    // Labels object to hold custom labels.
     label = {
+        CB_Next_Interest_Payment_Amount,
+        CB_Next_Interest_Payment_Date,
         CB_CurrentBalance,
-        CB_TotalHolds ,
+        CB_TotalHolds,
         CB_AvailableBalance,
         CB_Account_Number,
         CB_Beneficiary,
         CB_Product_Name,
         CB_Maturity_Date,
         CB_Deposit_StartDate,
-        CB_Pending_Balance
-    }
-    @api cardType = {
-        // CreditAccount: {
-        //     cardNum: 600015474586,
-        //     accBal: 'BMD 10,000.00',
-        //     currentBal: 'BMD 10,000.00',
-        //     pendingBal: 'BMD 8000.00',
-        //     cardExpiryDate : '06/27',
-        //     productName: 'PLATINUM CREDIT CARD',
-        //     cardStatus: 'Active',
-        // },
-        // LoanAccount: {
-        //     accountNo: 6000154360,
-        //     accBal: 'BMD 201,210.21',
-        //     interestAmount: 'BMD 602.00',
-        //     interestDate: '11/12/24',
-        //     productName: 'Cash Secured BMD-Regular',
-        //     beneficiary: 'John LTD Demo',
-        //     date: '11/12/2024',
-        // },
-        // JointAccount: {
-        //     accountNo: 6000876590564,
-        //     accBal: 'BMD 9000.00',
-        //     currentBal: 'BMD 9000.00',
-        //     totalHolds: 'BMD 0.00',
-        //     holderName: 'John Due',
-        //     secHolderName: 'Abhraram'
-        // },
-        // SavingsAccount: {
-        //     accountNo: 600015474586,
-        //     accBal: 'BMD 5,546.54',
-        //     currentBal: 'BMD 5664.55',
-        //     totalHolds: 'BMD 0.00',
-        //     productName: 'PERSONAL SAVINGS USD',
-        //     beneficiary: 'Mr. Retail Demo',
-        //     date: '7/05/2024',
-        // },
-        // TimeDepositAccount: {
-        //     accountNo: 600017725563,
-        //     accBal: 'BMD 5,585.54',
-        //     currentBal: 'BMD 5,585.54',
-        //     totalHolds: 'BMD 0.00',
-        //     principalAmount: 'BMD 10,000.0',
-        //     depositStartDate: '12/12/2023',
-        //     maturityDate: '13/12/2025',
-        // }
+        CB_Pending_Balance,
+        CB_Date,
+        CB_CardExpiryDate,
+        CB_CardNo,
+        CB_CardStatus,
     }
 
-    creditCardView = true
+    // @api decorator to make cardType property reactive and public.
+    @api cardType = {
+        // Sample data for different types of accounts can be uncommented as needed.
+    }
+
+    connectedCallback() {
+        console.log("CBCard connectedCallback")
+        console.log(JSON.stringify(this.cardType))
+        this.formatAmountFields()
+    }
+
+    formatAmountFields() {
+        let acct = { ...this.cardType }
+        let allAccountTypes = new Set([
+            "CurrentAccount",
+            "TimeDepositAccount",
+            "SavingsAccount",
+            "JointAccount",
+            "LoanAccount",
+            "CreditAccount"
+        ])
+        let amountFields = new Set([
+            "principalAmount",
+            "totalHolds",
+            "currentBal",
+            "accBal",
+            "interestAmount",
+            "pendingBal"
+        ])
+        let cardType = Object.keys(acct).find(item => allAccountTypes.has(item))
+        let amountFieldObj = { ...acct[cardType] }
+        Object.keys(acct[cardType]).forEach((key) => {
+            if (amountFields.has(key)) {
+                if (!isNaN(acct[cardType][key])) {
+                    amountFieldObj[key] = Number(amountFieldObj[key]).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    })
+                }
+            }
+        })
+        acct[cardType] = amountFieldObj
+        this.cardType = acct
+    }
+
+    creditCardView = true // Boolean flag to toggle between front and back view of the card.
+
+    // URLs for various SVG icons.
     CBCardRotate = `${CBSVG}/CBSVGs/CBCardRotate.svg#CBCardRotate`;
     CBHideCardNumber = `${CBSVG}/CBSVGs/CBHideCardNumber.svg#CBHideCardNumber`;
     CBShare = `${CBSVG}/CBSVGs/CBShare.svg#CBShare`;
 
-    
+    // Getter method to return CSS class for styling based on creditCardView state.
     get style() {
         return this.creditCardView ? 'container front' : 'container back';
     }
 
-
+    // Method to rotate the card to the back view. No parameters. No return value.
     rotateToBack() {
         this.creditCardView = false;
     }
 
+    // Method to rotate the card to the front view. No parameters. No return value.
     rotateToFront() {
         this.creditCardView = true;
     }
 
-    hideCardNo = true;
+    hideCardNo = true; // Boolean flag to toggle card number visibility.
 
+    // Method to toggle the visibility of the card number. No parameters. No return value.
     showCardNumber() {
-        this.hideCardNo = !this.hideCardNo
+        this.hideCardNo = !this.hideCardNo;
     }
 
+    // Getter method to return the card number based on hideCardNo state.
+    // If hideCardNo is true, return masked card number. Otherwise, return full card number.
+    // No parameters.
+    // Returns a string representing the card number.
     get cardNumber() {
         if (this.hideCardNo && this.cardType.CreditAccount.cardNum) {
-            return '****  ****  ****' + (this.cardType.CreditAccount.cardNum).toString().slice(-4)
+            return '****  ****  ****' + (this.cardType.CreditAccount.cardNum).toString().slice(-4);
         } else {
-            return this.cardType.CreditAccount.cardNum
+            return this.cardType.CreditAccount.cardNum;
         }
     }
 }

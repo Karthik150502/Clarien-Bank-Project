@@ -67,7 +67,7 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
         USERNAME,
         PASSWORD,
         REM_ME,
-        LOG_IN: LOG_IN.toUpperCase(),
+        LOG_IN,
         FORGOT_PASSWORD,
         NEW_TO_CLARIEN,
         SIGNUP,
@@ -346,10 +346,7 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
 
         // Setting the authentication status message
         this.authenticationPopup.authenticationStatus = message;
-        console.log("Outer: Closed Loading......!!!")
         setTimeout(() => {
-            console.log("Inner: Closed Authentication Modal......!!!")
-
             // Removing the Authentication status modal 
             this.authenticationPopup.openModal = false;
 
@@ -553,9 +550,7 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
     startUrl = '';
     @wire(CurrentPageReference) getPageRef(pagRef) {
         if (pagRef != null) {
-            console.log('pagRef : ', pagRef);
             this.startUrl = pagRef["state"]["startURL"];
-            console.log('startr url : ', this.startUrl);
         }
     }
 
@@ -575,14 +570,7 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
             headers: ''  // Provide metadata name
         };
 
-        /* doLoginStd({un: this.username, pwd: this.password, startUrl:this.startUrl}).then(result=>{
-             window.location.href = result;
- 
-         }).catch(error=>{
-             console.log(error);
-         })*/
-
-        login({ wrapper: requestWrapper,startURL: this.startURL })
+        login({ wrapper: requestWrapper, startURL: this.startUrl })
             .then((result) => {
                 console.log('url : ', result.loginUrl);
                 //window.location.href = result.loginUrl;
@@ -590,19 +578,25 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
                 setLocalStorage('CBFirstHomeLanding', true)
 
                 if (result?.customerName) {
-                    setMobileSessionStorage('CustomerName', result?.customerName)
+                    setLocalStorage('CustomerName', result?.customerName)
                 }
 
                 if (result?.lastLogin) {
-                    setMobileSessionStorage('LastLogin', result?.lastLogin)
+                    setLocalStorage('LastLogin', result?.lastLogin)
                 }
 
-                setMobileSessionStorage('isIronKidsAccount', result?.segmentRets)
-                console.log('Segment Rets = ' + setMobileSessionStorage('isIronKidsAccount', result?.segmentRets))
+                if (result?.customerId) {
+                    setLocalStorage('CustomerId', result?.customerId)
+                    console.log('CustomerId', getMobileSessionStorage('CustomerId'))
+                }
+
+                setLocalStorage('isIronKidsAccount', result?.segmentRets)
+                console.log('Segment Rets = ' + setLocalStorage('isIronKidsAccount', result?.segmentRets))
 
 
-                setMobileSessionStorage('CBUsername', this.username)
-                setMobileSessionStorage('CBPassword', this.password)
+                setLocalStorage('CBUsername', this.username)
+                setLocalStorage('CBPassword', this.password)
+                setLocalStorage('CBIsFirstTimeLogin', 'true')
 
                 this.handleAuthenticationSuccess(result.loginUrl, result.forcePwdChangeFlag);
                 console.log('OUTPUT : ', result);
@@ -693,7 +687,6 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
         }
         console.log(JSON.stringify(this.modal))
     }
-
 
 
 }

@@ -9,7 +9,7 @@
 
 .wrapper {
     width: 100vw;
-    height:100vh
+    height: 100vh
 }
 
 .heading {
@@ -50,7 +50,7 @@
 }
 
 .container .sub-container .options label {
-    width: -webkit-fill-available;
+    width: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -102,7 +102,9 @@
     font-size: 14px;
     font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
-.submit-cancel button:disabled, .submit-cancel button[disabled]{
+
+.submit-cancel button:disabled,
+.submit-cancel button[disabled] {
     background-color: var(--light-grey);
 }
 
@@ -125,4 +127,8 @@ c-c-b-header {
 c-c-b-footer {
     position: fixed;
     bottom: 0;
+}
+
+c-c-b-remarks {
+    width: 100%;
 }

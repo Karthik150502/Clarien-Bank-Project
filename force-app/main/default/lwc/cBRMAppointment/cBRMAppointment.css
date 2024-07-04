@@ -20,15 +20,22 @@
 .wrapper .container .casing {
     width: 100%;
     height: auto;
-    margin: 5% 0;
+    margin: 15px auto 15px auto;
+    border: 1px solid var(--border-blue);
+    border-radius: 12px;
+    padding: 10px 0 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.btns{
+.btns {
     display: flex;
     justify-content: center;
 }
 
-.btns .submit-btn{
+.btns .submit-btn {
     width: 105px;
     height: 35px;
     border: none;
@@ -40,7 +47,7 @@
     font-weight: 700;
 }
 
-.container textarea{
+.container textarea {
     border: 1px solid var(--border-blue);
     border-radius: 12px;
     margin: 4% 0 2% 0;
@@ -55,20 +62,15 @@
     background-color: var(--light-grey);
 }
 
-.title{
+.title {
     color: var(--primary-grey);
 }
-p{
-    font-family: var(--dxp-g-root-gotham-bold-font-family);
-    color: var(--primary-black);
+
+
+.title {
+    margin: 5% 0% 0% 0%;
 }
-p span{
-    font-family: var(--dxp-g-root-gotham-book-font-family);
-    color: var(--light-grey);
-}
-.title{
-    margin:5% 0% 0% 0%;
-}
+
 .trans-date .date {
     position: relative;
     margin: 0 auto;
@@ -87,15 +89,14 @@ p span{
 .trans-date .date>p {
     position: absolute;
     left: 10px;
-    font-family: var(--dxp-g-root-gotham-medium-font-family);
-    color: var(--primary-black);
+    font-size: 16px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
 }
 
 .trans-date>p {
     font-size: 12px;
     margin: 0 0 1% 0%;
     font-family: var(--dxp-g-root-gotham-bold-font-family);
-    /* color: var(--primary-grey); */
 }
 
 .trans-date .trans-date-inp {
@@ -109,23 +110,150 @@ p span{
     position: absolute;
     right: 8px;
     bottom: 8px;
-    /* z-index: -10; */
 }
+
 c-c-b-footer {
     position: fixed;
     border: none;
     bottom: 0;
     z-index: 1;
 }
-select{
+
+select {
     font-size: 16px !important;
     max-height: 100px !important;
 }
-textarea {
-    font-size: 16px !important;
-    max-height: 100px !important;
-}
+
+
 input {
     font-size: 16px !important;
     max-height: 100px !important;
+}
+
+
+
+.w-90p {
+    width: 90%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin: 15px auto 0px auto;
+}
+
+.w-90p-space-bet {
+    width: 90%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 15px auto 0px auto;
+}
+
+.w-45p {
+    width: 45%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.w-45p>p {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+.inp {
+    font-size: 12px;
+    width: 100%;
+    height: 35px;
+    border-radius: 12px;
+    border: 1px solid var(--border-blue);
+    padding: 0 5px 0 5px;
+}
+
+.w-90p>p {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+.error-div {
+    margin: 10px auto 5px auto;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.terms-c {
+    display: flex;
+    margin: 3% 0% 0% 0%;
+}
+
+.terms-c a {
+    color: var(--primary-blue);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.check-box {
+    width: 7%;
+    display: flex;
+    align-items: center;
+}
+
+.checkBox {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background-color: FFFFFF;
+    border: 1px solid var(--border-blue);
+    border-radius: 0;
+    outline: none;
+    position: relative;
+}
+
+.checkBox:checked::before {
+    content: '\2713';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #28a745;
+    font-size: 14px;
+}
+
+.checkboxes {
+    display: flex;
+    align-items: normal;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 265px;
+    overflow: scroll;
+}
+
+
+
+.checkboxes::-webkit-scrollbar {
+    display: none;
+}
+
+.grep-p {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
+}
+
+.grep-light-p {
+    font-size: 12px;
+    margin: 0 0 1% 0%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--light-grey);
 }

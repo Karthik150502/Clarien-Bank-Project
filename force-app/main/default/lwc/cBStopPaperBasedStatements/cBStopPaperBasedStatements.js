@@ -1,11 +1,30 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
+import SAVING_ACCOUNT from '@salesforce/label/c.CB_Header_SavingAccount';
+import NEXT from '@salesforce/label/c.CB_Next';
+import RESET from '@salesforce/label/c.CB_Reset';
+import StopPaperBasedStatements from '@salesforce/label/c.CB_StopPaperBasedStatements';
+import Page_Stoppaperbasedstatementsaccountdeatils from '@salesforce/label/c.CB_Page_Stoppaperbasedstatementsaccountdeatils';
+import Page_Applynow from '@salesforce/label/c.CB_Page_Applynow';
+
+import { getMobileSessionStorage } from 'c/cBUtilities';
+
 export default class CBStopPaperBasedStatements extends NavigationMixin(LightningElement) {
 
+    label = {
+        SAVING_ACCOUNT,
+        NEXT,
+        RESET
+    }
+
+    /**
+     * Configuration object for secondary header
+     * @type {Object}
+     */
     configuration = {
-        previousPageUrl: 'CBApplyNow__c',
-        heading: 'Stop Paper-Based Statements',
+        previousPageUrl: Page_Applynow,
+        heading: StopPaperBasedStatements,
         iconsExposed: true,
         logout: {
             exposed: false
@@ -16,67 +35,97 @@ export default class CBStopPaperBasedStatements extends NavigationMixin(Lightnin
     }
 
     selectedAccounts = []
+
+    connectedCallback() {
+        this.setAccountData()
+    }
+
+    setAccountData() {
+        this.accounts = JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) ? JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) : [];
+    }
+
+    /**
+     * Array of account objects.
+     * @type {Array}
+     */
     accounts = [
         {
-            accNumber: 6000316231,
+            accountNo: '6000316231',
             currency: 'USD',
-            accType: 'Personal Saving Account',
+            accountType: 'Personal Saving Account',
             accStatus: 'Personal Actice Saving USD',
             TransStatus: 'Sent to the bank'
         },
         {
-            accNumber: 6000334231,
+            accountNo: '6000334231',
             currency: 'USD',
-            accType: 'Personal Saving Account',
+            accountType: 'Personal Saving Account',
             accStatus: 'Personal Actice Saving USD',
             TransStatus: 'Sent to the bank'
         },
         {
-            accNumber: 6000367345,
+            accountNo: '6000367345',
             currency: 'USD',
-            accType: 'Personal Saving Account',
+            accountType: 'Personal Saving Account',
             accStatus: 'Personal Actice Saving USD',
             TransStatus: 'Sent to the bank'
         }
     ]
 
+    /**
+     * Handles the form submission.
+     * Gathers selected accounts and navigates to the next page with the selected accounts' data.
+     */
     submitForm() {
         this.checkboxAction('submit');
         // this.selectedAccounts.forEach(account =>{
         //     console.log(account)
         // })
-        
-        this.navigateTo('CBStopPaperBasedStatementsAccountDeatils__c',{accounts:JSON.stringify(this.selectedAccounts)});
-
+        this.navigateTo(Page_Stoppaperbasedstatementsaccountdeatils, { accounts: JSON.stringify(this.selectedAccounts) });
     }
 
-    navigateTo(pageApiName,dataToSend) {
+
+    /**
+     * Navigates to the specified page with the provided data.
+     * 
+     * @param {string} pageApiName - The API name of the page to navigate to.
+     * @param {Object} dataToSend - The data to send to the next page.
+     */
+    navigateTo(pageApiName, dataToSend) {
         console.log('navigate executed')
-        console.log('1st Page',dataToSend)
+        console.log('1st Page', dataToSend)
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
                 name: pageApiName
             },
-            state:dataToSend
+            state: dataToSend
         });
     }
 
+        /**
+     * Resets the form by unchecking all checkboxes and disabling the submit button.
+     */
     resetForm() {
         this.checkboxAction('reset');
     }
 
-    // get buttonDiable(){
-    //     return this.checkSelected()
-    // }
-
-    get buttonEnable(){
+    /**
+     * Getter to determine if the submit button should be enabled.
+     * @type {boolean}
+     */
+    get buttonEnable() {
         return this.buttonDisabled
     }
     buttonDisabled = true
-    checkSelected(){
+
+    /**
+ * Getter to determine if the submit button should be enabled.
+ * @type {boolean}
+ */
+    checkSelected() {
         const selectedAccount = this.template.querySelectorAll(".checkBox");
-        for(let i=0;i<selectedAccount.length;i++){
+        for (let i = 0; i < selectedAccount.length; i++) {
             if (selectedAccount[i].checked) {
                 console.log('one true');
                 this.buttonDisabled = false;
@@ -90,26 +139,31 @@ export default class CBStopPaperBasedStatements extends NavigationMixin(Lightnin
         //         this.buttonEnable = false;
         //     }
         // });
- 
+
     }
 
+        /**
+     * Handles checkbox actions (submit or reset).
+     * 
+     * @param {string} action - The action to perform ('submit' or 'reset').
+     */
     checkboxAction(action) {
-        console.log('test selected',this.checkSelected())
+        console.log('test selected', this.checkSelected())
         const selectedAccount = this.template.querySelectorAll(".checkBox");
         selectedAccount.forEach(checkbox => {
             if (checkbox.checked) {
-                console.log('checkbox',checkbox)
-                console.log('cc',checkbox.checked);
+                console.log('checkbox', checkbox)
+                console.log('cc', checkbox.checked);
                 if (action === 'submit') {
 
                     // this.accounts.forEach((account)=>{
-                    //     if(account.accNumber == checkbox.value){
+                    //     if(account.accountNo == checkbox.value){
                     //         this.selectedAccounts.push(account);
                     //     }
                     // })
 
-                    this.selectedAccounts.push(this.accounts.find( account=>{
-                        return account.accNumber == checkbox.value
+                    this.selectedAccounts.push(this.accounts.find(account => {
+                        return account.accountNo == checkbox.value
                     }))
 
                 } else if (action === 'reset') {

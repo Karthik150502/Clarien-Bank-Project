@@ -1,9 +1,9 @@
 <!--
-  @description       : 
-  @author            : Prateek Deshmukh
-  @group             : 
-  @last modified on  : 06-10-2024
-  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+    Author - Prateek Deshmukh
+    Created Date - 05/28/2024
+    Modified Date - 06/20/2024
+    Description - This is a component designed to showcase AdHoc payment details which is given customer in previous page.
+    Used to confirm the payment and incase customer can save the payment as an template for the pre-defined. 
 -->
 <template>
     <div class="wrapper">
@@ -12,43 +12,42 @@
         </div>
         <div class="container">
             <div class="row1">
-                <p class="label">From Account</p>
+                <p class="label">{label.FROMACCOUNT}</p>
                 <p class="value">{fromAccount}</p>
             </div>
             <div class="row2">
-                <p class="label">From Account</p>
+                <p class="label">{label.TO_ACCOUNT}</p>
                 <p class="value">{toAccount}</p>
             </div>
             <div class="row4">
                 <div class="left">
-                    <p class="label">Customer Name</p>
+                    <p class="label">{label.Custome_Name}</p>
                     <p class="value">{customerName}</p>
                 </div>
-
                 <div class="right">
-                    <p class="label">FEES</p>
+                    <p class="label">{label.FEES}</p>
                     <p class="value">{fees}</p>
                 </div>
             </div>
             <div class="row5">
                 <div class="left">
-                    <p class="label">Amount</p>
+                    <p class="label">{label.PAYMENTS_AMOUNT}</p>
                     <p class="value">{amount}</p>
                 </div>
 
                 <div class="right">
-                    <p class="label">FCC</p>
+                    <p class="label">{label.FCC}</p>
                     <p class="value">{fcc}</p>
                 </div>
             </div>
             <div class="row6">
                 <div class="left">
-                    <p class="label">Date</p>
+                    <p class="label">{label.DATE}</p>
                     <p class="value">{date}</p>
                 </div>
 
                 <div class="right">
-                    <p class="label">FCPT</p>
+                    <p class="label">{label.FCPT}</p>
                     <p class="value">{fcpt}</p>
                 </div>
             </div>

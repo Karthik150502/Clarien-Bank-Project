@@ -24,8 +24,8 @@ import ERROR_CRITERIA_NOT_MATCH from '@salesforce/label/c.CB_ErrorCriteriaNotMat
 import ERROR_PASS_MISMATCH from '@salesforce/label/c.CB_ErrorPassMismatch';
 import ERROR_ENTER_THE_PASS from '@salesforce/label/c.CB_ErrorEnterThePass';
 import ENTER_A_VALID_OLD from '@salesforce/label/c.CB_EnterValidOldPass';
-import PASSWORD_CHANGED_MESSAGE from '@salesforce/label/c.CB_Password_Changed_Message';
 import CHANGEPASSWORD_PAGE from '@salesforce/label/c.CB_Page_Changepassword';
+import OK_BUTTON from '@salesforce/label/c.CB_Ok';
 
 import AUTHENTICATION_FAILED_MESSAGE from '@salesforce/label/c.CB_Authentication_Failed';
 import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentication_InProgress';
@@ -37,7 +37,7 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 //resources for Ad-hauthentication process
 import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSuccess';
 import changePassword from '@salesforce/apex/CBApiController.changePassword';
-import { getJsonData, getSessData, dateToTimestamp, logout,getUserCreds, setPagePath } from 'c/cBUtilities';
+import { getJsonData, getSessData, dateToTimestamp, logout, getUserCreds, setPagePath } from 'c/cBUtilities';
 export default class CBChangePassword extends NavigationMixin(LightningElement) {
 
     CBBackIcon = `${CBSVG}/CBSVGs/CBBackIcon.svg#CBBackIcon`;
@@ -89,7 +89,7 @@ export default class CBChangePassword extends NavigationMixin(LightningElement) 
         OLD_PASSWORD,
         NEW_PASSWORD,
         CONFIRM_PASSWORD,
-        SUBMIT: SUBMIT.toUpperCase(),
+        SUBMIT,
         PASSWORD_MUST_CONTAIN,
         MIN_10_CHARS,
         ATLEAST_ONE_UPPER,
@@ -211,7 +211,7 @@ export default class CBChangePassword extends NavigationMixin(LightningElement) 
                     logout();
                     this.confirmModal = false;
                 }
-                this.comfirmModalConf.yesButton.label = "OK"
+                this.comfirmModalConf.yesButton.label = OK_BUTTON
                 this.submitted = true   // Set the submitted flag to true
                 this.authenticate(this.successGif, AUTHENTICATION_SUCCESSFUL_MESSAGE, true);
             }).catch((error) => {
@@ -271,7 +271,7 @@ export default class CBChangePassword extends NavigationMixin(LightningElement) 
             this.comfirmModalConf.yesButton.implementation = () => {
                 this.confirmModal = false;
             }
-            this.comfirmModalConf.yesButton.label = "OK"
+            this.comfirmModalConf.yesButton.label = OK_BUTTON
             this.authenticate(this.failureGif, AUTHENTICATION_FAILED_MESSAGE, true);
         }
     }
@@ -369,7 +369,7 @@ export default class CBChangePassword extends NavigationMixin(LightningElement) 
         message: '',           // Message content of the modal (empty in this case)
         yesButton: {
             exposed: true,      // Whether the 'OK' button is exposed (visible)
-            label: "OK",        // Label text for the 'OK' button
+            label: OK_BUTTON,        // Label text for the 'OK' button
             implementation: () => {     // Function to execute when the 'OK' button is clicked
                 // Navigate to profile settings page
                 this.confirmModal = false          // Close the modal

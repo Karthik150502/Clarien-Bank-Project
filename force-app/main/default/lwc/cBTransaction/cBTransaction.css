@@ -4,7 +4,9 @@
     font-family: var(--dxp-g-root-gotham-medium-font-family);
     font-family: var(--dxp-g-root-gotham-book-font-family);
 }
-
+:host {
+	--slds-c-accordion-section-color-border: transparent;
+  }
 .wrapper {
     margin-left: 5px;
     width: 100;
@@ -48,7 +50,7 @@
 }
 
 .emiID {
-    color: var(--primary-blue);
+    /* color: var(--primary-blue); */
     font-weight: bolder;
 }
 
@@ -61,4 +63,12 @@
 }
 .debit {
     color: red;
+}
+
+
+.slds-accordion__summary-heading .slds-button:focus {
+    box-shadow: none
+}
+.slds-accordion__summary-heading .slds-button:hover {
+    box-shadow: none
 }

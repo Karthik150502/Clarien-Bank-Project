@@ -10,7 +10,7 @@
 
 
 .wrapper {
-     min-height: fit-content;
+    min-height: fit-content;
     max-height: max-content;
     width: 80%;
     background-color: var(--primary-white);
@@ -132,4 +132,34 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+}
+
+
+
+.error-repr {
+    height: 60px;
+    aspect-ratio: 1/1;
+    background-color: var(--primary-red);
+    border-radius: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.line-i {
+    height: 35px;
+    width: 6px;
+    border-radius: 3px;
+    background-color: var(--primary-white);
+    margin: 0 0 2px 0;
+}
+
+.dot {
+    height: 8px;
+    aspect-ratio: 1/1;
+    border-radius: 4px;
+    background-color: var(--primary-white);
+    margin: 2px 0 0 0;
 }

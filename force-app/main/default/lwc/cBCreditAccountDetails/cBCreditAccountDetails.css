@@ -5,25 +5,26 @@
 	font-family: var(--dxp-g-root-gotham-bold-font-family);
 	font-family: var(--dxp-g-root-gotham-medium-font-family);
 	font-family: var(--dxp-g-root-gotham-book-font-family);
+	background-color: var(--primary-white);
 }
 
-/*
-.wrapper {
-	width: 100vw;
-	height: auto;
-	overflow: hidden;
-	overflow-x: hidden;
-	overflow-y: hidden;
+c-c-b-header {
+	position: absolute;
+	top: 0;
+	z-index: 10;
 }
 
-.cardRotate{
-    position: relative;
-    left: -8%;
-    bottom: -195px;
-}
 .icons-container {
 	border: 1px solid var(--border-blue);
 	border-radius: 10px;
+}
+
+.filterData{
+	height: 100%;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    align-items: flex-start;
 }
 
 .icons {
@@ -53,13 +54,16 @@
 .overview-container,
 .icons-container {
 	width: 95%;
-	margin-left: 10px;
+	/* margin-left: 10px; */
+	margin: 0 0 2% 10px;
 }
-.icons-container{
+
+.icons-container {
 	display: flex;
-    justify-content: space-between;
-    padding: 2%;
+	justify-content: space-between;
+	padding: 2%;
 }
+
 .column {
 	margin: 3%;
 }
@@ -78,13 +82,6 @@
 	font-weight: bolder;
 }
 
-.wrapper .transactions {
-	width: 100%;
-	height: 50vh;
-	margin: 0 auto;
-	overflow-y: scroll;
-}
-
 .transaction-heading .overview {
 	padding: 4% 4% 4% 4%;
 	border-radius: 62px;
@@ -94,29 +91,63 @@
 	font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
 
-.wrapper .transactions::-webkit-scrollbar {
+::-webkit-scrollbar {
 	display: none;
 }
 
-.wrapper .icons-container .icons svg {
+/* .wrapper .icons-container .icons svg {
 	margin: 0 2% 0 2%;
-}
-
-.wrapper .icons-container .icons svg {
+} */
+.wrapper-2 .icons-container .icons svg {
 	margin: 0 0 0 10px;
 }
 
-.wrapper .icons-container .icons {
+.wrapper-2 .icons-container .icons {
 	padding: 1% 0 0 0
 }
 
 c-c-b-footer {
-    position: fixed;
-    border: none;
-    bottom: 0;
-    z-index: 1;
+	position: fixed;
+	border: none;
+	bottom: 0;
+	z-index: 1;
 }
-.transactionDate{
+
+.transactionDate {
 	font-family: var(--dxp-g-root-gotham-bold-font-family);
 }
-*/
+
+.secondary-header {
+	width: 90%;
+	margin: 70px auto 10px auto;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    /* overflow: hidden;
+    overflow-x: hidden; */
+    overflow-y: scroll;
+}
+
+.wrapper-2 {
+    width: 100vw;
+	height: auto;
+    /* height: 40vh;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden; */
+	padding-bottom: 75px;
+}
+
+.icons-container {
+    height: 50px;
+}
+ 
+.wrapper-2 .transactions {
+    width: 100%;
+    /* height: calc(100% - 50px); */
+    margin: 0 auto;
+    /* overflow-y: scroll; */
+    padding: 0 0 15px 0;
+}

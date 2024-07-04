@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-26-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
     <div class="container">
         <template if:true={companyLogoExposed}>
@@ -13,7 +20,7 @@
 
 
         <div class="heading">
-            <p>Please enter security token</p>
+            <p>{label.PLS_ENTER_SECURITY_TOKEN}</p>
         </div>
         <template if:false={validTokenType}>
             <span class={tokenValidClass}>{tokenErrorMessage}</span>

@@ -16,12 +16,12 @@
                             <p class="p2">{cardType.CreditAccount.accBal}</p>
                             <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
-    
+
                         <div class="others">
                             <p class="p4">{label.CB_CurrentBalance}: {cardType.CreditAccount.currentBal}</p>
                             <p class="p4">{label.CB_Pending_Balance}: {cardType.CreditAccount.pendingBal}</p>
                         </div>
-    
+
                     </div>
                     <div class="card-flip-icon-front" onclick={rotateToBack}>
                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -33,22 +33,22 @@
                 <div class="back-face">
                     <div class="details-bf">
                         <div class="b1">
-                            <p class="p1">Card Expiry Date</p>
+                            <p class="p1">{label.CB_CardExpiryDate}</p>
                             <p>{cardType.CreditAccount.cardExpiryDate}</p>
                         </div>
-    
+
                         <div class="b2">
                             <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.CreditAccount.productName}</p>
                         </div>
-    
+
                         <div class="b3">
-                            <p class="p1">Card Status</p>
+                            <p class="p1">{label.CB_CardStatus}</p>
                             <p>{cardType.CreditAccount.cardStatus}</p>
                         </div>
-    
+
                         <div class="b4">
-                            <p class="p1">Card No</p>
+                            <p class="p1">{label.CB_CardNo}</p>
                             <div class="card-num">{cardNumber}
                                 <!-- <div onclick={showCardNumber} class="eye-icon">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -62,7 +62,7 @@
                                     </svg>
                                 </div> -->
                             </div>
-    
+
                         </div>
                     </div>
                     <div class="card-flip-icon-back" onclick={rotateToFront}>
@@ -71,8 +71,8 @@
                             <use href={CBCardRotate}></use>
                         </svg>
                     </div>
-    
-    
+
+
                     <div class="share-icon">
                         <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBShare}></use>
@@ -92,12 +92,13 @@
                             <p class="p2">{cardType.LoanAccount.accBal}</p>
                             <p class="p3">Outstanding Amount</p>
                         </div>
-    
+
                         <div class="others">
-                            <p class="p4">{lable.CB_Next_Interest_Payment_Amount}: {cardType.LoanAccount.interestAmount}</p>
-                            <p class="p5">{lable.CB_Next_Interest_Payment_Date}: {cardType.LoanAccount.interestDate}</p>
+                            <p class="p4">{label.CB_Next_Interest_Payment_Amount}: {cardType.LoanAccount.interestAmount}
+                            </p>
+                            <p class="p4">{label.CB_Next_Interest_Payment_Date}: {cardType.LoanAccount.interestDate}</p>
                         </div>
-    
+
                     </div>
                     <div class="card-flip-icon-front" onclick={rotateToBack}>
                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -109,22 +110,22 @@
                 <div class="back-face">
                     <div class="details-bf">
                         <div class="b1">
-                            <p class="p1">{lable.CB_Account_Number}</p>
+                            <p class="p1">{label.CB_Account_Number}</p>
                             <p class="p2">{cardType.LoanAccount.accountNo}</p>
                         </div>
-    
+
                         <div class="b2">
                             <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.LoanAccount.productName}</p>
                         </div>
-    
+
                         <div class="b3">
                             <p class="p1">{label.CB_Beneficiary}</p>
                             <p class="p2">{cardType.LoanAccount.beneficiary}</p>
                         </div>
-    
+
                         <div class="b4">
-                            <p class="p1">Date</p>
+                            <p class="p1">{label.CB_Date}</p>
                             <p class="p2">{cardType.LoanAccount.date}</p>
                         </div>
                     </div>
@@ -134,8 +135,8 @@
                             <use href={CBCardRotate}></use>
                         </svg>
                     </div>
-    
-    
+
+
                     <div class="share-icon">
                         <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBShare}></use>
@@ -155,12 +156,12 @@
                             <p class="p2">{cardType.JointAccount.accBal}</p>
                             <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
-    
+
                         <div class="others">
                             <p class="p4">{label.CB_CurrentBalance}: {cardType.JointAccount.currentBal}</p>
                             <p class="p5">{label.CB_TotalHolds}: {cardType.JointAccount.totalHolds}</p>
                         </div>
-    
+
                     </div>
                     <div class="card-flip-icon-front" onclick={rotateToBack}>
                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -172,10 +173,10 @@
                 <div class="back-face">
                     <div class="details-bf">
                         <div class="b1">
-                            <p class="p1">{lable.CB_Account_Number}</p>
+                            <p class="p1">{label.CB_Account_Number}</p>
                             <p class="p2">{cardType.JointAccount.accountNo}</p>
                         </div>
-                        
+
                         <div class="b2">
                             <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.JointAccount.productName}</p>
@@ -185,12 +186,12 @@
                             <p class="p1">Account Holder Name(joint)</p>
                             <p class="p2">{cardType.JointAccount.holderName} & {cardType.JointAccount.secHolderName}</p>
                         </div>
-    
+
                         <div class="b4">
-                            <p class="p1">{label.CB_AvailableBalance}</p>
+                            <p class="p1">{label.CB_AvailabelBalance}</p>
                             <p class="p2">{cardType.JointAccount.accBal}</p>
                         </div>
-    
+
                     </div>
                     <div class="card-flip-icon-back" onclick={rotateToFront}>
                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -198,8 +199,8 @@
                             <use href={CBCardRotate}></use>
                         </svg>
                     </div>
-    
-    
+
+
                     <div class="share-icon">
                         <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBShare}></use>
@@ -219,12 +220,12 @@
                             <p class="p2">{cardType.SavingsAccount.accBal}</p>
                             <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
-    
+
                         <div class="others">
                             <p class="p4">{label.CB_CurrentBalance}: {cardType.SavingsAccount.currentBal}</p>
-                            <p class="p5">{label.CB_TotalHolds}: {cardType.SavingsAccount.totalHolds}</p>
+                            <p class="p4">{label.CB_TotalHolds}: {cardType.SavingsAccount.totalHolds}</p>
                         </div>
-    
+
                     </div>
                     <div class="card-flip-icon-front" onclick={rotateToBack}>
                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -239,19 +240,19 @@
                             <p class="p1">{label.CB_Account_Number}</p>
                             <p class="p2">{cardType.SavingsAccount.accountNo}</p>
                         </div>
-    
+
                         <div class="b2">
                             <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.SavingsAccount.productName}</p>
                         </div>
-    
+
                         <div class="b3">
                             <p class="p1">{label.CB_Beneficiary}</p>
                             <p class="p2">{cardType.SavingsAccount.beneficiary}</p>
                         </div>
-    
+
                         <div class="b4">
-                            <p class="p1">Date</p>
+                            <p class="p1">{label.CB_Date}</p>
                             <p class="p2">{cardType.SavingsAccount.date}</p>
                         </div>
                     </div>
@@ -261,8 +262,8 @@
                             <use href={CBCardRotate}></use>
                         </svg>
                     </div>
-    
-    
+
+
                     <div class="share-icon">
                         <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBShare}></use>
@@ -282,15 +283,12 @@
                             <p class="p2">{cardType.TimeDepositAccount.accBal}</p>
                             <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
-    
-                        <div class="others">
-                            <p class="p4">{label.CB_CurrentBalance}: {cardType.JointAccount.currentBal}</p>
-                            <p class="p5">{label.CB_TotalHolds}: {cardType.JointAccount.totalHolds}</p>
 
+                        <div class="others">
                             <p class="p4">{label.CB_CurrentBalance}: {cardType.TimeDepositAccount.currentBal}</p>
                             <p class="p5">{label.CB_TotalHolds}: {cardType.TimeDepositAccount.totalHolds}</p>
                         </div>
-    
+
                     </div>
                     <div class="card-flip-icon-front" onclick={rotateToBack}>
                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -305,14 +303,15 @@
                             <!-- <p class="p1">Account Number</p> -->
                             <p class="p2">{cardType.TimeDepositAccount.accountNo}</p>
                         </div>
-    
+
                         <div class="b2">
                             <p class="p2">{cardType.TimeDepositAccount.principalAmount}</p>
                             <p class="p2">Principal Amount</p>
                         </div>
-    
+
                         <div class="others">
-                            <p class="p1">{label.CB_Deposit_StartDate} : {cardType.TimeDepositAccount.depositStartDate}</p>
+                            <p class="p1">{label.CB_Deposit_StartDate} : {cardType.TimeDepositAccount.depositStartDate}
+                            </p>
                             <p class="p1">{label.CB_Maturity_Date} : {cardType.TimeDepositAccount.maturityDate}</p>
                         </div>
                     </div>
@@ -322,8 +321,8 @@
                             <use href={CBCardRotate}></use>
                         </svg>
                     </div>
-    
-    
+
+
                     <div class="share-icon">
                         <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBShare}></use>
@@ -341,14 +340,14 @@
                         <p class="p1">{cardType.CurrentAccount.accountNo}</p>
                         <div class="avl-bal">
                             <p class="p2">{cardType.CurrentAccount.accBal}</p>
-                            <p class="p3">{label.ava}</p>
+                            <p class="p3">{label.CB_AvailableBalance}</p>
                         </div>
-    
+
                         <div class="others">
                             <p class="p4">{label.CB_CurrentBalance}: {cardType.CurrentAccount.currentBal}</p>
                             <p class="p5">{label.CB_TotalHolds}: {cardType.CurrentAccount.totalHolds}</p>
                         </div>
-    
+
                     </div>
                     <div class="card-flip-icon-front" onclick={rotateToBack}>
                         <svg width="23" height="24" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -360,22 +359,22 @@
                 <div class="back-face">
                     <div class="details-bf">
                         <div class="b1">
-                            <p class="p1">{lbale.CB_Account_Number}</p>
+                            <p class="p1">{label.CB_Account_Number}</p>
                             <p class="p2">{cardType.CurrentAccount.accountNo}</p>
                         </div>
-    
+
                         <div class="b2">
                             <p class="p1">{label.CB_Product_Name}</p>
                             <p class="p2">{cardType.CurrentAccount.productName}</p>
                         </div>
-    
+
                         <div class="b3">
                             <p class="p1">{label.CB_Beneficiary}</p>
                             <p class="p2">{cardType.CurrentAccount.beneficiary}</p>
                         </div>
-    
+
                         <div class="b4">
-                            <p class="p1">Date</p>
+                            <p class="p1">{label.CB_Date}</p>
                             <p class="p2">{cardType.CurrentAccount.date}</p>
                         </div>
                     </div>
@@ -385,8 +384,8 @@
                             <use href={CBCardRotate}></use>
                         </svg>
                     </div>
-    
-    
+
+
                     <div class="share-icon">
                         <svg width="21" height="25" viewBox="0 0 21 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBShare}></use>

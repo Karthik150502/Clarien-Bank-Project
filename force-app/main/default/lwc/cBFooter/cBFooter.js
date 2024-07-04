@@ -11,6 +11,10 @@ import { NavigationMixin } from 'lightning/navigation';
 
 import HOME_PAGE from '@salesforce/label/c.CB_Page_Home';
 import PROFILESETTINGS_PAGE from '@salesforce/label/c.CB_Page_Profilesettings';
+import PROFILE from '@salesforce/label/c.CB_Profile';
+import DASHBOARDS from '@salesforce/label/c.CB_Dashboards';
+import SERVICES from '@salesforce/label/c.CB_Services';
+import SEND_MONEY from '@salesforce/label/c.CB_SendMoney';
 import { setMobileSessionStorage, getMobileSessionStorage, checkSessionkey } from 'c/cBUtilities';
 
 export default class CBFooter extends NavigationMixin(LightningElement) {
@@ -19,6 +23,18 @@ export default class CBFooter extends NavigationMixin(LightningElement) {
     currPageReference = null;
     isIronKidsAccount = false
 
+    label = {
+        HOME_PAGE,
+        PROFILESETTINGS_PAGE,
+        PROFILE,
+        DASHBOARDS,
+        SERVICES,
+        SEND_MONEY
+    }
+
+
+
+    // Lifecycle hook, that gets called on component connect
     connectedCallback() {
         if (checkSessionkey("isIronKidsAccount")) {
             this.isIronKidsAccount = getMobileSessionStorage("isIronKidsAccount") === 'true'

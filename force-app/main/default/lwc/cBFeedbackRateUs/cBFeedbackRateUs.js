@@ -1,5 +1,6 @@
 import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { getAppReviewService } from 'lightning/mobileCapabilities';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 import HOME_PAGE from '@salesforce/label/c.CB_Page_Home';
@@ -15,7 +16,7 @@ export default class CBFeedbackRateUs extends NavigationMixin(LightningElement) 
 
 
     headerConfguration = {
-        previousPageUrl: '',
+        previousPageUrl: 'Home',
         heading: 'Feedback/ Rate Us',
         iconsExposed: false,
         logout: {
@@ -119,7 +120,8 @@ export default class CBFeedbackRateUs extends NavigationMixin(LightningElement) 
             }
         })
         this.emptyFeedback()
-        this.openSuccessModal = true
+        this.handleAppReview()
+        // this.openSuccessModal = true
     }
 
     // Method to navigate back to Previous page
@@ -132,4 +134,26 @@ export default class CBFeedbackRateUs extends NavigationMixin(LightningElement) 
         });
     }
 
+    logs = ''
+    handleAppReview() {
+        const myAppReviewService = getAppReviewService();
+        if(myAppReviewService.isAvailable()) {
+            // Perform app review related operations
+            myAppReviewService.requestAppReview(null)
+                .then((result) => {
+                    // Do something with success response
+                    console.log("App review request complete successfully");
+                    this.logs = 'result: ' + JSON.stringify(result);
+                })
+                .catch((error) => {
+                    // Handle cancelation and scanning errors here
+                    console.error(error);
+                    this.logs = 'App review request failed';
+                })
+        }
+        else {
+            console.log('App Review is not available in this device');
+            this.logs = 'App Review is not available in this device';
+        }
+    }
 }

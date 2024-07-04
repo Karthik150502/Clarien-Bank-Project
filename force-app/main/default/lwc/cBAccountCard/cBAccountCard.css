@@ -69,6 +69,7 @@
 	display: flex;
     align-items: center;
 	justify-content: space-between;
+
 }
 
 .wrapper .container .content .cont-details {
@@ -117,4 +118,6 @@
 
 .view-all-p {
     color: orange;
+    
+    z-index: 1;
 }

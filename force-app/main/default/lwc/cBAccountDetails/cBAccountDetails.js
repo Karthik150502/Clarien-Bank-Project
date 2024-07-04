@@ -3,8 +3,16 @@ import { CurrentPageReference } from 'lightning/navigation';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 import { setPagePath } from 'c/cBUtilities';
-
+import DETAILS from '@salesforce/label/c.CB_Details';
+import TRANSACTIONS from '@salesforce/label/c.CB_Transactions';
 export default class CBAccountDetails extends LightningElement {
+
+    label={
+        DETAILS,
+        TRANSACTIONS
+    }
+
+
 
     cardType = {
         CreditAccount: {
@@ -135,15 +143,15 @@ export default class CBAccountDetails extends LightningElement {
 
     connectedCallback() {
         setPagePath('CBCreditCardAccount__c')
-        let currentDate = new Date();
-        let month = currentDate.getMonth() + 1;
-        let year = currentDate.getFullYear();  
-        this.toDate = new Date(`${year}-${month}`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-        currentDate.setMonth(currentDate.getMonth() - 7)
-        month = currentDate.getMonth() + 1;
-        year = currentDate.getFullYear();
-        this.fromDate = new Date(`${year}-${month}`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-        console.log("CCB");
+        // let currentDate = new Date();
+        // let month = currentDate.getMonth() + 1;
+        // let year = currentDate.getFullYear();  
+        // this.toDate = new Date(`${year}-${month}`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        // currentDate.setMonth(currentDate.getMonth() - 7)
+        // month = currentDate.getMonth() + 1;
+        // year = currentDate.getFullYear();
+        // this.fromDate = new Date(`${year}-${month}`).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+        // console.log("CCB");
     }
     
     fromDate = ''

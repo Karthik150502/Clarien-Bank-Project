@@ -9,6 +9,7 @@ export default class CBResuableSuccessModal extends LightningElement {
     @api configuration = {
         // title: 'Thank You',
         // message: 'Your Feedback was successfully submitted',
+        // isError: true,
         // okButton: {
         //     exposed: true,
         //     label: 'Save',
@@ -24,6 +25,9 @@ export default class CBResuableSuccessModal extends LightningElement {
         // alertMsg: ''
     }
 
+
+
+    // The method that runs when we have some content coming in to the slot
     handleSlotChange() {
         let misallaneous = this.template.querySelector(".misallaneous")
         if (misallaneous) {

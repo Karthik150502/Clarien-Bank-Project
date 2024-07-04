@@ -19,6 +19,7 @@ export default class CBPredefinedList extends NavigationMixin(LightningElement) 
         if (state) {
             this.heading = state.heading;
             this.nextPageURL = state.nextUrl;
+            this.configuration.heading = this.heading;
         }
     }
 
@@ -29,7 +30,7 @@ export default class CBPredefinedList extends NavigationMixin(LightningElement) 
     templates = [
         {
             id: 1,
-            name: 'Rent Payment',
+            name: 'Rent payment',
             fromAcc: '9845121565',
             toAcc: '5913215524',
             amount: 'BMD 3000'
@@ -76,7 +77,7 @@ export default class CBPredefinedList extends NavigationMixin(LightningElement) 
     // }
 
 
-    configuration = {
+    @track configuration = {
         previousPageUrl: 'CBPredefined__c',
         heading: this.heading,
         iconsExposed: false,

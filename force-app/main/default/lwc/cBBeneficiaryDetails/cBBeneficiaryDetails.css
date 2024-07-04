@@ -8,21 +8,23 @@
 }
 
 .wrapper {
-    width: 100%;
+    width: 100%; 
 }
 
 .container {
-    /* width: 90%;
-    margin: 20px auto; */
-
     width: 100%;
-    height: auto;
-    margin: 5% 0;
+    margin: 20px auto;
 
-    /* padding:4%; */
+    /* width: 95%; */
+    height: auto;
+    /* margin: 5% 0; */
+
+    /* padding:3%; */
     /* padding: 2% 4% 4% 4%; */
     border-radius: 12px;
+    background-color: white;
     border: 0.3px solid var(--border-blue);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .wrapper .container .delete{
     margin: 2% 0% 0% 2%;
@@ -43,13 +45,8 @@
 }
 .values{
     font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color:var(--primary-blue);
 }
 .fields, .values{
-    margin: 3% 3%;
-}
-.values{
-    color:var(--primary-blue)
-}
-.details .status{
-    color:var(--primary-orange);
+    margin: 2% 0;
 }

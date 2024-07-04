@@ -7,7 +7,7 @@ public class CBProfileUploadHandler {
  @AuraEnabled
   public static String getProfileDocId() {
       try{
-        return [SELECT Id,ContentDocumentId FROM ContentVersion WHERE Profile_Picture__c=true AND IsMajorVersion = false LIMIT 1].id;
+        return [SELECT Id,ContentDocumentId FROM ContentVersion WHERE IsMajorVersion = false LIMIT 1].id;
       }catch(Exception e){
           return e.getMessage();
       }
@@ -32,7 +32,7 @@ try {
     // Construct the new filename with the user's name before the filename extension
     string newFilename =currentUserFullName.replaceAll(' ','') +'_Profile_Image'+'.' + fileExtension;
     // Query for existing file
-  List<ContentVersion> existingFiles = [SELECT Id FROM ContentVersion WHERE Profile_Picture__c=true AND IsMajorVersion = false LIMIT 1];
+  List<ContentVersion> existingFiles = [SELECT Id FROM ContentVersion WHERE IsMajorVersion = false LIMIT 1];
     
     // Check if an existing file was found
     if (!existingFiles.isEmpty()) {
@@ -89,7 +89,6 @@ try {
       cv.VersionData = EncodingUtil.base64Decode(base64);
       cv.Title = filename;
       cv.PathOnClient = filename;
-      cv.Profile_Picture__c=true;
       cv.IsMajorVersion = false;
 
       try {

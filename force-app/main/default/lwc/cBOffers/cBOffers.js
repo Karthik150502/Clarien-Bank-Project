@@ -1,12 +1,19 @@
 import { LightningElement } from 'lwc';
+import OFFERS_AND_PROMOTIONS from '@salesforce/label/c.CB_OffersAndPromotions';
+import OFFERS_PROMOTIONS from '@salesforce/label/c.CB_OffersPromotions';
+import HOME from '@salesforce/label/c.CB_Home';
 
 
 export default class CBOffers extends LightningElement {
 
+    label = {
+        OFFERS_AND_PROMOTIONS
+    }
 
+    // configuration for secondary header
     configuration = {
-        previousPageUrl: 'Home',
-        heading: 'Offers & Promotions',
+        previousPageUrl: HOME,
+        heading: OFFERS_PROMOTIONS,
         iconsExposed: false,
         logout: {
             exposed: true
@@ -18,6 +25,7 @@ export default class CBOffers extends LightningElement {
         }
     }
 
+    // offers sample data
     offers = [
         {
             id:1,

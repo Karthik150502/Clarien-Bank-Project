@@ -1,0 +1,41 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open slds-modal_medium wrapper">
+
+        <div class="container">
+            <div class="header">
+                <div class="back-logo" onclick={closeModal}>
+                    <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <use href={CBBackIcon}></use>
+                    </svg>
+                </div>
+                <p class="heading">
+                    {label.CB_EditBiller}
+                </p>
+            </div>
+
+            <div class="content">
+                <div class="inp-box">
+                    <p>{label.CB_PayeeName}</p>
+                    <input type="text" class="inp" onkeyup={handlePayeeName} value={payeeName}>
+                </div>
+                <div class="inp-box">
+                    <p>{label.CB_BillerName}</p>
+                    <input type="text" class="inp" readonly value={billerDetails.name}>
+                </div>
+                <div class="inp-box">
+                    <p>{label.CB_BillerCategory}</p>
+                    <input type="text" class="inp" readonly value={billerDetails.category}>
+                </div>
+                <div class="inp-box">
+                    <p>{label.CB_AccountNo}</p>
+                    <input type="text" class="inp" readonly value={billerDetails.accountNo}>
+                </div>
+            </div>
+            <div class="btns">
+                <button onclick={updateBiller}>{label.CB_Done}</button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

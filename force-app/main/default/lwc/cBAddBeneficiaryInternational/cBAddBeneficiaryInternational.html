@@ -1,3 +1,9 @@
+<!--
+    Author - Prateek Deshmukh
+    Created Date - 05/27/2024
+    Modified Date - 06/13/2024
+    Description - This is a component designed to add International Beneficiary details.
+-->
 <template>
     <div class="wrapper">
         <div class="heading">
@@ -7,43 +13,42 @@
             <div class="casing">
 
                 <label for="acc-num">
-                    <p class="title">Account Number / IBAN</p>
+                    <p class="title">{label.INTERNATIONAL_BENEFICIARY_ACCOUNTNUMBER}</p>
                     <input type="number" id="acc-num" onkeyup={accountNumberHandler}>
                 </label>
                 
                 <label for="ben-name">
-                    <p class="title">Beneficiary Name</p>
+                    <p class="title">{label.BENEFICIARY_NAME}</p>
                     <input type="text" id="ben-name" onkeyup={beneficiaryNameHandler}>
                 </label>
 
                 <label for="ben-bank">
-                    <p class="title">Beneficiary Bank</p>
+                    <p class="title">{label.BENEFICIARY_BANK}</p>
                     <input type="text" id="ben-bank" onkeyup={beneficiaryBankHandler}>
                 </label>
-
                 <label for="ben-address">
-                    <p class="title">Beneficiary Address</p>
+                    <p class="title">{label.BENEFICIARY_ADDRESS}</p>
                     <textarea name="" id="ben-address" onkeyup={beneficiaryAddressHandler}>
                     </textarea>
                 </label>
 
                 <label for="ben-city">
-                    <p class="title">Beneficiary City/State/Province/Post code</p>
+                    <p class="title">{label.BENEFICIARY_CITY}</p>
                     <input type="text" id="ben-city" onkeyup={beneficiaryCityHandler}>
                 </label>
 
                 <label for="ben-country">
-                    <p class="title">Beneficiary Country</p>
+                    <p class="title">{label.BENEFICIARY_COUNTRY}</p>
                     <input type="text" id="ben-country" onkeyup={beneficiaryCountryHandler}>
                 </label>
 
                 <label for="ben-code">
-                    <p class="title">Swift Code / Clearing Code</p>
+                    <p class="title">{label.BENEFICIARY_SWIFTCODE}</p>
                     <input type="text" id="ben-code" onkeyup={beneficiarySwiftCodeHandler}>
                 </label>
             </div>
             <div class="btn">
-                <button class="submit-btn" disabled={submitDisable} onclick={submitForm}>ADD</button>
+                <button class="submit-btn" disabled={submitDisable} onclick={submitForm}>{label.ADD}</button>
                 <!-- <button class="cancel-btn" onclick={handleCancel}>CANCEL</button> -->
             </div>
         </div>

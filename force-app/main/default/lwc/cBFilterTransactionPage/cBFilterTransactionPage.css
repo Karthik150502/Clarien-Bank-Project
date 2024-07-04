@@ -24,6 +24,7 @@
     overflow: hidden;
     overflow-x: hidden;
     overflow-y: hidden;
+    background: var(--primary-white);
 }
 
 .wrapper .container {
