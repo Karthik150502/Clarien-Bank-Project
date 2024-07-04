@@ -157,3 +157,16 @@ input {
     font-size: 16px !important;
     max-height: 100px !important;
 }
+
+.notes-container{
+    margin: 5% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.notes-container .notes-inner-container{
+   
+    display: flex;
+    flex-direction: row;
+    
+}

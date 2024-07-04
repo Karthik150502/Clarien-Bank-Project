@@ -17,25 +17,52 @@
 						<p>on {transactionData.date}</p>
 					</div>
 				</div>
-				<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
-					<div class="toggle">
-						<div class="amount-text">
-							<span class={transactionData.type}>BMD {transactionData.amount}</span>
-						</div>
-						<div class="accordian">
-							<lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}>
-								<lightning-accordion-section name="A">
-								</lightning-accordion-section>
-							</lightning-accordion>
+				<template if:true={runningAccountAvailable}>
+					<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+						<div class="toggle">
+							<div>
+								<div class="amount-text">
+									<span class={transactionData.type}>{transactionData.currencyCode}
+										{formattedAmount}</span>
+								</div>
+								<div >
+									<span >{transactionData.runningCurrencyCode}
+										{runningFormattedAmount}</span>
+								</div>
+							</div>
+
+							<div class="accordian">
+								<lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}>
+									<lightning-accordion-section name="A">
+									</lightning-accordion-section>
+								</lightning-accordion>
+							</div>
 						</div>
 					</div>
-				</div>
+				</template>
+				<template if:false={runningAccountAvailable}>
+					<div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+						<div class="toggle">
+							<div class="amount-text">
+								<span class={transactionData.type}>{transactionData.currencyCode}
+									{formattedAmount}</span>
+							</div>
+							<div class="accordian">
+								<lightning-accordion allow-multiple-sections-open onsectiontoggle={handleSectionToggle}>
+									<lightning-accordion-section name="A">
+									</lightning-accordion-section>
+								</lightning-accordion>
+							</div>
+						</div>
+					</div>
+				</template>
 			</div>
 		</div>
 		<template if:true={showDetails}>
 			<div class="details-container">
 				<div class="slds-grid slds-wrap">
-					<div class="emi-section slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12">
+					<div
+						class="emi-section slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12">
 						<span class="emiID">{transactionData.EMIId}</span>
 						</br>
 						<span>{transactionData.CHQSId}</span>

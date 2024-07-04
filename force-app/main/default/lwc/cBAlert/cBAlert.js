@@ -1,26 +1,32 @@
 import { LightningElement } from 'lwc';
 
-import CBSVG from "@salesforce/resourceUrl/CBSVG"
+// Importing labels for easy manipulation of the data in labels
+import HOME_PAGE from "@salesforce/label/c.CB_Page_Home"
+import HEADER_ALERTS from "@salesforce/label/c.CB_Header_Alerts"
+
+import CBSVG from "@salesforce/resourceUrl/CBSVG" // Importing static resource URL for SVG icons
 
 export default class CBAlert extends LightningElement {
 
+    // SVG's from static resource with specific fragment identifiers
     CBBackIcon = `${CBSVG}/CBSVGs/CBBackIcon.svg#CBBackIcon`;
     CBNotification = `${CBSVG}/CBSVGs/CBNotification.svg#CBNotification`;
     CBLogOut = `${CBSVG}/CBSVGs/CBLogOut.svg#CBLogOut`;
+
+    // Header configuration object for navigation and display
     headerConfguration = {
-        previousPageUrl: 'Home',
-        heading: 'Alerts',
-        iconsExposed: true,
+        previousPageUrl: HOME_PAGE, // URL for the previous page navigation
+        heading: HEADER_ALERTS, // Header title
+        iconsExposed: true, // Flag to control icon visibility
         logout: {
-            exposed: true
+            exposed: true // Flag to expose logout icon
         },
         search: {
-            exposed: false
+            exposed: false // Flag to expose search functionality (not used in this component)
         }
-    }
+    };
 
-    previousPageUrl = '';
-    modalOpen = false;
+    // Array of alerts with messages and timestamps
     alerts = [
         {
             id: 1,
@@ -47,46 +53,6 @@ export default class CBAlert extends LightningElement {
             message: 'New Online Banking! Enhanced features and security. Log in to explore.',
             time: '12 days ago'
         }
-    ]
+    ];
 
-    modal = {
-        title: 'Do you want to logout from Clarien Bank?',
-        message: '',
-        yesButton: {
-            exposed: true,
-            label: "Yes",
-            implementation: () => {
-
-                // Get the current domain
-                let domain = window.location.href;
-
-                // Find the index of "/s"
-                let index = domain.indexOf("/s");
-
-                if (index !== -1) {
-                    // Remove everything till "/s"
-                    domain = domain.substring(0, index);
-                }
-
-                console.log('Logout link:', `${domain}/secur/logout.jsp`);
-                window.location.href = `${domain}/secur/logout.jsp`;
-            }
-        },
-        noButton: {
-            exposed: true,
-            label: "Cancel",
-            implementation: () => {
-                console.log('no');
-                this.modalOpen = false
-            }
-        },
-    }
-
-    navigateBack() {
-        history.back();
-    }
-
-    logout() {
-        this.modalOpen = true;
-    }
 }

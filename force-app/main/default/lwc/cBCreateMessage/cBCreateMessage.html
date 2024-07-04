@@ -2,7 +2,7 @@
   @description       : 
   @author            : ChangeMeIn@UserSettingsUnder.SFDoc
   @group             : 
-  @last modified on  : 06-07-2024
+  @last modified on  : 06-27-2024
   @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
 -->
 <template>
@@ -12,35 +12,35 @@
         </div>
         <div class="container">
             <label for="">
-                <p>TOPIC</p>
+                <p>{label.TOPIC}</p>
                 <select name="" id="">
-                    <option value="">Account Info</option>
-                    <option value="">Appointment Request</option>
-                    <option value="">Complaint</option>
-                    <option value="">Liquidity Withdrawl Notice</option>
-                    <option value="">Technical issue</option>
-                    <option value="">Transaction Dispute</option>
-                    <option value="">Travel Notification</option>
+                    <option value="">{label.ACCOUNT_INFO}</option>
+                    <option value="">{label.APPOINTMENT_REQUEST}</option>
+                    <option value="">{label.COMPLAINT}</option>
+                    <option value="">{label.LIQUIDITY_WITHDRAWL_NOTICE}</option>
+                    <option value="">{label.TECHNICAL_ISSUE}</option>
+                    <option value="">{label.TRAVEL_DISPUTE}</option>
+                    <option value="">{label.TRAVEL_NOTIFICATION}</option>
                 </select>
             </label>
             <label for="">
-                <p>Subject</p>
+                <p>{label.SUBJECT}</p>
                 <textarea name="" class="subject" onchange={subjectHandler}></textarea>
             </label>
             <label for="">
-                <p>Message Body</p>
+                <p>{label.MESSAGE_BODY}</p>
                 <textarea name="" class="message-body" onchange={messageHandler}></textarea>
             </label>
             <label for="" class="attachment">
                 <p>{file}</p>
                 <div class="browse-btn">
-                    BROWSE
+                    {label.BROWSE}
                     <input type="file" class="browse-inp" placeholder="BROWSE" onchange={fileHandler}>
                 </div>
             </label>
         </div>
         <div class="submit">
-            <button class="submit-btn" onclick={submitHandler} disabled={isDisabled}>DONE</button>
+            <button class="submit-btn" onclick={submitHandler} disabled={isDisabled}>{label.DONE}</button>
         </div>
     </div>
     <c-c-b-footer></c-c-b-footer>

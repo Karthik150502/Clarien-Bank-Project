@@ -5,15 +5,59 @@ import { NavigationMixin } from 'lightning/navigation';
 
 import AUTHENTICATION_SUCCESSFUL_MESSAGE from '@salesforce/label/c.CB_Authentication_Successful';
 import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentication_InProgress';
-import AUTHENTICATION_FAILURE_MESSAGE from '@salesforce/label/c.CB_Authentication_Failed';
 import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSuccess';
 import CB_AUTHENTICATION_FAILED from '@salesforce/resourceUrl/CBAutenticationFailed';
+import CB_ConfirmTransaction from '@salesforce/label/c.CB_ConfirmTransaction';
+import CB_FromAccount from '@salesforce/label/c.CB_FromAccount';
+import CB_FromAcctDesc from '@salesforce/label/c.CB_FromAcctDesc';
+import CB_FromAcctCurrency from '@salesforce/label/c.CB_FromAcctCurrency';
+import CB_BeneficiaryDetailsAccountNo from '@salesforce/label/c.CB_BeneficiaryDetailsAccountNo';
+import CB_BeneficiaryBankName from '@salesforce/label/c.CB_BeneficiaryBankName';
+import CB_Fees from '@salesforce/label/c.CB_Fees';
+import CB_Fcc from '@salesforce/label/c.CB_Fcc';
+import CB_Fcpt from '@salesforce/label/c.CB_Fcpt';
+import CB_Amount from '@salesforce/label/c.CB_Amount';
+import CB_Date from '@salesforce/label/c.CB_Date';
+import CB_Ok from '@salesforce/label/c.CB_Ok';
+import CB_Disclaimer from '@salesforce/label/c.CB_Disclaimer';
+import CB_BeneficiaryName from '@salesforce/label/c.CB_BeneficiaryName';
+import CB_Charges from '@salesforce/label/c.CB_Charges';
+import CB_Remarks from '@salesforce/label/c.CB_Remarks';
+import CB_Page_DomesticTransfers from '@salesforce/label/c.CB_Page_DomesticTransfers';
+import CB_TransactionCompleted from '@salesforce/label/c.CB_TransactionCompleted';
+import CB_ProcessinsKindlyWait from '@salesforce/label/c.CB_ProcessinsKindlyWait';
+import CB_SaveAsTemplate from '@salesforce/label/c.CB_SaveAsTemplate';
+import CB_Page_Transfers from '@salesforce/label/c.CB_Page_Transfers';
+import CB_TemplateCreatedSuccessfully from '@salesforce/label/c.CB_TemplateCreatedSuccessfully';
+
+
 
 import CONFIRM from '@salesforce/label/c.CB_Confirm';
 export default class CBDomesticTransfersConfTrans extends NavigationMixin(LightningElement) {
 
 
+    label = {
+        CONFIRM,
+        CB_FromAcctCurrency,
+        CB_FromAcctDesc,
+        CB_FromAccount,
+        CB_BeneficiaryDetailsAccountNo,
+        CB_BeneficiaryBankName,
+        CB_Fees,
+        CB_Fcc,
+        CB_BeneficiaryName,
+        CB_Fcpt,
+        CB_Amount,
+        CB_Date,
+        CB_Ok,
+        CB_Charges,
+        CB_Remarks,
+        CB_Disclaimer
+    };
 
+
+    // Handler for the current page reference.
+    // Initializes component properties based on the state object.
     @wire(CurrentPageReference)
     pageRefHandler({ state }) {
         if (state) {
@@ -21,19 +65,16 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
             this.date = state.dateSelected ? state.dateSelected : ''
             this.amount = state.amount ? state.amount : ''
             this.benefAccountNo = state.toAccount ? state.toAccount : ''
-            this.comments = state.comment ? state.comment : ''
+            this.comments = state.comments ? state.comments : ''
 
         }
     }
 
 
 
-    label = {
-        CONFIRM, // Converting "Submit" label to uppercase
-    };
     headerConfguration = {
-        previousPageUrl: 'CBDomesticTransfers__c',
-        heading: 'Confirm Transaction',
+        previousPageUrl: CB_Page_DomesticTransfers,
+        heading: CB_ConfirmTransaction,
         iconsExposed: false,
     }
 
@@ -52,7 +93,7 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
     date = 'N/A'
     comments = 'N/A'
     charges = 'N/A'
-    disclaimer = 'Please be advised that payments that are not scheduled within the bank\'s normal business hours will not be processed until the next business date.'
+    disclaimer = this.label.disclaimer
 
     saveAsTemplateDesc = ''
     successGif = CB_AUTHENTICATION_SUCCESS
@@ -64,12 +105,12 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
 
     @track modalConf = {
         title: '',
-        message: 'The transaction has been successfully completed',
-        loadingStatusMsg: 'Processing, kindly wait....',
+        message: CB_TransactionCompleted,
+        loadingStatusMsg: CB_ProcessinsKindlyWait,
         isLoading: true,
         yesButton: {
             exposed: true,
-            label: 'OK',
+            label: CB_Ok,
             implementation: () => {
                 this.showModal = false
                 this.showModal1 = true
@@ -80,11 +121,11 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
         }
     }
     @track modalConf1 = {
-        title: 'Save as Template',
-        message: 'The transaction has been successfully completed',
+        title: CB_SaveAsTemplate,
+        message: this.label.CB_TransactionCompleted,
         okButton: {
             exposed: false,
-            label: 'OK',
+            label: CB_Ok,
             function: () => {
                 this.showModal1 = false
                 this.showModal2 = true
@@ -95,13 +136,13 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
 
 
     @track modalConf2 = {
-        title: 'Template created successfully.',
+        title: CB_TemplateCreatedSuccessfully,
         okButton: {
             exposed: true,
-            label: 'OK',
+            label: CB_Ok,
             function: () => {
                 this.showModal2 = false
-                this.navigateTo("CBTransfers__c")
+                this.navigateTo(CB_Page_Transfers)
             }
         },
         noButton: {
@@ -112,7 +153,8 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
 
 
 
-
+    // Method to get the description from the Save As Template modal.
+    // Retrieves the value from a textarea element and assigns it to 'saveAsTemplateDesc'.
     getTheSaveAsTempDesc() {
         let textArea = this.template.querySelector('.success-modal-desc')
         this.saveAsTemplateDesc = textArea.value
@@ -137,13 +179,15 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
     connectedCallback() {
 
     }
-
+    // Method to handle the authentication process in progress.
+    // Updates the 'authenticationPopup' properties to show the loading animation and open the modal.
     authenticationInProgress() {
         this.authenticationPopup.showLoadingAnimation = true
         this.authenticationPopup.openModal = true
         this.authenticationPopup.authenticationStatus = AUTHENTICATION_INPROGRESS_MESSAGE
     }
-
+    // Method to handle successful authentication.
+    // Updates the 'authenticationPopup' properties to show the success message and GIF, and then hides the modal after a delay.
     authenticationSuccess() {
         this.authenticationPopup.showLoadingAnimation = false
         this.authenticationPopup.openModal = true
@@ -156,12 +200,14 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
 
     }
 
-
+    // Method to close the Save As Template modal.
+    // Hides the modal and navigates to the transfers page.
     closeSavesAsTempModal() {
         this.showModal1 = false
-        this.navigateTo("CBTransfers__c")
+        this.navigateTo(CB_Page_Transfers)
     }
-
+    // Method to handle comments fetched from the modal.
+    // Logs the comments and shows the next modal.
     fetchCommentsFromModal(event) {
         console.log(event.detail.comments)
         this.showModal1 = false
@@ -171,11 +217,13 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
     handleCancel() {
     }
 
-
+    // Method to handle the form submission.
+    // Initiates the API callout process.
     handleSubmit() {
         this.apiCallout()
     }
-
+    // Method to simulate an API callout.
+    // Shows a loading modal and then transitions to the next modal after a delay.
     apiCallout() {
         this.showModal = true
         this.modalConf.isLoading = true
@@ -186,7 +234,8 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
         }, 2500)
     }
 
-    // Helper function for navigation
+    // Helper function for navigation to a specified page with optional state data.
+    // Uses the NavigationMixin to navigate.
     navigateTo(pageApiName, data = {}) {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',

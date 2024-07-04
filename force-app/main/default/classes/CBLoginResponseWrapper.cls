@@ -34,11 +34,13 @@ public class CBLoginResponseWrapper {
         public String customerId;
         public String userId;  
         public String lastLoginTime;
+        public String segmentName;
     }
     public class ForcePwdChangeSettings {
         public String forcePwdChangeFlag;
         public String forceTxnPwdChangeFlag;
         public String forceUssdChangeFlag;
+
     }
     
     public class UserCustomerIdDetails {

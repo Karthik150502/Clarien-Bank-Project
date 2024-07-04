@@ -7,26 +7,26 @@
 -->
 
 <template>
-	<div class="wrapper">
+	<div class="wrapper" onclick={navigateToAccount}>
 		<div class="container">
 			<div class="header">
-				<div class="view-all" onclick={navigateToFavoriteAccs}>
+				<div class="view-all">
 					<p class="acc-type">{account.accountType}</p>
-					<p class="view-all-p">View All >></p>
+					<p class="view-all-p" onclick={navigateToFavoriteAccs}>{label.VIEW_ALL} >></p>
 				</div>
 			</div>
 
 			<div class="content">
 				<div class="cont-details">
 					<p class="acc-no">{account.accountNo}</p>
-					<p class="acc-bal">{label.BMD} {account.accountBal}</p>
+					<p class="acc-bal">{account.currencyCode} {account.accountBal}</p>
 				</div>
 			</div>
 
 			<div class="footer">
 				<div class="footer-cont">
-					<p>{label.CURRENT_BALANCE}:<br>  {label.BMD} {account.accountBal}</p>
-					<p>{label.TOTAL_HOLDS}: <br> {label.BMD} {account.totalHolds}</p>
+					<p>{label.CURRENT_BALANCE}:&nbsp;<br>{account.currentBal}</p>
+					<p>{label.TOTAL_HOLDS}:&nbsp;<br>{account.totalHolds}</p>
 				</div>
 			</div>
 		</div>

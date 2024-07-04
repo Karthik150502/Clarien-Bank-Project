@@ -45,14 +45,14 @@ export default class CBForgotPassword extends NavigationMixin(LightningElement) 
         USERNAME,
         REG_EMAIL_ADDR,
         FORGOT_PASSWORD,
-        NOTE: NOTE.toUpperCase(), // Converting note label to uppercase
+        NOTE, // Converting note label to uppercase
         RETAIL_USER,
         PLS_PROVIDE_INTERNET_BANK,
         ERROR_INVALID_EMAIL,
         REG_EMAIL_ID,
-        NEXT: NEXT.toUpperCase(), // Converting "Next" label to uppercase
-        SUBMIT: SUBMIT.toUpperCase(), // Converting "Submit" label to uppercase
-        CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
+        NEXT, // Converting "Next" label to uppercase
+        SUBMIT, // Converting "Submit" label to uppercase
+        CANCEL, // Converting "Cancel" label to uppercase
     };
 
     confirmModal = false;

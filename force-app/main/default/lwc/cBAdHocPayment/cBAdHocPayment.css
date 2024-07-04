@@ -365,14 +365,7 @@
     font-size: 16px;
     font-family: var(--dxp-g-root-gotham-book-font-family);
 } */
-.wrapper .container .inp-box .text-area-inp {
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid var(--border-blue);
-    padding: 2% 2% 2% 2%;
-    font-size: 16px;
-    height: 100px;
-}
+
 
 c-c-b-footer {
     position: fixed;
@@ -389,4 +382,8 @@ select {
 input {
     font-size: 16px !important;
     max-height: 100px !important;
+}
+
+c-c-b-remarks {
+    width: 100%;
 }

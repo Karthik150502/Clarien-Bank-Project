@@ -5,6 +5,7 @@
 	font-family: var(--dxp-g-root-gotham-bold-font-family);
 	font-family: var(--dxp-g-root-gotham-medium-font-family);
 	font-family: var(--dxp-g-root-gotham-book-font-family);
+
 }
 
 c-c-b-header {
@@ -19,6 +20,7 @@ c-c-b-header {
 	/* overflow: hidden; */
 	overflow-x: hidden;
 	overflow-y: scroll;
+	background-color: var(--primary-white);
 }
 
 .wrapper-2 {
@@ -33,7 +35,13 @@ c-c-b-header {
 	border: 1px solid var(--border-blue);
 	border-radius: 10px;
 }
-
+.filterData{
+	height: 100%;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    align-items: flex-start;
+}
 .icons {
 	display: flex;
 	flex-direction: row;

@@ -50,8 +50,10 @@
 }
 
 .wrapper .header p {
-    margin: 1% 0 1% 4%;
     font-size: 18.25px;
+    margin: 0 0 0 3%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
 }
 
 .wrapper .container {

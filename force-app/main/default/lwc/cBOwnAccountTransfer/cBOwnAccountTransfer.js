@@ -2,21 +2,53 @@ import { LightningElement } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';
 import CONTINUE from '@salesforce/label/c.CB_Continue';
+import COMMENTS_OPTIONAL from '@salesforce/label/c.CB_CommentsOptional'
+import REMARKS from '@salesforce/label/c.CB_Remarks'
+import UNTIL_END_DATE from '@salesforce/label/c.CB_UntilEndDate'
+import DATE from '@salesforce/label/c.CB_Date'
 
-import { setPagePath } from 'c/cBUtilities';
+import CB_SelectAccount from '@salesforce/label/c.CB_SelectAccount';
+import CB_FromAccount from '@salesforce/label/c.CB_FromAccount';
+import CB_TO_ACCOUNT from '@salesforce/label/c.CB_TO_ACCOUNT';
+import CB_Amount from '@salesforce/label/c.CB_Amount';
+import CB_Payments_Amount from '@salesforce/label/c.CB_Payments_Amount';
+import CB_Repeat from '@salesforce/label/c.CB_Repeat';
+import CB_Recurring from '@salesforce/label/c.CB_Recurring';
+import CB_Page_OwnAcctTransConf from '@salesforce/label/c.CB_Page_OwnAcctTransConf';
+import CB_Page_Predefined from '@salesforce/label/c.CB_Page_Predefined';
+import CB_OwnAccountTransfers from '@salesforce/label/c.CB_OwnAccountTransfers';
+import CB_Page_OwnAcctTransfers from '@salesforce/label/c.CB_Page_OwnAcctTransfers';
+
+
+import { setPagePath, formatDate, getMobileSessionStorage } from 'c/cBUtilities';
+
+
 
 export default class CBOwnAccountTransfer extends NavigationMixin(LightningElement) {
 
 
-    // Object to hold imported labels
+
     label = {
-        CONTINUE: CONTINUE.toUpperCase(), // Converting "Submit" label to uppercase
+        CONTINUE,
+        COMMENTS_OPTIONAL,
+        REMARKS,
+        UNTIL_END_DATE,
+        DATE,
+        CB_SelectAccount,
+        CB_FromAccount,
+        CB_TO_ACCOUNT,
+        CB_Amount,
+        CB_Payments_Amount,
+        CB_Repeat,
+        CB_Recurring
     };
 
 
+
+
     headerConfguration = {
-        previousPageUrl: 'CBPredefined__c',
-        heading: 'Own Account Transfer',
+        previousPageUrl: CB_Page_Predefined,
+        heading: CB_OwnAccountTransfers,
         iconsExposed: true,
         logout: {
             exposed: false
@@ -24,23 +56,31 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         search: {
             exposed: false
         },
-        favorite: {
-            selected: false
+        openTemplates: {
+            transferTypePage: CB_Page_OwnAcctTransfers
         }
     }
 
-    connectedCallback(){
-        this.headerConfguration.previousPageUrl = setPagePath('CBOwnAccountTransfer__c')
+    connectedCallback() {
+        this.headerConfguration.previousPageUrl = setPagePath(CB_Page_OwnAcctTransfers)
+        this.setAccountData()
     }
 
-    recurringTransfer = false
+    setAccountData() {
+        this.accounts = JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) ? JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) : [];
+        this.toAccountsList = JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) ? JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) : [];
+    }
+
+    recurring = false
     amount = ''
     toAccount = ''
     selectedAccount = 'Select Account'
-    date = 'YYYY-MM-DD'
-    showTransDatePicker = false
-    untilDate = ''
+    dateSelected = 'DD/MM/YYYY'
+    untilDate = 'DD/MM/YYYY'
     frequencySelected = ''
+    number = 1
+    remarks = ''
+    frequencies = ["Day", "Month", "End of every month"]
     accounts = [
         {
             accountNo: '659855541254',
@@ -73,7 +113,6 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
             accBal: 'BMD 1,5601.55'
         },
     ]
-
 
     toAccountsList = [
         {
@@ -108,54 +147,81 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         },
     ]
 
+    // Method to handle the amount input change event.
+    // Updates the 'amount' property with the value from the input event.
     handleAmount(event) {
         this.amount = event.target.value
     }
 
+    // Method to handle the To Account input change event.
+    // Updates the 'toAccount' property with the value from the input event and logs it.
     handleToAccount(event) {
         this.toAccount = event.target.value
         console.log(this.toAccount);
     }
 
+    // Method to handle the From Account input change event.
+    // Updates the 'selectedAccount' property and filters the 'toAccountsList' to exclude the selected account.
     handleFromAccount(event) {
         this.selectedAccount = event.target.value
 
         this.toAccountsList = this.accounts.filter(account => account.accountNo !== this.selectedAccount)
     }
 
-    recurringTransferView = false
-    handleTransDate(event) {
-        this.showTransDatePicker = false
-        this.date = event.detail.transDate
-
-        if(event.detail.recurring){
-            this.untilDate = event.detail.untilDate
-            this.frequencySelected = event.detail.frequencySelected != 'End of every month' ? `Every ${event.detail.repeat} ${event.detail.frequencySelected} `: 'End of every month';
-            this.recurringTransfer = event.detail.recurring
-            this.recurringTransferView = true
-        }
-        else{
-            this.recurringTransferView = false
-        }
+    // Method to toggle the recurring payment option.
+    // Updates the 'recurring' property to its opposite value.
+    recurringHandler() {
+        this.recurring = !this.recurring
     }
 
-    closeTransDatInput() {
-        this.showTransDatePicker = false
+    // Method to handle the remarks input change event.
+    // Updates the 'remarks' property with the value from the event detail.
+    handleRemarks(event) {
+        this.remarks = event.detail.remarks
     }
 
-    openTransDateSelect() {
-        this.showTransDatePicker = true
+    // Method to handle the date input change event.
+    // Updates the 'dateSelected' property with the formatted date value from the input event.
+    handleDate(event) {
+        this.dateSelected = formatDate(event.target.value)
     }
+
+    // Method to handle the until date input change event.
+    // Updates the 'untilDate' property with the formatted date value from the input event.
+    handleUntilDate(event) {
+        this.untilDate = formatDate(event.target.value)
+    }
+
+    // Method to handle the frequency selection change event.
+    // Updates the 'frequencySelected' property with the value from the selection event.
+    handleFreq(event) {
+        this.frequencySelected = event.target.value
+    }
+
+    // Method to increase the number property value by 1.
+    increaseNumber() {
+        this.number = this.number + 1
+
+    }
+    // Method to decrease the number property value by 1, ensuring it doesn't go below 1.
+    decreaseNumber() {
+        this.number = this.number > 1 ? this.number - 1 : this.number
+    }
+
+    // Getter to check if the submit button should be disabled.
+    // Returns the result of the verifyValues method.
     get disableSubmit() {
         return this.verifyValues()
     }
 
-
+    // Method to verify if required values are valid.
+    // Checks if date, selectedAccount, toAccount, and amount are properly set.
     verifyValues() {
-        return this.date === 'YYYY-MM-DD' || this.selectedAccount === 'Select Account' || this.toAccount === 'Select Account' || this.amount === ''
+        return this.date === 'DD/MM/YYYY' || this.selectedAccount === 'Select Account' || this.toAccount === 'Select Account' || this.amount === ''
     }
 
-    // Helper function for navigation
+    // Helper function for navigation to a specified page with optional state data.
+    // Uses the NavigationMixin to navigate.
     navigateTo(pageApiName, data = {}) {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -166,18 +232,17 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         });
     }
 
-
-
+    // Method to handle the form submission.
+    // Collects data and navigates to the confirmation page with the collected data.
     handleSubmit() {
-        let comment = this.template.querySelector(".text-area-inp").value
         let data = {
             fromAccount: this.selectedAccount,
             toAccount: this.toAccount,
             amount: this.amount,
-            dateSelected: this.date,
-            comment
+            dateSelected: this.dateSelected,
+            comment: this.remarks
         }
         console.log(JSON.stringify(data))
-        this.navigateTo('CBOwnAccountTransferConfTrans__c', data)
+        this.navigateTo(CB_Page_OwnAcctTransConf, data)
     }
 }

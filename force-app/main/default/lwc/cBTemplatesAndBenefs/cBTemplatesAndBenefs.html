@@ -1,0 +1,34 @@
+<template>
+    <div class="wrapper">
+        <div class="header">
+            <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
+        </div>
+        <div class="container">
+            <div class="header-option">
+                <button class={tempClass} onclick={openTemplates}>{label.CB_Templates}</button>
+                <button class={benefClass} onclick={openBeneficiaries}>{label.CB_Beneficiaries}</button>
+            </div>
+
+            <div class="con-content">
+                <template if:true={showTemplates} for:each={templates} for:item="template">
+                    <div class="templates" key={template.fromAccount}>
+                        <div class="top">
+                            <p>{templateType}</p>
+                        </div>
+                        <div class="bottom">
+                            <p>{template.fromAccount} > {template.toAccount}</p>
+                        </div>
+                    </div>
+                </template>
+                <template if:false={showTemplates}>
+
+                </template>
+            </div>
+        </div>
+
+        <c-c-b-footer></c-c-b-footer>
+
+    </div>
+
+
+</template>

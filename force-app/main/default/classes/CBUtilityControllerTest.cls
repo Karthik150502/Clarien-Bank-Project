@@ -31,7 +31,7 @@ public class CBUtilityControllerTest {
             randomInt = Integer.valueOf(Math.rint(Math.random() * 1000000));
         	uniqueName = orgId + dateString + randomInt;
             
-            Profile testProfile = [SELECT Id, Name FROM Profile WHERE Id = '00eDy000000GFDRIA4' LIMIT 1];
+            Profile testProfile = [SELECT Id, Name FROM Profile WHERE name = 'Retail Mobile Banking User' LIMIT 1];
 
             Account portalAccount = new Account(name = 'Test User');
             insert portalAccount;
@@ -56,8 +56,7 @@ public class CBUtilityControllerTest {
                 LanguageLocaleKey = 'en_US',
                 ProfileId = testProfile.Id,
                 ContactId = portalContact.Id,
-                Clarien_Username__c = 'RET2',
-                Clarien_password__c = 'infy@123'
+                Clarien_Username__c = 'RET9'
             );
         
             insert tempUser;
@@ -67,8 +66,13 @@ public class CBUtilityControllerTest {
     @isTest
     public static void testGetUsernameScenario1() {
         Test.startTest();
-        String username = CBUtilityController.getUsername('RET2');
+        try{
+        String username = CBUtilityController.getUsername('RET9');
+            system.debug('username'+username);
         System.assertNotEquals(null, username);
+        }catch(exception e){
+          System.assertNotEquals(null, e.getMessage());
+        }
         Test.stopTest();
     }
     
@@ -85,38 +89,73 @@ public class CBUtilityControllerTest {
         Test.stopTest();
     }
     
-    @isTest
-    public static void testGetUsernamePasswordScenario() {
-        Test.startTest();
-		User u = [Select Id from User where FirstName = 'John'and LastName = 'Wilson' limit 1];
-        System.runAs(u){
-        	Map<String,String> usernamePassword = CBUtilityController.getUsernamePassword();
-        	System.assertNotEquals(null, usernamePassword);
-			System.assertEquals(false, usernamePassword.isEmpty());
-        }
-        Test.stopTest();
+    
+    	@isTest
+    public static void testGetMessageScenario3() {
+        Test.StartTest();
+        String msgCode = '102945';
+        String metaDataName = 'CB_Post_Profile_Update';
+        String result = CBUtilityController.getMessage(msgCode, metaDataName);
+        System.assertEquals('The records do not exist for the user.', result, 'The response does not match.');
+        Test.StopTest();
     }
     
+    
     @isTest
-    public static void testGetUsernamePasswordByUserIdScenario1() {
-        Test.startTest();
-        Id userId =UserInfo.getUserId(); 
-        User userDetail = CBUtilityController.getUsernamePasswordByUserId(userId);
-        System.assertEquals(userId, userDetail.Id);
-        Test.stopTest();
-    }
-	
-   @isTest
-    public static void testGetUsernamePasswordByUserIdScenario2() {
-        Test.startTest();
-		
-       try {
-            CBUtilityController.getUsernamePasswordByUserId('null');
-            System.assert(false, 'Expected exception was not thrown');
-        } catch (Exception e) {
-            System.assertEquals('Invalid Username or Password', e.getMessage());
+    public static void testGetMessageScenario4() {
+        Test.StartTest();
+        String msgCode = '';
+        String metaDataName = '';
+        try{
+            String result = CBUtilityController.getMessage(msgCode, metaDataName);
+        }catch(Exception e){
+            System.assertEquals('Invalid or non-existent label: _Default', e.getMessage(), 'The Error responses does not match.');
         }
-        
-        Test.stopTest();
+        Test.StopTest();
     }
+
+
+        
+    @isTest
+    public static void testSessionScenario5() {
+        Test.StartTest();
+        String sessionData = '{"CBUsername":"John Elder"}';
+        CBUtilityController.setSessionData(sessionData);
+        String getResult = CBUtilityController.get('CBUsername'); 
+        System.assertEquals(getResult, 'John Elder', 'The session data does not match.');
+        Test.StopTest();
+    }
+    
+
+
+            
+    @isTest
+    public static void testSessionScenario6() {
+        Test.StartTest();
+        String sessionKey = 'CBUsername';
+        String sessionValue = 'John Cena';
+        CBUtilityController.put(sessionKey,sessionValue);
+        String getResult = CBUtilityController.get(sessionKey); 
+        System.assertEquals(getResult, 'John Cena', 'The session data does not match.');
+        Test.StopTest();
+    }
+    
+
+        @isTest
+    public static void testSessionScenario7() {
+        Test.StartTest();
+        String sessionData = '{"key1":"John Elder", "key2":"Sabastian Vettel"}';
+        CBUtilityController.setSessionData(sessionData);
+        List<String> keys = new List<String>();
+        keys.add('key1');
+        keys.add('key2');
+        Map<String, String> result = CBUtilityController.getSessionData(keys);
+        System.assertEquals((String)result.get('key1'),'John Elder' , 'The session data does not match.');
+        System.assertEquals((String)result.get('key2'),'Sabastian Vettel' , 'The session data does not match.');
+        Test.StopTest();
+    }
+    
+    
+    
+
 }

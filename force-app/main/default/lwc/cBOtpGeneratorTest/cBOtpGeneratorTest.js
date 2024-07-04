@@ -16,6 +16,7 @@ export default class CBOtpGeneratorTest extends LightningElement {
     @track loaded = false;
     @track disabled = false;
     connectedCallback() {
+        console.log('---connected call back---');
         this.loadResources()
     }
 

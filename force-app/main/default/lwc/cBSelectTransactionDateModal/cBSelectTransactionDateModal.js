@@ -11,33 +11,39 @@ export default class CBSelectTransactionDateModal extends LightningElement {
 
     connectedCallback() {
         this.transDate = this.currentDateMethod()
-        console.log('Today',this.transDate);
+        console.log('Today', this.transDate);
         this.todayDate()
     }
 
     minDate = ''
 
-    todayDate(){
+    todayDate() {
         const today = new Date().toISOString().split('T')[0];
         this.minDate = today;
     }
 
-    currentDateMethod(){
+    currentDateMethod() {
         const today = new Date();
         const yyyy = today.getFullYear();
         const mm = String(today.getMonth() + 1).padStart(2, '0'); // Months are zero-based
         const dd = String(today.getDate()).padStart(2, '0');
-        return `${yyyy}-${mm}-${dd}`
+        return `${dd}-${mm}-${yyyy}`
     }
     headerConfguration = {
         previousPageUrl: 'CBBillPayments__c',
         heading: 'Select Trasaction Date',
         iconsExposed: false,
     }
-    transDate = 'YYYY-MM-DD'
+    transDate = 'DD-MM-YYYY'
+
+    formatDate(date) {
+        let res = date.split("-")
+        return `${res[2]}-${res[1]}-${res[0]}`
+    }
+
     handleTransDate(event) {
         console.log(event.target.value)
-        this.transDate = event.target.value
+        this.transDate = this.formatDate(event.target.value)
     }
 
     recurring = false
@@ -48,17 +54,17 @@ export default class CBSelectTransactionDateModal extends LightningElement {
     frequencySelected = 'Daily'
 
     handleFreq(event) {
-        console.log('modal',event.target.value);
+        console.log('modal', event.target.value);
         this.frequencySelected = event.target.value
     }
 
     frequencies = ["Day", "Month", "End of every month"]
 
-    untilDate = 'YYYY-MM-DD'
+    untilDate = 'DD-MM-YYYY'
 
     handleUntilDate(event) {
         console.log(event.target.value)
-        this.untilDate = event.target.value
+        this.untilDate = this.formatDate(event.target.value)
     }
 
     handleSubmit() {
@@ -75,7 +81,7 @@ export default class CBSelectTransactionDateModal extends LightningElement {
                 recurring: this.recurring,
                 frequencySelected: this.frequencySelected,
                 untilDate: this.untilDate,
-                repeat : this.number
+                repeat: this.number
             }
         })
 
@@ -107,7 +113,7 @@ export default class CBSelectTransactionDateModal extends LightningElement {
 
     get disableButton() {
 
-        return this.recurring ? this.untilDate === 'YYYY-MM-DD' || this.transDate === 'YYYY-MM-DD' : this.transDate === 'YYYY-MM-DD'
+        return this.recurring ? this.untilDate === 'DD-MM-YYYY' || this.transDate === 'DD-MM-YYYY' : this.transDate === 'DD-MM-YYYY'
     }
 
 

@@ -136,6 +136,7 @@ c-c-b-footer {
     /* overflow: hidden; */
     overflow-x: hidden;
     overflow-y: scroll;
+	background-color: white;
 }
 
 .wrapper-2 {
@@ -149,6 +150,14 @@ c-c-b-footer {
 
 .icons-container {
     height: 50px;
+}
+
+.filterData{
+	height: 100%;
+    display: flex;
+    flex-direction: column;
+	justify-content: center;
+    align-items: flex-start;
 }
 
 .wrapper-2 .transactions {

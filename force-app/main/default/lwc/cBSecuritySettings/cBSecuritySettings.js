@@ -18,26 +18,26 @@ export default class CBSecuritySettings extends LightningElement {
         SECURITY_SETTINGS
     };
 
-    // Metadata for header icons
+    // Object to manage header icons
     header_icons = {
         // Announcements icon settings
         announcements: {
-            exposed: false,     // Whether to display the Announcements icon
-            haveItems: false    // Whether the Announcements icon has items to display
+            exposed: true,  // Whether to display the Announcements icon
+            haveItems: true // Whether the Announcements icon has items to display
         },
-        // Notifications icon settings
+        // Whether to display the Announcements icon
         notifications: {
-            exposed: false,     // Whether to display the Notifications icon
-            haveItems: false    // Whether the Notifications icon has items to display
+            exposed: true,  // Whether to display the Notifications icon
+            haveItems: true // Whether the Notifications icon has items to display
         },
         // Inbox icon settings
         inbox: {
-            exposed: true,      // Whether to display the Inbox icon
-            haveItems: true     // Whether the Inbox icon has items to display
+            exposed: true,  // Whether to display the Inbox icon
+            haveItems: true // Whether the Inbox icon has items to display
         },
         // Scan Code icon settings
         scanCode: {
-            exposed: true,      // Whether to display the Scan Code icon
+            exposed: false, // Whether to display the Scan Code icon
             haveItems: false    // Whether the Scan Code icon has items to display
         }
     };

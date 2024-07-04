@@ -10,7 +10,7 @@
             <div class="pending">
                 <div class="details" onclick={openClosePending}>
 
-                    <p>Pending</p>
+                    <p class="title-pending">{label.CB_Pending}</p>
                     <div class="icon">
                         <template if:false={pendingOpen}>
                             <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
@@ -50,7 +50,7 @@
 
             <div class="approved">
                 <div class="details" onclick={openCloseApproval}>
-                    <p>Approved</p>
+                    <p class="title-approved">{label.CB_Approved}</p>
                     <div class="icon">
                         <template if:false={approvedOpen}>
                             <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
@@ -89,7 +89,7 @@
 
             <div class="rejected">
                 <div class="details" onclick={openCloseRejected}>
-                    <p>Rejected</p>
+                    <p class="title-rejected">{label.CB_Rejected}</p>
                     <div class="icon">
                         <template if:false={rejectedOpen}>
                             <svg class="slds-button__icon slds-button__icon_left slds-icon slds-icon-text-default slds-icon_x-small"
@@ -126,7 +126,9 @@
 
 
 
-
+            <template if:true={modalOpen}>
+                <c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
+            </template>
 
 
 

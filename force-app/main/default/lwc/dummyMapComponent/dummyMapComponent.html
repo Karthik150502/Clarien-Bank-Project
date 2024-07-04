@@ -1,9 +1,14 @@
+<!--
+  @description       : 
+  @author            : Prateek Deshmukh
+  @group             : 
+  @last modified on  : 07-03-2024
+  @last modified by  : Prateek Deshmukh
+-->
 <template>
-    <lightning-card title="">
-        <lightning-map map-markers={mapMarkers} markers-title={markersTitle} onmarkerselect={callMarkerHandler}
-            selected-marker-value={selectedMarker} list-view="hidden" zoom-level="14" options={mapOptions}
-            center={center}>
-        </lightning-map>
-    </lightning-card>
-
+<lightning-button 
+  variant="success"
+  label="Call MFA" 
+  onclick={handleInitiateMFA} 
+></lightning-button>
 </template>

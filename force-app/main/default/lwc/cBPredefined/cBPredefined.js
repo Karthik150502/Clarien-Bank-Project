@@ -11,6 +11,11 @@ import { LightningElement, api, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 
+import MANAGE_TEMPLATES from '@salesforce/label/c.CB_ManageTemplates'; // Importing label for predefined transactions
+import DOMESTIC_TRANSFERS_TEMPLATE from '@salesforce/label/c.CB_DomesticTransfersTemplate'; // Importing label for predefined transactions
+import OWN_ACCOUNT_TRANSFERS_TEMPLATE from '@salesforce/label/c.CB_OwnAccountTransfersTemplate'; // Importing label for predefined transactions
+import INTERNATIONAL_PAYMENTS_TEMPLATE from '@salesforce/label/c.CB_InternationalTransfersTemplate'; // Importing label for predefined transactions
+import INTRABANK_TRANSFERS_TEMPLATE from '@salesforce/label/c.CB_IntrabankTransfersTemplate'; // Importing label for predefined transactions
 import CBSVG from "@salesforce/resourceUrl/CBSVG";
 
 import { setPagePath } from 'c/cBUtilities';
@@ -26,11 +31,11 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
 
     // Labels for UI elements
     label = {
-        OWN_ACCOUNT_TRANSFER: 'Own Account Transfer',
-        INTRABANK_TRANSFER: 'Intrabank Transfer',
-        DOMESTIC_PAYMENTS: 'Domestic Payments',
-        INTERNATIONAL_PAYMENTS: 'International Payments',
-        PREDEFINED: 'Predefined'
+        OWN_ACCOUNT_TRANSFERS_TEMPLATE,
+        INTRABANK_TRANSFERS_TEMPLATE,
+        DOMESTIC_TRANSFERS_TEMPLATE,
+        INTERNATIONAL_PAYMENTS_TEMPLATE,
+        MANAGE_TEMPLATES
     };
 
 
@@ -50,7 +55,7 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
 
 
     navigateToOwnAccTransfer() {
-        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBOwnAccountTransfer__c', heading: 'OwnAccount Transfers Template' })
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBOwnAccountTransfer__c', heading: this.label.OWN_ACCOUNT_TRANSFERS_TEMPLATE })
     }
 
     navigateToPreviousPage() {
@@ -58,15 +63,15 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
     }
 
     navigateToIntrabankTransfer() {
-        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBIntraBankTransfers__c', heading: 'IntraBank Transfers Template' })
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBIntraBankTransfers__c', heading: this.label.INTRABANK_TRANSFERS_TEMPLATE })
     }
 
     navigateToDomesticPayments() {
-        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBDomesticTransfers__c', heading: 'Domestic Transfers Template' })
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBDomesticTransfers__c', heading: this.labelDOMESTIC_TRANSFERS_TEMPLATE })
     }
 
     navigateToInternationalTransfer() {
-        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBInternationalTransfers__c', heading: 'International Transfers Template' })
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBInternationalTransfers__c', heading: this.label.INTERNATIONAL_PAYMENTS_TEMPLATE })
     }
     // Method to navigate to a named page
     // @param {string} pageName - The name of the page to navigate to

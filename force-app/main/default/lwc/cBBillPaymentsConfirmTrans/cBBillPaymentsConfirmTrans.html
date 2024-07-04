@@ -3,49 +3,61 @@
         <div class="header">
             <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
         </div>
+
+
+
+
+
+
+
+
+
+
         <div class="container">
             <div class="row1">
-                <p class="label">From Account</p>
+                <p class="label">{label.CB_FromAccount}</p>
                 <p class="value">{fromAccount}</p>
             </div>
             <div class="row2">
-                <p class="label">Biller</p>
+                <p class="label">{label.CB_Biller}</p>
                 <p class="value">{biller}</p>
             </div>
             <div class="row3">
-                <p class="label">Account/ Reference Number</p>
+                <p class="label">{label.CB_AcctRefNumber}</p>
                 <p class="value">{accRefNo}</p>
             </div>
             <div class="row4">
                 <div class="left">
-                    <p class="label">Customer Name</p>
+                    <p class="label">{label.CB_CustomerName}</p>
                     <p class="value">{customerName}</p>
                 </div>
 
                 <div class="right">
-                    <p class="label">FEES</p>
+                    <p class="label">{label.CB_Fees}</p>
                     <p class="value">{fees}</p>
                 </div>
             </div>
             <div class="row5">
                 <div class="left">
-                    <p class="label">Amount</p>
+                    <p class="label">{label.CB_Amount}</p>
                     <p class="value">{amount}</p>
                 </div>
 
                 <div class="right">
-                    <p class="label">FCC</p>
+                    <p class="label">{label.CB_Fcc}</p>
                     <p class="value">{fcc}</p>
                 </div>
             </div>
+
+
             <div class="row6">
                 <div class="left">
-                    <p class="label">Date</p>
+                    <p class="label">{label.CB_Date}</p>
                     <p class="value">{date}</p>
                 </div>
 
                 <div class="right">
-                    <p class="label">FCPT</p>
+                    <p class="label">{label.CB_Fcpt}</p>
                     <p class="value">{fcpt}</p>
                 </div>
             </div>
@@ -62,9 +74,6 @@
             <button class="sub" onclick={handleSubmit} disabled={disableSubmit}>
                 {label.CONTINUE}
             </button>
-            <!-- <button class="cancel" onclick={handleCancel}>
-                {label.CANCEL}
-            </button> -->
         </div>
 
         <c-c-b-footer></c-c-b-footer>

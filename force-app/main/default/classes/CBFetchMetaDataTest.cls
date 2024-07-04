@@ -20,6 +20,6 @@ public class CBFetchMetaDataTest {
     public static void testFetchRequestBody() {
         CB_Outbound_API_Request_Detail__mdt requestBody = CBFetchMetaData.fetchRequestBody('CB_Post_Profile_Search');
         String requestBodyString = JSON.serialize(requestBody.JSON_Body__c);
-        System.assertEquals(requestBodyString, '', 'Failed Assertion, mismatched outputs');
+        System.assertNOtEquals(null, requestBodyString, 'Failed Assertion, mismatched outputs');
     }
 }

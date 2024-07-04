@@ -24,6 +24,8 @@ export default class CBReusableSuccessModalCmpLogo extends LightningElement {
         // alertMsg: ''
     }
 
+
+    // The method that runs when we have some content coming in to the slot
     handleSlotChange() {
         let misallaneous = this.template.querySelector(".misallaneous")
         if (misallaneous) {

@@ -1,10 +1,19 @@
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-
+import CB_From from '@salesforce/label/c.CB_From';
+import CB_Reject from '@salesforce/label/c.CB_Reject';
+import CB_To from '@salesforce/label/c.CB_To';
+import CB_Amount from '@salesforce/label/c.CB_Amount';
+import CB_Approve from '@salesforce/label/c.CB_Approve';
 export default class CBApprovalTile extends NavigationMixin(LightningElement) {
 
-
-    confirmModal = false
+    label = {
+        CB_From,
+        CB_To,
+        CB_Reject,
+        CB_Approve,
+        CB_Amount
+    }
 
     @api info = {
         id: '',
@@ -14,45 +23,20 @@ export default class CBApprovalTile extends NavigationMixin(LightningElement) {
         amt: 'BMD 54514.00'
     }
 
-    /**
- * Method to open the logout confirmation modal
- * Sets the modalOpen property to true to open the logout confirmation modal.
- * @returns {void}
-*/
-    @track modal = {
-        // Title of the logout confirmation modal
-        title: '',
-        // Message in the logout confirmation modal (empty for now)
-        message: '',
-        // Metadata for the "Yes" button in the logout confirmation modal
-        yesButton: {
-            // Exposed property indicating visibility of the button
-            exposed: true,
-            // Label for the "Yes" button
-            label: "Ok",
-            // Implementation of the action performed when the "Yes" button is clicked
-            implementation: () => {
-                this.confirmModal = false
-                this.navigateTo('CBQuickLinks__c')
-            }
-        },
-        noButton: {
-            exposed: false,
-        },
-    };
 
 
-
-
+    // Checks if the status of the transaction is 'pending'
     get statusPending() {
         return this.info.status === 'pending'
     }
 
-
+    // Returns a string combining 'wrapper' with the status of the transaction
     get wrapperClass() {
         return 'wrapper ' + this.info.status
     }
 
+
+    // Fires a custom event with the specified event name and approval ID
     fireCustomEvent(eventname = '', approvalId = '') {
         let evt = new CustomEvent(eventname, {
             bubbles: true,
@@ -65,28 +49,18 @@ export default class CBApprovalTile extends NavigationMixin(LightningElement) {
     }
 
 
-
+    // Approves the approval by firing an 'approvalapproved' event with the approval ID
     approveApproval() {
         this.fireCustomEvent('approvalapproved', this.info.id)
-        this.modal.title = 'The Approval has been approved!'
-        this.confirmModal = true
-    }
-    rejectApproval() {
-        this.fireCustomEvent('approvalrejected', this.info.id)
-        this.modal.title = 'The Approval has been rejected!'
-        this.confirmModal = true
     }
 
-    // Helper function for navigation
-    navigateTo(pageApiName, data = {}) {
-        this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: {
-                name: pageApiName
-            },
-            state: data
-        });
+
+    // Rejects the approval by firing an 'approvalrejected' event with the approval ID
+    rejectApproval() {
+        this.fireCustomEvent('approvalrejected', this.info.id)
     }
+
+
 
 
 }

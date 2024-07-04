@@ -28,96 +28,43 @@
     height: 165px;
     width: 100%;
     border-radius: 12px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center;
     background-image: url('/resource/AccountCardBg');
     background-size: cover;
     color: var(--primary-white);
-    overflow: auto;
 }
 
 
 .wrapper .container {
     width: 100%;
     height: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    padding: 1% 1% 1% 1%;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
+    padding: 0% 0% 0% 0%;
+    position: relative;
+    /* align-items: center; */
     justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-
 }
 
 
 .wrapper .container .header {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    width: 100%;
-    height: auto;
-    padding: 1% 0% 0% 2%;
+    position: absolute;
+    top: 4%;
+    right: 2%;
 }
 
 
 .wrapper .container .content {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    width: 85%;
+    width: 100%;
     height: auto;
-    padding: 0 0 0 0;
 }
 
 
 .wrapper .container .content .cont-details {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: baseline;
-    -ms-flex-align: baseline;
     align-items: baseline;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
     justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
     text-align: left;
     width: 80%;
@@ -148,37 +95,29 @@
 .wrapper .container .content .cont-details .acc-bal {
     font-size: 24px;
     text-align: left;
+    margin-bottom: 3px;
 }
 
 
 .wrapper .container .footer {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
     height: auto;
-    padding: 0% 1% 0% 1%;
+    margin: 0 0 0 10%;
 }
 
 
 .wrapper .container .footer .footer-cont {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+    justify-content: space-evenly;
     height: auto;
-    padding: 2% 4% 0% 4%;
     font-family: var(--dxp-g-root-gotham-book-font-family);
 }
 
 .wrapper .container .footer .footer-cont p {
-    width: -webkit-fill-available;
+    width: 50%;
+    font-size: 12px;
     text-align: left;
 }
 

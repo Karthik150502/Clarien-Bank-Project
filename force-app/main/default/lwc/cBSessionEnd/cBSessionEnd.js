@@ -5,7 +5,7 @@
     Description - This child component is responsible for monitoring user inactivity.
 */
 
-import { LightningElement} from 'lwc';
+import { LightningElement } from 'lwc';
 import { logout } from 'c/cBUtilities';
 
 import SESSION_EXPIRY_MESSAGE from '@salesforce/label/c.CB_Session_Expiry_Message';
@@ -29,7 +29,7 @@ export default class CBSessionEnd extends LightningElement {
             // Exposed property indicating visibility of the button
             exposed: true,
             // Label for the "Ok" button
-            label: "Ok",
+            label: "OK",
             // Implementation of the action performed when the "Ok" button is clicked
             implementation: () => {
                 // Close the modal

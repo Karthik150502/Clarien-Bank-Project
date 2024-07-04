@@ -15,6 +15,7 @@
     overflow: hidden;
     overflow-x: hidden;
     overflow-y: hidden;
+    background-color: var(--primary-white);
 }
 
 .wrapper .header {
@@ -71,12 +72,24 @@
     left: 45px;
     position: absolute;
     top: 12px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
 }
-
+.title-pending{
+    color: var(--primary-black);
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+.title-approved{
+    color: var(--primary-blue);
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
+.title-rejected{
+    color : var(--primary-orange);
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
 .approval-tiles {
     width: 90%;
     min-height: 150px;
-    max-height: 250px;
+    max-height: 365px;
     display: flex;
     align-items: center;
     justify-content: flex-start;

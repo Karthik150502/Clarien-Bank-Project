@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+
+.wrapper {
+    width: 100vw;
+    height: auto;
+    margin: 0 0 0 0;
+}
+
+.wrapper .header {
+    width: 90%;
+    margin: 5% auto;
+}
+
+.wrapper .container {
+    width: 90%;
+    height: calc(100vh - 158px);
+    margin: 0 auto 0 auto;
+    border-radius: 7px;
+    padding: 0 0 0 0;
+    overflow-y: scroll;
+}
+
+.wrapper .container::-webkit-scrollbar {
+    display: none;
+}
+
+.header-option {
+    width: 90%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.header-option .btn {
+    width: fit-content;
+    padding: 0 15px 0 15px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    color: var(--primary-black);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+
+.header-option .active {
+    width: fit-content;
+    padding: 0 15px 0 15px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
+
+.con-content {
+    width: 100%;
+    height: calc(100vh - 225px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow-y: scroll;
+    padding: 5px 0px 14px 0px;
+    margin: 15px auto 0 auto;
+}
+
+
+.con-content::-webkit-scrollbar {
+    display: none;
+}
+
+.templates {
+    border-radius: 12px;
+    border: 1px solid var(--border-blue);
+    width: 90%;
+    min-height: 50px;
+    max-height: fit-content;
+    padding: 5px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    margin: 10px 0 0 0;
+    background-color: var(--primary-white);
+}
+
+.templates .top p {
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    color: var(--primary-black);
+}
+
+.templates .bottom p {
+    font-size: 12px;
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+    color: var(--primary-grey);
+}
+
+
+
+c-c-b-footer {
+    position: fixed;
+    border: none;
+    bottom: 0;
+    z-index: 1;
+}

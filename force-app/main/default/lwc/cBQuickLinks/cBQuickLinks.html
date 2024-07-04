@@ -31,33 +31,14 @@
                     <p class="icon-label">{label.QR_CODE}</p>
                 </div>
 
-                <div class="icon-box" onclick={navigateToSendMoney}>
+                <!-- <div class="icon-box" onclick={navigateToSendMoney}>
                     <div class="icon-svg">
                         <svg width="53" height="31" viewBox="0 0 53 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href={CBSendMoney}></use>
                         </svg>
                     </div>
                     <p class="icon-label">{label.SEND_MONEY}</p>
-                </div>
-
-                <div class="icon-box" onclick={navigateToBillPayments}>
-                    <div class="icon-svg">
-                        <svg width="39" height="41" viewBox="0 0 39 41" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBBillPayments}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">{label.BILL_PAYMENTS}</p>
-                </div>
-
-                <div class="icon-box" onclick={navigateToApplyForLoans}>
-                    <div class="icon-svg">
-                        <svg width="43" height="28" viewBox="0 0 43 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <use href={CBApplyForLoans}></use>
-                        </svg>
-                    </div>
-                    <p class="icon-label">Make a Request</p>
-                    <!-- <p class="icon-label">{label.APPLY_FOR_LOANS}</p> -->
-                </div>
+                </div> -->
                 <div class="icon-box" onclick={navigateToAccountStatements}>
                     <div class="icon-svg">
                         <svg width="31" height="41" viewBox="0 0 31 41" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +138,7 @@
                     <p class="icon-label">{label.OFFERS}</p>
                 </div>
 
-
+<!-- 
                 <div class="icon-box" onclick={navigateToApprovals}>
                     <div class="icon-svg">
                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -172,8 +153,8 @@
                             <use href={CBInvestmentProfiles}></use>
                         </svg>
                     </div>
-                    <p class="icon-label">{label.INVESTMENT_PROFILES}</p>
-                </div>
+                    <p class="icon-label">{label.INVESTMENT}</p>
+                </div> -->
 
                 <!-- <div class="icon-box">
                     <div class="icon-svg">
@@ -212,6 +193,9 @@
         </div>
         <c-c-b-footer></c-c-b-footer>
     </div>
+    <template if:true={ScanPay}>
+        <c-c-b-scan-and-pay onclose={closeScanModal}></c-c-b-scan-and-pay>
+    </template>
     <!-- for ending session -->
     <c-c-b-session-end></c-c-b-session-end>
 </template>

@@ -1,0 +1,25 @@
+<template>
+
+  
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_12-of-12 slds-p-around_small">
+            <label class="slds-form-element__label" for="text-input-id-94">Username</label>
+                <input type="text" onchange={usernameHandler} class="slds-input"  label="Username" value={username} /> 
+        </div>
+        <label class="slds-form-element__label" for="text-input-id-94">Password</label>
+        <div class="slds-col slds-size_12-of-12 slds-p-around_small">
+                <input type="password" onchange={passwordHandler} class="slds-input"  label="Password" value={password} /> 
+        </div>
+        <div class="slds-col slds-size_12-of-12 slds-p-around_small">
+            <button class="slds-button slds-button_success"  onclick={login}>Login</button>
+        </div>
+    </div>
+
+    <br/>
+    <br/>
+    <div class="slds-grid slds-wrap">
+        <a href='/secur/logout.jsp'>Logout</a>
+    </div>
+    
+
+</template>

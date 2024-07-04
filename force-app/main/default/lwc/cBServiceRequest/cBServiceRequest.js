@@ -16,7 +16,7 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG";
 
 import { setPagePath } from 'c/cBUtilities';
 
-export default class CBManageBeneficiaries extends NavigationMixin(LightningElement) {
+export default class CBServiceRequest extends NavigationMixin(LightningElement) {
 
     // Initial Header Item Configuration
     header_icons = {

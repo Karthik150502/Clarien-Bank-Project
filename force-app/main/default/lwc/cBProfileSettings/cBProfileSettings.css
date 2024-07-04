@@ -27,7 +27,8 @@
 
 
 .container {
-    width: 90%;
+    /* width: 90%; */
+    padding: 0 24px;
     height: calc(100vh - 140px);
     margin: 70px auto 0 auto;
     display: flex;

@@ -1,5 +1,6 @@
 import fetchRequestBody from "@salesforce/apex/CBFetchMetaData.fetchRequestBody";
 import fetchPaths from "@salesforce/apex/CBFetchMetaData.fetchPaths";
+import getAcctProducts from "@salesforce/apex/CBFetchMetaData.getAccountProducts";
 import putData from "@salesforce/apex/CBUtilityController.put";
 import getData from "@salesforce/apex/CBUtilityController.get";
 import getSessionData from "@salesforce/apex/CBUtilityController.getSessionData";
@@ -8,35 +9,47 @@ import signOut from "@salesforce/apex/CBApiController.signOut";
 
 
 
-
+// Sets value to localStorage
 const setLocalStorage = (param, value) => {
     localStorage.setItem(param, value)
     return value
 }
 
+
+// Gets value to localStorage
 const getLocalStorage = (param) => {
     return localStorage.getItem(param)
 }
 
+
+// Checks if a key present in the localStorage
 const checkLocalkey = (key) => {
     let localKeys = new Set(Array.from(Object.keys(localStorage)))
     return localKeys.has(key)
 }
 
+
+// Checks if a key present in the sessionStorage
 const checkSessionkey = (key) => {
     let localKeys = new Set(Array.from(Object.keys(sessionStorage)))
     return localKeys.has(key)
 }
 
+
+
+// Sets a value to the sessionStorage
 const setMobileSessionStorage = (param, value) => {
     sessionStorage.setItem(param, value);
     return value;
 }
 
+
+// Gets value based on key from the sessionStorage
 const getMobileSessionStorage = (param) => {
     return sessionStorage.getItem(param);
 }
 
+// Sets a bunch of data to the sessionStorage at once 
 const setAllMobileSessionStorage = (data) => {
     let keys = Object.keys(data)
     keys.forEach((key) => {
@@ -44,6 +57,8 @@ const setAllMobileSessionStorage = (data) => {
     })
 }
 
+
+// Gets a bunch of data based on keys from the sessionStorage at once 
 const getAllMobileSessionStorage = (...param) => {
     let result = {}
     param.forEach((prm) => {
@@ -52,16 +67,22 @@ const getAllMobileSessionStorage = (...param) => {
     return result
 }
 
+
+// Clears all the data from the sessionStorage
 const clearAllMobileSessionStorage = () => {
     sessionStorage.clear()
 }
 
+// Remove particular sessionStorage key 
 const removeMobileSessionStorage = (...param) => {
     param.forEach((prm) => {
         sessionStorage.removeItem(prm);
     })
 }
 
+
+
+// Removes particular value from the locaStorage
 const removeLocalStorage = (...param) => {
     param.forEach((prm) => {
         localStorage.removeItem(prm);
@@ -69,38 +90,49 @@ const removeLocalStorage = (...param) => {
 }
 
 
-
+// Clears all items from local storage
 const clearLocalStorage = () => {
     localStorage.clear()
 }
 
 
+// Sets session data using a apex method and returns the value
 const setSessData = (param, value) => {
     return putData({ key: param, value: value })
 }
 
+
+// Retrieves session data using a apex method
 const getSessData = (param) => {
     return getData({ key: param })
 }
 
+// Sets session data using a apex method and returns the value
 const setAllSessData = (data) => {
     return setSessionData({ sessionData: data })
 }
+
+
+// Retrieves multiple session data items using a apex method
 const getAllSessData = (...params) => {
     return getSessionData({ keys: params })
 }
 
+
+// Removes specific session data items
 const remSessData = (...param) => {
     param.forEach((prm) => {
         sessionStorage.removeItem(prm);
     })
 }
 
+// Clears all session data
 const clearSessData = () => {
     sessionStorage.clear();
 }
 
 
+// Retrieves user credentials from session data
 const getUserCreds = () => {
     return getAllSessData("CBUsername", "CBPassword")
 }
@@ -191,6 +223,8 @@ const apiLogout = (domain) => {
         })
 }
 
+
+// Updates the page path in local storage and returns the previous page
 const setPagePath = (currentPage) => {
 
     if (getLocalStorage('pagePath')) {
@@ -220,6 +254,20 @@ const setPagePath = (currentPage) => {
     }
 }
 
+
+// Retrieves account products based on the account type
+const getAccountProducts = (acct_type) => {
+    return getAcctProducts({ accountType: acct_type });
+}
+
+
+
+// Formats a date string from yyyy-mm-dd to dd/mm/yyyy
+const formatDate = (yyyyMmDd) => {
+    let res = yyyyMmDd.split("-");
+    return `${res[2]}/${res[1]}/${res[0]}`;
+}
+
 export {
     setLocalStorage,
     getLocalStorage,
@@ -243,5 +291,7 @@ export {
     logout,
     setPagePath,
     checkSessionkey,
-    checkLocalkey
+    checkLocalkey,
+    getAccountProducts,
+    formatDate
 };

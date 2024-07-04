@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+
+.wrapper {
+    width: 100vw;
+    height: auto;
+    margin: 0 0 0 0;
+}
+
+.wrapper .header {
+    width: 90%;
+    margin: 5% auto;
+}
+
+.wrapper .container {
+    width: 100%;
+    height: calc(100vh - 158px);
+    margin: 0 auto 0 auto;
+    border-radius: 7px;
+    padding: 0 0 0 0;
+    overflow-y: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.con-header {
+    width: 90%;
+    height: fit-content;
+    padding: 5px 0 5px 0;
+    margin: 5px 0 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.con-header .add-biller {
+    width: fit-content;
+    padding: 5px 10px 5px 10px;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--primary-blue);
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 14px;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+}
+
+.add-biller svg {
+    margin: 0 2px 0 2px;
+}
+
+
+.con-content {
+    width: 100%;
+    height: calc(100vh - 225px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow-y: scroll;
+    padding: 5px 0px 15px 0px;
+    margin: 0 auto;
+}
+
+.con-content::-webkit-scrollbar {
+    display: none;
+}
+
+c-c-b-biller-detail-tile {
+    width: 90%;
+}

@@ -6,34 +6,38 @@
             </div>
             <div class="casing">
 
-                <p class="heading">Saving Account</p>
+                <p class="heading">{label.CB_SavingsAccountOpening}</p>
                 <p class="value">{accountNum}</p>
 
-                <p class="heading">Amount</p>
+                <p class="heading">{label.CB_Amount}</p>
                 <p class="value">{amount}</p>
 
-                <p class="heading">Currency</p>
+                <p class="heading">{label.CBCurrency}</p>
                 <p class="value">{currency}</p>
 
-                <p class="heading">Account Type</p>
+                <p class="heading">{label.CB_AccountType}</p>
                 <p class="value">{accountType}</p>
 
-                <p class="heading">Payee Name</p>
+                <p class="heading">{label.CB_PayeeName}</p>
                 <p class="value">{payeeName}</p>
 
-                <!-- <p class="heading">Remarks</p>
-                <p class="value">{remark}</p> -->
 
             </div>
             <div class="btns">
-                <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>SUBMIT</button>
+                <button class="submit-btn" disabled={submitBtnDisable} onclick={submitForm}>{label.CB_Submit}</button>
             </div>
         </div>
         <c-c-b-footer></c-c-b-footer>
     </div>
+    
     <template if:true={successModalOpen}>
         <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
     </template>
+
+    <template if:true={showModal}>
+        <c-c-b-operation-confirm-w-loading modal-info={modalConf}> </c-c-b-operation-confirm-w-loading>
+    </template>
+
     <!-- for ending session -->
     <c-c-b-session-end></c-c-b-session-end>
 </template>

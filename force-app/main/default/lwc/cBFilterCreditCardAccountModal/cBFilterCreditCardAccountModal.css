@@ -55,7 +55,7 @@ input{
 .wrapper {
     /* max-height: 70%;
     min-height: fit-content; */
-    height: 270px;
+    height: 225px;
     width: 90%;
     background-color:var(--primary-white);
     margin: auto auto;

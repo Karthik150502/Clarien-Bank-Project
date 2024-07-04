@@ -5,7 +5,7 @@
 	Description - Enhanced Error Display, Utilizing Reusable component with Custom Messages Passed from Parent Components
 */
 
-*{
+* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -14,13 +14,13 @@
     font-family: var(--dxp-g-root-gotham-book-font-family);
 }
 
-.wrapper{
+.wrapper {
     min-width: 150px;
     /* width: fit-content; */
     height: auto;
 }
 
-.container{
+.container {
     background-color: var(--light-blue);
     border-radius: 5px;
     height: 100%;
@@ -32,14 +32,18 @@
     flex-direction: row;
 }
 
-.logo{
+.logo {
     /* width: 20%; */
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.error{
+.logo svg {
+    transform: rotate(180deg);
+}
+
+.error {
     width: 80%;
     display: flex;
     align-items: center;
@@ -48,11 +52,13 @@
 }
 
 
-.error p{
+.error p {
     font-size: 11px;
     line-height: 15px;
     margin: 0 0 0 2%;
 }
-.logo, .error{
+
+.logo,
+.error {
     height: 100%;
 }

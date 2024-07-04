@@ -13,17 +13,18 @@ export default class CBSecondaryHeader extends NavigationMixin(LightningElement)
     modalOpen = false;
 
     @api configuration = {
-        // previousPageUrl: '',
-        // heading: 'Feedback/ Rate Us',
-        // iconsExposed: true,
-        // logout: {
-        //     exposed: true
-        // },
-        // search: {
-        //     exposed: true
-        // },favorite:{
-        // selected:false
-        // }
+        previousPageUrl: '',
+        heading: 'Feedback/ Rate Us',
+        iconsExposed: true,
+        logout: {
+            exposed: true
+        },
+        search: {
+            exposed: true
+        },
+        openTemplates: {
+            transferTypePage: '',
+        }
     }
 
     modal = {
@@ -56,10 +57,25 @@ export default class CBSecondaryHeader extends NavigationMixin(LightningElement)
         },
     };
 
+    navigateToTemplate() {
+        this.navigateTo(this.configuration.favorite.templatePageName)
+    }
 
+    /**
+    * Method to navigate back to a specified page
+    * @param {string} pageName - The name of the page to navigate to
+    */
+    navigateTo(pageName) {
+        console.log('navigate called');
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: pageName
+            }
+        });
+    }
 
-
-
+    // Actuates the user navigation to the previous page 
     navigateBack() {
         if (!this.configuration.previousPageUrl) {
             history.back();
@@ -79,8 +95,30 @@ export default class CBSecondaryHeader extends NavigationMixin(LightningElement)
         }
     }
 
+
+    /**
+    * Method to navigate back to a specified page with data to send
+    * @param {string} pageName - The name of the page to navigate to
+    */
+    navigateWithParams(pageName, data = {}) {
+        console.log('navigate called');
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: pageName
+            },
+            state: data
+        });
+    }
+
+
+    // Modal is showed that directs the user to log out
     logoutUser() {
         this.modalOpen = true
+    }
+
+    navigateToTemplates() {
+        this.navigateWithParams('CBTemplatesAndBenefs__c', { transfersTypePage: this.configuration.openTemplates.transferTypePage })
     }
 
 }

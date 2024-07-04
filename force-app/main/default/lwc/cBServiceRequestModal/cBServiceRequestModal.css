@@ -10,19 +10,27 @@
 
 
 .wrapper {
-    max-height: 60%;
-    min-height: fit-content;
+    /* height: 200px; */
+    /* min-height: fit-content; */
+    margin: auto auto;
     width: 80%;
-    background-color:var(--primary-white);
+    background-color: var(--primary-white);
     margin: auto auto;
     border-radius: 12px;
     overflow: auto;
     padding: 6% 4%;
 }
 
+.navigation{
+    height: 210px;
+}
+
+.debitCard{
+    height: 300px;
+}
 
 .wrapper .container {
-    height: 100%;
+    height: 75%;
     width: 100%;
     /* display: flex;
     align-items: center;
@@ -44,6 +52,8 @@
 .wrapper .heading p {
     font-size: 18.25px;
     margin: 0 0 0 3%;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    color: var(--primary-grey);
 }
 
 .menu-item {
@@ -112,4 +122,8 @@ select {
 input {
     font-size: 16px !important;
     max-height: 100px !important;
+}
+.btns .submit-btn:disabled,
+.btns .submit-btn[disabled] {
+    background-color: var(--light-grey);
 }

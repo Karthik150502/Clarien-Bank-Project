@@ -121,11 +121,7 @@
 
 
 .wrapper .container .content .remarks {
-    width: 100%;
-    border: 1px solid var(--border-blue);
-    border-radius: 12px;
-    min-height: 100px;
-    padding: 2% 2% 2% 2%;
+    margin: 10px 0;
 }
 
 .wrapper .container .footer .submit-btn:disabled,

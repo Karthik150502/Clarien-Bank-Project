@@ -1,14 +1,17 @@
 import { LightningElement, wire, api, track } from 'lwc';
 import { CurrentPageReference, NavigationMixin } from 'lightning/navigation';
 
-import PREDEFINED from '@salesforce/label/c.CB_Predefined'; // Importing label for predefined transactions
+
+import MANAGE_TEMPLATES from '@salesforce/label/c.CB_ManageTemplates'; // Importing label for predefined transactions
 import OWN_ACC_PAYMENTS from '@salesforce/label/c.CB_OwnAccountTransfers'; // Importing label for own account transfers
 import INTRABANK_PAYMENTS from '@salesforce/label/c.CB_IntrabankTransfers'; // Importing label for intrabank transfers
 import DOMESTIC_PAYMENTS from '@salesforce/label/c.CB_DomesticPayments'; // Importing label for domestic payments
 import INTERNATIONAL_PAYMENTS from '@salesforce/label/c.CB_InternationalPayments'; // Importing label for international payments
 import MANAGE_BENEF from '@salesforce/label/c.CB_ManageBeneficiaries'; // Importing label for managing beneficiaries
 import BILL_PAYMENTS from '@salesforce/label/c.CB_BillPayments';
-import ADHOC_PAYMENTS from '@salesforce/label/c.CB_AdHocPayments';
+import SEND_MONEY from '@salesforce/label/c.CB_SendMoney';
+import CB_ManageBillers from '@salesforce/label/c.CB_ManageBillers';
+
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
@@ -17,14 +20,15 @@ import { setPagePath } from 'c/cBUtilities';
 export default class CBTransfers extends NavigationMixin(LightningElement) {
     // Labels for dashboard icons
     label = {
-        PREDEFINED,
+        MANAGE_TEMPLATES,
         OWN_ACC_PAYMENTS,
         INTRABANK_PAYMENTS,
         DOMESTIC_PAYMENTS,
         INTERNATIONAL_PAYMENTS,
         MANAGE_BENEF,
-        ADHOC_PAYMENTS,
-        BILL_PAYMENTS
+        BILL_PAYMENTS,
+        SEND_MONEY,
+        CB_ManageBillers
     }
 
     //SVG's from static resource
@@ -36,7 +40,6 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
     CBInvestmentProfiles = `${CBSVG}/CBSVGs/CBInvestmentProfiles.svg#CBInvestmentProfiles`;
     CBAccountStatements = `${CBSVG}/CBSVGs/CBAccountStatements.svg#CBAccountStatements`;
     CBApplyForLoans = `${CBSVG}/CBSVGs/CBApplyForLoans.svg#CBApplyForLoans`;
-    CBAdHocPayment = `${CBSVG}/CBSVGs/CBAdHocPayment.svg#CBAdHocPayment`;
     CBServiceRequest = `${CBSVG}/CBSVGs/CBServiceRequest.svg#CBServiceRequest`;
     CBBankAccounts = `${CBSVG}/CBSVGs/CBBankAccounts.svg#CBBankAccounts`;
     CBScanPay = `${CBSVG}/CBSVGs/CBScanPay.svg#CBScanPay`;
@@ -47,7 +50,7 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
 
     configuration = {
         previousPageUrl: 'Home',
-        heading: 'Transfers',
+        heading: this.label.SEND_MONEY,
         iconsExposed: false,
         logout: {
             exposed: false
@@ -60,7 +63,6 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
     CBPdf = `${CBSVG}/CBSVGs/CBPdf.svg#CBPdf`;
     CBSortOrder = `${CBSVG}/CBSVGs/CBSortOrder.svg#CBSortOrder`;
     CBFilter = `${CBSVG}/CBSVGs/CBFilter.svg#CBFilter`;
-
     transactionStyle = 'overview';
     overViewStyle = "";
 
@@ -68,9 +70,14 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
 
     @wire(CurrentPageReference) pageRef;
 
+
+
+    // Getter method that returns the account number 
     get accountNumber() {
         return this.pageRef && this.pageRef.state.accountNumber;
     }
+
+
     cardDetail = {
         availableBalance: '11,000.00',
         currentBalance: '11,000.00',
@@ -80,16 +87,17 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
         cardStatus: 'Active'
     }
 
+    // Object to manage header icons
     header_icons = {
         // Announcements icon settings
         announcements: {
-            exposed: false,  // Whether to display the Announcements icon
-            haveItems: false // Whether the Announcements icon has items to display
+            exposed: true,  // Whether to display the Announcements icon
+            haveItems: true // Whether the Announcements icon has items to display
         },
         // Whether to display the Announcements icon
         notifications: {
-            exposed: false,  // Whether to display the Notifications icon
-            haveItems: false // Whether the Notifications icon has items to display
+            exposed: true,  // Whether to display the Notifications icon
+            haveItems: true // Whether the Notifications icon has items to display
         },
         // Inbox icon settings
         inbox: {
@@ -98,8 +106,8 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
         },
         // Scan Code icon settings
         scanCode: {
-            exposed: true, // Whether to display the Scan Code icon
-            haveItems: true    // Whether the Scan Code icon has items to display
+            exposed: false, // Whether to display the Scan Code icon
+            haveItems: false    // Whether the Scan Code icon has items to display
         }
     };
 
@@ -115,6 +123,8 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
         { id: '9', CHQSId: 'Sent money to DMart - saving account', EMIId: 'DEB0010200988909', date: '01/17/23', amount: '50.00', transactionType: 'Fee', type: 'debit' },
         { id: '10', CHQSId: 'recieved money from elton - saving account', EMIId: 'CRED0010200988910', date: '01/18/23', amount: '51.00', transactionType: 'Transfer', type: 'credit' }
     ];
+
+
 
     connectedCallback() {
         setPagePath('CBTransfers__c')
@@ -132,6 +142,8 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
     fromDate = ''
     toDate = ''
     modalFilter = false
+
+    // Handles opening and closing of the filter popup
     openFilterPopup(event) {
         this.modalFilter = !this.modalFilter;
         if (!this.modalFilter && event.detail.fromDate != undefined && event.detail.toDate != undefined) {
@@ -140,10 +152,15 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
         }
     }
 
+
+
+    // Sorts the transaction data by amount
     sortAmount() {
         this.mergeSort(this.transactionData);
     }
 
+
+    // Performs merge sort on the given array
     mergeSort(arr) {
         if (arr.length > 1) {
             let leftArr = arr.slice(0, Math.floor(arr.length / 2))
@@ -175,35 +192,51 @@ export default class CBTransfers extends NavigationMixin(LightningElement) {
             }
         }
     }
-
+    // Navigates to the "Manage Beneficiaries" page
     navigateToManageBeneficiaries() {
         this.navigateTo('CBManageBeneficiaries__c')
     }
+    // Navigates to the "Manage Beneficiaries" page
+    navigateToManageBiller() {
+        this.navigateTo('CBManageBiller__c')
+    }
+    // Navigates to the "Bill Payment" page
     navigateToBillPayment() {
         this.navigateTo('CBBillPayments__c')
     }
 
+
+    // Navigates to the "Predefined" page
     navigateToPredefined() {
         this.navigateTo('CBPredefined__c')
     }
 
-    navigateToAdHocPaymts() {
-        this.navigateTo('CBAdHocPayments__c')
-    }
 
+
+
+    // Navigates to the "Own Account Transfer" page
     navigateToOwnAccTransfer() {
         this.navigateTo('CBOwnAccountTransfer__c')
     }
+
+    // Navigates to the "IntraBank Transfers" page
     navigateToIntrabankTransfer() {
         this.navigateTo('CBIntraBankTransfers__c')
     }
+
+    // Navigates to the "International Transfers" page
     navigateToInternationalTransfer() {
         this.navigateTo('CBInternationalTransfers__c')
     }
+
+    // Navigates to the "Domestic Payments" page
     navigateToDomesticPayments() {
         this.navigateTo('CBDomesticTransfers__c')
     }
 
+
+
+    // Helper function for navigation
     navigateTo(pageName) {
         console.log('navigate called');
         this[NavigationMixin.Navigate]({

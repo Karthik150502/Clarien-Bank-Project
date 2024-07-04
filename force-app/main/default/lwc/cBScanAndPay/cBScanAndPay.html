@@ -1,14 +1,44 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-28-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
-    <div class="wrapper">
-        <div class="header">
-            <c-c-b-secondary-header configuration={headerConfguration}></c-c-b-secondary-header>
-        </div>
-        <div class="container">
-            <lightning-button variant="brand" class="slds-var-m-left_x-small" disabled={scanButtonDisabled}
-                icon-name="utility:cases" label="Scan Barcode" title="Open a camera view and look for a barcode to scan"
-                onclick={handleBeginScanClick}>
-            </lightning-button>
-        </div>
-    </div>
-
+	<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open slds-modal_medium wrapper">
+		<div class="container">
+			<div class="heading">
+				<div class="back-svg" onclick={closeNavigate}>
+					<svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<use href={CBBackIcon}></use>
+					</svg>
+				</div>
+				<p>ITransfer</p>
+			</div>
+			<div class="buttons">
+				<div class="upload-div" onclick={callHandleImageUpload}>
+					<label for="">
+						<input class="upload" type="file" accept="image/*" onchange={handleImageUpload} />
+						<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M18 20H4V6h9V4H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-9h-2v9zm-7.79-3.17l-1.96-2.36L5.5 18h11l-3.54-4.71zM20 4V1h-2v3h-3c.01.01 0 2 0 2h3v2.99c.01.01 2 0 2 0V6h3V4h-3z"/></svg>
+					</label>
+					<p>Scan QR Using Gallery</p>
+				</div>
+				<div class="scan-div" onclick={handleQrScan}>
+					<button class="scan">
+						<svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M128 416a32 32 0 0 1-32-32V128a32 32 0 0 1 32-32h256a32 32 0 0 1 0 64H160v224a32 32 0 0 1-32 32z m768 0a32 32 0 0 1-32-32V160H640a32 32 0 0 1 0-64h256a32 32 0 0 1 32 32v256a32 32 0 0 1-32 32zM384 928H128a32 32 0 0 1-32-32V640a32 32 0 0 1 64 0v224h224a32 32 0 0 1 0 64z m512 0H640a32 32 0 0 1 0-64h224V640a32 32 0 0 1 64 0v256a32 32 0 0 1-32 32z m21.333-384H106.667a32 32 0 0 1 0-64h810.666a32 32 0 0 1 0 64z"  /></svg>
+					</button>
+					<p>Scan QR Using Camera</p>
+				</div>
+			</div>
+		</div>
+		<div class={result}>
+			<svg onclick={closeResult} xmlns="http://www.w3.org/2000/svg" width="32" height="32" id="down-arrow"><path d="M22.782 13.8 17 19.582 11.218 13.8a1 1 0 0 0-1.414 1.414L16.29 21.7a.992.992 0 0 0 .71.292.997.997 0 0 0 .71-.292l6.486-6.486a1 1 0 0 0-1.414-1.414z"></path></svg>
+			<p>{resultHeading}</p>
+			<h2>{logs}</h2>
+			<pre>{scannedBarcodesAsString}</pre>
+		</div>
+	</section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
 </template>

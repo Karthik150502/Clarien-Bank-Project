@@ -1,28 +1,37 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-25-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
     <div class="wrapper">
         <div class="container">
             <div class="heading">
                 <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
             </div>
-                <div class="casing">
+            <div class="casing">
 
-                    <p class="title">Card</p>
-                    <p class="value">{cardType}</p>
+                <p class="title">{label.CARD}</p>
+                <p class="value">{cardType}</p>
 
-                    <p class="title">Country</p>
-                    <p class="value">{country}</p>
+                <p class="title">{label.COUNTRY}</p>
+                <p class="value">{country}</p>
 
-                    <p class="title">State</p>
+                <template if:true={state}>
+                    <p class="title">{label.STATE}</p>
                     <p class="value">{state}</p>
+                </template>
 
-                    <p class="title">From Date</p>
-                    <p class="value">{fromDate}</p>
+                <p class="title">{label.FROM_DATE}</p>
+                <p class="value">{fromDate}</p>
 
-                    <p class="title">To Date</p>
-                    <p class="value">{toDate}</p>
-    
-                </div>
-            <button class="btn" onclick={submitForm}>SUBMIT</button>
+                <p class="title">{label.TO_DATE}</p>
+                <p class="value">{toDate}</p>
+
+            </div>
+            <button class="btn" onclick={submitForm}>{label.SUBMIT}</button>
         </div>
         <c-c-b-footer></c-c-b-footer>
     </div>

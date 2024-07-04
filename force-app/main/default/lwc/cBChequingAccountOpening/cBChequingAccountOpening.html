@@ -1,47 +1,54 @@
+<!--
+    Author - Prateek Deshmukh
+    Created Date - 04/15/2024
+    Modified Date - 06/21/2024
+    Description - This component is designed to collect customer details for requesting the opening of a chequing account.
+-->
 <template>
 	<div class="wrapper">
-
 		<div class="container">
 			<div class="heading">
 				<c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
 			</div>
 			<div class="form">
-				<div class="input">
-					<p class="heading">Account Type</p>
+				<!-- <div class="input">
+					<p class="heading">{label.CB_AccountType}</p>
 					<p class="options account-type read">{accountType}</p>
-				</div>
+				</div> -->
 				<div class="input">
-					<p class="heading">Product</p>
-					<select class="options" id="product" onchange={productHandler} value={product}>
-                        <template for:each={products} for:item="product">
-                            <option key={product.value} value={product.value}>{product.label}</option>
-                        </template>
-                    </select>
+					<p class="heading">{label.CB_Product}</p>
+					<select class="options" id="product" onchange={productHandler}>
+						<option value="Select Product" selected>{label.SELECT}</option>
+						<template for:each={products} for:item="product">
+							<option key={product.value} value={product.value}>{product.label}</option>
+						</template>
+					</select>
 				</div>
 
 				<div class="input">
-					<p class="heading">Currency</p>
-					<select class="options" id="Currency" onchange={currencyHandler} value={currency}>
-                        <template for:each={currencies} for:item="currency">
-                            <option key={currency.value} value={currency.value}>{currency.label}</option>
-                        </template>
-                    </select>
+					<p class="heading">{label.CBCurrency}</p>
+					<select class="options" id="Currency" onchange={currencyHandler}>
+						<option value="Select Currency" selected>{label.SELECT}</option>
+						<template for:each={currencies} for:item="currency">
+							<option key={currency.value} value={currency.value}>{currency.label}</option>
+						</template>
+					</select>
 				</div>
-				
+
 				<label class="terms-Conditions">
 					<div class="check-box">
 						<input class="checkBox" type="checkbox" onchange={termsConditions}>
 					</div>
 					<div>
-						<p>I Agree To The Company <a>Terms & Conditions & privacy Policy</a></p>
+						<p>{label.CB_IAgreeToCompanyConduct}<a>{label.CB_TermsAndConditions}</a></p>
 					</div>
 				</label>
-				<label class="terms-Conditions">
+				<!-- <label class="terms-Conditions">
 					<div class="check-box">
 						<input class="checkBox" type="checkbox" onchange={conduct}>
 					</div>
 					<div>
-						<a>I Agree For Company Code Of Conduct</a>
+						<a>{label.CBCreateUserCreds_companyCodeConduct}</a>
 					</div>
 				</label>
 				<label class="terms-Conditions">
@@ -49,23 +56,18 @@
 						<input class="checkBox" type="checkbox" onchange={marketingConsent}>
 					</div>
 					<div>
-						<a>I Accept Marketing Consent</a>
+						<a>{label.CB_MarketingConsent}</a>
 					</div>
-				</label>
+				</label> -->
 
 				<div class="btns">
 					<button class="submit-btn" disabled={buttonDisabled} onclick={submitHandler}>
-                        NEXT
-                    </button>
+						{label.CB_Next}
+					</button>
 				</div>
 			</div>
-			<div class="notes-container">
-				<template for:each={notes} for:item="note">
-					<div key={note.id} class="notes-inner-container">
-						<span>{note.number}</span>
-						<lightning-formatted-rich-text value={note.content}></lightning-formatted-rich-text>
-					</div>
-				</template>
+            <div class="notes-container">
+				<p> {label.CB_Refer} <a href="https://clarienbank.com/fees/">{label.CB_FeeSchedule}</a> {label.CB_Charges_For_All_Fees} {label.CHEQUING_ACCOUNT_OPENING}</p>
 			</div>
 		</div>
 		<c-c-b-footer></c-c-b-footer>

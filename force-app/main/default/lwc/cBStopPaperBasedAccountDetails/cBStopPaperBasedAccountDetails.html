@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-25-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
     <div class="wrapper">
         <div class="container">
@@ -8,24 +15,30 @@
                 <template for:each={accounts} for:item="account">
                     <div class="casing" key={account.accNumber}>
 
-                        <p class="title">Saving Account</p>
-                        <p class="value">{account.accNumber}</p>
+                        <p class="title">{label.SAVING_ACCOUNT}</p>
+                        <p class="value">{account.accountNo}</p>
 
-                        <p class="title">{label.CURRENCY}</p>
-                        <p class="value">{account.currency}</p>
+                        <template if:true={account.currency}>
+                            <p class="title">{label.CURRENCY}</p>
+                            <p class="value">{account.currency}</p>
+                        </template>
 
-                        <p class="title">Account Type</p>
-                        <p class="value">{account.accStatus}</p>
 
-                        <p class="title">Transaction Status</p>
-                        <p class="value">{account.TransStatus}</p>
+                        <p class="title">{label.ACCOUNT_TYPE}</p>
+                        <p class="value">{account.accountType}</p>
+
+                        <template if:true={account.TransStatus}>
+                            <p class="title">{label.TRANSACTION_STATUS}</p>
+                            <p class="value">{account.TransStatus}</p>
+                        </template>
+
 
                         <!-- <p class="title">{label.REMARKS}</p>
             <p></p> -->
                     </div>
                 </template>
                 <div class="submit-btn">
-                    <button class="btn" onclick={submitForm}>SUBMIT</button>
+                    <button class="btn" onclick={submitForm}>{label.SUBMIT}</button>
                 </div>
             </div>
         </div>

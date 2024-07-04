@@ -1,3 +1,10 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 06-25-2024
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
 <template>
 	<div class="wrapper">
 
@@ -6,42 +13,44 @@
 				<c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
 			</div>
 			<div class="form">
-				<div class="input">
+				<!-- <div class="input">
 					<p class="heading">Account Type</p>
 					<p class="options account-type read">{accountType}</p>
-				</div>
+				</div> -->
 				<div class="input">
-					<p class="heading">Product</p>
-					<select class="options" id="product" onchange={productHandler} value={product}>
-                        <template for:each={products} for:item="product">
-                            <option key={product.value} value={product.value}>{product.label}</option>
-                        </template>
-                    </select>
+					<p class="heading">{label.PRODUCT}</p>
+					<select class="options" id="product" onchange={productHandler}>
+						<option value="Select" selected>{label.SELECT}</option>
+						<template for:each={products} for:item="product">
+							<option key={product.value} value={product.value}>{product.label}</option>
+						</template>
+					</select>
 				</div>
 
 				<div class="input">
-					<p class="heading">Currency</p>
-					<select class="options" id="Currency" onchange={currencyHandler} value={currency}>
-                        <template for:each={currencies} for:item="currency">
-                            <option key={currency.value} value={currency.value}>{currency.label}</option>
-                        </template>
-                    </select>
+					<p class="heading">{label.CURRENCY}</p>
+					<select class="options" id="Currency" onchange={currencyHandler}>
+						<option value="Select" selected>{label.SELECT}</option>
+						<template for:each={currencies} for:item="currency">
+							<option key={currency.value} value={currency.value}>{currency.label}</option>
+						</template>
+					</select>
 				</div>
-				
+
 				<label class="terms-Conditions">
 					<div class="check-box">
 						<input class="checkBox" type="checkbox" onchange={termsConditions}>
 					</div>
 					<div>
-						<p>I Agree To The Company <a>Terms & Conditions & privacy Policy</a></p>
+						<p>{label.I_AGREE_TO_THE_COMPANY} <a>{label.TERMS_CONDITIONS_PRIVACY_POLICY}</a></p>
 					</div>
 				</label>
-				<label class="terms-Conditions">
+				<!-- <label class="terms-Conditions">
 					<div class="check-box">
 						<input class="checkBox" type="checkbox" onchange={conduct}>
 					</div>
 					<div>
-						<a>I Agree For Company Code Of Conduct</a>
+						<a>{label.I_AGREE_FOR_COMPANY_CODE_OF_CONDUCT}</a>
 					</div>
 				</label>
 				<label class="terms-Conditions">
@@ -49,28 +58,28 @@
 						<input class="checkBox" type="checkbox" onchange={marketingConsent}>
 					</div>
 					<div>
-						<a>I Accept Marketing Consent</a>
+						<a>{label.I_ACCEPT_MARKETING_CONSENT}</a>
 					</div>
-				</label>
+				</label> -->
 
 				<div class="btns">
 					<button class="submit-btn" disabled={buttonDisabled} onclick={submitHandler}>
-                        NEXT
-                    </button>
+						{label.NEXT}
+					</button>
 				</div>
 			</div>
-			<div class="notes-container">
-				<template for:each={notes} for:item="note">
-					<div key={note.id} class="notes-inner-container">
-						<span>{note.number}</span>
-						<lightning-formatted-rich-text value={note.content}></lightning-formatted-rich-text>
-					</div>
-				</template>
+            <div class="notes-container">
+				<p> {label.CB_Refer} <a href="https://clarienbank.com/fees/">{label.CB_FeeSchedule}</a> {label.CB_Charges_For_All_Fees} {label.SAVINGS_ACCOUNT_OPENING}</p>
 			</div>
 		</div>
 		<c-c-b-footer></c-c-b-footer>
 	</div>
-    <template if:true={successModalOpen}>
-        <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
-    </template>
+	<template if:true={successModalOpen}>
+		<c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
+	</template>
+
+	<template if:true={isLoading}>
+		<c-c-b-loading-spinner modal-info={confirmModal2}>
+		</c-c-b-loading-spinner>
+	</template>
 </template>

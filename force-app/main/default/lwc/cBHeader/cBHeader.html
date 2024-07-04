@@ -9,12 +9,12 @@
 <template>
 	<div class="wrapper">
 		<div class="container">
-			<div class="profile" onclick={navigateToProfile}>
+			<div class="profile" lwc:ref="profile" onclick={navigateToProfile}>
 				<template if:false={imageSrc}>
 					{init}
 				</template>
 				<template if:true={imageSrc}>
-					<img class="profile-pic" data-cls="profile-pic" src={imageSrc} loading="lazy" />
+					<!-- <img class="profile-pic" data-cls="profile-pic" /> -->
 				</template>
 				<!-- <img class="profile-pic" data-cls="profile-pic" src="https://wallpapercave.com/wp/wp13053685.jpg"/> -->
 			</div>
@@ -106,7 +106,7 @@
 			<div class="slider-container">
 				<c-c-b-profile-layout-template meta-info={profileItems}></c-c-b-profile-layout-template>
 				<div class="slider-menu-footer">
-					<button onclick={logoutUser}>LOGOUT</button>
+					<button onclick={logoutUser}>{label.CB_Logout}</button>
 					<div class="slider-menu-footer-logo">
 						<svg width="115" height="30" viewBox="0 0 115 30" fill="none"
 							xmlns="http://www.w3.org/2000/svg">

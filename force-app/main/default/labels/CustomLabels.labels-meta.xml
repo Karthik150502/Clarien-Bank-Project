@@ -96,35 +96,35 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB ChangePassword Submit</shortDescription>
-        <value>SUBMIT</value>
+        <value>Submit</value>
     </labels>
     <labels>
         <fullName>CBCreateUserCreds_andPrivacyPolicy</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB CreateUserCreds And Privacy Policy</shortDescription>
-        <value>and Privacy Policy</value>
+        <value>And Privacy Policy</value>
     </labels>
     <labels>
         <fullName>CBCreateUserCreds_atleastOneSpecChar</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB CreateUserCreds Atleast One Special Char</shortDescription>
-        <value>At least one special character</value>
+        <value>At Least One Special Character</value>
     </labels>
     <labels>
         <fullName>CBCreateUserCreds_atleastOneUppChar</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB CreateUserCreds atleast One Upper Char</shortDescription>
-        <value>At least one uppercase letter</value>
+        <value>At Least One Uppercase Letter</value>
     </labels>
     <labels>
         <fullName>CBCreateUserCreds_companyCodeConduct</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB CreateUserCreds Company Code Conduct</shortDescription>
-        <value>I agree the Company&apos;s Code of Conduct</value>
+        <value>I Agree To The Company&apos;s Code Of Conduct</value>
     </labels>
     <labels>
         <fullName>CBCreateUserCreds_confirmPassword</fullName>
@@ -145,14 +145,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB CreateUserCreds i Agree To Company</shortDescription>
-        <value>I agree to the company&apos;s</value>
+        <value>I Agree To The Company&apos;s</value>
     </labels>
     <labels>
         <fullName>CBCreateUserCreds_marketingConsent</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB CreateUserCreds MarketingConsent</shortDescription>
-        <value>I accept marketing consent</value>
+        <value>I Accept Marketing Consent</value>
     </labels>
     <labels>
         <fullName>CBCreateUserCreds_newPassword</fullName>
@@ -180,7 +180,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB CreateUserCreds Submit</shortDescription>
-        <value>SUBMIT</value>
+        <value>Submit</value>
     </labels>
     <labels>
         <fullName>CBCreateUserCreds_termsConditions</fullName>
@@ -271,7 +271,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CBForgotPassword2 NEXT</shortDescription>
-        <value>NEXT</value>
+        <value>Next</value>
     </labels>
     <labels>
         <fullName>CBForgotPassword2_Password_must_contain</fullName>
@@ -341,7 +341,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CBForgotPassword3_LOGIN</shortDescription>
-        <value>LOGIN</value>
+        <value>Login</value>
     </labels>
     <labels>
         <fullName>CBForgotPassword3_password_changed</fullName>
@@ -477,18 +477,46 @@
         <value>Username</value>
     </labels>
     <labels>
+        <fullName>CBMakeARequest_Card</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Make a Request Card</shortDescription>
+        <value>Card</value>
+    </labels>
+    <labels>
+        <fullName>CBMakeARequest_Loan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Make a Request Loan</shortDescription>
+        <value>Loan</value>
+    </labels>
+    <labels>
+        <fullName>CBMakeARequest_RequestADraft</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Make a Request Request a Draft</shortDescription>
+        <value>Request a Draft</value>
+    </labels>
+    <labels>
+        <fullName>CBMakeARequest_StopPaperBasedStatements</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Make a Request Stop Paper Based Statements</shortDescription>
+        <value>Stop Paper Based Statements</value>
+    </labels>
+    <labels>
         <fullName>CBTokenValidationCard_Token_label</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CBTokenValidationCard Token label</shortDescription>
-        <value>Please enter security token</value>
+        <value>Please Enter Security Token</value>
     </labels>
     <labels>
         <fullName>CB_ACCOUNTS</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ACCOUNTS</shortDescription>
-        <value>ACCOUNTS</value>
+        <value>Accounts</value>
     </labels>
     <labels>
         <fullName>CB_ATMLocator</fullName>
@@ -496,6 +524,13 @@
         <protected>false</protected>
         <shortDescription>CB_ATMLocator</shortDescription>
         <value>ATM Locator</value>
+    </labels>
+    <labels>
+        <fullName>CB_AccRefNumber</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AccRefNumber</shortDescription>
+        <value>Account / Reference Number</value>
     </labels>
     <labels>
         <fullName>CB_AccountName</fullName>
@@ -544,7 +579,28 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ActivateAccForService</shortDescription>
-        <value>Activate Account for Online service</value>
+        <value>Activate Account For Online Service</value>
+    </labels>
+    <labels>
+        <fullName>CB_ActivateBiometricAuthen</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ActivateBiometricAuthen</shortDescription>
+        <value>Activate Biometric Authentication?</value>
+    </labels>
+    <labels>
+        <fullName>CB_ActiveTransfers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ActiveTransfers</shortDescription>
+        <value>Active Transfers</value>
+    </labels>
+    <labels>
+        <fullName>CB_AdHocBillerName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_AdHocBillerName</shortDescription>
+        <value>Ad-Hoc Biller Name</value>
     </labels>
     <labels>
         <fullName>CB_AdHocPayments</fullName>
@@ -575,18 +631,25 @@
         <value>All</value>
     </labels>
     <labels>
+        <fullName>CB_Amount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Amount</shortDescription>
+        <value>Amount</value>
+    </labels>
+    <labels>
         <fullName>CB_AndPrivacyPolicy</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_AndPrivacyPolicy</shortDescription>
-        <value>and Privacy Policy</value>
+        <value>And Privacy Policy</value>
     </labels>
     <labels>
         <fullName>CB_ApplyForLoans</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ApplyForLoans</shortDescription>
-        <value>Apply for Loans</value>
+        <value>Apply For Loans</value>
     </labels>
     <labels>
         <fullName>CB_ApplyNow</fullName>
@@ -603,18 +666,25 @@
         <value>Approvals</value>
     </labels>
     <labels>
+        <fullName>CB_Approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Approved</shortDescription>
+        <value>Approved</value>
+    </labels>
+    <labels>
         <fullName>CB_AtLeastOneSpecChar</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_AtLeastOneSpecChar</shortDescription>
-        <value>At least one Special character</value>
+        <value>At Least One Special Character</value>
     </labels>
     <labels>
         <fullName>CB_AtLeastOneUpperCase</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_AtLeastOneUpperCase</shortDescription>
-        <value>At least one uppercase letter</value>
+        <value>At Least One Uppercase Letter</value>
     </labels>
     <labels>
         <fullName>CB_AuthenticationSuccessful</fullName>
@@ -635,7 +705,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Authentication in progress</shortDescription>
-        <value>Authentication in progress</value>
+        <value>Authentication In Progress</value>
     </labels>
     <labels>
         <fullName>CB_Authentication_Successful</fullName>
@@ -684,7 +754,21 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_BillPayments</shortDescription>
-        <value>Bill Payments</value>
+        <value>Pay Bills</value>
+    </labels>
+    <labels>
+        <fullName>CB_Biller</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Biller</shortDescription>
+        <value>Biller</value>
+    </labels>
+    <labels>
+        <fullName>CB_BillerNickname</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_BillerNickname</shortDescription>
+        <value>Biller Nickname</value>
     </labels>
     <labels>
         <fullName>CB_BioMetric</fullName>
@@ -692,6 +776,13 @@
         <protected>false</protected>
         <shortDescription>CB_BioMetric</shortDescription>
         <value>Bio-Metric</value>
+    </labels>
+    <labels>
+        <fullName>CB_BiomtricAuthenHasBeenSuccess</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_BiomtricAuthenHasBeenSuccess</shortDescription>
+        <value>Biometric Authentication Has Been Successfully Activated</value>
     </labels>
     <labels>
         <fullName>CB_Bmd</fullName>
@@ -708,11 +799,61 @@
         <value>Buy</value>
     </labels>
     <labels>
+        <fullName>CB_CAAccAdd_074</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CAAccAdd_074</shortDescription>
+        <value>The general ledger subhead code is invalid</value>
+    </labels>
+    <labels>
+        <fullName>CB_CAAccAdd_526</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CAAccAdd_526</shortDescription>
+        <value>More than one general ledger subhead and scheme code combination exists for this
+            general ledger</value>
+    </labels>
+    <labels>
+        <fullName>CB_CAAccAdd_999</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CAAccAdd_999</shortDescription>
+        <value>A non-employee cannot open an account under this scheme</value>
+    </labels>
+    <labels>
+        <fullName>CB_CAAccAdd_AEE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CAAccAdd_AEE</shortDescription>
+        <value>Enter the account ID during the account opening</value>
+    </labels>
+    <labels>
+        <fullName>CB_CAAccAdd_Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CAAccAdd_Default</shortDescription>
+        <value>Technical issue, please try again</value>
+    </labels>
+    <labels>
+        <fullName>CB_CAAccAdd_E3238</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CAAccAdd_E3238</shortDescription>
+        <value>Field must be entered</value>
+    </labels>
+    <labels>
+        <fullName>CB_CAAccAdd_E4221</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CAAccAdd_E4221</shortDescription>
+        <value>A/C IS FROZEN, For Customer [4100000042]/ Scheme [CAGRD]]</value>
+    </labels>
+    <labels>
         <fullName>CB_Cancel</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Cancel</shortDescription>
-        <value>cancel</value>
+        <value>Cancel</value>
     </labels>
     <labels>
         <fullName>CB_CarLoan</fullName>
@@ -838,7 +979,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ClickHereToken</shortDescription>
-        <value>Click here to register token in online banking</value>
+        <value>Click Here To Register Token In Online Banking</value>
     </labels>
     <labels>
         <fullName>CB_CloseDialog</fullName>
@@ -852,14 +993,21 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_CodeOfConduct</shortDescription>
-        <value>code of conduct</value>
+        <value>Code Of Conduct</value>
+    </labels>
+    <labels>
+        <fullName>CB_CommentsOptional</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Comments(Optional)</shortDescription>
+        <value>Comments(Optional)</value>
     </labels>
     <labels>
         <fullName>CB_Confirm</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Confirm</shortDescription>
-        <value>CONFIRM</value>
+        <value>Confirm</value>
     </labels>
     <labels>
         <fullName>CB_ConfirmPassword</fullName>
@@ -908,7 +1056,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_CreditExpiryDate</shortDescription>
-        <value>Credit Expiry date</value>
+        <value>Credit Expiry Date</value>
     </labels>
     <labels>
         <fullName>CB_CurrentBalance</fullName>
@@ -918,6 +1066,20 @@
         <value>Current Balance</value>
     </labels>
     <labels>
+        <fullName>CB_Current_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Current_Account</shortDescription>
+        <value>CAA</value>
+    </labels>
+    <labels>
+        <fullName>CB_CustomerName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_CustomerName</shortDescription>
+        <value>Customer Name</value>
+    </labels>
+    <labels>
         <fullName>CB_DarkTheme</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -925,11 +1087,25 @@
         <value>Dark Theme</value>
     </labels>
     <labels>
+        <fullName>CB_Dashboards</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Dashboards</shortDescription>
+        <value>Dashboards</value>
+    </labels>
+    <labels>
+        <fullName>CB_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
         <fullName>CB_Deafult_API_Error</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB Deafult API Error</shortDescription>
-        <value>Technical API error</value>
+        <value>Technical API Error</value>
     </labels>
     <labels>
         <fullName>CB_DebitAmount</fullName>
@@ -960,6 +1136,13 @@
         <value>Deposit Amount</value>
     </labels>
     <labels>
+        <fullName>CB_Deposit_Duration</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Deposit_Duration</shortDescription>
+        <value>Deposit Duration</value>
+    </labels>
+    <labels>
         <fullName>CB_Deposit_StartDate</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -974,11 +1157,18 @@
         <value>Deposited</value>
     </labels>
     <labels>
+        <fullName>CB_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Details</shortDescription>
+        <value>Details</value>
+    </labels>
+    <labels>
         <fullName>CB_Dob</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Dob</shortDescription>
-        <value>DOB</value>
+        <value>Date Of Birth</value>
     </labels>
     <labels>
         <fullName>CB_DomesticPayments</fullName>
@@ -992,7 +1182,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Done</shortDescription>
-        <value>done</value>
+        <value>Done</value>
     </labels>
     <labels>
         <fullName>CB_Email</fullName>
@@ -1006,7 +1196,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Your Email has been updated</shortDescription>
-        <value>Your Email has been updated</value>
+        <value>Your Email Has Been Updated</value>
     </labels>
     <labels>
         <fullName>CB_EnableDisableBiometric</fullName>
@@ -1027,42 +1217,42 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_EnterValidOldPass</shortDescription>
-        <value>Enter a Valid old Password</value>
+        <value>Enter A Valid Old Password</value>
     </labels>
     <labels>
         <fullName>CB_EnterYourPassword</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_EnterYourPassword</shortDescription>
-        <value>Please enter your password</value>
+        <value>Please Enter Your Password</value>
     </labels>
     <labels>
         <fullName>CB_ErrorCriteriaNotMatch</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ErrorCriteriaNotMatch</shortDescription>
-        <value>Password has to match the below criteria</value>
+        <value>Password Has To Match The Below Criteria</value>
     </labels>
     <labels>
         <fullName>CB_ErrorEnterThePass</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ErrorEnterThePass</shortDescription>
-        <value>Please enter the Password</value>
+        <value>Please Enter The Password</value>
     </labels>
     <labels>
         <fullName>CB_ErrorInvalidEmail</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ErrorInvalidEmail</shortDescription>
-        <value>Enter a Valid Email address</value>
+        <value>Enter A Valid Email Address</value>
     </labels>
     <labels>
         <fullName>CB_ErrorPassMismatch</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ErrorPassMismatch</shortDescription>
-        <value>Password mismatch</value>
+        <value>Password Mismatch</value>
     </labels>
     <labels>
         <fullName>CB_ExchangeRates</fullName>
@@ -1104,42 +1294,70 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB ForgotPassword API 100472</shortDescription>
-        <value>Passwords should not contain &quot;xyz&quot; or &quot;abc&quot; characters</value>
+        <value>Passwords Should Not Contain &quot;xyz&quot; Or &quot;abc&quot; Characters</value>
     </labels>
     <labels>
         <fullName>CB_ForgotPassword_API_100473</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ForgotPassword_API_100473</shortDescription>
-        <value>The passwords must not contain the numeric values: [1234]</value>
+        <value>The Passwords Must Not Contain The Numeric Values: [1234]</value>
     </labels>
     <labels>
         <fullName>CB_ForgotPassword_API_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ForgotPassword_API_Default</shortDescription>
-        <value>Technical issues, Please try again later</value>
+        <value>Technical Issues, Please Try Again Later</value>
     </labels>
     <labels>
         <fullName>CB_ForgotYourPassword</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ForgotYourPassword</shortDescription>
-        <value>Forgot your Password</value>
+        <value>Forgot Your Password</value>
+    </labels>
+    <labels>
+        <fullName>CB_FromAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From Account</shortDescription>
+        <value>From Account</value>
     </labels>
     <labels>
         <fullName>CB_FromDate</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_FromDate</shortDescription>
-        <value>FROM DATE</value>
+        <value>From Date</value>
+    </labels>
+    <labels>
+        <fullName>CB_Get_Full_Account_Statement_14043</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Get Full Account Statement 14043</shortDescription>
+        <value>Invalid Account Number</value>
+    </labels>
+    <labels>
+        <fullName>CB_Get_Full_Account_Statement_14062</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Get Full Account Statement 14062</shortDescription>
+        <value>Branch ID is Not Passed</value>
+    </labels>
+    <labels>
+        <fullName>CB_Get_Full_Account_Statement_Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Get Full Account Statement Default</shortDescription>
+        <value>Unable to Get The Data</value>
     </labels>
     <labels>
         <fullName>CB_HaveYouRegToken</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_HaveYouRegToken</shortDescription>
-        <value>Have you registered the token</value>
+        <value>Have You Registered The Token</value>
     </labels>
     <labels>
         <fullName>CB_Help</fullName>
@@ -1160,7 +1378,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_IAgreeToCompanyConduct</shortDescription>
-        <value>I Agree The Company&apos;s</value>
+        <value>I Agree To The Company&apos;s</value>
     </labels>
     <labels>
         <fullName>CB_InTransit</fullName>
@@ -1209,7 +1427,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_InvestmentProfiles</shortDescription>
-        <value>Investment Profiles</value>
+        <value>Investments</value>
     </labels>
     <labels>
         <fullName>CB_IssueChequeBook</fullName>
@@ -1224,6 +1442,20 @@
         <protected>false</protected>
         <shortDescription>CB_LastName</shortDescription>
         <value>Last Name</value>
+    </labels>
+    <labels>
+        <fullName>CB_Later</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Later</shortDescription>
+        <value>Later</value>
+    </labels>
+    <labels>
+        <fullName>CB_Loan_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Loan_Account</shortDescription>
+        <value>LAA</value>
     </labels>
     <labels>
         <fullName>CB_Loans</fullName>
@@ -1244,42 +1476,42 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB Login API 102945</shortDescription>
-        <value>Invalid User or Password</value>
+        <value>Invalid User Or Password</value>
     </labels>
     <labels>
         <fullName>CB_Login_API_106803</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB Login API 106803</shortDescription>
-        <value>Invalid User or Password</value>
+        <value>Invalid User Or Password</value>
     </labels>
     <labels>
         <fullName>CB_Login_API_24032</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB Login API 24032</shortDescription>
-        <value>Invalid Username or Password</value>
+        <value>Invalid Username Or Password</value>
     </labels>
     <labels>
         <fullName>CB_Login_API_24033</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB Login API 24033</shortDescription>
-        <value>The maximum retry login attempts is exceeded</value>
+        <value>The Maximum Retry Login Attempts Is Exceeded</value>
     </labels>
     <labels>
         <fullName>CB_Login_API_8504</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Login_API_8504</shortDescription>
-        <value>Invalid User or Password</value>
+        <value>Invalid User Or Password</value>
     </labels>
     <labels>
         <fullName>CB_Login_API_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB Login API Default</shortDescription>
-        <value>Technical issues, Please try again</value>
+        <value>Technical Issues, Please Try Again</value>
     </labels>
     <labels>
         <fullName>CB_Logout</fullName>
@@ -1293,21 +1525,28 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB Logout API Default</shortDescription>
-        <value>Technical issues, Please try again</value>
+        <value>Technical Issues, Please Try Again</value>
     </labels>
     <labels>
         <fullName>CB_Logout_Confirm_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Are you sure you want to logout</shortDescription>
-        <value>Are you sure you want to logout</value>
+        <value>Are You Sure You Want To Logout</value>
     </labels>
     <labels>
         <fullName>CB_Logout_Confirm_Message2</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Do you want to logout from Clarien Bank?</shortDescription>
-        <value>Do you want to logout from Clarien Bank?</value>
+        <value>Do You Want To Logout From Clarien Bank?</value>
+    </labels>
+    <labels>
+        <fullName>CB_Lookup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Lookup</shortDescription>
+        <value>Lookup</value>
     </labels>
     <labels>
         <fullName>CB_ManageBeneficiaries</fullName>
@@ -1317,11 +1556,18 @@
         <value>Manage Beneficiaries</value>
     </labels>
     <labels>
+        <fullName>CB_ManageTemplates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_ManageTemplates</shortDescription>
+        <value>Manage Templates</value>
+    </labels>
+    <labels>
         <fullName>CB_MarketingConsent</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_MarketingConsent</shortDescription>
-        <value>I accept Marketing consent</value>
+        <value>I Accept Marketing Consent</value>
     </labels>
     <labels>
         <fullName>CB_Maturity_Date</fullName>
@@ -1363,7 +1609,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_NewtoClarien</shortDescription>
-        <value>New to Clarien</value>
+        <value>New To Clarien</value>
     </labels>
     <labels>
         <fullName>CB_Next</fullName>
@@ -1377,7 +1623,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Next_Interest_Payment_Amount</shortDescription>
-        <value>Next Interest Payment Amount</value>
+        <value>Next Payment Amount</value>
     </labels>
     <labels>
         <fullName>CB_Next_Interest_Payment_Date</fullName>
@@ -1391,14 +1637,21 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_NoOfChequeBooks</shortDescription>
-        <value>No of cheque books</value>
+        <value>No Of cheque books</value>
     </labels>
     <labels>
         <fullName>CB_Note</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Note</shortDescription>
-        <value>NOTE</value>
+        <value>Note</value>
+    </labels>
+    <labels>
+        <fullName>CB_Occurance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Occurance</shortDescription>
+        <value>Occurance</value>
     </labels>
     <labels>
         <fullName>CB_Offers</fullName>
@@ -1406,6 +1659,13 @@
         <protected>false</protected>
         <shortDescription>CB_Offers</shortDescription>
         <value>Offers</value>
+    </labels>
+    <labels>
+        <fullName>CB_Ok</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Ok</shortDescription>
+        <value>Ok</value>
     </labels>
     <labels>
         <fullName>CB_OldPassword</fullName>
@@ -1426,7 +1686,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB Open An Account</shortDescription>
-        <value>Open an Account</value>
+        <value>Open An Account</value>
     </labels>
     <labels>
         <fullName>CB_OwnAccountTransfers</fullName>
@@ -1440,85 +1700,85 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_POST_Change_Password 100475</shortDescription>
-        <value>New passwords cannot be the same as previous 4 passwords.</value>
+        <value>New Passwords Cannot Be The Same As Previous 4 Passwords.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Change_Password_100489</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_POST_Change_Password_100489</shortDescription>
-        <value>Password change failed. If you exceed 5 attempts, your access will be disabled.</value>
+        <value>Password Change Failed. If You Exceed 5 Attempts, Your Access Will Be Disabled.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Change_Password_11148</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB POST Change Password 11148</shortDescription>
-        <value>The new and old passwords cannot be same.</value>
+        <value>The New And Old Passwords Cannot Be Same.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Change_Password_24032</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB POST Change Password 24032</shortDescription>
-        <value>The old password is wrong. You have 5 attempts to retry after that, access will be
-            disabled.</value>
+        <value>The Old Password Is Wrong. You Have 5 Attempts To Retry After That, Access Will Be
+            Disabled.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Change_Password_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_POST_Change_Password_Default</shortDescription>
-        <value>We have encountered some technical issue, kindly retry again after some time.</value>
+        <value>We Have Encountered Some Technical Issue, Kindly Retry Again After Some Time.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Forgot_Password_100202</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB POST Forgot Password_00202</shortDescription>
-        <value>Invalid Credentials try again</value>
+        <value>Invalid Credentials Try Again</value>
     </labels>
     <labels>
         <fullName>CB_POST_Forgot_Password_100475</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB POST Forgot Password 100475</shortDescription>
-        <value>New passwords cannot be the same as previous 4 passwords.</value>
+        <value>New Passwords Cannot Be The Same As Previous 4 Passwords.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Forgot_Password_11131</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_POST_Forgot_Password_11131</shortDescription>
-        <value>The new and retyped sign on passwords do not match.</value>
+        <value>The New And Retyped Sign On Passwords Do Not Match.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Forgot_Password_15520</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB POST Forgot Password 15520</shortDescription>
-        <value>The password is changed successfully.</value>
+        <value>The Password Is Changed Successfully.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Forgot_Password_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_POST_Forgot_Password_Default</shortDescription>
-        <value>We have encountered some technical issue, kindly retry again after some time.</value>
+        <value>We Have Encountered Some Technical Issue, Kindly Retry Again After Some Time.</value>
     </labels>
     <labels>
         <fullName>CB_POST_Virtual_Sign_106803</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB POST Virtual Sign 106803</shortDescription>
-        <value>Unable to login. Try again</value>
+        <value>Unable To Login. Try Again</value>
     </labels>
     <labels>
         <fullName>CB_POST_Virtual_Sign_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB POST Virtual Sign Default</shortDescription>
-        <value>Technical issues, Please try again</value>
+        <value>Technical Issues, Please Try Again</value>
     </labels>
     <labels>
         <fullName>CB_Page_AccountStatementSearch</fullName>
@@ -1575,6 +1835,13 @@
         <protected>false</protected>
         <shortDescription>CB_Page_Atmmapparent</shortDescription>
         <value>CBAtmMapParent__c</value>
+    </labels>
+    <labels>
+        <fullName>CB_Page_BillPayments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Page_BillPayments</shortDescription>
+        <value>CBBillPayments__c</value>
     </labels>
     <labels>
         <fullName>CB_Page_CBApplynowloans</fullName>
@@ -1843,6 +2110,13 @@
         <value>CBTopUpAccountOpening__c</value>
     </labels>
     <labels>
+        <fullName>CB_Page_Transfers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CBTransfers__c</shortDescription>
+        <value>CBTransfers__c</value>
+    </labels>
+    <labels>
         <fullName>CB_Page_Travelnotification</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -1889,7 +2163,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_PasswordMustContain10</shortDescription>
-        <value>Password must contain</value>
+        <value>Password Must Contain</value>
     </labels>
     <labels>
         <fullName>CB_PasswordSuccessfullyChanged</fullName>
@@ -1917,7 +2191,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Your password has been reset</shortDescription>
-        <value>Your password has been reset. Please log in again to proceed</value>
+        <value>Your Password Has Been Reset. Please Log In Again To proceed</value>
     </labels>
     <labels>
         <fullName>CB_PayBills</fullName>
@@ -1966,7 +2240,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Your Phone has been updated</shortDescription>
-        <value>Your Phone has been updated</value>
+        <value>Your Phone Has Been Updated</value>
     </labels>
     <labels>
         <fullName>CB_PlatinumCreditCard</fullName>
@@ -1980,42 +2254,42 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_PleaseProvideInternetBanking</shortDescription>
-        <value>Please provide internet banking</value>
+        <value>Please Provide Internet Banking</value>
     </labels>
     <labels>
         <fullName>CB_PlsEnterSecurityToken</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_PlsEnterSecurityToken</shortDescription>
-        <value>Please enter your security token</value>
+        <value>Please Enter Your Security Token</value>
     </labels>
     <labels>
         <fullName>CB_Post_Profile_Search_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Post_Profile_Search_Default</shortDescription>
-        <value>Technical issues, Please try again later</value>
+        <value>Technical Issues, Please Try Again Later</value>
     </labels>
     <labels>
         <fullName>CB_Post_Profile_Update_101</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Post_Profile_Update_101</shortDescription>
-        <value>Server error, please try again</value>
+        <value>Server Error, Please Try Again</value>
     </labels>
     <labels>
         <fullName>CB_Post_Profile_Update_102945</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Post_Profile_Update_102945</shortDescription>
-        <value>The records do not exist for the user.</value>
+        <value>The Records Do Not Exist For The User.</value>
     </labels>
     <labels>
         <fullName>CB_Post_Profile_Update_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Post_Profile_Update_Default</shortDescription>
-        <value>Technical issues, Please try again later</value>
+        <value>Technical Issues, Please Try Again Later</value>
     </labels>
     <labels>
         <fullName>CB_Predefined</fullName>
@@ -2046,6 +2320,13 @@
         <value>Product Name</value>
     </labels>
     <labels>
+        <fullName>CB_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Profile</shortDescription>
+        <value>Profile</value>
+    </labels>
+    <labels>
         <fullName>CB_ProfileSettings</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2057,35 +2338,35 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Profile_Search_Default</shortDescription>
-        <value>Technical issues, Please try again later</value>
+        <value>Technical Issues, Please Try Again Later</value>
     </labels>
     <labels>
         <fullName>CB_Profile_Update_101</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Post_Profile_Update_101</shortDescription>
-        <value>Server error, please try again</value>
+        <value>Server Error, Please Try Again</value>
     </labels>
     <labels>
         <fullName>CB_Profile_Update_102945</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Profile_Update_102945</shortDescription>
-        <value>The records do not exist for the user.</value>
+        <value>The Records Do Not Exist For The User.</value>
     </labels>
     <labels>
         <fullName>CB_Profile_Update_API_102945</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Profile_Update_API_102945</shortDescription>
-        <value>The records do not exist for the user.</value>
+        <value>The Records Do Not Exist For The User.</value>
     </labels>
     <labels>
         <fullName>CB_Profile_Update_API_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Profile_Update_API_Default</shortDescription>
-        <value>Technical issues, Please try again later</value>
+        <value>Technical Issues, Please Try Again Later</value>
     </labels>
     <labels>
         <fullName>CB_Profile_Update_Default</fullName>
@@ -2099,7 +2380,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Promotions</shortDescription>
-        <value>PROMOTIONS</value>
+        <value>Promotions</value>
     </labels>
     <labels>
         <fullName>CB_QrCode</fullName>
@@ -2123,6 +2404,13 @@
         <value>Query By Cheque Number</value>
     </labels>
     <labels>
+        <fullName>CB_RecurringTransfer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Recurring Transfer</shortDescription>
+        <value>Recurring Transfer</value>
+    </labels>
+    <labels>
         <fullName>CB_RegisteredEmailAddr</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2135,6 +2423,13 @@
         <protected>false</protected>
         <shortDescription>CB_RegisteredEmailId</shortDescription>
         <value>Registered Email Id</value>
+    </labels>
+    <labels>
+        <fullName>CB_Reject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB Reject</shortDescription>
+        <value>Reject</value>
     </labels>
     <labels>
         <fullName>CB_Remarks</fullName>
@@ -2162,7 +2457,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_RequestADraft</shortDescription>
-        <value>Request a Draft</value>
+        <value>Request A Draft</value>
     </labels>
     <labels>
         <fullName>CB_RetailUser</fullName>
@@ -2177,6 +2472,49 @@
         <protected>false</protected>
         <shortDescription>CB_Retail_User</shortDescription>
         <value>Retail User</value>
+    </labels>
+    <labels>
+        <fullName>CB_SBAcctAdd_177</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SBAcctAdd_177</shortDescription>
+        <value>The frequency combination is invalid.</value>
+    </labels>
+    <labels>
+        <fullName>CB_SBAcctAdd_999</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SBAcctAdd_999</shortDescription>
+        <value>A non-employee cannot open an account under this scheme.</value>
+    </labels>
+    <labels>
+        <fullName>CB_SBAcctAdd_Default</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SBAcctAdd_Default</shortDescription>
+        <value>Technical issue, please try again later</value>
+    </labels>
+    <labels>
+        <fullName>CB_SBAcctAdd_E4221</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_SBAcctAdd_E4221</shortDescription>
+        <value>A/C Frozen, cant create Account for scheme &apos;Savings Retail Graduate
+            Account&apos;</value>
+    </labels>
+    <labels>
+        <fullName>CB_STATUS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_STATUS</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>CB_Saving_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Saving_Account</shortDescription>
+        <value>SBA</value>
     </labels>
     <labels>
         <fullName>CB_SavingsAccountOpening</fullName>
@@ -2197,7 +2535,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ScheduleAnRmAppointment</shortDescription>
-        <value>Schedule an RM Appointment</value>
+        <value>Schedule An RM Appointment</value>
     </labels>
     <labels>
         <fullName>CB_SecuritySettings</fullName>
@@ -2205,6 +2543,20 @@
         <protected>false</protected>
         <shortDescription>CB_SecuritySettings</shortDescription>
         <value>Security Settings</value>
+    </labels>
+    <labels>
+        <fullName>CB_SelectAccount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Account</shortDescription>
+        <value>Select Account</value>
+    </labels>
+    <labels>
+        <fullName>CB_SelectBiller</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select biller</shortDescription>
+        <value>Select biller</value>
     </labels>
     <labels>
         <fullName>CB_Sell</fullName>
@@ -2228,11 +2580,18 @@
         <value>Service Request</value>
     </labels>
     <labels>
+        <fullName>CB_Services</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Services</shortDescription>
+        <value>Services</value>
+    </labels>
+    <labels>
         <fullName>CB_Session_Expiry_Message</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Your session has ended</shortDescription>
-        <value>Your Session has Ended</value>
+        <value>Your Session Has Ended</value>
     </labels>
     <labels>
         <fullName>CB_SignUp</fullName>
@@ -2260,7 +2619,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_StartAGoal</shortDescription>
-        <value>Start a Goal</value>
+        <value>Start A Goal</value>
     </labels>
     <labels>
         <fullName>CB_StopPaperBasedStatements</fullName>
@@ -2274,7 +2633,21 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Submit</shortDescription>
-        <value>SUBMIT</value>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>CB_Sustainable</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Sustainable</shortDescription>
+        <value>Sustainable</value>
+    </labels>
+    <labels>
+        <fullName>CB_TO_ACCOUNT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_TO_ACCOUNT</shortDescription>
+        <value>To Account</value>
     </labels>
     <labels>
         <fullName>CB_TermsConditions</fullName>
@@ -2291,6 +2664,13 @@
         <value>Time Deposit Account</value>
     </labels>
     <labels>
+        <fullName>CB_Time_Demposit_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Time_Demposit_Account</shortDescription>
+        <value>TDA</value>
+    </labels>
+    <labels>
         <fullName>CB_Timings</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2302,7 +2682,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_ToDate</shortDescription>
-        <value>TO DATE</value>
+        <value>To Date</value>
     </labels>
     <labels>
         <fullName>CB_TodaysExchangeRates</fullName>
@@ -2316,7 +2696,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_Top-UpAccountOpening</shortDescription>
-        <value>Top-up Account</value>
+        <value>Top-Up Account</value>
+    </labels>
+    <labels>
+        <fullName>CB_Top_Up_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Top_Up_Account</shortDescription>
+        <value>TUA</value>
     </labels>
     <labels>
         <fullName>CB_TotalHolds</fullName>
@@ -2324,6 +2711,34 @@
         <protected>false</protected>
         <shortDescription>CB_TotalHolds</shortDescription>
         <value>Total Holds</value>
+    </labels>
+    <labels>
+        <fullName>CB_Transactions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_Transactions</shortDescription>
+        <value>Transactions</value>
+    </labels>
+    <labels>
+        <fullName>CB_TryAgain</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_TryAgain</shortDescription>
+        <value>Try Again</value>
+    </labels>
+    <labels>
+        <fullName>CB_Until</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Until</shortDescription>
+        <value>Until</value>
+    </labels>
+    <labels>
+        <fullName>CB_UntilEndDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_UntilEndDate</shortDescription>
+        <value>Until End Date</value>
     </labels>
     <labels>
         <fullName>CB_Usd</fullName>
@@ -2344,7 +2759,7 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB User doesnot Exist error</shortDescription>
-        <value>Invalid Username or Password</value>
+        <value>Invalid Username Or Password</value>
     </labels>
     <labels>
         <fullName>CB_Username</fullName>
@@ -2365,14 +2780,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB ValidateUser API 106803</shortDescription>
-        <value>Invalid Username, please try again</value>
+        <value>Invalid Username, Please Try Again</value>
     </labels>
     <labels>
         <fullName>CB_ValidateUser_API_Default</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB ValidateUser API Default</shortDescription>
-        <value>Technical issues, please try again later</value>
+        <value>Technical Issues, Please Try Again Later</value>
     </labels>
     <labels>
         <fullName>CB_ViewAll</fullName>
@@ -2400,7 +2815,14 @@
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CB_YourPasswordExpired</shortDescription>
-        <value>Your password has been expired</value>
+        <value>Your Password Has Been Expired</value>
+    </labels>
+    <labels>
+        <fullName>CB_YourRequestIsSub</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CB_YourRequestIsSub</shortDescription>
+        <value>Your Request Is Submitted Sucessfully</value>
     </labels>
     <labels>
         <fullName>CB_company_Name</fullName>

@@ -1,3 +1,9 @@
+<!--
+    Author - Prateek Deshmukh
+    Created Date - 04/15/2024
+    Modified Date - 06/21/2024
+    Description - This component is designed to collect customer details for requesting the opening of a Top-Up account.
+-->
 <template>
     <div class="wrapper">
         <div class="container">
@@ -6,6 +12,7 @@
             </div>
             <div class="reusableAccountOpening">
                 <c-c-b-resuable-account-opening
+                acc-type = {accType}
                 type = {accountOpenType}
                 oncustomerdetail={createCase}
                 account-types={accountType}

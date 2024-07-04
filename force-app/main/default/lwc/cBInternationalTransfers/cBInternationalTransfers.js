@@ -1,56 +1,159 @@
 import { LightningElement } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';
-import SUBMIT from '@salesforce/label/c.CB_Submit';
-import CANCEL from '@salesforce/label/c.CB_Cancel';
+import CONTINUE from '@salesforce/label/c.CB_Continue';
+import REMARKS from '@salesforce/label/c.CB_Remarks'
+import UNTIL_END_DATE from '@salesforce/label/c.CB_UntilEndDate'
+import INTERNATIONAL_TRANSFERS from '@salesforce/label/c.CB_InternationalPayments'
+import PREDEFINED_PAGE_LINK from '@salesforce/label/c.CB_Predefined'
+import INTER_TRANSFERS_PAGE_LINK from '@salesforce/label/c.CB_Page_InternationalTransfers'
+import DATE from '@salesforce/label/c.CB_Date'
+import CB_SelectAccount from '@salesforce/label/c.CB_SelectAccount';
+import CB_FromAccount from '@salesforce/label/c.CB_FromAccount';
+import CB_Amount from '@salesforce/label/c.CB_Amount';
+import CB_BeneficiaryAddress from '@salesforce/label/c.CB_BeneficiaryAddress';
+import CB_BeneficiaryName from '@salesforce/label/c.CB_BeneficiaryName';
+import CB_BeneficiaryCountry from '@salesforce/label/c.CB_BeneficiaryCountry';
+import CB_Payments_Amount from '@salesforce/label/c.CB_Payments_Amount';
+import CB_Repeat from '@salesforce/label/c.CB_Repeat';
+import CB_Recurring from '@salesforce/label/c.CB_Recurring';
+import CB_BeneficiarysAcctIBAN from '@salesforce/label/c.CB_BeneficiarysAcctIBAN';
+import CB_BankCode from '@salesforce/label/c.CB_BankCode';
+import CB_BankName from '@salesforce/label/c.CB_BankName';
+import CB_SelectCode from '@salesforce/label/c.CB_SelectCode';
+import CB_BeneficiaryCityState from '@salesforce/label/c.CB_BeneficiaryCityState';
+import CB_SwiftCode from '@salesforce/label/c.CB_SwiftCode';
+import CB_IntermediaryBanking from '@salesforce/label/c.CB_IntermediaryBanking';
+import CB_SelectBankCode from '@salesforce/label/c.CB_SelectBankCode';
+import CB_RecipientCodeOption from '@salesforce/label/c.CB_RecipientCodeOption';
+import CB_ClearingCode from '@salesforce/label/c.CB_ClearingCode';
+import CB_BankCountry from '@salesforce/label/c.CB_BankCountry';
+import CB_SelectBankCountry from '@salesforce/label/c.CB_SelectBankCountry';
 
-import { setPagePath } from 'c/cBUtilities';
+
+import confTransferPage from '@salesforce/label/c.CB_Page_InternationalTransfersConf';
+
+
+
+import { setPagePath, formatDate, getMobileSessionStorage } from 'c/cBUtilities';
 
 export default class CBInternationalTransfers extends NavigationMixin(LightningElement) {
 
     // Object to hold imported labels
     label = {
-        SUBMIT: SUBMIT.toUpperCase(), // Converting "Submit" label to uppercase
-        CANCEL: CANCEL.toUpperCase(), // Converting "Cancel" label to uppercase
+        REMARKS,
+        UNTIL_END_DATE,
+        INTERNATIONAL_TRANSFERS,
+        PREDEFINED_PAGE_LINK,
+        INTER_TRANSFERS_PAGE_LINK,
+        CB_SelectAccount,
+        CB_FromAccount,
+        CB_Amount,
+        CB_BeneficiaryAddress,
+        CB_BeneficiaryName,
+        CB_BeneficiaryCountry,
+        CB_Payments_Amount,
+        CB_Repeat,
+        CB_Recurring,
+        CB_BeneficiarysAcctIBAN,
+        CB_BankCode,
+        CB_BankName,
+        CB_SelectCode,
+        CB_BeneficiaryCityState,
+        CB_SwiftCode,
+        CB_IntermediaryBanking,
+        CB_SelectBankCode,
+        CB_RecipientCodeOption,
+        CB_ClearingCode,
+        CB_BankCountry,
+        CB_SelectBankCountry,
+        DATE,
+        CONTINUE
     };
 
 
     configuration = {
-        previousPageUrl: '',
-        heading: 'International Payments',
+        previousPageUrl: this.label.PREDEFINED_PAGE_LINK,
+        heading: this.label.INTERNATIONAL_TRANSFERS,
         iconsExposed: true,
         logout: {
             exposed: false
         },
         search: {
             exposed: false
+        },
+        openTemplates: {
+            transferTypePage: INTER_TRANSFERS_PAGE_LINK
         }
     }
 
-    connectedCallback(){
-        this.configuration.previousPageUrl= setPagePath('CBInternationalTransfers__c')
+
+
+    // Lifecycle hook to be called at comonent connect
+    connectedCallback() {
+        this.configuration.previousPageUrl = setPagePath(this.label.INTER_TRANSFERS_PAGE_LINK)
+        this.setAccountData()
     }
 
-    toggle = false;
+    setAccountData(){
+        this.accounts = JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) ? JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) : [];
+    }
 
+
+
+    // Toggles the hidden section's visibility
     handleHeight() {
         this.toggle = !this.toggle
     }
 
+    intermediaryBanking = false
+    clearingCodeList = ['BARCGB21', 'BARCGB22', 'BARCGB23', 'BARCGB24']
+    bankCountryList = ['UK', 'USA', 'IND']
+    bankCodeList = ['BANK001', 'BANK002', 'BANK003']
+    recipientCode = 'Swift Code'
+    swiftCode = ''
+    clearingCode = ''
+    bankCountry = ''
+    bankCode = ''
+    swiftclearingCode = false
+    beneficiary = [
+        {
+            id: '1',
+            account: '11085929800200',
+        },
+        {
+            id: '2',
+            account: '11085929800211',
+        },
+        {
+            id: '3',
+            account: '11085929800456',
+        },
+        {
+            id: '4',
+            account: '11085929800484',
+        }
+    ]
+    toggle = false;
     beneficiaryName = ''
     beneficiaryState = ''
     beneficiaryCountry = ''
     recipientCode = ''
     bankCode = ''
     bankName = ''
-    recurringTransfer = false
+    recurring = false
+    untilDate = 'DD/MM/YYYY'
+    frequencySelected = ''
+    frequencies = ["Day", "Month", "End of every month"]
     amount = ''
     toAccount = ''
     selectedAccount = 'Select Account'
     selectedBeneficiary = 'Select Account'
-    date = 'YYYY-MM-DD'
+    dateSelected = 'DD/MM/YYYY'
     name = ''
     currency = 'BMD'
+    remarks = ''
+    number = 1
     accounts = [
         {
             accountNo: '659855541254',
@@ -84,91 +187,129 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
         },
     ]
 
-    beneficiary = [
-        {
-            id : '1',
-            account : '11085929800200',
-        },
-        {
-            id : '2',
-            account : '11085929800211',
-        },
-        {
-            id : '3',
-            account : '11085929800456',
-        },
-        {
-            id : '4',
-            account : '11085929800484',
-        }
-    ]
 
+
+    // Handles the selection of a beneficiary account from the dropdown
     handleBeneficiaryAccount(event) {
         this.selectedBeneficiary = event.target.value;
     }
-    
+
+
+    // Handles the input for the beneficiary's name
     handleBeneficiaryName(event) {
         this.beneficiaryName = event.target.value;
     }
 
+
+    // Handles the input for the beneficiary's state or city
     handleBeneficiaryState(event) {
         this.beneficiaryState = event.target.value;
     }
 
+
+    // Handles the input for the beneficiary's country
     handleBeneficiaryCountry(event) {
         this.beneficiaryCountry = event.target.value;
     }
 
+
+    // Handles the input for the recipient code
     handleRecipientCode(event) {
         this.recipientCode = event.target.value;
     }
 
+    // Handles the input for the bank code
     handleBankCode(event) {
         this.bankCode = event.target.value;
     }
 
+
+    // Handles the input for the bank name
     handleBankName(event) {
         this.bankName = event.target.value;
     }
-
+    // Handles the input for the amount
     handleAmount(event) {
         this.amount = event.target.value
     }
 
+
+    // Handles the input for the "to account" field
     handleToAccount(event) {
         this.toAccount = event.target.value
     }
 
+
+    // Handles the input for the "from account" field
     handleFromAccount(event) {
         this.selectedAccount = event.target.value
     }
 
-    // dateHandler(event) {
-    //     this.date = event.target.value !== '' ? event.target.value : 'YYYY-MM-DD'
-    // }
 
+    // Toggles the recurring status
+    recurringHandler() {
+        this.recurring = !this.recurring
+    }
+
+    // Handles the input for the name
     handleName(event) {
         this.name = event.target.value
     }
 
-    handleSubmit(event) {
-        // event.preventDefaault();
-        let comment = this.template.querySelector(".text-area-inp").value
-        let data = {
-            fromAccount: this.selectedAccount,
-            beneficiaryAccount : this.selectedBeneficiary,
-            beneficiaryName : this.beneficiaryName,
-            beneficiaryBankName : this.bankName,
-            beneficiaryCity : this.beneficiaryState,
-            amount : this.amount,
-            bankCode : this.bankCode,
-            date : this.date,
-            purpose : comment
-        }
-        console.log(JSON.stringify(data))
-        this.navigateTo('CBInternationalTransfersConfirmation__c', data)
+
+    // Handles the input for the selected date
+    handleDate(event) {
+        this.dateSelected = formatDate(event.target.value)
     }
 
+
+    // Handles the input for the "until date" field
+    handleUntilDate(event) {
+        this.untilDate = formatDate(event.target.value)
+    }
+
+
+    // Handles the selection of frequency
+    handleFreq(event) {
+        this.frequencySelected = event.target.value
+    }
+
+
+    // Increases the number value
+    increaseNumber() {
+        this.number = this.number + 1
+
+    }
+
+
+    // Decreases the number value
+    decreaseNumber() {
+        this.number = this.number > 1 ? this.number - 1 : this.number
+    }
+
+
+
+    // Handles the form submission and navigates to the confirmation transfer page
+    handleSubmit(event) {
+        // event.preventDefaault();
+        let data = {
+            fromAccount: this.selectedAccount,
+            beneficiaryAccount: this.selectedBeneficiary,
+            beneficiaryName: this.beneficiaryName,
+            beneficiaryBankName: this.bankName,
+            beneficiaryCity: this.beneficiaryState,
+            amount: this.amount,
+            bankCode: this.bankCode,
+            date: this.dateSelected,
+            purpose: this.remarks
+        }
+        console.log(JSON.stringify(data))
+        this.navigateTo(confTransferPage, data)
+    }
+
+
+
+    // Helper function for navigation to a specified page
     navigateTo(pageApiName, data = {}) {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -179,75 +320,62 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
         });
     }
 
+
+
     get disableSubmit() {
         return false
     }
 
-    date = ''
-    untilDate = ''
-    frequencySelected = ''
-    showTransDatePicker = false
-    openTransDateSelect() {
-        this.showTransDatePicker = true
-    }
-    closeTransDatInput() {
-        this.showTransDatePicker = false
-    }
-    handleTransDate(event) {
-        this.showTransDatePicker = false
-        this.date = event.detail.transDate
 
-        if(event.detail.recurring){
-            this.untilDate = event.detail.untilDate
-            this.frequencySelected = event.detail.frequencySelected != 'End of every month' ? `Every ${event.detail.repeat} ${event.detail.frequencySelected} `: 'End of every month';
-            this.recurringTransfer = event.detail.recurring
-            this.recurringTransferView = true
-        }
-        else{
-            this.recurringTransferView = false
-        } }
 
-    intermediaryBanking = false
-    intermediaryBank(){
+
+
+
+    // Toggles the intermediary banking status
+    intermediaryBank() {
         this.intermediaryBanking = !this.intermediaryBanking
     }
 
-    recurringTransferView = false
+    // Handles the input for the remarks field
+    handleRemarks(event) {
+        this.remarks = event.detail.remarks
+    }
 
-    clearingCodeList = ['BARCGB21','BARCGB22','BARCGB23','BARCGB24']
-    bankCountryList = ['UK','USA','IND']
-    bankCodeList = ['BANK001','BANK002','BANK003']
 
-    recipientCode = 'Swift Code'
-    swiftclearingCode = false
-    recipientCodeHandler(event){
+
+    // Handles the selection of the recipient code type and toggles the visibility of the clearing code input
+    recipientCodeHandler(event) {
         this.recipientCode = event.target.value;
         console.log('recipientCode', this.recipientCode);
         this.swiftclearingCode = this.recipientCode == 'Clearing Code'
     }
 
-    swiftCode = ''
-    swiftCodeHandler(event){
+
+    // Handles the input for the swift code
+    swiftCodeHandler(event) {
         this.swiftCode = event.target.value;
-        console.log('swiftCode',this.swiftCode);
+        console.log('swiftCode', this.swiftCode);
     }
 
-    clearingCode = ''
-    clearingCodeHandler(event){
+
+    // Handles the input for the clearing code
+    clearingCodeHandler(event) {
         this.clearingCode = event.target.value;
         console.log('clearingCode', this.clearingCode);
     }
 
-    bankCountry = ''
-    bankCountryHandler(event){
+
+    // Handles the selection of the bank country
+    bankCountryHandler(event) {
         this.bankCountry = event.target.value;
-        console.log('bankCountry',this.bankCountry);
+        console.log('bankCountry', this.bankCountry);
     }
 
-    bankCode = ''
-    bankCodeHandler(event){
+
+    // Handles the input for the bank code// Handles the input for the bank code
+    bankCodeHandler(event) {
         this.bankCode = event.target.value;
-        console.log('bankCode',this.bankCode);
+        console.log('bankCode', this.bankCode);
     }
 
 }

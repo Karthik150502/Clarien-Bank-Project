@@ -1,0 +1,11 @@
+<template>
+    <div class="wrapper">
+        <label for="remarks" class="rem-label">
+            <p class="lbl">{labelname}</p>
+            <textarea name="rems" id="remarks" maxlength={length} value={remarks} onkeyup={remarksHandler}
+                placeholder={placeholder}>
+            </textarea>
+        </label>
+        <p class="length">{leng}/{length}</p>
+    </div>
+</template>

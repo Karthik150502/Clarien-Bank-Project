@@ -67,7 +67,7 @@
     justify-content: space-around;
     flex-direction: column;
     height: 82%;
-    width: 75%;
+    /* width: 75%; */
     margin: auto auto 2% auto;
   }
   

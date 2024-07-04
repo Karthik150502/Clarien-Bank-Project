@@ -1,28 +1,34 @@
+<!--
+    Author - Prateek Deshmukh
+    Created Date - 04/15/2024
+    Modified Date - 06/21/2024
+    Description - This component is designed to display customer details for confirming a request to open a chequing account.
+-->
 <template>
     <div class="wrapper">
         <div class="container">
             <div class="heading">
                 <c-c-b-secondary-header configuration={configuration}></c-c-b-secondary-header>
             </div>
-                <div class="casing">
+            <div class="casing">
+                <p class="title">{label.CB_AccountType}</p>
+                <p class="value">{selectedAccountType}</p>
 
-                    <p class="title">Account Type</p>
-                    <p class="value">{selectedAccountType}</p>
+                <p class="title">{label.CB_Product}</p>
+                <p class="value">{selectedProduct}</p>
 
-                    <p class="title">Product</p>
-                    <p class="value">{selectedProduct}</p>
-
-                    <p class="title">Currency</p>
-                    <p class="value">{selectedCurrency}</p>
-    
-                </div>
-
+                <p class="title">{label.CBCurrency}</p>
+                <p class="value">{selectedCurrency}</p>
+            </div>
             <div class="btn">
-                <button onclick={submitForm}>SUBMIT</button>
-            </div>    
+                <button onclick={submitForm}>{label.CB_Submit}</button>
+            </div>
         </div>
         <c-c-b-footer></c-c-b-footer>
     </div>
+    <template if:true={showModal}>
+        <c-c-b-operation-confirm-w-loading modal-info={modalConf}> </c-c-b-operation-confirm-w-loading>
+    </template>
     <template if:true={successModalOpen}>
         <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
     </template>

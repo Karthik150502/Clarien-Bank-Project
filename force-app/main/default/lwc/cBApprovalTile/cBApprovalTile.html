@@ -12,7 +12,7 @@
                 <div class="accs">
                     <div class="slds-grid slds-wrap text-container">
                         <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
-                            <span>From</span>
+                            <span>{label.CB_From}</span>
                         </div>
                         <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
                             <span>{info.fromAcc}</span>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="slds-grid slds-wrap text-container">
                         <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
-                            <span>To</span>
+                            <span>{label.CB_To}</span>
                         </div>
                         <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
                             <span>{info.toAcc}</span>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="slds-grid slds-wrap text-container">
                         <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
-                            <span>Amount</span>
+                            <span>{label.CB_Amount}</span>
                         </div>
                         <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
                             <span>{info.amt}</span>
@@ -39,14 +39,11 @@
 
             <template if:true={statusPending}>
                 <div class="slds-grid slds-wrap text-container btns">
-                    <button class="appr-btn" onclick={approveApproval}>Approve</button>
-                    <button class="rej-btn " onclick={rejectApproval}>Reject</button>
+                    <button class="appr-btn" onclick={approveApproval}>{label.CB_Approve}</button>
+                    <button class="rej-btn " onclick={rejectApproval}>{label.CB_Reject}</button>
                 </div>
             </template>
 
-            <template if:true={confirmModal}>
-                <c-c-b-operation-confirm modal-info={modal}></c-c-b-operation-confirm>
-            </template>
 
 
         </div>

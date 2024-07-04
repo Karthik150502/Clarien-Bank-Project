@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+    font-family: var(--dxp-g-root-gotham-book-font-family);
+
+}
+
+
+.wrapper-main {
+    width: 420px;
+    height: 750px;
+    background-color: var(--primary-white);
+    margin: auto auto;
+    padding: 5%;
+}
+
+.wrapper {
+    width: 100%;
+}
+
+.wrapper .header {
+    width: 90%;
+    margin: 5% auto;
+}

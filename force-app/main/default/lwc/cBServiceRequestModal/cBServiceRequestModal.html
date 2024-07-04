@@ -1,6 +1,12 @@
+<!--
+    Author - Prateek Deshmukh
+    Created Date - 04/15/2024
+    Modified Date - 06/21/2024
+    Description - This component is designed to navigate to different account opening request pages.
+-->
 <template>
     <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
-        class="slds-modal slds-fade-in-open slds-modal_medium wrapper">
+        class={modalType}>
         <div class="heading">
             <div class="back-svg" onclick={closeNavigate}>
                 <svg width="17" height="18" viewBox="0 0 17 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +23,7 @@
                             <use href={CBModifyDebitCardLimit}></use>
                         </svg>
                     </div>
-                    <p>Modify Debit Card Limit</p>
+                    <p>{label.MODIFY_DEBIT_CARD_LIMIT}</p>
                 </div>
                 <div class="menu-item travel" onclick={navigateToTravelNotification}>
                     <div class="menu-item-svg">
@@ -25,15 +31,27 @@
                             <use href={CBTravelNotification}></use>
                         </svg>
                     </div>
-                    <p>Travel Notification</p>
+                    <p>{label.TRAVEL_NOTIFICATION}</p>
                 </div>
             </div>
         </template>
         <template if:true={modifyDebitCardLimit}>
             <div class="containerTwo">
+                <label for="accountNumber">
+                    <p class="heading">{label.Account_Number}</p>
+                    <select class="options" id="accountNumber" onclick={accountNumberHandler}>
+                        <option value={label.SELECT}>{label.SELECT}</option>
+                        <template for:each={accounts} for:item="account">
+                            <option key={account.accountNo} value={account.accountNo}>
+                                {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accountType}
+                            </option>
+                        </template>
+                    </select>
+                </label>
                 <label for="cardLimit">
-                    <p class="heading">Enter limit For Debit Card Limit</p>
-                    <select class="options" id="cardLimit" onclick={cardLimitHandler} value={cardLimit}>
+                    <p class="heading">{label.ENTER_LIMIT_FOR_DEBIT_CARD_LIMIT}</p>
+                    <select class="options" id="cardLimit" onclick={cardLimitHandler}>
+                        <option value={label.SELECT}>{label.SELECT}</option>
                         <template for:each={debitCardLimit} for:item="cardLimits">
                             <option key={cardLimits.limit} value={cardLimits.limit}>{cardLimits.limit}</option>
                         </template>
@@ -41,7 +59,7 @@
                 </label>
             </div>
             <div class="btns">
-                <button class="submit-btn" onclick={submitForm}>{label.SUBMIT}</button>
+                <button class="submit-btn" disabled={buttonDisable} onclick={submitForm}>{label.SUBMIT}</button>
             </div>
         </template>
     </section>

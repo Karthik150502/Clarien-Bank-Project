@@ -33,36 +33,36 @@ export default class CBApprovals extends NavigationMixin(LightningElement) {
 
     @track approvals = [
         {
-            id : '1',
-            fromAccount : 'Sasha',
-            toAccount : 'John',
-            amount : 'BMD 100',
-            status : 'Pending',
-            selected : false,
+            id: '1',
+            fromAccount: 'Sasha',
+            toAccount: 'John',
+            amount: 'BMD 100',
+            status: 'Pending',
+            selected: false,
         },
         {
-            id : '2',
-            fromAccount : 'Sasha',
-            toAccount : 'Max',
-            amount : 'BMD 545',
-            status : 'Pending',
-            selected : false,
+            id: '2',
+            fromAccount: 'Sasha',
+            toAccount: 'Max',
+            amount: 'BMD 545',
+            status: 'Pending',
+            selected: false,
         },
         {
-            id : '3',
-            fromAccount : 'Sasha',
-            toAccount : 'Robert',
-            amount : 'BMD 126',
-            status : 'Pending',
-            selected : false,
+            id: '3',
+            fromAccount: 'Sasha',
+            toAccount: 'Robert',
+            amount: 'BMD 126',
+            status: 'Pending',
+            selected: false,
         },
         {
-            id : '4',
-            fromAccount : 'Sasha',
-            toAccount : 'Helen',
-            amount : 'BMD 632',
-            status : 'Pending',
-            selected : false,
+            id: '4',
+            fromAccount: 'Sasha',
+            toAccount: 'Helen',
+            amount: 'BMD 632',
+            status: 'Pending',
+            selected: false,
         }
     ]
 
@@ -75,7 +75,7 @@ export default class CBApprovals extends NavigationMixin(LightningElement) {
             // Implementation for the "OK" button click action.
             implementation: () => {
                 this.modalOpen = false;
-                this.navigateToHome();
+                this.navigateToHome('CBQuickLinks__c');
             }
         },
         noButton: {
@@ -88,7 +88,7 @@ export default class CBApprovals extends NavigationMixin(LightningElement) {
             }
         }
     };
-        
+
     navigateToHome() {
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -105,17 +105,17 @@ export default class CBApprovals extends NavigationMixin(LightningElement) {
     checkboxHandler(event) {
         let id = event.currentTarget.dataset.id;
         console.log(event.currentTarget.dataset.id);
-        for(let i=0; i<this.approvals.length; i++) {
-            if(id === this.approvals[i].id) {
-                this.approvals[i] = {...this.approvals[i], selected : !this.approvals[i].selected};
+        for (let i = 0; i < this.approvals.length; i++) {
+            if (id === this.approvals[i].id) {
+                this.approvals[i] = { ...this.approvals[i], selected: !this.approvals[i].selected };
                 break;
             }
         }
     }
 
     get isDisabled() {
-        for(let i=0; i<this.approvals.length; i++) {
-            if(this.approvals[i].selected) {
+        for (let i = 0; i < this.approvals.length; i++) {
+            if (this.approvals[i].selected) {
                 return false;
             }
         }

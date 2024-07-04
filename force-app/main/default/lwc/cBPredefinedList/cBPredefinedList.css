@@ -25,16 +25,21 @@
     border-radius: 14px;
     padding: 0 0 7% 0;
     position: relative;
+    height: calc(90vh - 60px);
+    overflow-y: scroll;
 }
 .container .template-container{
     width: 90%;
-    height: 95px;
+    height: 12vh;
     margin: 3% auto;
-    background-color: var(--light-blue);
+    background-image: url('/resource/CreditCardBg');
+    background-repeat: no-repeat;
+    background-size: cover;   
     display: flex;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 10px;
 	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 }
 
 .container .template-container .template-text {
@@ -49,17 +54,18 @@
 .container .template-container .template-text .name {
     font-size: 16px;
     font-weight: 900;
+    color: var(--primary-white);
 	margin: 0 0 10px 0;
 }
 .container .template-container .template-text .template {
-    color: var(--primary-grey);
+    color: var(--primary-white);
 }
 .container .template-container .template-amount {
     width: 25%;
     display: flex;
     align-items: center;
     justify-content: left;
-    color: var(--primary-grey);
+    color: var(--primary-white);
 }
 
 .button {
@@ -90,4 +96,7 @@ c-c-b-footer {
     border: none;
     bottom: 0;
     z-index: 1;
+}
+::-webkit-scrollbar {
+    display: none;
 }

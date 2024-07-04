@@ -1,3 +1,9 @@
+<!--
+    Author - Prateek Deshmukh
+    Created Date - 04/15/2024
+    Modified Date - 06/21/2024
+    Description - This component is designed to collect customer details for requesting the opening of a Time Deposit account.
+-->
 <template>
     <div class="wrapper">
         <div class="container">
@@ -7,7 +13,8 @@
             <div class="reusableAccountOpening">
                 <c-c-b-resuable-account-opening
                 type = {accountOpenType}
-                oncustomerdetail={createCase}
+                acc-type = {accType}
+                oncustomerdetail={createAccount}
                 account-types={accountType}
                 product-list = {termDepositProduct}
                 ></c-c-b-resuable-account-opening>

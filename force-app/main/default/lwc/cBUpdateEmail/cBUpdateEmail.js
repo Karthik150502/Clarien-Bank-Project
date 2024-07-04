@@ -10,6 +10,8 @@ import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
 import SUBMIT from '@salesforce/label/c.CB_Submit';
 import EMAIL from '@salesforce/label/c.CB_Email';
+import VERIFY_EMAIL from '@salesforce/label/c.CB_VerifyEmail';
+
 
 //resources for Ad-hauthentication process
 import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSuccess';
@@ -17,6 +19,7 @@ import CB_AUTHENTICATION_FAILED from '@salesforce/resourceUrl/CBAutenticationFai
 import AUTHENTICATION_SUCCESSFUL_MESSAGE from '@salesforce/label/c.CB_Authentication_Successful';
 import AUTHENTICATION_FAILURE_MESSAGE from '@salesforce/label/c.CB_Authentication_Failed';
 import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentication_InProgress';
+import OK_BUTTON from '@salesforce/label/c.CB_Ok';
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 //page
 import PROFILESETTINGS_PAGE from '@salesforce/label/c.CB_Page_Profilesettings';
@@ -39,8 +42,9 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
     z
     // Object to hold custom labels
     label = {
-        SUBMIT: SUBMIT.toUpperCase(),
+        SUBMIT,
         EMAIL,
+        VERIFY_EMAIL,
         ERROR_INVALID_EMAIL
     };
 
@@ -64,7 +68,7 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
     showOtphandler = false
     username = ''
     password = ''
-    otpDisclaimer = 'The OTP has been sent to your updated Email Address.'
+    otpDisclaimer = 'The OTP Has Been Sent To Your Updated Email Address.'
     //Hardcoded fields for testing 
 
 
@@ -72,21 +76,25 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
 
     // Object to manage header icons
     header_icons = {
+        // Announcements icon settings
         announcements: {
-            exposed: true,
-            haveItems: true
+            exposed: true,  // Whether to display the Announcements icon
+            haveItems: true // Whether the Announcements icon has items to display
         },
+        // Whether to display the Announcements icon
         notifications: {
-            exposed: true,
-            haveItems: true
+            exposed: true,  // Whether to display the Notifications icon
+            haveItems: true // Whether the Notifications icon has items to display
         },
+        // Inbox icon settings
         inbox: {
-            exposed: true,
-            haveItems: true
+            exposed: true,  // Whether to display the Inbox icon
+            haveItems: true // Whether the Inbox icon has items to display
         },
+        // Scan Code icon settings
         scanCode: {
-            exposed: false,
-            haveItems: false
+            exposed: false, // Whether to display the Scan Code icon
+            haveItems: false    // Whether the Scan Code icon has items to display
         }
     };
 
@@ -108,10 +116,10 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
     */
     @track modal = {
         title: '',
-        message: 'Your Email has been updated',
+        message: 'Your Email Has Been Updated',
         yesButton: {
             exposed: true,
-            label: "OK",
+            label: OK_BUTTON,
             // Implementation for the "OK" button click action.
             implementation: () => {
                 this.modalOpen = false;
@@ -338,12 +346,12 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
             .then((result) => {
                 console.log('response message details', result);
                 this.modal.message = JSON.parse(result)?.messageDescription;
-                this.modal.message = 'The Email has been succesfully updated'
+                this.modal.message = 'The Email Has Been Succesfully Updated'
                 this.modal.implementation = () => {
                     this.modalOpen = false;
                     this.navigateToMyProfileAfterUpdate();
                 }
-                this.modal.yesButton.label = "OK"
+                this.modal.yesButton.label = OK_BUTTON
                 // this.authenticate(this.successGif, AUTHENTICATION_SUCCESSFUL_MESSAGE, true);
                 setTimeout(() => {
                     this.authenticationPopup.openModal = false;
@@ -358,7 +366,7 @@ export default class CBUpdateEmail extends NavigationMixin(LightningElement) {
                     this.modalOpen = false;
                     this.navigateToMyProfileAfterUpdate();
                 }
-                this.modal.yesButton.label = "OK"
+                this.modal.yesButton.label = OK_BUTTON
                 setTimeout(() => {
                     this.authenticationPopup.openModal = false;
                     this.modalOpen = true
