@@ -7,7 +7,6 @@ import BENEFICIARY_ACCOUNT_NO from '@salesforce/label/c.CB_BeneficiaryDetailsAcc
 import BENEFICIARY_NAME from '@salesforce/label/c.CB_BeneficiaryName';
 import BENEFICIARY_BANK from '@salesforce/label/c.CB_BeneficiaryBank';
 import BENEFICIARY_ADDRESS from '@salesforce/label/c.CB_BeneficiaryAddress';
-import BENEFICIARY_STATUS from '@salesforce/label/c.CB_BeneficiaryStatus';
 import PAGE_EDIT_BENEFICIARY from '@salesforce/label/c.CB_Page_EditBeneficiary';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG" // Importing SVG file from Static Resource

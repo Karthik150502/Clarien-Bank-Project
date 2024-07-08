@@ -9,7 +9,7 @@ import SHOWING_TRANSACTION_FROM from '@salesforce/label/c.CB_ShowingTransactions
 import SHOWING_LAST from '@salesforce/label/c.CB_ShowingLast';
 
 import getFullAccountStatement from '@salesforce/apex/CBGetFullAccountStatement.getFullAccountStatement';
-import { getJsonData, getSessData, dateToTimestamp, logout, getUserCreds, setPagePath } from 'c/cBUtilities';
+import { getJsonData, dateToTimestamp, setPagePath } from 'c/cBUtilities';
 
 export default class CBJointAccount extends NavigationMixin(LightningElement) {
 

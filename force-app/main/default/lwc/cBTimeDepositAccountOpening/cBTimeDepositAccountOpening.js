@@ -9,7 +9,7 @@ import YOUR_ACCOUNT_OPEN_SUCCESS from '@salesforce/label/c.CB_YourAccOpenSuccess
 import OK_BUTTON from '@salesforce/label/c.CB_Ok';
 import CANCEL_BUTTON from '@salesforce/label/c.CB_Cancel';
 
-import { getJsonData, dateToTimestamp, getAccountProducts } from 'c/cBUtilities'; // Importing utility methods
+import { getJsonData, dateToTimestamp } from 'c/cBUtilities'; // Importing utility methods
 import createTimeDepositAccount from "@salesforce/apex/CBApiController.createTimeDepositAccount";
 
 export default class CBTimeDepositAccountOpening extends NavigationMixin(LightningElement) {

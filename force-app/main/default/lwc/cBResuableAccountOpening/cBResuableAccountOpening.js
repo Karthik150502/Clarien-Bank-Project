@@ -276,6 +276,7 @@ export default class CBResuableAccountOpening extends LightningElement {
         else if (this.type === 'topUpAccount') {
             return this.selectedAccount === '' || this.selectedAccount === SELECT || this.duration === '' || this.depositAmount === '' || this.currency === '' || this.principalMaturity === '' || !this.termsConditionsFlag || this.product === 'Select' || this.principalMaturity === 'Select';
         }
+        return ''
     }
 
     // Handler for duration change
@@ -292,7 +293,6 @@ export default class CBResuableAccountOpening extends LightningElement {
                     depositAmount: this.depositAmount,
                     duration: this.duration,
                     currency: this.currency,
-                    depositAmount: this.depositAmount,
                     product: this.product,
                     interestPayment: this.interestPayment,
                     principalMaturity: this.principalMaturity,

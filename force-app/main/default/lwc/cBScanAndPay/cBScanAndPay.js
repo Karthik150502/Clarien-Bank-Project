@@ -3,6 +3,7 @@ import { LightningElement, track } from "lwc";
 import { NavigationMixin } from 'lightning/navigation'; // Importing NavigationMixin for navigation functionality
 import { getBarcodeScanner } from "lightning/mobileCapabilities";
 import { loadScript } from 'lightning/platformResourceLoader';
+import I_TRANSFER from '@salesforce/label/c.CB_iTransfer';
 import JSQR from '@salesforce/resourceUrl/JSQR';
 import CBSVG from "@salesforce/resourceUrl/CBSVG"; // Importing SVG file from Static Resource
 

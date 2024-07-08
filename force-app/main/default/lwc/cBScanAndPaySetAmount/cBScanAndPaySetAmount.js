@@ -1,6 +1,6 @@
 import { LightningElement, wire } from 'lwc';
 import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
-import { formatDate } from 'c/cBUtilities';
+import { getMobileSessionStorage } from 'c/cBUtilities';
 
 import SUBMIT from '@salesforce/label/c.CB_Submit';
 import REMARKS from '@salesforce/label/c.CB_Remarks'
@@ -9,6 +9,8 @@ import AMOUNT from '@salesforce/label/c.CB_Amount'
 import FROM_ACCOUNT from '@salesforce/label/c.CB_FromAccount'
 import SELECT_ACCOUNT from '@salesforce/label/c.CB_SelectAccount'
 import CUSTOMER_NAME from '@salesforce/label/c.CB_CustomerName'
+import I_TRANSFER from '@salesforce/label/c.CB_iTransfer';
+
 
 import decrypt from '@salesforce/apex/CBUtilityController.performDecrypt';
 
@@ -21,7 +23,8 @@ export default class CBScanAndPaySetAmount extends NavigationMixin(LightningElem
         AMOUNT,
         FROM_ACCOUNT,
         SELECT_ACCOUNT,
-        CUSTOMER_NAME
+        CUSTOMER_NAME,
+        I_TRANSFER
     };
 
     encryptKey = ''
@@ -65,7 +68,7 @@ export default class CBScanAndPaySetAmount extends NavigationMixin(LightningElem
 
     headerConfguration = {
         previousPageUrl: 'Home',
-        heading: 'I Transfer',
+        heading: I_TRANSFER,
         iconsExposed: true,
         logout: {
             exposed: false

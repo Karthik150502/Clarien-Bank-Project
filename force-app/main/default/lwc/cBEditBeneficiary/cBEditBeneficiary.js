@@ -26,7 +26,8 @@ export default class CBEditBeneficiary extends NavigationMixin(LightningElement)
         SUBMIT,
         ACCOUNT,
         ACCOUNT_TYPE,
-        BENEFICIARY_BANK
+        BENEFICIARY_BANK,
+        STATUS
     }
 
     // SVG icon for edit action

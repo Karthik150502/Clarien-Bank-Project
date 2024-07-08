@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';
 import CONTINUE from '@salesforce/label/c.CB_Continue';
@@ -19,11 +19,27 @@ import CB_SelectCurrency from '@salesforce/label/c.CB_SelectCurrency';
 import CB_Amount from '@salesforce/label/c.CB_Amount';
 import CB_Page_IntrabankTransfers from '@salesforce/label/c.CB_Page_IntrabankTransfers';
 import CB_Page_IntrabankTransfersConf from '@salesforce/label/c.CB_Page_IntrabankTransfersConf';
+import INTRABANK_TRANSFER from '@salesforce/label/c.CB_IntrabankTransfers';
+import CB_Select from '@salesforce/label/c.CB_Select';
 
 
 import { setPagePath, formatDate, getMobileSessionStorage } from 'c/cBUtilities';
 
+
+
+// LMS
+import LMS from "@salesforce/messageChannel/cBRecurringTransferLMS__c";
+import { APPLICATION_SCOPE, MessageContext, subscribe, unsubscribe } from 'lightning/messageService';
+
 export default class CBIntraBankTransfers extends NavigationMixin(LightningElement) {
+
+
+
+    @wire(MessageContext)
+    context;
+
+
+    subscription = null;
 
     // Object to hold imported labels
     label = {
@@ -32,7 +48,6 @@ export default class CBIntraBankTransfers extends NavigationMixin(LightningEleme
         REMARKS,
         DATE,
         UNTIL_END_DATE,
-        CB_SelectAccount,
         CB_FromAccount,
         CB_TO_ACCOUNT,
         CB_Repeat,
@@ -40,7 +55,7 @@ export default class CBIntraBankTransfers extends NavigationMixin(LightningEleme
         CB_Name,
         CBCurrency,
         CB_Amount,
-        CB_SelectCurrency
+        CB_Select
     };
 
 
@@ -48,6 +63,7 @@ export default class CBIntraBankTransfers extends NavigationMixin(LightningEleme
     connectedCallback() {
         this.headerConfguration.previousPageUrl = setPagePath(CB_Page_IntrabankTransfers)
         this.setAccountData()
+        this.subscribeMessage()
     }
 
     setAccountData() {
@@ -56,7 +72,7 @@ export default class CBIntraBankTransfers extends NavigationMixin(LightningEleme
 
     headerConfguration = {
         previousPageUrl: 'CBTransfers__c',
-        heading: 'Intra Bank Transfer',
+        heading: INTRABANK_TRANSFER,
         iconsExposed: true,
         logout: {
             exposed: false
@@ -68,18 +84,15 @@ export default class CBIntraBankTransfers extends NavigationMixin(LightningEleme
             transferTypePage: CB_Page_IntrabankTransfers
         }
     }
-    recurring = false
+
     amount = ''
     toAccount = ''
-    selectedAccount = 'Select Account'
-    selectedBank = 'Select Bank'
+    selectedAccount = CB_Select
+    selectedBank = CB_Select
     name = ''
-    currency = 'Select Currency'
+    currency = CB_Select
     currencies = ["BMD", "USD"]
-    frequencySelected = ''
-    frequencies = ["Day", "Month", "End of every month"]
-    dateSelected = 'DD/MM/YYYY'
-    untilDate = 'DD/MM/YYYY'
+
     remarks = ''
     accounts = [
         {
@@ -240,59 +253,13 @@ export default class CBIntraBankTransfers extends NavigationMixin(LightningEleme
     }
 
 
-    /**
-    * Toggles the recurring flag.
-    */
-    recurringHandler() {
-        this.recurring = !this.recurring
-    }
 
 
 
-    /**
-    * Handles the input event for the date field and formats the date.
-    * @param {Event} event - The input event.
-    */
-    handleDate(event) {
-        this.dateSelected = formatDate(event.target.value)
-    }
-
-
-    /**
-    * Handles the input event for the untilDate field and formats the date.
-    * @param {Event} event - The input event.
-    */
-    handleUntilDate(event) {
-        this.untilDate = formatDate(event.target.value)
-    }
 
 
 
-    /**
-    * Handles the input event for the frequency selection.
-    * @param {Event} event - The input event.
-    */
-    handleFreq(event) {
-        this.frequencySelected = event.target.value
-    }
 
-
-
-    /**
-    * Increases the number by 1.
-    */
-    increaseNumber() {
-        this.number = this.number + 1
-
-    }
-
-
-    /**
-    * Decreases the number by 1, ensuring it does not go below 1.
-    */
-    decreaseNumber() {
-        this.number = this.number > 1 ? this.number - 1 : this.number
-    }
 
 
 
@@ -311,7 +278,7 @@ export default class CBIntraBankTransfers extends NavigationMixin(LightningEleme
     * @return {boolean} - True if any required value is missing or invalid, false otherwise.
     */
     verifyValues() {
-        return this.selectedAccount === 'Select Account' || this.toAccount === '' || this.currency === 'Select Currency' || this.amount === '' || this.name === '' || this.date === 'DD/MM/YYYY'
+        return this.selectedAccount === CB_Select || this.toAccount === '' || this.currency === CB_Select || this.amount === '' || this.name === '' || this.date === 'DD/MM/YYYY' || (this.recurring && this.numberOfDays === 0) || this.frequency === CB_Select || this.endDateAllowed && this.endDate === 'DD/MM/YYYY'
     }
 
 
@@ -354,5 +321,34 @@ export default class CBIntraBankTransfers extends NavigationMixin(LightningEleme
         this.navigateTo(CB_Page_IntrabankTransfersConf, data)
     }
 
+
+
+    // Subscribing to LMS
+    subscribeMessage() {
+        //subscribe(messageContext, messageChannel, listener, subscribeOptions)
+        this.subscription = subscribe(this.context, LMS, (lmsMessage) => { this.handleLMSData(lmsMessage) }, { scope: APPLICATION_SCOPE })
+    }
+
+
+    startDate = ''
+    endDate = ''
+    noOfInstallments = ''
+    noOfPayments = ''
+    frequency = CB_Select
+    recurring = false
+    endDateAllowed = false
+
+    // Helper function for handling LMS Data
+    handleLMSData(data) {
+        console.log(data.lmsData)
+        if (data.lmsData) {
+            this.startDate = data.lmsData.startDate ? data.lmsData.startDate : ''
+            this.endDate = data.lmsData.endDate ? data.lmsData.endDate : ''
+            this.noOfPayments = data.lmsData.numberOfPayments ? data.lmsData.numberOfPayments : 0
+            this.noOfInstallments = data.lmsData.noOfInstallments ? data.lmsData.noOfInstallments : 0
+            this.frequency = data.lmsData.frequency ? data.lmsData.frequency : ''
+            this.endDateAllowed = data.lmsData.endDateAllowed ? data.lmsData.endDateAllowed : ''
+        }
+    }
 
 }

@@ -27,19 +27,6 @@ export default class CBFilterLoanAccountModal extends LightningElement {
         this.toDate = event.target.value
     }
 
-    get fromDateMax() {
-        if (this.currDate && this.toDate === 'YYYY-MM-DD') {
-            return this.currDate
-        } else if (this.toDate) {
-            return this.toDate
-        }
-    }
-
-    get toDateMax() {
-        if (this.currDate) {
-            return this.currDate
-        }
-    }
 
 
     get validateDate(){
@@ -68,12 +55,14 @@ export default class CBFilterLoanAccountModal extends LightningElement {
         } else if (this.toDate) {
             return this.toDate
         }
+        return ''
     }
 
     get toDateMax() {
         if (this.currDate) {
             return this.currDate
         }
+        return ''
     }
 
 }

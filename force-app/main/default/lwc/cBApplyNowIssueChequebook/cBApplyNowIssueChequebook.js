@@ -14,8 +14,6 @@ import HEADER_ISSUECHEQUEBOOK from '@salesforce/label/c.CB_Header_IssueChequeBoo
 import ISSUECHEQUEMODAL_TITLE from '@salesforce/label/c.CB_IssueChequeModal_Title';
 import ISSUECHEQUEMODAL_MESSAGE from '@salesforce/label/c.CB_IssueChequeModal_Message';
 
-import CBSVG from "@salesforce/resourceUrl/CBSVG" // Importing SVG file from Static Resource
-
 // Extending the LightningElement class and applying the NavigationMixin for navigation capabilities
 export default class CBApplyNowIssueChequebook extends NavigationMixin(LightningElement) {
 

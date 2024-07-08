@@ -93,7 +93,7 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
     date = 'N/A'
     comments = 'N/A'
     charges = 'N/A'
-    disclaimer = this.label.disclaimer
+    disclaimer = this.label.CB_Disclaimer
 
     saveAsTemplateDesc = ''
     successGif = CB_AUTHENTICATION_SUCCESS
@@ -121,7 +121,7 @@ export default class CBDomesticTransfersConfTrans extends NavigationMixin(Lightn
         }
     }
     @track modalConf1 = {
-        title: CB_SaveAsTemplate,
+        title: '',
         message: this.label.CB_TransactionCompleted,
         okButton: {
             exposed: false,

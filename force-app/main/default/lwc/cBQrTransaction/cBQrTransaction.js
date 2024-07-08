@@ -136,7 +136,5 @@ export default class CBQrTransaction extends NavigationMixin(LightningElement) {
         this.navigateTo('CBQrConfTrans__c', data)
     }
 
-    handleAmount(event) {
-        this.amount = event.target.value
-    }
+
 }

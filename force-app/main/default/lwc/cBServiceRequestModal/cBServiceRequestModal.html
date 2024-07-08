@@ -43,7 +43,7 @@
                         <option value={label.SELECT}>{label.SELECT}</option>
                         <template for:each={accounts} for:item="account">
                             <option key={account.accountNo} value={account.accountNo}>
-                                {acc.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{acc.accountType}
+                                {account.accountNo}&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;{account.accountType}
                             </option>
                         </template>
                     </select>

@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';
 import CONTINUE from '@salesforce/label/c.CB_Continue';
@@ -7,10 +7,12 @@ import REMARKS from '@salesforce/label/c.CB_Remarks'
 import UNTIL_END_DATE from '@salesforce/label/c.CB_UntilEndDate'
 import DATE from '@salesforce/label/c.CB_Date'
 
-import CB_SelectAccount from '@salesforce/label/c.CB_SelectAccount';
+import CB_Select from '@salesforce/label/c.CB_Select';
+
 import CB_FromAccount from '@salesforce/label/c.CB_FromAccount';
 import CB_TO_ACCOUNT from '@salesforce/label/c.CB_TO_ACCOUNT';
 import CB_Amount from '@salesforce/label/c.CB_Amount';
+import CB_Currency from '@salesforce/label/c.CB_Currency';
 import CB_Payments_Amount from '@salesforce/label/c.CB_Payments_Amount';
 import CB_Repeat from '@salesforce/label/c.CB_Repeat';
 import CB_Recurring from '@salesforce/label/c.CB_Recurring';
@@ -20,13 +22,21 @@ import CB_OwnAccountTransfers from '@salesforce/label/c.CB_OwnAccountTransfers';
 import CB_Page_OwnAcctTransfers from '@salesforce/label/c.CB_Page_OwnAcctTransfers';
 
 
-import { setPagePath, formatDate, getMobileSessionStorage } from 'c/cBUtilities';
+import { setPagePath, formatDate, getMobileSessionStorage, getPicklistValues } from 'c/cBUtilities';
+
+
+
+// LMS
+import LMS from "@salesforce/messageChannel/cBRecurringTransferLMS__c";
+import { APPLICATION_SCOPE, MessageContext, subscribe, unsubscribe } from 'lightning/messageService';
+
 
 
 
 export default class CBOwnAccountTransfer extends NavigationMixin(LightningElement) {
 
-
+    @wire(MessageContext)
+    context;
 
     label = {
         CONTINUE,
@@ -34,13 +44,15 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         REMARKS,
         UNTIL_END_DATE,
         DATE,
-        CB_SelectAccount,
         CB_FromAccount,
         CB_TO_ACCOUNT,
         CB_Amount,
         CB_Payments_Amount,
         CB_Repeat,
-        CB_Recurring
+        CB_Recurring,
+        CB_Currency,
+        CB_Select
+
     };
 
 
@@ -64,6 +76,8 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
     connectedCallback() {
         this.headerConfguration.previousPageUrl = setPagePath(CB_Page_OwnAcctTransfers)
         this.setAccountData()
+        this.loadAllPicklistValues()
+        this.subscribeMessage()
     }
 
     setAccountData() {
@@ -71,16 +85,14 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         this.toAccountsList = JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) ? JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) : [];
     }
 
-    recurring = false
+
     amount = ''
     toAccount = ''
     selectedAccount = 'Select Account'
-    dateSelected = 'DD/MM/YYYY'
-    untilDate = 'DD/MM/YYYY'
-    frequencySelected = ''
     number = 1
     remarks = ''
-    frequencies = ["Day", "Month", "End of every month"]
+    currencies = []
+    currency = this.label.CB_SelectCurrency
     accounts = [
         {
             accountNo: '659855541254',
@@ -168,11 +180,6 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         this.toAccountsList = this.accounts.filter(account => account.accountNo !== this.selectedAccount)
     }
 
-    // Method to toggle the recurring payment option.
-    // Updates the 'recurring' property to its opposite value.
-    recurringHandler() {
-        this.recurring = !this.recurring
-    }
 
     // Method to handle the remarks input change event.
     // Updates the 'remarks' property with the value from the event detail.
@@ -180,33 +187,7 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         this.remarks = event.detail.remarks
     }
 
-    // Method to handle the date input change event.
-    // Updates the 'dateSelected' property with the formatted date value from the input event.
-    handleDate(event) {
-        this.dateSelected = formatDate(event.target.value)
-    }
 
-    // Method to handle the until date input change event.
-    // Updates the 'untilDate' property with the formatted date value from the input event.
-    handleUntilDate(event) {
-        this.untilDate = formatDate(event.target.value)
-    }
-
-    // Method to handle the frequency selection change event.
-    // Updates the 'frequencySelected' property with the value from the selection event.
-    handleFreq(event) {
-        this.frequencySelected = event.target.value
-    }
-
-    // Method to increase the number property value by 1.
-    increaseNumber() {
-        this.number = this.number + 1
-
-    }
-    // Method to decrease the number property value by 1, ensuring it doesn't go below 1.
-    decreaseNumber() {
-        this.number = this.number > 1 ? this.number - 1 : this.number
-    }
 
     // Getter to check if the submit button should be disabled.
     // Returns the result of the verifyValues method.
@@ -217,7 +198,7 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
     // Method to verify if required values are valid.
     // Checks if date, selectedAccount, toAccount, and amount are properly set.
     verifyValues() {
-        return this.date === 'DD/MM/YYYY' || this.selectedAccount === 'Select Account' || this.toAccount === 'Select Account' || this.amount === ''
+        return this.amount === '' || this.currency === CB_Select || (this.recurring && this.numberOfDays === 0) || this.frequency === CB_Select || this.endDateAllowed && this.endDate === 'DD/MM/YYYY'
     }
 
     // Helper function for navigation to a specified page with optional state data.
@@ -244,5 +225,59 @@ export default class CBOwnAccountTransfer extends NavigationMixin(LightningEleme
         }
         console.log(JSON.stringify(data))
         this.navigateTo(CB_Page_OwnAcctTransConf, data)
+    }
+
+
+    /**
+    * Handles the input event for the currency selection.
+    * @param {Event} event - The input event.
+    */
+    handleCurrency(event) {
+        this.currency = event.target.value
+    }
+
+
+
+    /**
+    * To get all the picklist values.
+    */
+    loadAllPicklistValues() {
+        let componentName = /([^(/]*?)\.js/g.exec(new Error().stack)[1]
+        getPicklistValues(componentName)
+            .then(result => {
+                this.currencies = result['CBOwnAccountTransferCurrencies'].split("\r\n");
+            }).catch(error => {
+                console.error(error)
+            })
+    }
+
+
+
+    // Subscribing to LMS
+    subscribeMessage() {
+        //subscribe(messageContext, messageChannel, listener, subscribeOptions)
+        this.subscription = subscribe(this.context, LMS, (lmsMessage) => { this.handleLMSData(lmsMessage) }, { scope: APPLICATION_SCOPE })
+    }
+
+
+    startDate = ''
+    endDate = ''
+    noOfInstallments = ''
+    noOfPayments = ''
+    frequency = CB_Select
+    recurring = false
+    endDateAllowed = false
+
+    // Helper function for handling LMS Data
+    handleLMSData(data) {
+        console.log(data.lmsData)
+        if (data.lmsData) {
+            this.startDate = data.lmsData.startDate ? data.lmsData.startDate : ''
+            this.endDate = data.lmsData.endDate ? data.lmsData.endDate : ''
+            this.noOfPayments = data.lmsData.numberOfPayments ? data.lmsData.numberOfPayments : 0
+            this.noOfInstallments = data.lmsData.noOfInstallments ? data.lmsData.noOfInstallments : 0
+            this.frequency = data.lmsData.frequency ? data.lmsData.frequency : ''
+            this.endDateAllowed = data.lmsData.endDateAllowed ? data.lmsData.endDateAllowed : ''
+        }
     }
 }

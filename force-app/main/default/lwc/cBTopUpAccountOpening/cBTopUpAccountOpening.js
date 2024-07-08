@@ -9,7 +9,7 @@ import YOUR_ACCOUNT_OPEN_SUCCESS from '@salesforce/label/c.CB_YourAccOpenSuccess
 import OK_BUTTON from '@salesforce/label/c.CB_Ok';
 import CANCEL_BUTTON from '@salesforce/label/c.CB_Cancel';
 
-import { getJsonData, dateToTimestamp, getUserCreds, setPagePath } from 'c/cBUtilities'; // Importing utility methods
+import { getJsonData } from 'c/cBUtilities'; // Importing utility methods
 
 export default class CBTopUpAccountOpening extends NavigationMixin(LightningElement) {
 

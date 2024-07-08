@@ -6,7 +6,7 @@
     It allows flexibility by enabling users to specify icons and data to expose as needed.
 */
 
-import { LightningElement, api, track } from 'lwc'; // Importing LightningElement, api decorator, and wire adapter
+import { LightningElement, api } from 'lwc'; // Importing LightningElement, api decorator, and wire adapter
 import { NavigationMixin } from 'lightning/navigation'; // Importing NavigationMixin for navigation functionality
 
 import getProfileDocId from '@salesforce/apex/CBProfileUploadHandler.getProfileDocId'; // Importing Apex method for fetching profile image ID
@@ -18,7 +18,7 @@ import CB_Page_Inbox from '@salesforce/label/c.CB_Page_Inbox';
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 
 // JS Scripts
-import { logout, getMobileSessionStorage, getLocalStorage } from 'c/cBUtilities';
+import { logout, getLocalStorage } from 'c/cBUtilities';
 
 
 import ALERT_PAGE from '@salesforce/label/c.CB_Page_Alert';

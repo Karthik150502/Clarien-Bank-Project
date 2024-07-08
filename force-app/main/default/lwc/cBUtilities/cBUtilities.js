@@ -6,6 +6,7 @@ import getData from "@salesforce/apex/CBUtilityController.get";
 import getSessionData from "@salesforce/apex/CBUtilityController.getSessionData";
 import setSessionData from "@salesforce/apex/CBUtilityController.setSessionData";
 import signOut from "@salesforce/apex/CBApiController.signOut";
+import getListValues from "@salesforce/apex/CBFetchMetaData.getListValues";
 
 
 
@@ -261,12 +262,33 @@ const getAccountProducts = (acct_type) => {
 }
 
 
+const getPicklistValues = (componentName) => {
+    return getListValues({ componentName })
+}
+
 
 // Formats a date string from yyyy-mm-dd to dd/mm/yyyy
 const formatDate = (yyyyMmDd) => {
     let res = yyyyMmDd.split("-");
     return `${res[2]}/${res[1]}/${res[0]}`;
 }
+
+// Formats a date string from mm/dd/yyyy to dd/mm/yyyy
+const formatLocalDateStringDate = (date) => {
+    let res = date.split("/")
+    let dd = Number(res[1]) < 10 ? `0${res[1]}` : res[1] // Add 0 to single digit dates
+    let mm = Number(res[0]) < 10 ? `0${res[0]}` : res[0] // Add 0 to single digit months
+    return `${dd}/${mm}/${res[2]}`
+}
+// Gets Today's date in dd/mm/yyyy format
+const getCurrentDate = () => {
+    let date = new Date().toLocaleDateString().split("T")[0]
+    let res = date.split("/")
+    let dd = Number(res[1]) < 10 ? `0${res[1]}` : res[1] // Add 0 to single digit dates
+    let mm = Number(res[0]) < 10 ? `0${res[0]}` : res[0] // Add 0 to single digit months
+    return `${dd}/${mm}/${res[2]}`
+}
+
 
 export {
     setLocalStorage,
@@ -293,5 +315,8 @@ export {
     checkSessionkey,
     checkLocalkey,
     getAccountProducts,
-    formatDate
+    formatDate,
+    getPicklistValues,
+    formatLocalDateStringDate,
+    getCurrentDate
 };

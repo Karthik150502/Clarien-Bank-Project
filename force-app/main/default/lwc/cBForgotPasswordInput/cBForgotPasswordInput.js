@@ -42,7 +42,7 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 //apex class to handle the api callout
 import forgetPassword from "@salesforce/apex/CBApiController.forgetPassword";
 
-import { getJsonData, dateToTimestamp, removeMobileSessionStorage, getMobileSessionStorage, setMobileSessionStorage } from 'c/cBUtilities';
+import { getJsonData, dateToTimestamp, getMobileSessionStorage, setMobileSessionStorage } from 'c/cBUtilities';
 export default class CBForgotPasswordInput extends NavigationMixin(LightningElement) {
 
     // Object to hold imported labels

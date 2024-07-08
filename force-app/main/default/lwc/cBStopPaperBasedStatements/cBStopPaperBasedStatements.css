@@ -13,6 +13,9 @@
 .container {
     width: 90%;
     margin: 20px auto;
+
+    height: calc(100vh - 120px);
+    overflow-y: scroll;
 }
 .wrapper .heading {
     width: 100%;

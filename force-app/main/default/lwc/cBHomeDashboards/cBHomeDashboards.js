@@ -1,8 +1,7 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation'; // Importing NavigationMixin for navigation functionality
 
 // import getSessionDetails from '@salesforce/apex/CBApiController.getSessionDetails';
-
 import PREDEFINED from '@salesforce/label/c.CB_Predefined';
 import OWN_ACC_PAYMENTS from '@salesforce/label/c.CB_OwnAccountTransfers';
 import INTRABANK_PAYMENTS from '@salesforce/label/c.CB_IntrabankTransfers';
@@ -22,7 +21,7 @@ import APPLY_FOR_LOANS from '@salesforce/label/c.CB_ApplyForLoans';
 import SERVICE_REQUEST from '@salesforce/label/c.CB_ServiceRequest';
 import BANK_ACCOUNTS from '@salesforce/label/c.CB_BankAccounts';
 import OPEN_AN_ACCOUNT from '@salesforce/label/c.CB_Open_An_Account';
-import SCAN_AND_PAY from '@salesforce/label/c.CB_ScanAndPay';
+import I_TRANSFER from '@salesforce/label/c.CB_iTransfer';
 import OFFERS from '@salesforce/label/c.CB_Offers';
 import ACCOUNTS_AND_DEPOSITS from '@salesforce/label/c.CB_AccountsAndDeposits';
 import CHEQUEBOOK_SERVICES from '@salesforce/label/c.CB_ChequebookServices';
@@ -58,7 +57,6 @@ import { getMobileSessionStorage, setMobileSessionStorage, dateToTimestamp, getJ
 
 import { getBiometricsService } from 'lightning/mobileCapabilities';
 
-
 export default class CBHomeDashboards extends NavigationMixin(LightningElement) {
 
     // Labels for dashboard icons
@@ -84,7 +82,7 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
         APPLY_FOR_LOANS,
         SERVICE_REQUEST,
         BANK_ACCOUNTS,
-        SCAN_AND_PAY,
+        I_TRANSFER,
         OFFERS,
         ACCOUNTS_AND_DEPOSITS,
         CHEQUEBOOK_SERVICES,
@@ -180,7 +178,6 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
             }
         }
     }
-
 
     activateBiometric() {
         this.showConfirmModal2 = false
@@ -278,7 +275,7 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
             console.log('Mobile session data: ' + JSON.stringify(data))
             setAllSessData(JSON.stringify(data)).then((result) => {
                 removeMobileSessionStorage('CBUsername', 'CBPassword')
-                console.log("SUCCESSFULLY SET SESSION DATA")
+                console.log("SUCCESSFULLY SET SESSION DATA", result)
             }).catch((error) => {
                 console.log(JSON.stringify(error))
             })
@@ -339,18 +336,6 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
             })
     }
 
-    // mapAccountDetails(accounts){
-    //     let accountList = JSON.parse(accounts);
-    //     return accountList.map((account)=>{
-    //         return {
-    //             accountNumber : account.acctId,
-    //             accountType : this.label[account.productCategory],
-    //             availableBalance : '200',
-    //             branchId : account.acctBranchCode
-    //         }
-    //     })
-    // }
-
     // Sample data for account number, balance, and hold balance
     @track accountsData = [
 
@@ -366,17 +351,17 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
         const promises = parsedResult.map((item) => {
             switch (item.productCategory) {
                 case 'LAA':
-                    return this.handleLAA(item.acctBranchCode, item.acctId, accountsData);
+                    // return this.handleLAA(item.acctBranchCode, item.acctId, accountsData);
                 case 'CAA':
                     return this.handleCAA(item.acctBranchCode, item.acctId, accountsData);
                 case 'SBA':
                     return this.handleSBA(item.acctBranchCode, item.acctId, accountsData);
                 case 'TDA':
-                    return this.handleTDA(item.acctBranchCode, item.acctId, accountsData);
+                    // return this.handleTDA(item.acctBranchCode, item.acctId, accountsData);
                 case 'TUA':
-                    return this.handleTUA(item.acctBranchCode, item.acctId, accountsData);
+                    // return this.handleTUA(item.acctBranchCode, item.acctId, accountsData);
                 default:
-                    return this.handleUnknown(item.acctBranchCode, item.acctId, accountsData);
+                    // return this.handleUnknown(item.acctBranchCode, item.acctId, accountsData);
             }
         });
 
@@ -384,6 +369,7 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
             this.accountsData = [...this.accountsData, ...accountsData];
             console.log(JSON.stringify(this.accountsData));
             setMobileSessionStorage('CB_All_Account_Details', JSON.stringify(this.accountsData));
+            this.isLoading = false;
         }).catch(error => {
             console.error('Error processing all accounts:', error, error.message);
             throw error;
@@ -600,35 +586,7 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
         return result;
     }
 
-    formatNumberString(value) {
-        // Check if the line starts with a + or - sign
-        const hasSign = /^[+-]/.test(value);
-        const sign = hasSign ? value[0] : '';
 
-        // Remove the sign for processing if it exists
-        const numericPart = hasSign ? value.slice(1) : value;
-
-        // Ensure the numeric part is a valid number string
-        if (!/^\d+$/.test(numericPart)) {
-            return 'Invalid input';
-        }
-
-        // Get the length of the numeric part
-        const length = numericPart.length;
-
-        // Extract the integer part and the decimal part
-        const integerPart = numericPart.slice(0, length - 2);
-        const decimalPart = numericPart.slice(length - 2);
-
-        // Remove leading zeros from the integer part
-        const integerPartWithoutZeros = Number(integerPart).toString();
-
-        // Combine the sign, integer part, and decimal part
-        const formattedValue = `${integerPartWithoutZeros}.${decimalPart}`;
-
-        // Return the formatted value
-        return formattedValue;
-    }
     /**
     * This function uses a method from the cBJsonDataHandler package that calls an Apex method that returns the API's request body and JSON paths for substitution.
     * @param {String} apiName - The API details's metadata name.
@@ -643,14 +601,6 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
             }).catch((error) => {
                 console.log('Some error occured: ' + error)
             })
-    }
-
-
-    formatAmount(amount) {
-        return Number(amount).toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        })
     }
 
     //Methos used to get the account of the customer via API
@@ -678,10 +628,7 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
                 this.account.totalHolds = this.formatAmount(this.formatNumberString(holdAmmount));
                 console.log('Hold balance : ', this.account.totalHolds);
                 this.handleAccounts();
-                this.isLoading = false;
             }).catch((error) => {
-                this.isLoading = false;
-
                 console.log('Error whil logging : ', JSON.stringify(error), error.message);
             })
     }
@@ -752,24 +699,20 @@ export default class CBHomeDashboards extends NavigationMixin(LightningElement) 
     formatNumberString(value) {
         // Check if the line starts with a + or - sign
         const hasSign = /^[+-]/.test(value);
+        // const sign = hasSign ? value[0] : '';
         // Remove the sign for processing if it exists
         const numericPart = hasSign ? value.slice(1) : value;
-
         // Ensure the numeric part is a valid number string
         if (!/^\d+$/.test(numericPart)) {
             return 'Invalid input';
         }
-
         // Get the length of the numeric part
         const length = numericPart.length;
-
         // Extract the integer part and the decimal part
         const integerPart = numericPart.slice(0, length - 2);
         const decimalPart = numericPart.slice(length - 2);
-
         // Remove leading zeros from the integer part
         const integerPartWithoutZeros = Number(integerPart).toString();
-
         // Combine the sign, integer part, and decimal part
         const formattedValue = `${integerPartWithoutZeros}.${decimalPart}`;
 

@@ -1,6 +1,5 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import { CurrentPageReference } from 'lightning/navigation';
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
 export default class CBErrorComponent extends NavigationMixin(LightningElement) {
 

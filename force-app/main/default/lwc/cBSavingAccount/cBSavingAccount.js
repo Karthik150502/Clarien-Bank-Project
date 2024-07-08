@@ -1,4 +1,4 @@
-import { LightningElement, wire, api, track } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 
 import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
@@ -36,7 +36,8 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
         TRANSACTIONS,
         SHOWING_LAST,
         SHOWINGTRANSACTIONSFROM,
-        NORECENTTRANSACTIONFOUND
+        NORECENTTRANSACTIONFOUND,
+        CURRENTACCOUNT_HEADER
     }
 
     // configuration for the type of card
@@ -152,10 +153,10 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
         this.getUsernamePasswordHandler();
     }
 
-    currentDate(){
+    currentDate() {
         let pastDate = new Date();
         pastDate.setDate(new Date().getDate() - 365)
-        this.fromDate =  pastDate.toISOString().split('.')[0] + ".000"
+        this.fromDate = pastDate.toISOString().split('.')[0] + ".000"
         this.toDate = new Date().toISOString().split('.')[0] + ".000"
     }
 
@@ -201,7 +202,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
                     this.accountNumber = obj.accountNo || '';
                     this.branchId = obj.branchId || '100';
                     this.productCode = obj.productCode || '';
-                    console.log(this.branchId,obj.branchId)
+                    console.log(this.branchId, obj.branchId)
                     console.log('this.productCode', this.productCode)
                     getProductName({ productCode: this.productCode })
                         .then((productName) => {
@@ -232,7 +233,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
         this.overViewStyle = "";
         this.fetchJsonData(this.fullAccountStatementApiName)
         this.handleTransactionsClick = true
-        this.nTransactions=true
+        this.nTransactions = true
     }
     /**
      * Handles click event for displaying overview details.
@@ -241,8 +242,8 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
      */
     handleOverviewClick() {
         this.fromDate = this.schTransactionFromDate
-        this.toDate =  this.schTrransactionToDate
-        this.nTransactions=false
+        this.toDate = this.schTrransactionToDate
+        this.nTransactions = false
         this.isLoading = true;
         this.getActiveTranfersJsonData()
         this.transaction = false;
@@ -289,8 +290,8 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
                 this.isLoading = false
                 console.log('Error: ' + JSON.stringify(error));
             })
-            this.fromDate = (this.fromDate.substring(0,10)).split('-').reverse().join('/');
-            this.toDate = (this.fromDate.substring(0,10)).split('-').reverse().join('/');
+        this.fromDate = (this.fromDate.substring(0, 10)).split('-').reverse().join('/');
+        this.toDate = (this.fromDate.substring(0, 10)).split('-').reverse().join('/');
     }
 
     fromDate = ''
@@ -370,7 +371,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
      * Initiates subsequent actions to fetch active recurring transactions.
      */
     async getActiveTranfersJsonData() {
-        this.tempActiveTransactionData=[];
+        this.tempActiveTransactionData = [];
         const apiNames = [this.getRecInstListAPIName, this.getRetSchdTransAPIName, this.getRetCompTransAPIName];
         const promises = apiNames.map(apiName => getJsonData(apiName));
         const results = await Promise.all(promises);
@@ -411,6 +412,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
             metadataName: this.getRecInstListAPIName,
             headers: null
         }
+        console.log(reqWrapper.metadataName, reqWrapper.payload);
         getRecActiveTransactions({ reqWrapper: reqWrapper })
             .then((result) => {
                 if (result != '') {
@@ -424,7 +426,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
                             date: transaction.recDate.split(' ')[0],
                             amount: transaction.totAmt.split('|')[1],
                             transactionType: this.getDescription(codeSets, transaction.txnType),
-                            currencyCode : transaction.txnCrn
+                            currencyCode: transaction.txnCrn
 
                         };
                     });
@@ -434,7 +436,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
             })
             .catch(error => {
                 console.error('Some error occurred: ', error);
-            }).finally(error=>{
+            }).finally(() => {
                 this.getActiveSchTransactions();
             });
     }
@@ -451,6 +453,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
             metadataName: this.getRetSchdTransAPIName,
             headers: null
         }
+        console.log(reqschWrapper.metadataName, reqschWrapper.payload);
         return getSchActiveTransactions({ reqWrapper: reqschWrapper })
             .then((result) => {
                 if (result != '') {
@@ -464,7 +467,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
                             date: transaction.transactionDate.split(' ')[0],
                             amount: transaction.totAmt.split('|')[1],
                             transactionType: this.getDescription(codeSets, transaction.transactionType),
-                            currencyCode : transaction.transactionCrn
+                            currencyCode: transaction.transactionCrn
 
                         };
                     });
@@ -473,7 +476,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
                 }
             }).catch(error => {
                 console.error('Some error occurred: ', error);
-            }).finally(error=>{
+            }).finally(() => {
                 this.getActiveCmpTransactions();
             });
 
@@ -491,6 +494,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
             metadataName: this.getRetCompTransAPIName,
             headers: null
         }
+        console.log(reqcmphWrapper.metadataName, reqcmphWrapper.payload);
         return getcompActiveTransactions({ reqWrapper: reqcmphWrapper })
             .then((result) => {
                 if (result != '') {
@@ -502,9 +506,9 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
                             CHQSId: this.getDescription(codeSets, transaction.tranStatus),
                             EMIId: transaction.refId,
                             date: transaction.tranDate.split(' ')[0],
-                            amount:transaction.totalAmount.split('|')[1],
+                            amount: transaction.totalAmount.split('|')[1],
                             transactionType: this.getDescription(codeSets, transaction.txnType),
-                            currencyCode : transaction.txnCurrency
+                            currencyCode: transaction.txnCurrency
                         };
                     });
                     console.log('activeCmpTransactionData ', JSON.stringify(activeCmpTransactionData));
@@ -512,7 +516,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
                 }
             }).catch(error => {
                 console.error('Some error occurred: ', error);
-            }).finally(error=>{
+            }).finally(() => {
                 this.activeTransactionData = this.tempActiveTransactionData
                 this.isLoading = false;
             });
@@ -554,7 +558,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
         }
     }
 
-    get activetrans (){
+    get activetrans() {
         return !this.transaction
     }
     transactionDate = ''
@@ -567,40 +571,45 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
     filterTransactions(event) {
         if (this.filterPage) {
             this.isLoading = true;
-            if(this.transaction){
-                if (event?.detail?.toDate && event?.detail?.fromDate) {
-                    this.toDate = (event.detail.toDate).split('/').reverse().join('-') + 'T00:00:00.000'
-                    this.fromDate = (event.detail.fromDate).split('/').reverse().join('-') + 'T00:00:00.000'
-                    this.nTransactions = false
-                }
-                else if (event?.detail?.fromAmount && event?.detail?.toAmount) {
-                    this.fromAmount = event.detail.fromAmount
-                    this.toAmount = event.detail.toAmount
-                    this.nTransactions = false
-                }
+            if (this.transaction) {
+                // if (event?.detail?.toDate && event?.detail?.fromDate) {
+                //     this.toDate = (event.detail.toDate).split('/').reverse().join('-') + 'T00:00:00.000'
+                //     this.fromDate = (event.detail.fromDate).split('/').reverse().join('-') + 'T00:00:00.000'
+                //     this.nTransactions = false
+                // }
+                // else if (event?.detail?.fromAmount && event?.detail?.toAmount) {
+                //     this.fromAmount = event.detail.fromAmount
+                //     this.toAmount = event.detail.toAmount
+                //     this.nTransactions = false
+                // }
+                this.toDate = (event.detail.toDate).split('/').reverse().join('-') + 'T00:00:00.000'
+                this.fromDate = (event.detail.fromDate).split('/').reverse().join('-') + 'T00:00:00.000'
+                this.fromAmount = event.detail.fromAmount
+                this.toAmount = event.detail.toAmount
+                this.nTransactions = false
                 this.fullStmt();
             }
-            else{
-                console.log('event.detail.toDate',event?.detail?.toDate)
+            else {
+                console.log('event.detail.toDate', event?.detail?.toDate)
                 console.log('Entered in else condition')
-                console.log('event.detail.fromDate',event?.detail?.fromDate)
+                console.log('event.detail.fromDate', event?.detail?.fromDate)
                 if (event?.detail?.toDate && event?.detail?.fromDate) {
                     this.nTransactions = false
-                    this.schTransactionFromDate=event.detail.fromDate
-                    console.log('schTransactionFromDate',this.schTransactionFromDate)
-                    this.schTrransactionToDate=event.detail.toDate
-                    console.log('schTrransactionToDate',this.schTrransactionToDate)
+                    this.schTransactionFromDate = event.detail.fromDate
+                    console.log('schTransactionFromDate', this.schTransactionFromDate)
+                    this.schTrransactionToDate = event.detail.toDate
+                    console.log('schTrransactionToDate', this.schTrransactionToDate)
                     this.recToDate = event.detail.toDate.split('/').reverse().join('-');
-                    console.log('recToDate',this.recToDate)
+                    console.log('recToDate', this.recToDate)
                     this.recFromDate = event.detail.fromDate.split('/').reverse().join('-');
-                    console.log('recFromDate',this.recFromDate)
+                    console.log('recFromDate', this.recFromDate)
                     this.fromDate = event.detail.fromDate
-                    this.toDate =  event.detail.toDate
+                    this.toDate = event.detail.toDate
                     this.getActiveTranfersJsonData();
                 }
             }
         }
-        console.log('filter page',this.filterPage);
+        console.log('filter page', this.filterPage);
         this.isLoading = false;
         this.filterPage = !this.filterPage
     }
@@ -614,7 +623,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
         let [day, month, year] = dateStr.split('/');
 
         let formattedDate = `${year}-${month}-${day}`;
-        console('date ',formattedDate)
+        console('date ', formattedDate)
         return formattedDate
     }
 
@@ -624,7 +633,7 @@ export default class CBSavingAccount extends NavigationMixin(LightningElement) {
      * @param {String} value - The value to match and retrieve description for.
      * @returns {String|null} - The description corresponding to the value, or null if not found.
      */
-    
+
     getDescription(codedescription, value) {
         for (const codeSet of codedescription) {
             for (const code of codeSet.codeSet.code) {

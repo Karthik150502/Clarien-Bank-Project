@@ -6,7 +6,7 @@ import CONTINUE from '@salesforce/label/c.CB_Continue';
 import CANCEL from '@salesforce/label/c.CB_Cancel';
 import logoQrCode from '@salesforce/resourceUrl/LogoQrCode';
 import ClarienLogo from "@salesforce/resourceUrl/ClarienLogo";
-import getDownloadLink from '@salesforce/apex/CBUtilityController.getDownloadLink';
+// import getDownloadLink from '@salesforce/apex/CBUtilityController.getDownloadLink';
 import encrypt from '@salesforce/apex/CBUtilityController.performEncrypt';
 
 import { setPagePath, getMobileSessionStorage } from 'c/cBUtilities';

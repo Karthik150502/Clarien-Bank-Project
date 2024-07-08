@@ -9,7 +9,6 @@ export default class cBOTPValidationCard extends LightningElement {
     @track tokenErrorMessage = 'The OTP has been sent to your updated email address'; // Error message for token validation
     @track tokenValidClass = 'invalidToken'; // CSS class for token validation
     @track validTokenType = true; // Flag indicating token type validity
-    clarienHorizontalLogo = clarienHorizontalLogo; // Logo resource
     @track buttonClass='inActive';
     // Hardcoded token value
     token = '585326';
@@ -22,7 +21,7 @@ export default class cBOTPValidationCard extends LightningElement {
         event.preventDefault(); // Prevent default form submission
         // Dispatch custom event with the form data
         this.dispatchEvent(new CustomEvent('otpsubmit', {
-            detail: data
+            detail: ''
         }));
     }
     label = {

@@ -8,7 +8,6 @@ import ACCOUNT_NAME from '@salesforce/label/c.CB_AccountName';
 import PRODUCT from '@salesforce/label/c.CB_Product';
 import CB_Confirmation from '@salesforce/label/c.CB_Confirmation';
 import CB_Page_ChequingAccOpening from '@salesforce/label/c.CB_Page_ChequingAccOpening';
-import CB_Cancel from '@salesforce/label/c.CB_Cancel';
 import CB_Ok from '@salesforce/label/c.CB_Ok';
 import CB_Page_Servicerequest from '@salesforce/label/c.CB_Page_Servicerequest';
 import YOUR_ACCOUNT_OPEN_SUCCESS from '@salesforce/label/c.CB_YourAccOpenSuccess';
@@ -17,6 +16,8 @@ import CB_Product from '@salesforce/label/c.CB_Product';
 import CBCurrency from '@salesforce/label/c.CBCurrency';
 import CB_Submit from '@salesforce/label/c.CB_Submit';
 import PROCESSING_KINDLY_WAIT from '@salesforce/label/c.CB_ProcessinsKindlyWait';
+
+import CB_AUTHENTICATION_FAILED from '@salesforce/resourceUrl/CBAutenticationFailed';
 
 import { getJsonData, dateToTimestamp, getLocalStorage } from 'c/cBUtilities';
 import createCheckingAccount from '@salesforce/apex/CBApiController.createCheckingAccount';
@@ -103,13 +104,25 @@ export default class CBChequingAccountConfirmation extends NavigationMixin(Light
             exposed: true,
             label: CB_Ok,
             function: () => {
-                this.successModalOpen = false
+                this.navigateBack()
             }
         },
         noButton: {
             exposed: false,
         },
         alertMsg: ''
+    }
+
+    // Authentication Status Modal initial configuration
+    @track authenticationPopup = {
+        // Initial Authentication Status message
+        authenticationStatus: '',
+        // Authentication Status GIF
+        authenticationSpinnergif: CB_AUTHENTICATION_FAILED,
+        // Authentication Status open or close status
+        openModal: false,
+        // Authentication loading animation visibility
+        showLoadingAnimation: false
     }
 
     // Method to handle form submission
@@ -171,9 +184,8 @@ export default class CBChequingAccountConfirmation extends NavigationMixin(Light
         }
         createCheckingAccount({ reqWrapper: wrapper })
             .then((result) => {
-                console.log(result);
-                this.modalConf.message = `Your account Number (#${result}).`;
-                this.apiCalloutSuccess();
+                console.log(result)
+                this.apiCalloutSuccess(`Your Account (#${result}) Has Been Successfully Created.`)
             })
             .catch((error) => {
                 console.error(error);
@@ -233,8 +245,9 @@ export default class CBChequingAccountConfirmation extends NavigationMixin(Light
      * Updates the UI upon successful API call.
      * Sets loading indicator to false and updates success message.
      */
-    apiCalloutSuccess() {
-        this.modalConf.isLoading = false
+    apiCalloutSuccess(accountNumber) {
+        this.successModalconfig.title = accountNumber
+        this.showModal = false
         this.successModalOpen = true
     }
     /**
@@ -243,7 +256,17 @@ export default class CBChequingAccountConfirmation extends NavigationMixin(Light
      * @param {String} errormsg - The error message returned from the API call.
      */
     apiCalloutFailed(errormsg) {
-        this.modalConf.isLoading = false
-        this.modalConf.message = errormsg
+        this.showModal = false
+        // this.successModalconfig.isError = true
+        // this.successModalconfig.errorTitle = this.toInitCap(errormsg)
+        // this.successModalOpen = true
+        
+        this.authenticationPopup.authenticationStatus = this.toInitCap(errormsg)
+        this.authenticationPopup.openModal = true;
+        setTimeout(() => {
+            // Removing the Authentication status modal 
+            this.authenticationPopup.openModal = false;
+            this.navigateBack();
+        }, 3000)
     }
 }

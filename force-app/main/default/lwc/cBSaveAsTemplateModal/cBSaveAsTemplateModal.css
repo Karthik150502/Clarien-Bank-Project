@@ -210,6 +210,11 @@
     background-color: var(--light-grey);
 }
 
+.options {
+    font-weight: 800;
+    color: var(--primary-blue);
+    font-family: var(--dxp-g-root-gotham-bold-font-family);
+}
 
 /* .slds-modal__container,
 .slds-modal__content {

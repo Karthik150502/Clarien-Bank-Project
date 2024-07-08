@@ -1,15 +1,14 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import CONTINUE from '@salesforce/label/c.CB_Continue';
 import REMARKS from '@salesforce/label/c.CB_Remarks'
 import UNTIL_END_DATE from '@salesforce/label/c.CB_UntilEndDate'
 import CB_Page_Transfers from '@salesforce/label/c.CB_Page_Transfers'
-import CB_DomesticTransfers from '@salesforce/label/c.CB_DomesticTransfers'
+import CB_DomesticTransfers from '@salesforce/label/c.CB_DomesticPayments'
 import CB_Page_DomesticTransfers from '@salesforce/label/c.CB_Page_DomesticTransfers'
 import CB_Page_DomesticTransfersConf from '@salesforce/label/c.CB_Page_DomesticTransfersConf'
 import CB_FromAccount from '@salesforce/label/c.CB_FromAccount'
-import CB_SelectBank from '@salesforce/label/c.CB_SelectBank'
 import CB_ToAccount from '@salesforce/label/c.CB_TO_ACCOUNT'
 import CB_Amount from '@salesforce/label/c.CB_Amount'
 import CB_Date from '@salesforce/label/c.CB_Date'
@@ -17,11 +16,24 @@ import CB_Name from '@salesforce/label/c.CB_Name'
 import CB_Currency from '@salesforce/label/c.CBCurrency'
 import CB_Recurring from '@salesforce/label/c.CB_Recurring'
 import CB_Repeat from '@salesforce/label/c.CB_Repeat'
-import CB_SelectAccount from '@salesforce/label/c.CB_SelectAccount'
+import CB_Select from '@salesforce/label/c.CB_Select'
 
 import { setPagePath, formatDate, getMobileSessionStorage } from 'c/cBUtilities';
 
+
+// LMS
+import LMS from "@salesforce/messageChannel/cBRecurringTransferLMS__c";
+import { APPLICATION_SCOPE, MessageContext, subscribe, unsubscribe } from 'lightning/messageService';
+
 export default class CBDomesticTransfers extends NavigationMixin(LightningElement) {
+
+
+
+    @wire(MessageContext)
+    context;
+
+    subscription = null;
+
 
     // Object to hold imported labels
     label = {
@@ -29,7 +41,6 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
         REMARKS,
         UNTIL_END_DATE,
         CB_FromAccount,
-        CB_SelectBank,
         CB_ToAccount,
         CB_Amount,
         CB_Date,
@@ -37,7 +48,7 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
         CB_Currency,
         CB_Recurring,
         CB_Repeat,
-        CB_SelectAccount
+        CB_Select
     };
 
     headerConfguration = {
@@ -58,6 +69,8 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
     connectedCallback() {
         this.headerConfguration.previousPageUrl = setPagePath(CB_Page_DomesticTransfers)
         this.setAccountData()
+        this.subscribeMessage()
+
     }
 
     setAccountData() {
@@ -67,17 +80,13 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
     recurring = false
     amount = ''
     toAccount = ''
-    selectedAccount = 'Select Account'
-    selectedBank = 'Select Bank'
-    dateSelected = 'DD/MM/YYYY'
+    selectedAccount = CB_Select
+    selectedBank = CB_Select
     name = ''
     currencies = ["BMD", "USD"]
-    currency = 'Select Currency'
-    untilDate = 'DD/MM/YYYY'
-    frequencySelected = ''
+    currency = CB_Select
     remarks = ''
     number = 1
-    frequencies = ["Day", "Month", "End of every month"]
     accounts = [
         {
             accountNo: '659855541254',
@@ -215,43 +224,9 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
 
     // get method to check the values and disable the submit button accordingly
     get disableSubmit() {
-        return this.selectedAccount === 'Select Account' || this.toAccount === 'Select Account' || this.selectedBank === 'Select Bank' || this.amount === '' || this.dateSelected === 'DD/MM/YYYY' || this.name === '' || this.currency === 'Select Currency'
+        return this.selectedAccount === CB_Select || this.toAccount === CB_Select || this.selectedBank === CB_Select || this.amount === '' || this.name === '' || this.currency === CB_Select(this.recurring && this.numberOfDays === 0) || this.frequency === CB_Select || this.endDateAllowed && this.endDate === 'DD/MM/YYYY'
     }
 
-
-
-
-    // Method to handle the recurring flag toggle.
-    // Toggles the 'recurring' property.
-    recurringHandler() {
-        this.recurring = !this.recurring
-    }
-    // Method to handle the date selection.
-    // Updates the 'dateSelected' property with the formatted date value from the input event.
-    handleDate(event) {
-        this.dateSelected = formatDate(event.target.value)
-    }
-    // Method to handle the until-date selection.
-    // Updates the 'untilDate' property with the formatted date value from the input event.
-    handleUntilDate(event) {
-        this.untilDate = formatDate(event.target.value)
-    }
-    // Method to handle the frequency selection.
-    // Updates the 'frequencySelected' property with the value from the input event.
-    handleFreq(event) {
-        this.frequencySelected = event.target.value
-    }
-    // Method to increase the number value.
-    // Increments the 'number' property by 1.
-    increaseNumber() {
-        this.number = this.number + 1
-
-    }
-    // Method to decrease the number value.
-    // Decrements the 'number' property by 1 if it is greater than 1.
-    decreaseNumber() {
-        this.number = this.number > 1 ? this.number - 1 : this.number
-    }
 
 
 
@@ -284,7 +259,33 @@ export default class CBDomesticTransfers extends NavigationMixin(LightningElemen
 
 
 
+    // Subscribing to LMS
+    subscribeMessage() {
+        //subscribe(messageContext, messageChannel, listener, subscribeOptions)
+        this.subscription = subscribe(this.context, LMS, (lmsMessage) => { this.handleLMSData(lmsMessage) }, { scope: APPLICATION_SCOPE })
+    }
 
+
+    startDate = ''
+    endDate = ''
+    noOfInstallments = ''
+    noOfPayments = ''
+    frequency = CB_Select
+    recurring = false
+    endDateAllowed = false
+
+    // Helper function for handling LMS Data
+    handleLMSData(data) {
+        console.log(data.lmsData)
+        if (data.lmsData) {
+            this.startDate = data.lmsData.startDate ? data.lmsData.startDate : ''
+            this.endDate = data.lmsData.endDate ? data.lmsData.endDate : ''
+            this.noOfPayments = data.lmsData.numberOfPayments ? data.lmsData.numberOfPayments : 0
+            this.noOfInstallments = data.lmsData.noOfInstallments ? data.lmsData.noOfInstallments : 0
+            this.frequency = data.lmsData.frequency ? data.lmsData.frequency : ''
+            this.endDateAllowed = data.lmsData.endDateAllowed ? data.lmsData.endDateAllowed : ''
+        }
+    }
 
 
 

@@ -1,4 +1,4 @@
-import { LightningElement, wire, api,track } from 'lwc';
+import { LightningElement, wire, api } from 'lwc';
 import { CurrentPageReference } from 'lightning/navigation';
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"

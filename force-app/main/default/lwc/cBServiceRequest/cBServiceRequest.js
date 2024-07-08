@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import OPEN_AN_Account from '@salesforce/label/c.OPEN_AN_Account';

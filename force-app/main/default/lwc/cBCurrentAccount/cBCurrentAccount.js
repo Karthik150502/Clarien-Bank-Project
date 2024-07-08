@@ -24,7 +24,6 @@ import getFullAccountStatement from '@salesforce/apex/CBGetFullAccountStatement.
 import getRecActiveTransactions from '@salesforce/apex/CBGetRecInstListController.handlegetRecInstList';
 import getSchActiveTransactions from '@salesforce/apex/CBretSchdTransController.hanldeRetSchdTrans';
 import getcompActiveTransactions from '@salesforce/apex/CBGetRetComTransController.handleRetComTrans';
-import getProductName from '@salesforce/apex/CBUtilityController.getProductName';
 
 // Import utility functions
 import { getJsonData, dateToTimestamp, setPagePath } from 'c/cBUtilities';
@@ -157,11 +156,6 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
         return this.transaction ? this.transactionData.length > 0 : this.activeTransactionData.length > 0
     }
 
-    @api activeTransactionData = [
-        { id: '1', CHQSId: 'Recieved money to david - saving debit account', EMIId: 'IBM0010200988901', date: '01/09/23', amount: '3.00', transactionType: 'Transfer', type: 'credit' },
-        { id: '2', CHQSId: 'Sent money to david - saving debit account', EMIId: 'IBM0010200988902', date: '01/10/23', amount: '4.00', transactionType: 'Fuel', type: 'debit' },
-        { id: '3', CHQSId: 'Sent money to WoodsFurniture - saving debit account', EMIId: 'IBM0010200988903', date: '01/11/23', amount: '6.00', transactionType: 'Transfer Bill Payment', type: 'debit' }
-    ];
 
     // Handle transactions button click
     handleTransactionsClick() {
@@ -196,14 +190,10 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
     getRecInstListReqBody = ''
     getRetSchdTransReqBody = ''
     getRetCompTransReqBody = ''
-    jsonPathData = []
     getRecInstListjsonPath = []
     getRetCompTransJsonpath = []
     getRetSchdTransJsonpath = []
-    requestUUID = ''
-    accountNumber = '7500000029';
-    branchId = '100'
-    lastNTransactions = 10
+    accountNumber = '';
     nTransactions = true
     recFromDate = '2024-04-01'
     recToDate = '2025-04-01'
@@ -229,12 +219,10 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
 
     reqBody = ''
     jsonPathData = []
-
     requestUUID = ''
-    accountNumber = '7500000029';
+    untNumber = '7500000029';
     branchId = '100'
     lastNTransactions = 10
-    nTransactions = true
 
     fetchJsonData(apiName) {
         getJsonData(apiName)
@@ -396,6 +384,9 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
             metadataName: this.getRecInstListAPIName,
             headers: null
         }
+
+        console.log(reqWrapper.metadataName, reqWrapper.payload);
+
         getRecActiveTransactions({ reqWrapper: reqWrapper })
             .then((result) => {
                 if (result != '') {
@@ -419,7 +410,7 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
             })
             .catch(error => {
                 console.error('Some error occurred: ', error);
-            }).finally(error => {
+            }).finally(() => {
                 this.getActiveSchTransactions();
             });
     }
@@ -436,6 +427,8 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
             metadataName: this.getRetSchdTransAPIName,
             headers: null
         }
+        console.log(reqschWrapper.metadataName, reqschWrapper.payload);
+
         return getSchActiveTransactions({ reqWrapper: reqschWrapper })
             .then((result) => {
                 if (result != '') {
@@ -458,7 +451,7 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
                 }
             }).catch(error => {
                 console.error('Some error occurred: ', error);
-            }).finally(error => {
+            }).finally(() => {
                 this.getActiveCmpTransactions();
             });
 
@@ -476,6 +469,7 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
             metadataName: this.getRetCompTransAPIName,
             headers: null
         }
+        console.log(reqcmphWrapper.metadataName, reqcmphWrapper.payload);
         return getcompActiveTransactions({ reqWrapper: reqcmphWrapper })
             .then((result) => {
                 if (result != '') {
@@ -497,7 +491,7 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
                 }
             }).catch(error => {
                 console.error('Some error occurred: ', error);
-            }).finally(error => {
+            }).finally(() => {
                 this.activeTransactionData = this.tempActiveTransactionData
                 this.isLoading = false;
             });
@@ -546,16 +540,21 @@ export default class CBCurrentAccount extends NavigationMixin(LightningElement) 
         if (this.filterPage) {
             this.isLoading = true;
             if (this.transaction) {
-                if (event?.detail?.toDate && event?.detail?.fromDate) {
-                    this.toDate = (event.detail.toDate).split('/').reverse().join('-') + 'T00:00:00.000'
-                    this.fromDate = (event.detail.fromDate).split('/').reverse().join('-') + 'T00:00:00.000'
-                    this.nTransactions = false
-                }
-                else if (event?.detail?.fromAmount && event?.detail?.toAmount) {
-                    this.fromAmount = event.detail.fromAmount
-                    this.toAmount = event.detail.toAmount
-                    this.nTransactions = false
-                }
+                // if (event?.detail?.toDate && event?.detail?.fromDate) {
+                //     this.toDate = (event.detail.toDate).split('/').reverse().join('-') + 'T00:00:00.000'
+                //     this.fromDate = (event.detail.fromDate).split('/').reverse().join('-') + 'T00:00:00.000'
+                //     this.nTransactions = false
+                // }
+                // else if (event?.detail?.fromAmount && event?.detail?.toAmount) {
+                //     this.fromAmount = event.detail.fromAmount
+                //     this.toAmount = event.detail.toAmount
+                //     this.nTransactions = false
+                // }
+                this.toDate = (event.detail.toDate).split('/').reverse().join('-') + 'T00:00:00.000'
+                this.fromDate = (event.detail.fromDate).split('/').reverse().join('-') + 'T00:00:00.000'
+                this.fromAmount = event.detail.fromAmount
+                this.toAmount = event.detail.toAmount
+                this.nTransactions = false
                 this.fullStmt();
             }
         }

@@ -117,7 +117,7 @@ export default class CBOwnAccountTransferConfTrans extends NavigationMixin(Light
         }
     }
     @track modalConf1 = {
-        title: CB_SaveAsTemplate,
+        title: '',
         message: CB_TransactionCompleted,
         okButton: {
             exposed: false,

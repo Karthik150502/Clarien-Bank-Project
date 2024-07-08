@@ -36,7 +36,7 @@ export default class CBLoginFooter extends NavigationMixin(LightningElement) {
      *
      * @return {void} 
     */
-    openContactPopOver(event) {
+    openContactPopOver() {
         this.dispatchEvent(new CustomEvent('opencontactus', {
             bubbles: true,
             detail: {} // No additional detail sent with the event
@@ -48,7 +48,7 @@ export default class CBLoginFooter extends NavigationMixin(LightningElement) {
      *
      * @return {void} 
     */
-    openAtmLocaterPopOver(event) {
+    openAtmLocaterPopOver() {
         this.dispatchEvent(new CustomEvent('openatmlocater', {
             bubbles: true,
             detail: {} // No additional detail sent with the event

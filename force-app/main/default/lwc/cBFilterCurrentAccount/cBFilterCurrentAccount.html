@@ -5,8 +5,7 @@
     Description - This component is used to filter the current account transactions, active transfers. An Filter modal
 -->
 <template>
-  <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
-    class={modalClass}>
+  <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class={modalClass}>
     <div class="container">
       <div class="header">
         <div class="back-svg" onclick={closeModal}>
@@ -16,15 +15,12 @@
         </div>
         <p class="heading">{header}</p>
       </div>
-      <label for="date-block" class="date-block">
-        <div class="filter-inp date-inp">
-          <input id="date-block" type="radio" class="dateChecker" name="date-or-type" value={filterDate} onclick={handleFilterDate}>
-          <p>{label.FILTERBYTRANSACTIONDATE}</p>
-        </div>
+      <div for="date-block" class="date-block">
         <div class="dates">
+
           <div class="from-date">
             <p class="from-date-p">{label.FROMDATE}</p>
-            <input type="date" value={fromDate} onchange={fromDateHandler} max={fromDateMax} disabled={disableDates}>
+            <input type="date" value={fromDate} onchange={fromDateHandler} max={fromDateMax}>
             <p class="from-date-display">{fromDate}</p>
             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -32,10 +28,10 @@
                 fill="#0487C8" />
             </svg>
           </div>
+
           <div class="to-date">
             <p class="to-date-p">{label.TODATE}</p>
-            <input type="date" value={toDate} onchange={toDateHandler} min={fromDate} max={toDateMax}
-              disabled={disableDates}>
+            <input type="date" value={toDate} onchange={toDateHandler} min={fromDate} max={toDateMax}>
             <p class="to-date-display">{toDate}</p>
             <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -43,18 +39,11 @@
                 fill="#0487C8" />
             </svg>
           </div>
-        </div>
-      </label>
-      <template if:false={activeTransfersFilters}>
-        <label for="amount-block" class="amount-block">
-          <div class="filter-inp">
-            <input for="amount-block" type="radio" class="amountChecker" name="date-or-type" value={filterType} onclick={handleFilterType}>
-            <p>{label.FILTERBYTRANSACTIONDETAIL}</p>
-          </div>
-          <div class="types">
+
+          <template if:false={activeTransfersFilters}>
             <div class="t-type-box">
               <p class="t-type-p">{label.TRANSACTIONTYPE}</p>
-              <select name="" class="t-type" onchange={handleTransactionType} disabled={filterDate}>
+              <select name="" class="t-type" onchange={handleTransactionType}>
                 <option value={None} label="None" selected></option>
                 <template if:true={transactionTypes} for:each={transactionTypes} for:item="t_type">
                   <option key={t_type} value={t_type} label={t_type}></option>
@@ -64,18 +53,17 @@
 
             <div class="from-acc-box">
               <p class="from-acc">{label.FROMAMOUNT}</p>
-              <input type="number" class="from-acc-inp" value={fromAmount} onkeyup={handleFromAmount}
-                disabled={filterDate}>
+              <input type="number" class="from-acc-inp" value={fromAmount} onkeyup={handleFromAmount}>
             </div>
-
 
             <div class="to-acc-box">
               <p class="to-acc">{label.TOAMOUNT}</p>
-              <input type="number" class="to-acc-inp" value={toAmount} onkeyup={handleToAmount} disabled={filterDate}>
+              <input type="number" class="to-acc-inp" value={toAmount} onkeyup={handleToAmount}>
             </div>
-          </div>
-        </label>
-      </template>
+          </template>
+
+        </div>
+      </div>
 
       <div class="btns">
         <button class="done-btn" disabled={disableDoneButton} onclick={handleSubmit}>{label.DONE}</button>

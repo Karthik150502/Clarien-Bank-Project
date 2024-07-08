@@ -174,7 +174,7 @@ export default class CBInternationalTransfersConfirmation extends NavigationMixi
         }
     }
     @track modalConf1 = {
-        title: CB_SaveAsTemplate,
+        title: '',
         message: CB_TransactionCompleted,
         okButton: {
             exposed: false,

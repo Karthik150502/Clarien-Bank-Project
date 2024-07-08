@@ -1,5 +1,5 @@
 import { LightningElement, api } from 'lwc';
-import { CurrentPageReference, NavigationMixin } from 'lightning/navigation'
+import { NavigationMixin } from 'lightning/navigation'
 export default class CBFilterTransactionPage extends NavigationMixin(LightningElement) {
 
     @api previousPageUrl = '';
@@ -125,12 +125,14 @@ export default class CBFilterTransactionPage extends NavigationMixin(LightningEl
         } else if (this.toDate) {
             return this.toDate
         }
+        return ''
     }
 
     get toDateMax() {
         if (this.currDate) {
             return this.currDate
         }
+        return ''
     }
 
 

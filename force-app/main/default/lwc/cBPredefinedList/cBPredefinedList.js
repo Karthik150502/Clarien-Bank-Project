@@ -1,8 +1,8 @@
-import { LightningElement, api, track, wire } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
 import { NavigationMixin, CurrentPageReference } from 'lightning/navigation'; // Importing NavigationMixin for navigation functionality
 import CBSVG from "@salesforce/resourceUrl/CBSVG"
-import { setPagePath } from 'c/cBUtilities';
-
+// import { setPagePath } from 'c/cBUtilities';
+import CB_DomesticTransfers from '@salesforce/label/c.CB_DomesticTransfers'
 
 export default class CBPredefinedList extends NavigationMixin(LightningElement) {
 
@@ -26,7 +26,7 @@ export default class CBPredefinedList extends NavigationMixin(LightningElement) 
     connectedCallback() {
     }
     nextPageURL = ''
-    heading = ''
+    heading = CB_DomesticTransfers
     templates = [
         {
             id: 1,
@@ -79,7 +79,7 @@ export default class CBPredefinedList extends NavigationMixin(LightningElement) 
 
     @track configuration = {
         previousPageUrl: 'CBPredefined__c',
-        heading: this.heading,
+        heading: 'Domestic Transfer',
         iconsExposed: false,
         logout: {
             exposed: false

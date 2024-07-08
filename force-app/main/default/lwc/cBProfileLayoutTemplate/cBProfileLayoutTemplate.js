@@ -7,7 +7,7 @@
     and content display, showcasing specific sections like security settings, profile settings etc based on configured paramet
 */
 
-import { LightningElement, api, wire, track } from 'lwc';
+import { LightningElement, api, track } from 'lwc';
 
 
 import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSuccess';
@@ -18,7 +18,6 @@ import LOGIN_FLOW_IMAGES from '@salesforce/resourceUrl/LoginFlowImages'
 // import CBSVG from "@salesforce/resourceUrl/profileLayoutTemplateSVG";
 import CBSVG from "@salesforce/resourceUrl/CBSVG";
 
-import isGuest from "@salesforce/user/isGuest";
 import basePath from "@salesforce/community/basePath";
 import { NavigationMixin } from 'lightning/navigation';
 
@@ -63,7 +62,7 @@ import VIEW_ISSUED_CHEQUES from '@salesforce/label/c.CB_ViewIssuedCheques';
 
 import uploadFile from '@salesforce/apex/CBProfileUploadHandler.uploadFile'
 import getProfileDocId from '@salesforce/apex/CBProfileUploadHandler.getProfileDocId'
-import { getJsonData, dateToTimestamp, setMobileSessionStorage, getMobileSessionStorage, setLocalStorage, getLocalStorage, removeLocalStorage } from 'c/cBUtilities';
+import { setLocalStorage, getLocalStorage } from 'c/cBUtilities';
 
 
 
@@ -179,7 +178,6 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
 
     //SVG's from static resource
     CBCardServices = `${CBSVG}/CBSVGs/CBCardServices.svg#CBCardServices`;
-    CBCardServices = `${CBSVG}/CBSVGs/CBCardServices.svg#CBCardServices`;
     CBRequestADraft = `${CBSVG}/CBSVGs/CBRequestADraft.svg#CBRequestADraft`;
     CBScheduleAnRmAppointment = `${CBSVG}/CBSVGs/CBScheduleAnRmAppointment.svg#CBScheduleAnRmAppointment`;
     CBStopPaperBasedStatements = `${CBSVG}/CBSVGs/CBStopPaperBasedStatements.svg#CBStopPaperBasedStatements`;
@@ -211,7 +209,6 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
 
     username = '';
     lastLoginTime = '';
-    isBiometricEnabled = false
 
     /**
      * Lifecycle hook invoked when the component is inserted into the DOM
@@ -489,7 +486,6 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
             console.error("No file selected.");
             return;
         }
-
         var reader = new FileReader();
         reader.onload = () => {
             try {
@@ -523,7 +519,7 @@ export default class CBProfileLayoutTemplate extends NavigationMixin(LightningEl
             return;
         }
         const { base64, filename } = this.fileData;
-        uploadFile({ base64, filename }).then(result => {
+        uploadFile({ base64, filename }).then(() => {
             this.fileData = null;
             let title = `${filename} uploaded successfully!!`;
             console.log('Title', title);

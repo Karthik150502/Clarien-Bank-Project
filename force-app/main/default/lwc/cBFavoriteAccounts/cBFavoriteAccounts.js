@@ -19,7 +19,7 @@ import TUA from '@salesforce/label/c.CB_Top_Up_Account';
 import TDA from '@salesforce/label/c.CB_Time_Demposit_Account';
 
 
-import { getMobileSessionStorage, dateToTimestamp, getJsonData, setAllSessData, removeMobileSessionStorage, setLocalStorage, getLocalStorage, setPagePath, removeLocalStorage, checkLocalkey, checkSessionkey } from 'c/cBUtilities';
+import { getMobileSessionStorage, dateToTimestamp } from 'c/cBUtilities';
 
 export default class CBFavoriteAccounts extends LightningElement {
 
@@ -69,7 +69,7 @@ export default class CBFavoriteAccounts extends LightningElement {
 
                 this.accountsData = this.accountsData.map(account => {
                     console.log(account.accountNo + '--->' + result[account.accountNo])
-                    return { ...account, favorite: result[account.accountNo] };
+                    return { ...account, favorite: result[account.accountNo] === true };
                 });
                 this.formatAccData()
             })
@@ -454,7 +454,7 @@ export default class CBFavoriteAccounts extends LightningElement {
     formatNumberString(value) {
         // Check if the line starts with a + or - sign
         const hasSign = /^[+-]/.test(value);
-        const sign = hasSign ? value[0] : '';
+        // const sign = hasSign ? value[0] : '';
 
         // Remove the sign for processing if it exists
         const numericPart = hasSign ? value.slice(1) : value;

@@ -70,6 +70,7 @@ export default class CBViewStopIssuedCheques extends NavigationMixin(LightningEl
         } else if (this.toDate) {
             return this.toDate
         }
+        return ''
     }
 
     /**
@@ -80,6 +81,7 @@ export default class CBViewStopIssuedCheques extends NavigationMixin(LightningEl
         if (this.currDate) {
             return this.currDate
         }
+        return ''
     }
 
     /**
