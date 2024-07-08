@@ -1,4 +1,4 @@
-import { LightningElement, api } from 'lwc'; // Import necessary decorators and modules from LWC framework
+import { LightningElement } from 'lwc'; // Import necessary decorators and modules from LWC framework
 import { NavigationMixin } from 'lightning/navigation'; // Import navigation module
 
 // Import labels for easy manipulation in the UI
@@ -149,6 +149,7 @@ export default class CBFilterSavingsAccount extends NavigationMixin(LightningEle
         } else if (this.toDate) {
             return this.toDate;
         }
+        return ''
     }
 
     // Get maximum date for to date input
@@ -156,6 +157,7 @@ export default class CBFilterSavingsAccount extends NavigationMixin(LightningEle
         if (this.currDate) {
             return this.currDate;
         }
+        return ''
     }
 
     // Handle transaction type selection

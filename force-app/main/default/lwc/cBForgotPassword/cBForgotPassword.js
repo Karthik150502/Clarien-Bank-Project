@@ -35,7 +35,7 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 import virtualUserSignin from '@salesforce/apex/CBApiController.virtualUserSignIn';
 import validateUser from '@salesforce/apex/CBApiController.validateUser';
 
-import { getJsonData, dateToTimestamp, removeMobileSessionStorage, getMobileSessionStorage, setMobileSessionStorage } from 'c/cBUtilities';
+import { getJsonData, dateToTimestamp, getMobileSessionStorage, setMobileSessionStorage } from 'c/cBUtilities';
 
 
 
@@ -142,7 +142,7 @@ export default class CBForgotPassword extends NavigationMixin(LightningElement) 
 
 
     // Method to navigate to password reset page
-    navigateToPasswordReset(event) {
+    navigateToPasswordReset() {
         //this.submitted = true  //Setting the submitted value to true, in order to make the button active
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',

@@ -1,4 +1,4 @@
-import { LightningElement, track, wire, api } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import YOUR_PASSWORD_EXPIRED from '@salesforce/label/c.CB_YourPasswordExpired';

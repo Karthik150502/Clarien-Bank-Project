@@ -36,15 +36,18 @@
     margin: 15px 0 15px 0;
 }
 
-
-
 .wrapper .container .title {
     color: var(--primary-blue);
     font-size: 24px;
     margin: 10px 0 2px 0;
     font-family: var(--dxp-g-root-gotham-medium-font-family);
 }
-
+.wrapper .container .error-title {
+    color: var(--primary-orange);
+    font-size: 24px;
+    margin: 10px 0 2px 0;
+    font-family: var(--dxp-g-root-gotham-medium-font-family);
+}
 .wrapper .container .message {
     color: var(--primary-black);
     font-size: 14px;
@@ -133,8 +136,6 @@
     justify-content: center;
     overflow: hidden;
 }
-
-
 
 .error-repr {
     height: 60px;

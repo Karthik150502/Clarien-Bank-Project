@@ -155,7 +155,7 @@ export default class CBChequingAccountOpening extends NavigationMixin(LightningE
 
     // Event handler for form submission.
     // Navigates to the specified community page.
-    submitHandler(event) {
+    submitHandler() {
         this.navigateToCommunityPage(CHEQUING_ACCOUNT1_PAGE);
     }
 

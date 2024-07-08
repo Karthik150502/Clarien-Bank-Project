@@ -6,7 +6,7 @@
     Its adaptability allows it to be seamlessly integrated across various contexts, effortlessly presenting tailored information based on the provided data.
 */
 
-import { LightningElement, api, track } from 'lwc';
+import { LightningElement, api } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';// Importing NavigationMixin for navigation functionality
 

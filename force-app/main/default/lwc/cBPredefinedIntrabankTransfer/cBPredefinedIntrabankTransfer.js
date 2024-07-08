@@ -1,6 +1,5 @@
 import { LightningElement } from 'lwc';
 
-import { NavigationMixin } from 'lightning/navigation';
 import SUBMIT from '@salesforce/label/c.CB_Submit';
 import CANCEL from '@salesforce/label/c.CB_Cancel';
 export default class CBPredefinedIntrabankTransfer extends LightningElement {

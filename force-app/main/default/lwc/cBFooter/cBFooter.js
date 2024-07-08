@@ -15,7 +15,7 @@ import PROFILE from '@salesforce/label/c.CB_Profile';
 import DASHBOARDS from '@salesforce/label/c.CB_Dashboards';
 import SERVICES from '@salesforce/label/c.CB_Services';
 import SEND_MONEY from '@salesforce/label/c.CB_SendMoney';
-import { setMobileSessionStorage, getMobileSessionStorage, checkSessionkey } from 'c/cBUtilities';
+import { getMobileSessionStorage, checkSessionkey } from 'c/cBUtilities';
 
 export default class CBFooter extends NavigationMixin(LightningElement) {
 

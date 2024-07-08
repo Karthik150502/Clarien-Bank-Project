@@ -27,7 +27,6 @@ export default class CBAtmMap extends NavigationMixin(LightningElement) {
     // Initial Properties
     markersTitle = "Clarien Bank ATMs"; // Title for the map markers
     @track mapMarkers = []; // Initial map marker configuration
-    markersTitle = ''; // Empty title for map markers
     selectedMarker; // Placeholder for selected marker
 
 

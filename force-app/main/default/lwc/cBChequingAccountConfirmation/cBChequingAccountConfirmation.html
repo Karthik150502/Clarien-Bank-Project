@@ -29,6 +29,12 @@
     <template if:true={showModal}>
         <c-c-b-operation-confirm-w-loading modal-info={modalConf}> </c-c-b-operation-confirm-w-loading>
     </template>
+    <template if:true={authenticationPopup.openModal}>
+        <c-c-b-authentication-result status={authenticationPopup.authenticationStatus}
+            loading-gif={authenticationPopup.authenticationSpinnergif}
+            is-loading={authenticationPopup.showLoadingAnimation}>
+        </c-c-b-authentication-result>
+    </template>
     <template if:true={successModalOpen}>
         <c-c-b-resuable-success-modal configuration={successModalconfig}></c-c-b-resuable-success-modal>
     </template>

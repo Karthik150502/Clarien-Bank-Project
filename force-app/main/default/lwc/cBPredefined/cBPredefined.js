@@ -7,7 +7,7 @@
     and content display, showcasing specific sections like security settings, profile settings etc based on configured paramet
 */
 
-import { LightningElement, api, wire, track } from 'lwc';
+import { LightningElement } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 
@@ -67,7 +67,7 @@ export default class CBPredefined extends NavigationMixin(LightningElement) {
     }
 
     navigateToDomesticPayments() {
-        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBDomesticTransfers__c', heading: this.labelDOMESTIC_TRANSFERS_TEMPLATE })
+        this.navigateToPage('CBPredefinedList__c', { nextUrl: 'CBDomesticTransfers__c', heading: this.label.DOMESTIC_TRANSFERS_TEMPLATE })
     }
 
     navigateToInternationalTransfer() {

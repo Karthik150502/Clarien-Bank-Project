@@ -5,7 +5,6 @@ import { CurrentPageReference } from 'lightning/navigation';
 // import docDownload from '@salesforce/apex/CBApiController.docDownload';
 // import generatePdf from '@salesforce/apex/TestDocSearchWrapper.generatePdf';
 import { getJsonData } from 'c/cBUtilities';
-import { docSearchh } from 'c/cBDocSearch';
 
 export default class TestDocSearch extends LightningElement {
 

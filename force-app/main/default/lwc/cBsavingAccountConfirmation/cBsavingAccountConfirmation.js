@@ -13,7 +13,6 @@ import CONFIRMATION from '@salesforce/label/c.CB_Confirmation';
 import TRANSACTION_COMPLETED_MESSAGE from '@salesforce/label/c.CB_TransactionCompleted';
 import PROCESSING_KINDLY_WAIT from '@salesforce/label/c.CB_ProcessinsKindlyWait';
 import OK_BUTTON from '@salesforce/label/c.CB_Ok';
-import YOUR_ACCOUNT_OPEN_SUCCESS from '@salesforce/label/c.CB_YourAccOpenSuccess';
 import PAGE_SERVICEREQUEST from '@salesforce/label/c.CB_Page_Servicerequest';
 
 import { getJsonData, dateToTimestamp, getLocalStorage } from 'c/cBUtilities';
@@ -50,7 +49,7 @@ export default class CBsavingAccountConfirmation extends NavigationMixin(Lightni
     requestUUID = ''
     product = ''
     customerId = ''
-    branchId = '102'
+    branchId = '100'
     customerName = ''
     accountType = ''
     apiName = 'CB_SBAcctAdd'
@@ -118,13 +117,17 @@ export default class CBsavingAccountConfirmation extends NavigationMixin(Lightni
      * @type {Object}
      */
     successModalconfig = {
-        title: YOUR_ACCOUNT_OPEN_SUCCESS,
+        title: '',
+        errorTitle: '',
         message: '',
+        isError: {
+            openAccount: true,
+        },
         okButton: {
             exposed: true,
             label: OK_BUTTON,
             function: () => {
-                this.successModalOpen = false
+                this.navigateBack()
             }
         },
         noButton: {
@@ -156,11 +159,10 @@ export default class CBsavingAccountConfirmation extends NavigationMixin(Lightni
         }
         createSavingsAccount({ reqWrapper: wrapper }).then((result) => {
             console.log(result)
-            this.modalConf.message = `Your account Number (#${result}).`;
-            this.apiCalloutSuccess()
+            this.apiCalloutSuccess(`Your Account (#${result}) Has Been Successfully Created.`)
         }).catch((error) => {
             console.log(error)
-            if(error.body.message === '500') {
+            if (error.body.message === '500') {
                 this.apiCalloutFailed('Technical Issue, Please Try Again Later')
             } else {
                 this.apiCalloutFailed(error.body.message)
@@ -180,8 +182,10 @@ export default class CBsavingAccountConfirmation extends NavigationMixin(Lightni
      * Updates the UI upon successful API call.
      * Sets loading indicator to false and updates success message.
      */
-    apiCalloutSuccess() {
-        this.modalConf.isLoading = false
+    apiCalloutSuccess(accountNumber) {
+        console.log("Success");
+        this.successModalconfig.title = accountNumber
+        this.showModal = false
         this.successModalOpen = true
     }
     /**
@@ -190,8 +194,11 @@ export default class CBsavingAccountConfirmation extends NavigationMixin(Lightni
      * @param {String} errormsg - The error message returned from the API call.
      */
     apiCalloutFailed(errormsg) {
-        this.modalConf.isLoading = false
-        this.modalConf.message = errormsg
+        console.log("Failure");
+        this.showModal = false
+        this.successModalconfig.isError = true
+        this.successModalconfig.errorTitle = this.toInitCap(errormsg)
+        this.successModalOpen = true
     }
 
     // navigate back to service request page
@@ -200,7 +207,7 @@ export default class CBsavingAccountConfirmation extends NavigationMixin(Lightni
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name:PAGE_SERVICEREQUEST
+                name: PAGE_SERVICEREQUEST
             }
         });
     }
@@ -241,8 +248,10 @@ export default class CBsavingAccountConfirmation extends NavigationMixin(Lightni
         return jsonReq;
     }
 
-
-
-
+    toInitCap(sentence) {
+        return sentence.split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+            .join(' ');
+    }
 
 }

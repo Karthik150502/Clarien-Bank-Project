@@ -7,7 +7,7 @@
                 The security settings section is exposed and configurable based on organizational requirements.
 */
 
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track } from 'lwc';
 // Importing custom labels from Salesforce
 import PROFILE_SETTINGS from '@salesforce/label/c.CB_ProfileSettings';
 import CHANGE_PASSWORD from '@salesforce/label/c.CB_ChangePassword';
@@ -15,8 +15,7 @@ import FAVORITE_ACCOUNTS from '@salesforce/label/c.CB_FavoriteAccounts';
 import ONLINE_ACTIVITES from '@salesforce/label/c.CB_OnlineActivites';
 
 import searchProfile from '@salesforce/apex/CBApiController.searchProfile';
-import { dateToTimestamp, getJsonData, getSessData, getUserCreds } from 'c/cBUtilities';
-import { CurrentPageReference } from 'lightning/navigation';
+import { dateToTimestamp, getJsonData, getUserCreds } from 'c/cBUtilities';
 import HOME_PAGE from '@salesforce/label/c.CB_Page_Home';
 
 

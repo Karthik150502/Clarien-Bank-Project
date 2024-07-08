@@ -52,7 +52,7 @@ export default class CBFilterCurrentAccount extends NavigationMixin(LightningEle
     //     filterBy.focus()
     // }
 
-    get modalClass(){
+    get modalClass() {
         return !this.activeTransfersFilters ? 'slds-modal slds-fade-in-open slds-modal_medium wrapper allTrans' : 'slds-modal slds-fade-in-open slds-modal_medium wrapper acitiveTrans';
     }
     @api activeTransfersFilters
@@ -84,11 +84,11 @@ export default class CBFilterCurrentAccount extends NavigationMixin(LightningEle
         this.toAmount = event.target.value;
     }
 
-    get disableDates(){
+    get disableDates() {
         return !this.filterDate
     }
 
-    get disableAmount(){
+    get disableAmount() {
         return !this.filterType
     }
 
@@ -96,8 +96,8 @@ export default class CBFilterCurrentAccount extends NavigationMixin(LightningEle
     handleFilterDate() {
         this.filterDate = true;
         this.filterType = false;
-        this.fromAmount = '';
-        this.toAmount = '';
+        this.fromAmount = 0;
+        this.toAmount = 0;
         this.selectedTransactionType = '';
     }
 
@@ -116,21 +116,30 @@ export default class CBFilterCurrentAccount extends NavigationMixin(LightningEle
 
     // Handle submit action and dispatch event with filter details
     handleSubmit() {
-        if (this.filterDate) {
-            this.dispatchEvent(new CustomEvent('filtered', {
-                detail: {
-                    fromDate: this.fromDate,
-                    toDate: this.toDate
-                }
-            }));
-        } else if (this.filterType) {
-            this.dispatchEvent(new CustomEvent('filtered', {
-                detail: {
-                    fromAmount: this.fromAmount,
-                    toAmount: this.toAmount
-                }
-            }));
-        }
+        // if (this.filterDate) {
+        //     this.dispatchEvent(new CustomEvent('filtered', {
+        //         detail: {
+        //             fromDate: this.fromDate,
+        //             toDate: this.toDate
+        //         }
+        //     }));
+        // } else if (this.filterType) {
+        //     this.dispatchEvent(new CustomEvent('filtered', {
+        //         detail: {
+        //             fromAmount: this.fromAmount,
+        //             toAmount: this.toAmount
+        //         }
+        //     }));
+        // }
+        this.dispatchEvent(new CustomEvent('filtered', {
+            detail: {
+                fromDate: this.fromDate,
+                toDate: this.toDate,
+                fromAmount: this.fromAmount,
+                toAmount: this.toAmount,
+                TransactionType: this.selectedTransactionType
+            }
+        }));
     }
 
     // Helper function for navigation
@@ -159,6 +168,11 @@ export default class CBFilterCurrentAccount extends NavigationMixin(LightningEle
     setCurrentDate() {
         let today = new Date();
         this.currDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        this.toDate = `${String(today.getDate()).padStart(2, '0')}/${String(today.getMonth() + 1).padStart(2, '0')}/${today.getFullYear()}`;
+        let pastDate = new Date();
+        pastDate.setDate(today.getDate() - 90);
+        this.fromDate = `${String(pastDate.getDate()).padStart(2, '0')}/${String(pastDate.getMonth() + 1).padStart(2, '0')}/${pastDate.getFullYear()}`;
+
     }
 
     // Get maximum date for from date input
@@ -168,6 +182,7 @@ export default class CBFilterCurrentAccount extends NavigationMixin(LightningEle
         } else if (this.toDate) {
             return this.toDate;
         }
+        return ''
     }
 
     // Get maximum date for to date input
@@ -175,6 +190,7 @@ export default class CBFilterCurrentAccount extends NavigationMixin(LightningEle
         if (this.currDate) {
             return this.activeTransfersFilters ? '' : this.currDate;
         }
+        return ''
     }
 
     // Handle transaction type selection

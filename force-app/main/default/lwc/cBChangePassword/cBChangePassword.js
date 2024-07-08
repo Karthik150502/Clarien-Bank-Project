@@ -8,7 +8,7 @@
                 authentication success image.
 */
 
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import CHANGE_PASSWORD from '@salesforce/label/c.CB_ChangePassword';
@@ -26,7 +26,7 @@ import ERROR_ENTER_THE_PASS from '@salesforce/label/c.CB_ErrorEnterThePass';
 import ENTER_A_VALID_OLD from '@salesforce/label/c.CB_EnterValidOldPass';
 import CHANGEPASSWORD_PAGE from '@salesforce/label/c.CB_Page_Changepassword';
 import OK_BUTTON from '@salesforce/label/c.CB_Ok';
-
+import ERRORCOMPONENT_PAGE from '@salesforce/label/c.CB_Page_Errorcomponent';
 import AUTHENTICATION_FAILED_MESSAGE from '@salesforce/label/c.CB_Authentication_Failed';
 import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentication_InProgress';
 import AUTHENTICATION_SUCCESSFUL_MESSAGE from '@salesforce/label/c.CB_Authentication_Successful';
@@ -37,7 +37,7 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 //resources for Ad-hauthentication process
 import CB_AUTHENTICATION_SUCCESS from '@salesforce/resourceUrl/CBAutenticationSuccess';
 import changePassword from '@salesforce/apex/CBApiController.changePassword';
-import { getJsonData, getSessData, dateToTimestamp, logout, getUserCreds, setPagePath } from 'c/cBUtilities';
+import { getJsonData, dateToTimestamp, logout, getUserCreds, setPagePath } from 'c/cBUtilities';
 export default class CBChangePassword extends NavigationMixin(LightningElement) {
 
     CBBackIcon = `${CBSVG}/CBSVGs/CBBackIcon.svg#CBBackIcon`;

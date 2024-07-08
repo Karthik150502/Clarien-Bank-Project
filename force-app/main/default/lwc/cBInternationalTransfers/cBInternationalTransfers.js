@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 
 import { NavigationMixin } from 'lightning/navigation';
 import CONTINUE from '@salesforce/label/c.CB_Continue';
@@ -29,6 +29,7 @@ import CB_RecipientCodeOption from '@salesforce/label/c.CB_RecipientCodeOption';
 import CB_ClearingCode from '@salesforce/label/c.CB_ClearingCode';
 import CB_BankCountry from '@salesforce/label/c.CB_BankCountry';
 import CB_SelectBankCountry from '@salesforce/label/c.CB_SelectBankCountry';
+import CB_Select from '@salesforce/label/c.CB_Select';
 
 
 import confTransferPage from '@salesforce/label/c.CB_Page_InternationalTransfersConf';
@@ -37,7 +38,26 @@ import confTransferPage from '@salesforce/label/c.CB_Page_InternationalTransfers
 
 import { setPagePath, formatDate, getMobileSessionStorage } from 'c/cBUtilities';
 
+
+
+// LMS
+import LMS from "@salesforce/messageChannel/cBRecurringTransferLMS__c";
+import { APPLICATION_SCOPE, MessageContext, subscribe, unsubscribe } from 'lightning/messageService';
+
+
 export default class CBInternationalTransfers extends NavigationMixin(LightningElement) {
+
+
+
+
+
+    @wire(MessageContext)
+    context;
+
+
+    subscription = null;
+
+
 
     // Object to hold imported labels
     label = {
@@ -68,7 +88,8 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
         CB_BankCountry,
         CB_SelectBankCountry,
         DATE,
-        CONTINUE
+        CONTINUE,
+        CB_Select
     };
 
 
@@ -93,9 +114,11 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
     connectedCallback() {
         this.configuration.previousPageUrl = setPagePath(this.label.INTER_TRANSFERS_PAGE_LINK)
         this.setAccountData()
+        this.subscribeMessage()
+
     }
 
-    setAccountData(){
+    setAccountData() {
         this.accounts = JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) ? JSON.parse(getMobileSessionStorage('CB_All_Account_Details')) : [];
     }
 
@@ -114,7 +137,6 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
     swiftCode = ''
     clearingCode = ''
     bankCountry = ''
-    bankCode = ''
     swiftclearingCode = false
     beneficiary = [
         {
@@ -138,7 +160,6 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
     beneficiaryName = ''
     beneficiaryState = ''
     beneficiaryCountry = ''
-    recipientCode = ''
     bankCode = ''
     bankName = ''
     recurring = false
@@ -246,10 +267,7 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
     }
 
 
-    // Toggles the recurring status
-    recurringHandler() {
-        this.recurring = !this.recurring
-    }
+
 
     // Handles the input for the name
     handleName(event) {
@@ -257,40 +275,18 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
     }
 
 
-    // Handles the input for the selected date
-    handleDate(event) {
-        this.dateSelected = formatDate(event.target.value)
-    }
 
 
-    // Handles the input for the "until date" field
-    handleUntilDate(event) {
-        this.untilDate = formatDate(event.target.value)
-    }
 
 
-    // Handles the selection of frequency
-    handleFreq(event) {
-        this.frequencySelected = event.target.value
-    }
 
 
-    // Increases the number value
-    increaseNumber() {
-        this.number = this.number + 1
 
-    }
-
-
-    // Decreases the number value
-    decreaseNumber() {
-        this.number = this.number > 1 ? this.number - 1 : this.number
-    }
 
 
 
     // Handles the form submission and navigates to the confirmation transfer page
-    handleSubmit(event) {
+    handleSubmit() {
         // event.preventDefaault();
         let data = {
             fromAccount: this.selectedAccount,
@@ -376,6 +372,35 @@ export default class CBInternationalTransfers extends NavigationMixin(LightningE
     bankCodeHandler(event) {
         this.bankCode = event.target.value;
         console.log('bankCode', this.bankCode);
+    }
+
+
+    // Subscribing to LMS
+    subscribeMessage() {
+        //subscribe(messageContext, messageChannel, listener, subscribeOptions)
+        this.subscription = subscribe(this.context, LMS, (lmsMessage) => { this.handleLMSData(lmsMessage) }, { scope: APPLICATION_SCOPE })
+    }
+
+
+    startDate = ''
+    endDate = ''
+    noOfInstallments = ''
+    noOfPayments = ''
+    frequency = CB_Select
+    recurring = false
+    endDateAllowed = false
+
+    // Helper function for handling LMS Data
+    handleLMSData(data) {
+        console.log(data.lmsData)
+        if (data.lmsData) {
+            this.startDate = data.lmsData.startDate ? data.lmsData.startDate : ''
+            this.endDate = data.lmsData.endDate ? data.lmsData.endDate : ''
+            this.noOfPayments = data.lmsData.numberOfPayments ? data.lmsData.numberOfPayments : 0
+            this.noOfInstallments = data.lmsData.noOfInstallments ? data.lmsData.noOfInstallments : 0
+            this.frequency = data.lmsData.frequency ? data.lmsData.frequency : ''
+            this.endDateAllowed = data.lmsData.endDateAllowed ? data.lmsData.endDateAllowed : ''
+        }
     }
 
 }

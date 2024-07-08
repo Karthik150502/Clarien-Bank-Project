@@ -95,7 +95,7 @@ export default class CBAdHocPaymentsConfirmTrans extends NavigationMixin(Lightni
 
     // Wire method to reactively update values based on page reference changes
     @wire(CurrentPageReference)
-    handlePageReferenceChange(pageRef) {
+    handlePageReferenceChange() {
         this.populateValues(); // Update transaction details on page reference change
     }
 

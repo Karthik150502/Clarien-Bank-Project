@@ -18,8 +18,8 @@ import CBSVG from "@salesforce/resourceUrl/CBSVG"
 // Apex Classes
 import login from '@salesforce/apex/CBLoginController.login'
 import fetchExchangeRate from "@salesforce/apex/CBApiController.fetchExchangeRate";
-
-import doLoginStd from '@salesforce/apex/CBLoginController.doLoginStd'
+import getMFAResponse  from "@salesforce/apex/CBMFAController.getMFAResponse";
+import sendAdHocMFARequest  from "@salesforce/apex/CBMFAController.sendMFARequest";
 
 
 // JS Scripts
@@ -46,7 +46,12 @@ import PASSWORD_EXPIRED_MESSAGE from '@salesforce/label/c.CB_Password_Expired';
 import AUTHENTICATION_FAILED_MESSAGE from '@salesforce/label/c.CB_Authentication_Failed';
 import AUTHENTICATION_INPROGRESS_MESSAGE from '@salesforce/label/c.CB_Authentication_InProgress';
 import AUTHENTICATION_SUCCESSFUL_MESSAGE from '@salesforce/label/c.CB_Authentication_Successful';
+import MFA_WAITING_MESSAGE from '@salesforce/label/c.CB_MFA_Waiting_Message';
+import AUTHENTICATION_TIMED_OUT from '@salesforce/label/c.CB_ERR_Authentication_Timed_Out';
+import AUTHENTICATION_DENIED from '@salesforce/label/c.CB_ERR_Authentication_Denied';
 
+import MFA_TIMEOUT_POLL from '@salesforce/label/c.CB_TIMEOUT_POLL';
+import MFA_TIMEOUT_MAX from '@salesforce/label/c.CB_TIMEOUT_MAX';
 //page
 import CHECK_PASSWORD from '@salesforce/label/c.CB_Page_Check_Password';
 import SIGNUP_PAGE from '@salesforce/label/c.CB_Page_Signup';
@@ -84,7 +89,6 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
     successGif = CB_AUTHENTICATION_SUCCESS
     failureGif = CB_AUTHENTICATION_FAILED
 
-
     // Initial properties 
     username = ''
     password = ''
@@ -105,6 +109,14 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
     hasRendered = false
     isPageLoading = true;
     requestUUID = ''
+    timeoutId;
+    sendSignInMFAReqPayload=''
+    sendSignInMFAReqJsonPaths = []
+    sendSignInMFAReqMdtApiName = 'CB_MFA_Signin_Post_Request';
+    getSignInMFAResMdtApiName = 'CB_MFA_SignIn_Get_Response'
+    MFARequestId = ''
+
+
 
     get usernameClass() {
         return this.showError ? 'username error-input-field' : 'username'
@@ -183,10 +195,12 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
     */
 
     connectedCallback() {
+        this.mfaTimeoutPoll = parseInt(MFA_TIMEOUT_POLL, 10);
+        this.mfaTimeoutMax = parseInt(MFA_TIMEOUT_MAX, 10);
+        this.requestUUID = dateToTimestamp()
         this.getUsername();
         this.getJsonBody();
         console.log('loginloaded', this.isloginloading);
-        this.requestUUID = dateToTimestamp()
     }
 
 
@@ -553,13 +567,14 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
             this.startUrl = pagRef["state"]["startURL"];
         }
     }
-
+    loginUrl=''
+    forcePwdChangeFlag=''
     //The doLogin() should be called when pressed on 'SUBMIT' button.
     doLogin(event) {
         event.preventDefault();
         event.stopPropagation();
         this.authenticationInProgress(AUTHENTICATION_INPROGRESS_MESSAGE)
-
+        this.getSignInMFAJsonBody()
         this.signInPayload = this.mapTheData(this.signInPayload, this.signInJsonPaths);
 
 
@@ -597,8 +612,14 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
                 setLocalStorage('CBUsername', this.username)
                 setLocalStorage('CBPassword', this.password)
                 setLocalStorage('CBIsFirstTimeLogin', 'true')
-
-                this.handleAuthenticationSuccess(result.loginUrl, result.forcePwdChangeFlag);
+                this.loginUrl=result.loginUrl;
+                this.forcePwdChangeFlag=result.forcePwdChangeFlag
+                if (this.username=='sflood20'||this.username=='Sflood20'||this.username=='SFLOOD20') {
+                    this.authenticationInProgress(MFA_WAITING_MESSAGE)
+                    this.initiateSignInMFA();
+                }else{
+                    this.handleAuthenticationSuccess(result.loginUrl, result.forcePwdChangeFlag);
+                }   
                 console.log('OUTPUT : ', result);
             }).catch((error) => {
                 this.requestUUID = dateToTimestamp()
@@ -688,5 +709,79 @@ export default class CBLoginForm extends NavigationMixin(LightningElement) {
         console.log(JSON.stringify(this.modal))
     }
 
+    getSignInMFAJsonBody() {
+        getJsonData(this.sendSignInMFAReqMdtApiName)
+            .then((result) => {
+                this.sendSignInMFAReqPayload = JSON.parse(result[0])
+                this.sendSignInMFAReqJsonPaths = result[1]
+                this.sendSignInMFAReqPayload = this.mapTheData(this.sendSignInMFAReqPayload, this.sendSignInMFAReqJsonPaths);
+            }).catch((error) => {
+                console.log("Could not get the Json/ Path Data;\n")
+                console.error(error);
+            })
+    }
 
+    initiateSignInMFA () {
+        let reqWrapper = {
+            payload: JSON.stringify(this.sendSignInMFAReqPayload), // Ensure payload is a string
+            metadataName: this.sendSignInMFAReqMdtApiName,
+            headers: ''  // Provide metadata name
+        };
+        sendAdHocMFARequest({ reqWrapper: reqWrapper })
+            .then((result) => {
+                console.log('sendAdHocMFARequest response:', result);
+                let reqWrapper = {
+                    payload: null, // Ensure payload is a string
+                    metadataName: this.getSignInMFAResMdtApiName,
+                    headers: ''  // Provide metadata name
+                };
+                let mfaRequest = {
+                    requestUUID:  JSON.parse(result)?.requestUUID,
+                    MFARequestId:JSON.parse(result)?.id,
+                    headers: ''
+                };
+                this.pollForMFAResponse(reqWrapper,mfaRequest);
+                setTimeout(() => {
+                    if (this.timeoutId) {
+                        clearTimeout(this.timeoutId);
+                        this.handleError(AUTHENTICATION_TIMED_OUT);
+                    }
+                }, this.mfaTimeoutMax);            
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    pollForMFAResponse(reqWrapper,mfaRequest) {
+        getMFAResponse({ reqWrapper: reqWrapper, mfaRequest: mfaRequest })
+            .then(response => {
+                console.log('MFA response:', response);
+                switch (response) {
+                    case 'Waiting':
+                      this.timeoutId = setTimeout(() => {
+                        this.pollForMFAResponse(reqWrapper,mfaRequest);
+                      }, this.mfaTimeoutPoll);
+                      break;
+                    case 'Failure':
+                      this.handleError(AUTHENTICATION_DENIED);
+                      break;
+                    case 'Success':
+                        this.handleAuthenticationSuccess(this.loginUrl, this.forcePwdChangeFlag);
+                        break;
+                    }
+            })
+            .catch(error => {
+                console.error(error);
+                this.handleAuthenticationFailure(error);
+            });
+
+    }
+
+    handleError(errorMessage) {
+        console.error(errorMessage);
+        this.authenticate(this.failureGif, errorMessage);
+        this.errorMsg = errorMessage;
+        this.showError = true;
+      }
 }

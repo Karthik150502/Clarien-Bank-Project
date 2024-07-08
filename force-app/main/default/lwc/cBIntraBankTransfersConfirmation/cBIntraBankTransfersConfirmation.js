@@ -198,7 +198,7 @@ export default class CBIntraBankTransfersConfirmation extends NavigationMixin(Li
         }
     }
     @track modalConf1 = {
-        title: CB_SaveAsTemplate,
+        title: '',
         message: CB_TransactionCompleted,
         okButton: {
             exposed: false,

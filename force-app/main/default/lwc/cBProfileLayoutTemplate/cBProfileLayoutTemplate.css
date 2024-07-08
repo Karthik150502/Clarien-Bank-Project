@@ -84,6 +84,7 @@
     margin-right: 10px;
     position: relative;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     color: var(--primary-white);
     background-color: var(--primary-blue);

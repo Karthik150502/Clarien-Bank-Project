@@ -7,19 +7,21 @@ import { getJsonData, dateToTimestamp } from 'c/cBUtilities';
 export default class CBMFAController extends LightningElement {
 
     timeoutId;
-    sendMFAReqPayload = ''
+    sendAdHocMFAReqPayload = ''
     sendSignInMFAReqPayload=''
-    sendMFAReqMdtApiName = 'CB_MAuth_Post_Request';
-    sendSignInMFAReqMdtApiName = 'CB_MSignIn_Post_Request';
+    sendAdHocMFAReqMdtApiName = 'CB_MFA_Adhoc_Post_Request';
+    sendSignInMFAReqMdtApiName = 'CB_MFA_Signin_Post_Request';
 
-    sendMFAReqJsonPaths = []
+    sendAdHocMFAReqJsonPaths = []
     sendSignInMFAReqJsonPaths = []
 
     MFARequestId=''
     MFARequestUUId=''
 
-    getMFAResMdtApiName = 'CB_MAuth_Get_Response'
-    username = 'rameshac12'
+    getAdHocMFAResMdtApiName = 'CB_MFA_Adhoc_Get_Response'
+    getSignInMFAResMdtApiName = 'CB_MFA_SignIn_Get_Response'
+
+    username = 'sflood20'
     requestUUID = ''
     MFARequestId = ''
 
@@ -32,11 +34,11 @@ export default class CBMFAController extends LightningElement {
         //this.username = getMobileSessionStorage("CBUsername");
         this.requestUUID = dateToTimestamp()
 
-        getJsonData(this.sendMFAReqMdtApiName)
+        getJsonData(this.sendAdHocMFAReqMdtApiName)
             .then((result) => {
-                this.sendMFAReqPayload = JSON.parse(result[0])
-                this.sendMFAReqJsonPaths = result[1]
-                this.sendMFAReqPayload = this.mapTheData(this.sendMFAReqPayload, this.sendMFAReqJsonPaths);
+                this.sendAdHocMFAReqPayload = JSON.parse(result[0])
+                this.sendAdHocMFAReqJsonPaths = result[1]
+                this.sendAdHocMFAReqPayload = this.mapTheData(this.sendAdHocMFAReqPayload, this.sendAdHocMFAReqJsonPaths);
             }).catch((error) => {
                 console.log("Could not get the Json/ Path Data;\n")
                 console.error(error);
@@ -75,26 +77,34 @@ export default class CBMFAController extends LightningElement {
         return jsonReq;
     }
 
-    initiateMFA() {
+    initiateAdHocMFA() {
         let reqWrapper = {
-            payload: JSON.stringify(this.sendMFAReqPayload), // Ensure payload is a string
-            metadataName: this.sendMFAReqMdtApiName,
+            payload: JSON.stringify(this.sendAdHocMFAReqPayload), // Ensure payload is a string
+            metadataName: this.sendAdHocMFAReqMdtApiName,
             headers: ''  // Provide metadata name
         };
         sendAdHocMFARequest({ reqWrapper: reqWrapper })
             .then((result) => {
-                console.log('sendAdHocMFARequest response:', result);
-               let requestResult =JSON.parse(result);
-                this.MFARequestId = requestResult.id
-                this.MFARequestUUId=requestResult.requestUUID
-                return this.pollForMFAResponse();
+                console.log('MFARes response:', result);
+                let reqWrapper = {
+                    payload: null, // Ensure payload is a string
+                    metadataName: this.getAdHocMFAResMdtApiName,
+                    headers: ''  // Provide metadata name
+                };
+                let mfaRequest = {
+                    requestUUID:  JSON.parse(result)?.requestUUID,
+                    MFARequestId:JSON.parse(result)?.id,
+                    headers: ''
+                };
+
+                return this.pollForMFAResponse(reqWrapper,mfaRequest);
             })
             .catch(error => {
                 console.error(error);
             });
     }
 
-    initiateSignInMFA() {
+    initiateSignInMFA () {
         let reqWrapper = {
             payload: JSON.stringify(this.sendSignInMFAReqPayload), // Ensure payload is a string
             metadataName: this.sendSignInMFAReqMdtApiName,
@@ -103,36 +113,31 @@ export default class CBMFAController extends LightningElement {
         sendAdHocMFARequest({ reqWrapper: reqWrapper })
             .then((result) => {
                 console.log('sendAdHocMFARequest response:', result);
-               let requestResult =JSON.parse(result);
-                this.MFARequestId = requestResult.id
-                this.MFARequestUUId=requestResult.requestUUID
-                return this.pollForMFAResponse();
+                let reqWrapper = {
+                    payload: null, // Ensure payload is a string
+                    metadataName: this.getSignInMFAResMdtApiName,
+                    headers: ''  // Provide metadata name
+                };
+                let mfaRequest = {
+                    requestUUID:  JSON.parse(result)?.requestUUID,
+                    MFARequestId:JSON.parse(result)?.id,
+                    headers: ''
+                };
+                return this.pollForMFAResponse(reqWrapper,mfaRequest);
             })
             .catch(error => {
                 console.error(error);
             });
     }
 
-    pollForMFAResponse() {
-        let result;
-        let reqWrapper = {
-            payload: null, // Ensure payload is a string
-            metadataName: this.getMFAResMdtApiName,
-            headers: ''  // Provide metadata name
-        };
 
-        let mfaRequest = {
-            requestUUID: this.MFARequestUUId,
-            MFARequestId: this.MFARequestId,
-            headers: ''
-        };
-
+    pollForMFAResponse(reqWrapper,mfaRequest) {
         getMFAResponse({ reqWrapper: reqWrapper, mfaRequest: mfaRequest })
             .then(response => {
                 if (response === 'Waiting') {
                     this.timeoutId = setTimeout(() => {
                         console.log('MFA response:', response);
-                        this.pollForMFAResponse();
+                        this.pollForMFAResponse(reqWrapper,mfaRequest);
                     }, 2000); // call again after 3 seconds
                 } else {
                     // handle non-Waiting response
@@ -150,5 +155,6 @@ export default class CBMFAController extends LightningElement {
             return 'TimeOut'
         }, 30000);
     }
+    
  
 }

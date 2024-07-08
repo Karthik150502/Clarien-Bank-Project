@@ -1,5 +1,5 @@
-import { LightningElement, wire, api, track } from 'lwc'; // Import necessary decorators and modules from LWC framework
-import { CurrentPageReference, NavigationMixin } from 'lightning/navigation'; // Import navigation and current page reference modules
+import { LightningElement, wire, track } from 'lwc'; // Import necessary decorators and modules from LWC framework
+import { CurrentPageReference } from 'lightning/navigation'; // Import navigation and current page reference modules
 
 import CBSVG from "@salesforce/resourceUrl/CBSVG"; // Import SVG resources
 
@@ -176,7 +176,7 @@ export default class CBCreditAccountDetails extends LightningElement {
     jsonPathData = []
 
     requestUUID = ''
-    accountNumber = '760000024';
+    accountNumber = '';
     branchId = '500'
     lastNTransactions = 10
     nTransactions = true

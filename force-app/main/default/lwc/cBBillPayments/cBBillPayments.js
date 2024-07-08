@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import {
@@ -24,10 +24,25 @@ import LOOKUP from '@salesforce/label/c.CB_Lookup'
 import ACC_REF_NUMBER from '@salesforce/label/c.CB_AccRefNumber'
 import CUSTOMER_NAME from '@salesforce/label/c.CB_CustomerName'
 import UNTIL_END_DATE from '@salesforce/label/c.CB_UntilEndDate'
+import CB_Select from '@salesforce/label/c.CB_Select'
 import REPEAT from '@salesforce/label/c.CB_Repeat'
+
+// LMS
+import LMS from "@salesforce/messageChannel/cBRecurringTransferLMS__c";
+import { APPLICATION_SCOPE, MessageContext, subscribe, unsubscribe } from 'lightning/messageService';
 
 
 export default class CBBillPayments extends NavigationMixin(LightningElement) {
+
+
+
+    @wire(MessageContext)
+    context;
+
+
+    subscription = null;
+
+
     // Object to hold imported labels
     label = {
         SUBMIT,
@@ -48,7 +63,8 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
         ACC_REF_NUMBER,
         CUSTOMER_NAME,
         UNTIL_END_DATE,
-        REPEAT
+        REPEAT,
+        CB_Select
     };
 
 
@@ -75,6 +91,8 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
     // Lifecycle hook that is called when the component is inserted into the DOM.
     connectedCallback() {
         this.headerConfguration.previousPageUrl = setPagePath(this.label.BILLPAYMENTS_LINK)
+        this.subscribeMessage()
+
     }
 
 
@@ -121,48 +139,20 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
     ]
 
 
-    dateSelected = ''
-    selectedFromAccount = ''
+
+    selectedFromAccount = CB_Select
     selectedBiller = ''
     remarks = ''
     billerNickname = ''
     adHocBillerName = ''
     showBillers = false
     number = 1
-    recurring = false
     amount = ''
 
-    dateSelected = 'DD/MM/YYYY'
-    untilDate = 'DD/MM/YYYY'
 
     name = ''
-    frequencySelected = ''
     customerName = ''
     accRefNo = ''
-
-    frequencies = ["Day", "Month", "End of every month"]
-
-    // Method to handle the recurring payment toggle.
-    // Toggles the value of the recurring property between true and false.
-    recurringHandler() {
-        this.recurring = !this.recurring
-    }
-
-
-    // Method to handle date selection.
-    // Formats the selected date using formatDate utility and assigns it to dateSelected property.
-    handleDate(event) {
-        this.dateSelected = formatDate(event.target.value)
-    }
-
-
-    // Method to handle until date selection for recurring payments.
-    // Formats the selected date using formatDate utility and assigns it to untilDate property.
-    handleUntilDate(event) {
-        this.untilDate = formatDate(event.target.value)
-    }
-
-
 
     // Method to handle amount input change.
     // Assigns the input value to amount property.
@@ -250,7 +240,7 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
     // Method to verify if all required form values are valid.
     // Returns true if any required value is missing or invalid, otherwise false.
     verifyValues() {
-        return this.amount === '' || this.dateSelected === 'DD/MM/YYYY' || this.selectedBiller === this.label.SELECT_BILLER || this.selectedFromAccount === this.label.SELECT_ACCOUNT
+        return this.amount === '' || this.selectedBiller === C_Select || this.selectedFromAccount === CB_Select(this.recurring && this.numberOfDays === 0) || this.frequency === CB_Select || this.endDateAllowed && this.endDate === 'DD/MM/YYYY'
     }
     // Method to toggle the visibility of biller details.
     // Sets the showBillers property to true.
@@ -271,4 +261,33 @@ export default class CBBillPayments extends NavigationMixin(LightningElement) {
     }
 
 
+
+
+    // Subscribing to LMS
+    subscribeMessage() {
+        //subscribe(messageContext, messageChannel, listener, subscribeOptions)
+        this.subscription = subscribe(this.context, LMS, (lmsMessage) => { this.handleLMSData(lmsMessage) }, { scope: APPLICATION_SCOPE })
+    }
+
+
+    startDate = ''
+    endDate = ''
+    noOfInstallments = ''
+    noOfPayments = ''
+    frequency = CB_Select
+    recurring = false
+    endDateAllowed = false
+
+    // Helper function for handling LMS Data
+    handleLMSData(data) {
+        console.log(data.lmsData)
+        if (data.lmsData) {
+            this.startDate = data.lmsData.startDate ? data.lmsData.startDate : ''
+            this.endDate = data.lmsData.endDate ? data.lmsData.endDate : ''
+            this.noOfPayments = data.lmsData.numberOfPayments ? data.lmsData.numberOfPayments : 0
+            this.noOfInstallments = data.lmsData.noOfInstallments ? data.lmsData.noOfInstallments : 0
+            this.frequency = data.lmsData.frequency ? data.lmsData.frequency : ''
+            this.endDateAllowed = data.lmsData.endDateAllowed ? data.lmsData.endDateAllowed : ''
+        }
+    }
 }
